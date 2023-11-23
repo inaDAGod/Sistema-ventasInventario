@@ -119,7 +119,9 @@ public class sobreNea extends JPanel {
 		panel_3_1.add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica"));
+		ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+		Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
+		lblNewLabel_5.setIcon(new ImageIcon(image5));
 		lblNewLabel_5.setBounds(361, 324, 75, 52);
 		panel_3_1.add(lblNewLabel_5);
 		
