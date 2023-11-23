@@ -88,7 +88,7 @@ CREATE TABLE productos (
     cproducto varchar(50)  NOT NULL,
     nombre varchar(30)  NOT NULL,
     descripcion varchar(80)  NOT NULL,
-    precio money  NOT NULL,
+    precio NUMERIC(10,2) NOT NULL,
     cantidad int  NOT NULL,
     marca varchar(30)  NOT NULL,
     color varchar(50)  NOT NULL,

@@ -30,3 +30,32 @@ language plpgsql;
 
 --select registrarProducto('P123', 'gorrito niño', 'gorro para niño', 10.50, 10, 'Gucci', 'Rojo', 'S');
 --select *from productos
+
+create or replace function agregarEtiquetaProducto(cetiqueta varchar(20),cproducto varchar(50))
+return void as $etiquetar$
+begin
+    insert into etiquetas_producto values(cetiqueta,cproducto);
+end;
+$etiquetar$
+language plpgsql;
+
+
+create or replace function ofertar(cproducto varchar(50), preciooferta numeric, cantidad_inicial integer, fecha_inicio date, fecha_fin date)
+returns void as $ofertar$
+declare 
+    precio_antiguo numeric;
+    porcentaje integer;
+	codp varchar(50);
+begin
+	codp := cproducto;
+    precio_antiguo :=   (select a.precio
+                        from productos a 
+                        where a.cproducto = codp);  
+    porcentaje :=((preciooferta-precio_antiguo)/precio_antiguo)*100;
+    insert into ofertas values (cproducto,porcentaje,preciooferta,cantidad_inicial,fecha_inicio,fecha_fin);
+end;
+$ofertar$
+language plpgsql;
+
+--select ofertar('P123',5,1,'2023-11-2','2023-11-2');
+--select *from ofertas 
