@@ -88,3 +88,16 @@ language plpgsql;
 
 --select agregaraCarrito('danialee14','P123',3);
 --select *from carrito_productos;
+
+
+create or replace function agregaraFavoritos(cusuario varchar(30),cpro varchar(30))
+returns void as $carrito$
+begin 
+    insert into favoritos values(cpro,cusuario);
+end;
+$carrito$
+language plpgsql;
+
+--select agregaraFavoritos('danialee14','P123');
+--select *from favoritos;
+
