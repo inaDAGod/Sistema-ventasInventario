@@ -39,23 +39,52 @@ end;
 $etiquetar$
 language plpgsql;
 
-
-create or replace function ofertar(cproducto varchar(50), preciooferta numeric, cantidad_inicial integer, fecha_inicio date, fecha_fin date)
+create or replace function ofertar(cpro varchar(50), preciooferta numeric, cantidad_inicial integer, fecha_inicio date, fecha_fin date)
 returns void as $ofertar$
 declare 
     precio_antiguo numeric;
     porcentaje integer;
-	codp varchar(50);
 begin
-	codp := cproducto;
     precio_antiguo :=   (select a.precio
                         from productos a 
-                        where a.cproducto = codp);  
+                        where a.cproducto = cpro);  
     porcentaje :=((preciooferta-precio_antiguo)/precio_antiguo)*100;
-    insert into ofertas values (cproducto,porcentaje,preciooferta,cantidad_inicial,fecha_inicio,fecha_fin);
+    insert into ofertas values (cpro,porcentaje,preciooferta,cantidad_inicial,fecha_inicio,fecha_fin);
+    update productos set ofertado = TRUE
+        where cproducto = cpro;
 end;
 $ofertar$
 language plpgsql;
 
 --select ofertar('P123',5,1,'2023-11-2','2023-11-2');
 --select *from ofertas 
+--select *from productos
+
+
+create or replace function agregaraCarrito(cusuario varchar(30),cpro varchar(30),cantidad integer)
+returns void as $carrito$
+declare 
+    suma numeric;
+    precio numeric;
+    ofertado boolean;
+begin 
+    ofertado := (select a.ofertado
+                from productos a 
+                where a.cproducto = cpro); 
+    if (ofertado) then
+        precio :=   (select a.preciooferta
+                    from ofertas a
+                    where a.cproducto = cpro);
+    else
+        precio :=   (select a.precio
+                    from productos a 
+                    where a.cproducto = cpro); 
+    end if;
+    suma := precio * cantidad;
+    insert into carrito_productos values(cusuario,cpro,cantidad,suma);
+end;
+$carrito$
+language plpgsql;
+
+--select agregaraCarrito('danialee14','P123',3);
+--select *from carrito_productos;
