@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-11-20 20:59:55.775
+-- Last modification date: 2023-11-23 20:51:47.175
 
 -- tables
 -- Table: carrito_productos
@@ -7,27 +7,8 @@ CREATE TABLE carrito_productos (
     cusuario varchar(30)  NOT NULL,
     cproducto varchar(20)  NOT NULL,
     cantidad int  NOT NULL,
-    monto money  NOT NULL,
+    monto NUMERIC(10,2) NOT NULL,
     CONSTRAINT carrito_productos_pk PRIMARY KEY (cusuario,cproducto)
-);
-
--- Table: detalles_producto
-CREATE TABLE detalles_producto (
-    cproducto varchar(50)  NOT NULL,
-    marca varchar(20)  NOT NULL,
-    color varchar(20)  NOT NULL,
-    talla varchar(20)  NOT NULL,
-    editado boolean  NOT NULL,
-    CONSTRAINT detalles_producto_pk PRIMARY KEY (cproducto)
-);
-
--- Table: detalles_producto_privado
-CREATE TABLE detalles_producto_privado (
-    cproducto varchar(20)  NOT NULL,
-    marca varchar(20)  NOT NULL,
-    color varchar(20)  NOT NULL,
-    talla varchar(20)  NOT NULL,
-    CONSTRAINT detalles_producto_privado_pk PRIMARY KEY (cproducto)
 );
 
 -- Table: estados_pedido
@@ -48,7 +29,6 @@ CREATE TABLE etiquetas (
 CREATE TABLE etiquetas_producto (
     cetiqueta varchar(20)  NOT NULL,
     cproducto varchar(50)  NOT NULL,
-    publico boolean  NOT NULL,
     CONSTRAINT etiquetas_producto_pk PRIMARY KEY (cetiqueta,cproducto)
 );
 
@@ -63,22 +43,21 @@ CREATE TABLE favoritos (
 CREATE TABLE imagenes (
     ruta varchar(50)  NOT NULL,
     cproducto varchar(50)  NOT NULL,
-    publico boolean  NOT NULL,
     CONSTRAINT imagenes_pk PRIMARY KEY (ruta)
 );
 
 -- Table: imagenes_empresa
 CREATE TABLE imagenes_empresa (
-    ruta varchar(50)  NOT NULL,
     cimagen varchar(50)  NOT NULL,
-    CONSTRAINT imagenes_empresa_pk PRIMARY KEY (ruta)
+    ruta varchar(50)  NOT NULL,
+    CONSTRAINT imagenes_empresa_pk PRIMARY KEY (cimagen)
 );
 
 -- Table: ofertas
 CREATE TABLE ofertas (
     cproducto varchar(50)  NOT NULL,
     porcentaje int  NOT NULL,
-    preciooferta money  NOT NULL,
+    preciooferta NUMERIC(10,2) NOT NULL,
     cantidad_inicial int  NOT NULL,
     fecha_inicio date  NOT NULL,
     fecha_fin date  NOT NULL,
@@ -92,7 +71,7 @@ CREATE TABLE pedidos (
     cestado_pedido varchar(20)  NOT NULL,
     fecha_reserva date  NOT NULL,
     fecha_limite date  NOT NULL,
-    monto_pagar money  NOT NULL,
+    monto_pagar NUMERIC(10,2)  NOT NULL,
     CONSTRAINT pedidos_pk PRIMARY KEY (cpedido)
 );
 
@@ -104,36 +83,27 @@ CREATE TABLE pedidos_funcionarios (
     CONSTRAINT pedidos_funcionarios_pk PRIMARY KEY (cpedido,cusuario)
 );
 
--- Table: productos_pedido
-CREATE TABLE productos_pedido (
-    cpedido varchar(50)  NOT NULL,
-    cproducto varchar(50)  NOT NULL,
-    cantidad int  NOT NULL,
-    monto money  NOT NULL,
-    CONSTRAINT productos_pedido_pk PRIMARY KEY (cpedido,cproducto)
-);
-
--- Table: productos_privado
-CREATE TABLE productos_privado (
-    cproducto varchar(20)  NOT NULL,
-    nombre varchar(30)  NOT NULL,
-    descripcion varchar(50)  NOT NULL,
-    precio real  NOT NULL,
-    cantidad int  NOT NULL,
-    ofertado boolean  NOT NULL,
-    CONSTRAINT productos_privado_pk PRIMARY KEY (cproducto)
-);
-
--- Table: productos_publico
-CREATE TABLE productos_publico (
+-- Table: productos
+CREATE TABLE productos (
     cproducto varchar(50)  NOT NULL,
     nombre varchar(30)  NOT NULL,
     descripcion varchar(80)  NOT NULL,
     precio money  NOT NULL,
     cantidad int  NOT NULL,
+    marca varchar(30)  NOT NULL,
+    color varchar(50)  NOT NULL,
+    talla varchar(20)  NOT NULL,
     ofertado boolean  NOT NULL,
-    editado boolean  NOT NULL,
-    CONSTRAINT productos_publico_pk PRIMARY KEY (cproducto)
+    CONSTRAINT productos_pk PRIMARY KEY (cproducto)
+);
+
+-- Table: productos_pedido
+CREATE TABLE productos_pedido (
+    cpedido varchar(50)  NOT NULL,
+    cproducto varchar(50)  NOT NULL,
+    cantidad int  NOT NULL,
+    monto NUMERIC(10,2) NOT NULL,
+    CONSTRAINT productos_pedido_pk PRIMARY KEY (cpedido,cproducto)
 );
 
 -- Table: sobre_empresa
@@ -167,7 +137,7 @@ CREATE TABLE usuarios (
 -- Reference: carritos_productos (table: carrito_productos)
 ALTER TABLE carrito_productos ADD CONSTRAINT carritos_productos
     FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
+    REFERENCES productos (cproducto)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -191,15 +161,7 @@ ALTER TABLE etiquetas_producto ADD CONSTRAINT categoria_producto_etiquetas
 -- Reference: categoria_producto_productos (table: etiquetas_producto)
 ALTER TABLE etiquetas_producto ADD CONSTRAINT categoria_producto_productos
     FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: detalles_producto_productos_publico (table: detalles_producto)
-ALTER TABLE detalles_producto ADD CONSTRAINT detalles_producto_productos_publico
-    FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
+    REFERENCES productos (cproducto)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -207,7 +169,7 @@ ALTER TABLE detalles_producto ADD CONSTRAINT detalles_producto_productos_publico
 -- Reference: favoritos_productos (table: favoritos)
 ALTER TABLE favoritos ADD CONSTRAINT favoritos_productos
     FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
+    REFERENCES productos (cproducto)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -223,7 +185,7 @@ ALTER TABLE favoritos ADD CONSTRAINT favoritos_usuarios
 -- Reference: imagenes_productos_publico (table: imagenes)
 ALTER TABLE imagenes ADD CONSTRAINT imagenes_productos_publico
     FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
+    REFERENCES productos (cproducto)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -231,7 +193,7 @@ ALTER TABLE imagenes ADD CONSTRAINT imagenes_productos_publico
 -- Reference: ofertas_producto (table: ofertas)
 ALTER TABLE ofertas ADD CONSTRAINT ofertas_producto
     FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
+    REFERENCES productos (cproducto)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -271,7 +233,7 @@ ALTER TABLE productos_pedido ADD CONSTRAINT productos_pedido_pedidos
 -- Reference: productos_pedido_productos (table: productos_pedido)
 ALTER TABLE productos_pedido ADD CONSTRAINT productos_pedido_productos
     FOREIGN KEY (cproducto)
-    REFERENCES productos_publico (cproducto)  
+    REFERENCES productos (cproducto)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
