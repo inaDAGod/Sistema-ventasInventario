@@ -47,16 +47,7 @@ public class perfilUsuario extends JFrame {
      */
     public perfilUsuario() {
 
-        btnEditar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (btnEditar.getText().equals("Editar")) {
-                    editarPerfil();
-                } else {
-                    guardarCambios(); // Nueva función para guardar los cambios
-                    cancelarEdicion();
-                }
-            }
-        });
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         contentPane = new JPanel();
@@ -76,7 +67,7 @@ public class perfilUsuario extends JFrame {
         panel_1.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("");
-        ImageIcon icon = new ImageIcon(Perfil.class.getResource("/imagenesJhess/personas.jfif"));
+        ImageIcon icon = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
         Image image = icon.getImage().getScaledInstance(139, 118, Image.SCALE_SMOOTH);
         lblNewLabel.setIcon(new ImageIcon(image));
         lblNewLabel.setBounds(24, 11, 139, 118);
@@ -106,7 +97,7 @@ public class perfilUsuario extends JFrame {
         btnOferta_1_1.setBounds(564, 44, 139, 36);
         panel_1.add(btnOferta_1_1);
 
-        ImageIcon iconPerfil = new ImageIcon(Perfil.class.getResource("/imagenesJhess/perfilpersona.png"));
+        ImageIcon iconPerfil = new ImageIcon(perfilUsuario.class.getResource("/imagenesJhess/perfilpersona.png"));
         Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
 
         JButton btnOferta_2 = new JButton("");
@@ -125,7 +116,7 @@ public class perfilUsuario extends JFrame {
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
-        ImageIcon icon2 = new ImageIcon(Perfil.class.getResource("/imagenesJhess/personassi.jfif"));
+        ImageIcon icon2 = new ImageIcon("/imagenesJhess/personassi.jfif");
         Image image2 = icon2.getImage().getScaledInstance(585, 573, Image.SCALE_SMOOTH);
 
         JLabel lblNewLabel_5 = new JLabel("");
@@ -164,7 +155,7 @@ public class perfilUsuario extends JFrame {
         lblNewLabel_1_1_1_2_1_1.setBounds(46, 361, 127, 52);
         panel_4.add(lblNewLabel_1_1_1_2_1_1);
 
-        ImageIcon iconVoluntario = new ImageIcon(Perfil.class.getResource("/imagenesJhess/voluntarioIcon.png"));
+        ImageIcon iconVoluntario = new ImageIcon(perfilUsuario.class.getResource("/imagenesJhess/voluntarioIcon.png"));
         Image imageVoluntario = iconVoluntario.getImage().getScaledInstance(173, 134, Image.SCALE_SMOOTH);
 
         JLabel lblNewLabel_2 = new JLabel("");
@@ -221,7 +212,7 @@ public class perfilUsuario extends JFrame {
                 }
             }
         });
-        btnEditar.setBounds(489, 19, 85, 33);
+        btnEditar.setBounds(425, 19, 149, 33);
         panel_5.add(btnEditar);
         
         
@@ -235,7 +226,7 @@ public class perfilUsuario extends JFrame {
                 cancelarEdicion();
             }
         });
-        btnCancelar.setBounds(385, 19, 94, 33);
+        btnCancelar.setBounds(253, 19, 162, 33);
         btnCancelar.setVisible(false); // Inicialmente oculto
         panel_5.add(btnCancelar);
     }

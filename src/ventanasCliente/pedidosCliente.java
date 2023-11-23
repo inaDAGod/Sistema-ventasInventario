@@ -72,7 +72,7 @@ public class pedidosCliente extends JPanel {
 	        panel_1.setLayout(null);
 
 	        JLabel lblNewLabel = new JLabel("");
-	        ImageIcon icon = new ImageIcon(Perfil.class.getResource("/imagenesJhess/personas.jfif"));
+	        ImageIcon icon = new ImageIcon("/imagenesJhess/personas.jfif");
 	        Image image = icon.getImage().getScaledInstance(139, 118, Image.SCALE_SMOOTH);
 	        lblNewLabel.setIcon(new ImageIcon(image));
 	        lblNewLabel.setBounds(24, 11, 139, 118);
@@ -102,7 +102,7 @@ public class pedidosCliente extends JPanel {
 		btnOferta_1_1.setBounds(564, 44, 139, 36);
 		panel_1.add(btnOferta_1_1);
 		
-		ImageIcon iconPerfil = new ImageIcon(Perfil.class.getResource("/imagenesJhess/perfilpersona.png"));
+		ImageIcon iconPerfil = new ImageIcon("/imagenesJhess/perfilpersona.png");
 		Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
 
 		JButton btnOferta_2 = new JButton("");
