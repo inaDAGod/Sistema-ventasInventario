@@ -124,6 +124,7 @@ public class sobreNea extends JPanel {
 		lblNewLabel_5.setIcon(new ImageIcon(image5));
 		lblNewLabel_5.setBounds(361, 324, 75, 52);
 		panel_3_1.add(lblNewLabel_5);
+
 		
 		JLabel lblNewLabel_1_1_2 = new JLabel("¿Donde nos encontramos?");
 		lblNewLabel_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
