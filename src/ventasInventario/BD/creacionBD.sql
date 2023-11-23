@@ -155,7 +155,6 @@ CREATE TABLE sobre_empresa (
 -- Table: usuarios
 CREATE TABLE usuarios (
     cusuario varchar(30)  NOT NULL,
-    usuario varchar(20)  NOT NULL,
     nombre varchar(50)  NOT NULL,
     correo varchar(40)  NOT NULL,
     contrasenia varchar(20)  NOT NULL,
