@@ -2,12 +2,14 @@ package ventanasCliente;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Image;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -16,29 +18,38 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
 
-public class clienteOfertas extends JFrame {
+public class clienteCatalogo extends JFrame {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	  private JTextField txtDatoABuscar;
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	clienteOfertas frame = new clienteOfertas();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					clienteCatalogo frame = new clienteCatalogo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    public clienteOfertas() {
+	/**
+	 * Create the frame.
+	 */
+	public clienteCatalogo() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -112,6 +123,11 @@ public class clienteOfertas extends JFrame {
 
         listaPedidos.add(pedido13);
         listaPedidos.add(pedido23);
+        Pedido pedido134 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
+        Pedido pedido234 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+
+        listaPedidos.add(pedido134);
+        listaPedidos.add(pedido234);
 
         for (Pedido pedido : listaPedidos) {
             JPanel cardPanel = new JPanel();
@@ -171,14 +187,13 @@ public class clienteOfertas extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        scrollPane.setBounds(125, 97, 946, 306);
+        scrollPane.setBounds(0, 97, 1178, 528);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         panel_2.add(scrollPane);
         
-        JLabel lblNewLabel_1 = new JLabel("OFERTAS");
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-        lblNewLabel_1.setBounds(10, 29, 197, 53);
-        panel_2.add(lblNewLabel_1);
+        JPanel panel_3 = new JPanel();
+        panel_3.setBounds(0, 0, 1190, 100);
+        panel_2.add(panel_3);
     }
 }
