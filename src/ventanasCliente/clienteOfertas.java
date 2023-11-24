@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
-public class clientePedido extends JFrame {
+public class clienteOfertas extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class clientePedido extends JFrame {
     	EventQueue.invokeLater(new Runnable() {
     	    public void run() {
     	        try {
-    	            clientePedido frame = new clientePedido();
+    	        	clienteOfertas frame = new clienteOfertas();
     	            frame.setVisible(true);
     	        } catch (Exception e) {
     	            e.printStackTrace();
@@ -44,7 +44,7 @@ public class clientePedido extends JFrame {
     /**
      * Create the frame.
      */
-    public clientePedido() {
+    public clienteOfertas() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -96,8 +96,7 @@ public class clientePedido extends JFrame {
         panel.add(panel_2);
 
         JPanel panelTarjetas = new JPanel();
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 10, 10); // Alineación a la izquierda
-        panelTarjetas.setLayout(flowLayout);
+        panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
         
         
@@ -112,7 +111,6 @@ public class clientePedido extends JFrame {
         // Simulación de datos para cinco pedidos
         Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
         Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        
         // ... (resto de la simulación)
 
         listaPedidos.add(pedido1);

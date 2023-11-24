@@ -25,11 +25,7 @@ public class pedidosCliente extends JPanel {
 	 */
 	public pedidosCliente() {
 		 setLayout(null);
-
-
-	       
-	        
-	        JPanel panel = new JPanel();
+		 JPanel panel = new JPanel();
 	        panel.setBounds(0, 0, 1200, 800);
 	        
 	        panel.setLayout(null);
