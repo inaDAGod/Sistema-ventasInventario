@@ -91,13 +91,50 @@ language plpgsql;
 
 
 create or replace function agregaraFavoritos(cusuario varchar(30),cpro varchar(30))
-returns void as $carrito$
+returns void as $fav$
 begin 
     insert into favoritos values(cpro,cusuario);
 end;
-$carrito$
+$fav$
 language plpgsql;
 
 --select agregaraFavoritos('danialee14','P123');
 --select *from favoritos;
+
+create or replace function confirmarCarrito(cusu varchar(30))
+returns void as $confiCarrito$
+declare
+    fin date;
+    total numeric;
+    next_key varchar(50);
+    curs cursor for select *from carrito_productos where cusuario = cusu;
+    row record;
+begin 
+    next_key := (select CAST(COALESCE(MAX(CAST(cpedido AS INTEGER)), 0) + 1 AS VARCHAR) FROM pedidos);
+    fin:= CURRENT_DATE + INTERVAL '3 days';
+    total :=(select sum(a.monto)
+            from carrito_productos a
+            where cusuario = cusu);
+    insert into pedidos values( next_key,cusu,'ESPERA PAGO',CURRENT_DATE,fin,total);
+
+    open curs;
+    loop
+        fetch from curs into row;
+        exit when not found;
+            insert into productos_pedido values (next_key,row.cproducto, row.cantidad,row.monto);
+    end loop;
+    close curs;
+
+    delete from carrito_productos where cusuario = cusu;
+end;
+$confiCarrito$
+language plpgsql;
+
+--select confirmarCarrito('danialee14');
+
+--select *from  carrito_productos
+--select *from pedidos
+--select *from productos_pedido
+
+
 

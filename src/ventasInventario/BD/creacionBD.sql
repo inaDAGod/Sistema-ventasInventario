@@ -13,8 +13,8 @@ CREATE TABLE carrito_productos (
 
 -- Table: estados_pedido
 CREATE TABLE estados_pedido (
-    cestado_pedido varchar(20)  NOT NULL,
-    detalle varchar(20)  NOT NULL,
+    cestado_pedido varchar(30)  NOT NULL,
+    detalle varchar(50)  NOT NULL,
     CONSTRAINT estados_pedido_pk PRIMARY KEY (cestado_pedido)
 );
 
