@@ -5,6 +5,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,29 @@ public class clienteCatalogo extends JFrame {
     }
 
     public clienteCatalogo() {
+    	 List<etiquetas> listaEtiquetas = new ArrayList<>();
+
+         etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
+         etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
+         // Agrega más etiquetas según sea necesario...
+         etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
+         // Agrega más etiquetas según sea necesario...
+         etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
+         // Agrega más etiquetas según sea necesario...
+         etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
+         // Agrega más etiquetas según sea necesario...
+         etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
+         // Agrega más etiquetas según sea necesario...
+
+         listaEtiquetas.add(etiqueta1);
+         listaEtiquetas.add(etiqueta3);
+         listaEtiquetas.add(etiqueta4);
+         listaEtiquetas.add(etiqueta5);
+         listaEtiquetas.add(etiqueta6);
+         listaEtiquetas.add(etiqueta2);
+         // Agrega más etiquetas según sea necesario...
+     	System.out.println(etiqueta1.toString());
+     	System.out.println(etiqueta2.toString());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -111,6 +136,7 @@ public class clienteCatalogo extends JFrame {
        
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         JPanel panelBusqueda = new JPanel();
+        panelBusqueda.setBackground(new Color(70, 130, 180));
         panelTarjetas.add(panelBusqueda);
         
         panelBusqueda.setLayout(null);
@@ -148,6 +174,32 @@ public class clienteCatalogo extends JFrame {
                                                                 // Realiza la búsqueda y actualiza las tarjetas según tus necesidades
                                                             }
                                                         });
+                                                        radioBoton1.addItemListener(new ItemListener() {
+                                                            public void itemStateChanged(ItemEvent e) {
+                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
+                                                                    // Realizar búsqueda al seleccionar el radioBoton1
+                                                                    filtrarTarjetas(listaEtiquetas);
+                                                                }
+                                                            }
+                                                        });
+
+                                                        radioBoton2.addItemListener(new ItemListener() {
+                                                            public void itemStateChanged(ItemEvent e) {
+                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
+                                                                    // Realizar búsqueda al seleccionar el radioBoton2
+                                                                    filtrarTarjetas(listaEtiquetas);
+                                                                }
+                                                            }
+                                                        });
+
+                                                        radioBoton3.addItemListener(new ItemListener() {
+                                                            public void itemStateChanged(ItemEvent e) {
+                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
+                                                                    // Realizar búsqueda al seleccionar el radioBoton3
+                                                                    filtrarTarjetas(listaEtiquetas);
+                                                                }
+                                                            }
+                                                        });
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0, 0, 1190, 625);
        
@@ -178,29 +230,7 @@ public class clienteCatalogo extends JFrame {
 
         // Agregar algunas tarjetas de pedidos iniciales
         
-        List<etiquetas> listaEtiquetas = new ArrayList<>();
-
-        etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
-        etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
-        // Agrega más etiquetas según sea necesario...
-        etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
-        // Agrega más etiquetas según sea necesario...
-        etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
-        // Agrega más etiquetas según sea necesario...
-        etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
-        // Agrega más etiquetas según sea necesario...
-        etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
-        // Agrega más etiquetas según sea necesario...
-
-        listaEtiquetas.add(etiqueta1);
-        listaEtiquetas.add(etiqueta3);
-        listaEtiquetas.add(etiqueta4);
-        listaEtiquetas.add(etiqueta5);
-        listaEtiquetas.add(etiqueta6);
-        listaEtiquetas.add(etiqueta2);
-        // Agrega más etiquetas según sea necesario...
-    	System.out.println(etiqueta1.toString());
-    	System.out.println(etiqueta2.toString());
+       
         agregarTarjetasPedidos(listaEtiquetas);
        
     }
@@ -217,7 +247,37 @@ public class clienteCatalogo extends JFrame {
         panelTarjetas.repaint();
     }
     
-    
+    private void filtrarTarjetas(List<etiquetas> listaEtiquetas) {
+        // Obtener el tipo de detalle seleccionado
+        String tipoDetalleSeleccionado = obtenerTipoDetalleSeleccionado();
+
+        // Limpiar las tarjetas actuales
+        panelTarjetas.removeAll();
+
+        // Filtrar las tarjetas según el tipo de detalle seleccionado
+        for (etiquetas eti : listaEtiquetas) {
+            if (eti.getDetalle().equals(tipoDetalleSeleccionado)) {
+                TarjetaPedido tarjeta = new TarjetaPedido(eti);
+                panelTarjetas.add(tarjeta);
+            }
+        }
+
+        // Actualizar la vista
+        panelTarjetas.revalidate();
+        panelTarjetas.repaint();
+    }
+
+    private String obtenerTipoDetalleSeleccionado() {
+        if (radioBoton1.isSelected()) {
+            return "Detalle 1";
+        } else if (radioBoton2.isSelected()) {
+            return "Detalle 2";
+        } else if (radioBoton3.isSelected()) {
+            return "Detalle 3";
+        }
+        // Puedes agregar más casos según sea necesario
+        return "";
+    }
    
 
     public class TarjetaPedido extends JPanel {
