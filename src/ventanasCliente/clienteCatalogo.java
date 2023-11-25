@@ -14,9 +14,9 @@ import java.util.List;
 public class clienteCatalogo extends JFrame {
     private static final long serialVersionUID = 1L;
     private JTextField textFieldBuscar;
-    private JRadioButton radioBoton1, radioBoton2, radioBoton3;
+    private JRadioButton radioBoton1, radioBoton2, radioBoton3, radioBoton3_1;
     private ButtonGroup grupoRadioBotones;
-    private JButton botonBuscar;
+    private JButton botonBuscar, botonBuscar1;
     private JPanel panelTarjetas;
     private JPanel panelBusqueda;
     private JPanel panel_2;
@@ -157,23 +157,30 @@ public class clienteCatalogo extends JFrame {
                                         radioBoton3 = new JRadioButton("Maquillaje");
                                         radioBoton3.setBounds(699, 205, 100, 30);
                                         panelBusqueda.add(radioBoton3);
+                                        
+                                        radioBoton3_1 = new JRadioButton("Todo");
+                                        radioBoton3_1.setBounds(861, 205, 100, 30);
+                                        panelBusqueda.add(radioBoton3_1);
+                                      
+                                        
+                                        
                                         grupoRadioBotones.add(radioBoton1);
                                         grupoRadioBotones.add(radioBoton2);
                                         grupoRadioBotones.add(radioBoton3);
+                                       
                                         
                                                 botonBuscar = new JButton("Buscar");
-                                                botonBuscar.setBounds(915, 231, 100, 30);
+                                                botonBuscar.setBounds(911, 263, 100, 30);
                                                 panelBusqueda.add(botonBuscar);
                                                 
                                                         // Agregar ActionListener al botón de búsqueda
-                                                        botonBuscar.addActionListener(new ActionListener() {
-                                                            public void actionPerformed(ActionEvent e) {
-                                                                // Lógica de búsqueda aquí
-                                                                // Puedes acceder al texto ingresado en el JTextField con textFieldBuscar.getText()
-                                                                // Puedes obtener la opción seleccionada con grupoRadioBotones.getSelection()
-                                                                // Realiza la búsqueda y actualiza las tarjetas según tus necesidades
-                                                            }
-                                                        });
+                                                botonBuscar.addActionListener(new ActionListener() {
+                                                    public void actionPerformed(ActionEvent e) {
+                                                        // Lógica de búsqueda por nombre
+                                                        String nombreBusqueda = textFieldBuscar.getText();
+                                                        buscarPorNombre(nombreBusqueda);
+                                                    }
+                                                });
                                                         radioBoton1.addItemListener(new ItemListener() {
                                                             public void itemStateChanged(ItemEvent e) {
                                                                 if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -198,6 +205,15 @@ public class clienteCatalogo extends JFrame {
                                                                 }
                                                             }
                                                         });
+                                                        radioBoton3_1.addItemListener(new ItemListener() {
+                                                            public void itemStateChanged(ItemEvent e) {
+                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
+                                                                
+                                                                	 restaurarEstadoOriginal();
+                                                                }
+                                                            }
+                                                        });
+                                                        
                                                         
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0, 0, 1190, 625);
@@ -226,6 +242,8 @@ public class clienteCatalogo extends JFrame {
         lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
         lblNewLabel_2_1.setBounds(21, 100, 677, 82);
         panelBusqueda.add(lblNewLabel_2_1);
+        
+      
 
         // Agregar algunas tarjetas de pedidos iniciales
         
@@ -260,7 +278,7 @@ public class clienteCatalogo extends JFrame {
         grupoRadioBotones.add(radioBoton3);
 
         botonBuscar = new JButton("Buscar");
-        botonBuscar.setBounds(915, 231, 100, 30);
+        botonBuscar.setBounds(911, 263, 100, 30);
         panelBusqueda.add(botonBuscar);
 
 
@@ -269,6 +287,10 @@ public class clienteCatalogo extends JFrame {
     }
 
     private void agregarTarjetasPedidos(List<etiquetas> listaEtiquetas) {
+    	
+    	
+    	 
+         
         for (etiquetas eti : listaEtiquetas) {
             TarjetaPedido tarjeta = new TarjetaPedido(eti);
       
@@ -278,7 +300,10 @@ public class clienteCatalogo extends JFrame {
         // Refrescar la vista después de agregar las nuevas tarjetas
         panelTarjetas.revalidate();
         panelTarjetas.repaint();
+        
+       
     }
+    
     
     private void filtrarTarjetas(List<etiquetas> listaEtiquetas) {
         // Obtener el tipo de detalle seleccionado
@@ -305,13 +330,19 @@ public class clienteCatalogo extends JFrame {
         radioBoton3 = new JRadioButton("Maquillaje");
         radioBoton3.setBounds(699, 205, 100, 30);
         panelBusqueda.add(radioBoton3);
+        
+        radioBoton3_1 = new JRadioButton("Todo");
+        radioBoton3_1.setBounds(861, 205, 100, 30);
+        panelBusqueda.add(radioBoton3_1);
+        
 
         grupoRadioBotones.add(radioBoton1);
         grupoRadioBotones.add(radioBoton2);
         grupoRadioBotones.add(radioBoton3);
+        grupoRadioBotones.add(radioBoton3_1);
         
         botonBuscar = new JButton("Buscar");
-        botonBuscar.setBounds(915, 231, 100, 30);
+        botonBuscar.setBounds(911, 263, 100, 30);
         panelBusqueda.add(botonBuscar);
         
         JLabel lblNewLabel_1 = new JLabel("INGRESE DATOS A BUSCAR :");
@@ -354,10 +385,9 @@ public class clienteCatalogo extends JFrame {
      // Agregar ActionListener al botón de búsqueda
         botonBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Lógica de búsqueda aquí
-                // Puedes acceder al texto ingresado en el JTextField con textFieldBuscar.getText()
-                // Puedes obtener la opción seleccionada con grupoRadioBotones.getSelection()
-                // Realiza la búsqueda y actualiza las tarjetas según tus necesidades
+                // Lógica de búsqueda por nombre
+                String nombreBusqueda = textFieldBuscar.getText();
+                buscarPorNombre(nombreBusqueda);
             }
         });
         radioBoton1.addItemListener(new ItemListener() {
@@ -384,6 +414,14 @@ public class clienteCatalogo extends JFrame {
                 }
             }
         });
+        radioBoton3_1.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                
+                	 restaurarEstadoOriginal();
+                }
+            }
+        });
     }
 
     private String obtenerTipoDetalleSeleccionado() {
@@ -400,14 +438,33 @@ public class clienteCatalogo extends JFrame {
     private void restaurarEstadoOriginal() {
         // Limpiar las tarjetas actuales
         panelTarjetas.removeAll();
-
+        
         // Agregar las tarjetas del estado original
-        agregarTarjetasPedidos(estadoOriginal);
+        filtrarTarjetas(listaEtiquetas);
+        agregarTarjetasPedidos(listaEtiquetas);
+        
+        // Actualizar la vista
+        panelTarjetas.revalidate();
+        panelTarjetas.repaint();
+    }
+    private void buscarPorNombre(String nombre) {
+        // Limpiar las tarjetas actuales
+        panelTarjetas.removeAll();
+        filtrarTarjetas(listaEtiquetas);
+        // Filtrar las tarjetas según el nombre de búsqueda
+        for (etiquetas eti : listaEtiquetas) {
+            // Puedes ajustar esto según la lógica de tu aplicación
+            if (eti.getDetalle().toLowerCase().contains(nombre.toLowerCase())) {
+                TarjetaPedido tarjeta = new TarjetaPedido(eti);
+                panelTarjetas.add(tarjeta);
+            }
+        }
 
         // Actualizar la vista
         panelTarjetas.revalidate();
         panelTarjetas.repaint();
     }
+    
     
    
 
@@ -534,4 +591,5 @@ public class clienteCatalogo extends JFrame {
             setBackground(Color.WHITE);
         }}
     
-}}
+}	
+}
