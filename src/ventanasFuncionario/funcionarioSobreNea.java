@@ -9,6 +9,8 @@ import ventanasCliente.clienteSobreNea;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.EventQueue;
@@ -123,6 +125,24 @@ public class funcionarioSobreNea extends JFrame {
         btnNewButton_1.setIcon(new ImageIcon(imageButton1));
         btnNewButton_1.setBounds(512, 30, 83, 43);
         panel_3.add(btnNewButton_1);
+        
+        btnNewButton_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Abrir el selector de archivos
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    // Obtener la ruta de la imagen seleccionada
+                    String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                    // Mostrar la imagen en un JLabel (o en otro componente visual)
+                    ImageIcon selectedImageIcon = new ImageIcon(imagePath);
+                    lblNewLabel_2.setIcon(selectedImageIcon);
+                }
+            }
+        });
 
         JPanel panel_3_1 = new JPanel();
         panel_3_1.setBackground(new Color(255, 182, 193));
@@ -161,7 +181,23 @@ public class funcionarioSobreNea extends JFrame {
         btnNewButton_1_1.setBounds(502, 421, 83, 43);
         panel_3_1.add(btnNewButton_1_1);
 
-       
+        btnNewButton_1_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Abrir el selector de archivos
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    // Obtener la ruta de la imagen seleccionada
+                    String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                    // Mostrar la imagen en un JLabel (o en otro componente visual)
+                    ImageIcon selectedImageIcon = new ImageIcon(imagePath);
+                    lblNewLabel_2.setIcon(selectedImageIcon);
+                }
+            }
+        });
 
         txtNaEsUna = new JTextField();
         txtNaEsUna.setEditable(false); // Bloquear el JTextField
