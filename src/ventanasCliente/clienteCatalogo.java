@@ -21,7 +21,9 @@ public class clienteCatalogo extends JFrame {
     private JPanel panelBusqueda;
     private JPanel panel_2;
     private List<etiquetas> listaEtiquetas = new ArrayList<>();
-    private List<etiquetas> estadoOriginal;
+    private List<productos> listaProductos = new ArrayList<>();
+    
+    
     etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
     etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
     // Agrega más etiquetas según sea necesario...
@@ -34,7 +36,16 @@ public class clienteCatalogo extends JFrame {
     etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
     // Agrega más etiquetas según sea necesario...
 
-    
+
+    productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
+    productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
+    productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
+    productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
+    productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
+    productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+
+ 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
@@ -53,7 +64,13 @@ public class clienteCatalogo extends JFrame {
         listaEtiquetas.add(new etiquetas(2, "Detalle 4"));
         listaEtiquetas.add(new etiquetas(2, "Detalle 5"));
         listaEtiquetas.add(new etiquetas(2, "Detalle 6"));
-        estadoOriginal = new ArrayList<>(listaEtiquetas);
+        listaProductos.add(producto7);
+        listaProductos.add(producto1);
+        listaProductos.add(producto2);
+        listaProductos.add(producto3);
+        listaProductos.add(producto4);
+        listaProductos.add(producto5);
+        listaProductos.add(producto6);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -252,39 +269,7 @@ public class clienteCatalogo extends JFrame {
        
     }
     
-    private void crearPanelBusqueda() {
-        panelBusqueda = new JPanel();
-        panelBusqueda.setBackground(new Color(70, 130, 180));
-        panelBusqueda.setLayout(null);
-
-        textFieldBuscar = new JTextField();
-        textFieldBuscar.setBounds(294, 263, 530, 30);
-        panelBusqueda.add(textFieldBuscar);
-
-        radioBoton1 = new JRadioButton("Ropa");
-        radioBoton1.setBounds(304, 205, 100, 30);
-        panelBusqueda.add(radioBoton1);
-
-        radioBoton2 = new JRadioButton("Accesorios");
-        radioBoton2.setBounds(495, 205, 100, 30);
-        panelBusqueda.add(radioBoton2);
-
-        radioBoton3 = new JRadioButton("Maquillaje");
-        radioBoton3.setBounds(699, 205, 100, 30);
-        panelBusqueda.add(radioBoton3);
-
-        grupoRadioBotones.add(radioBoton1);
-        grupoRadioBotones.add(radioBoton2);
-        grupoRadioBotones.add(radioBoton3);
-
-        botonBuscar = new JButton("Buscar");
-        botonBuscar.setBounds(911, 263, 100, 30);
-        panelBusqueda.add(botonBuscar);
-
-
-
-        panelBusqueda.add(panel_2);
-    }
+    
 
     private void agregarTarjetasPedidos(List<etiquetas> listaEtiquetas) {
     	
@@ -448,26 +433,23 @@ public class clienteCatalogo extends JFrame {
         panelTarjetas.repaint();
     }
     private void buscarPorNombre(String nombre) {
-        // Limpiar las tarjetas actuales
-        panelTarjetas.removeAll();
-        filtrarTarjetas(listaEtiquetas);
-        // Filtrar las tarjetas según el nombre de búsqueda
-        for (etiquetas eti : listaEtiquetas) {
-            // Puedes ajustar esto según la lógica de tu aplicación
-            if (eti.getDetalle().toLowerCase().contains(nombre.toLowerCase())) {
-                TarjetaPedido tarjeta = new TarjetaPedido(eti);
-                panelTarjetas.add(tarjeta);
-            }
-        }
+       // Limpiar las tarjetas actuales
 
-        // Actualizar la vista
-        panelTarjetas.revalidate();
-        panelTarjetas.repaint();
-    }
+    	filtrarTarjetas(listaEtiquetas);
+        // Agregar las tarjetas del estado original
+    	TarjetaProducto tarjeta = new TarjetaProducto(nombre);
+         
+			System.out.println("blcle de categora"+nombre);
+         panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
+    
+     // Refrescar la vista después de agregar las nuevas tarjetas
+     panelTarjetas.revalidate();
+     panelTarjetas.repaint();
+        
+        
+   }
     
     
-   
-
     public class TarjetaPedido extends JPanel {
         private static final long serialVersionUID = 1L;
 
@@ -496,26 +478,10 @@ public class clienteCatalogo extends JFrame {
             panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
             panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
 
-            List<productos> listaProductos = new ArrayList<>();
-
-            productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-            productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-            productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-            productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-            productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-            productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-            productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-
-            listaProductos.add(producto7);
-            listaProductos.add(producto1);
-            listaProductos.add(producto2);
-            listaProductos.add(producto3);
-            listaProductos.add(producto4);
-            listaProductos.add(producto5);
-            listaProductos.add(producto6);
-
             
-       
+
+
+           
            
             for (productos producto11 : listaProductos) {
             	if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
@@ -589,7 +555,119 @@ public class clienteCatalogo extends JFrame {
             add(scrollPane, BorderLayout.CENTER);
 
             setBackground(Color.WHITE);
-        }}
+        }}}
     
-}	
-}
+    
+    
+        public class TarjetaProducto extends JPanel {
+            private static final long serialVersionUID = 1L;
+
+            public TarjetaProducto(String nombre) {
+            	
+                setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
+                setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); // Borde para la tarjeta
+
+                // Panel para el texto "Ropa"
+                JPanel panelTexto = new JPanel();
+                panelTexto.setBackground(new Color(0, 0, 0));
+                panelTexto.setLayout(new BorderLayout());
+                
+
+                // Agregar panelTexto al panel de tarjeta en la región norte
+                add(panelTexto, BorderLayout.NORTH);
+
+                JPanel panelTarjetas = new JPanel();
+                panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); // Cambié a FlowLayout y ajusté los espacios
+                panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
+                panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
+
+                
+
+
+               
+               
+                for (productos producto11 : listaProductos) {
+                	
+                	 if (producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())) 
+                	 {System.out.println("nombnrProductos ("+producto11.getNombre()+")== nombreBuscado ("+nombre+")");
+                	 System.out.println("resultado  ("+producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())+")");
+                    JPanel cardPanel = new JPanel();
+                    cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
+                    cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    JButton buttonProducto = new JButton();
+                    buttonProducto.setLayout(new GridBagLayout());
+
+                    ImageIcon iconProducto = new ImageIcon(producto11.getRuta_imagen());
+
+                    int alturaDeseada = 200;
+                    int anchuraCalculada = (alturaDeseada * iconProducto.getIconWidth()) / iconProducto.getIconHeight();
+                    Image imagenOriginal = iconProducto.getImage().getScaledInstance(anchuraCalculada, alturaDeseada, Image.SCALE_SMOOTH);
+
+                    ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
+                    JLabel labelImagen = new JLabel(iconRedimensionado);
+                    labelImagen.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbc.gridx = 0;
+                    gbc.gridy = 0;
+                    gbc.fill = GridBagConstraints.HORIZONTAL;
+                    gbc.weightx = 1.0;
+                    gbc.weighty = 1.0;
+                    gbc.anchor = GridBagConstraints.NORTH;
+
+                    buttonProducto.add(labelImagen, gbc);
+
+                    gbc.gridx = 0;
+                    gbc.gridy = 1;
+                    gbc.fill = GridBagConstraints.HORIZONTAL;
+                    gbc.anchor = GridBagConstraints.SOUTH;
+
+                    JPanel panelDetalles = new JPanel();
+                    panelDetalles.setBackground(Color.BLACK);
+             
+                  
+
+                    buttonProducto.add(panelDetalles, gbc);
+                    buttonProducto.setPreferredSize(new Dimension(anchuraCalculada, alturaDeseada));
+
+                    Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+
+                    // Cambiar el color de los botones
+                    buttonProducto.setBackground(Color.BLACK);
+
+                    buttonProducto.addActionListener(e -> {
+                        // Acción al hacer clic en el botón del producto
+                        // Puedes agregar tu lógica aquí
+                    });
+
+                    buttonProducto.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+
+                    cardPanel.add(buttonProducto);
+
+                    // Fijar el tamaño preferido del cardPanel
+                    cardPanel.setPreferredSize(new Dimension(anchuraCalculada + 20, alturaDeseada + 20));
+                    panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
+                    panelTarjetas.add(cardPanel);
+                }
+
+                JScrollPane scrollPane = new JScrollPane(panelTarjetas);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Cambié a HORIZONTAL_SCROLLBAR_ALWAYS
+                scrollPane.setPreferredSize(new Dimension(400, 300));
+                scrollPane.setBackground(Color.white);
+
+                // Agregar scrollPane al panel de tarjeta en la región central
+                add(scrollPane, BorderLayout.CENTER);
+
+                setBackground(Color.WHITE);
+            }}
+
+        }}
+
+   
+    
+    
+    
+    
+    
