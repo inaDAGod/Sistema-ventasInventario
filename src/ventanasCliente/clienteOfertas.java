@@ -1,3 +1,4 @@
+
 package ventanasCliente;
 
 import java.awt.Color;
@@ -152,9 +153,10 @@ public class clienteOfertas extends JFrame {
                 gbc.anchor = GridBagConstraints.SOUTH;
 
                 JPanel panelDetalles = new JPanel();
-                panelDetalles.setBackground(Color.PINK);
+                panelDetalles.setBackground(Color.BLACK);
                 panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
                 JLabel labelNumeroCompra = new JLabel("Nombre: " + Productos.getNombre());
+                labelNumeroCompra.setForeground(Color.WHITE); // Color rojo
                 float valor = Productos.getPrecio() * descuento;
                 JLabel labelFecha = new JLabel("Antes: " + (Productos.getPrecio() + valor));
                 labelFecha.setForeground(Color.RED); // Color rojo
@@ -170,7 +172,7 @@ public class clienteOfertas extends JFrame {
                 Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
                 // Cambiar el color de los botones
-                buttonPedido.setBackground(Color.PINK);
+                buttonPedido.setBackground(Color.BLACK);
 
                 buttonPedido.addActionListener(e -> {
                     JFrame frame = (JFrame) SwingUtilities.getRoot(buttonPedido);
