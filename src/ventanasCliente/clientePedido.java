@@ -78,7 +78,8 @@ class TarjetaPedido extends JPanel {
         add(panelInfo, BorderLayout.EAST);
         setBackground(Color.WHITE);
     }
-}
+    }
+
 
 public class clientePedido extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -114,7 +115,7 @@ public class clientePedido extends JFrame {
 
         JLabel lblNewLabel = new JLabel("");
         ImageIcon icon = new ImageIcon(
-                "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
+        		"C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
         Image image = icon.getImage().getScaledInstance(139, 118, Image.SCALE_SMOOTH);
         lblNewLabel.setIcon(new ImageIcon(image));
         lblNewLabel.setBounds(24, 11, 139, 118);
@@ -137,7 +138,7 @@ public class clientePedido extends JFrame {
         panel_1.add(btnOferta_1_1);
 
         ImageIcon iconPerfil = new ImageIcon(
-                "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
+                "src/imagenesJhess/perfilpersona.png");
         Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
 
         JButton btnOferta_2 = new JButton("");
@@ -198,5 +199,5 @@ public class clientePedido extends JFrame {
         lblNewLabel_1.setBounds(28, 21, 303, 66);
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
         panel_3.add(lblNewLabel_1);
-    }
-}
+    }}
+
