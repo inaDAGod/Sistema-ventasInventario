@@ -22,7 +22,7 @@ public class clienteCatalogo extends JFrame {
     private JPanel panel_2;
     private List<etiquetas> listaEtiquetas = new ArrayList<>();
     private List<productos> listaProductos = new ArrayList<>();
-    
+    private String textoBusqueda = "";
     
     etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
     etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
@@ -159,9 +159,9 @@ public class clienteCatalogo extends JFrame {
         panelBusqueda.setLayout(null);
         
                 // Componentes del buscador
-               textFieldBuscar = new JTextField();
-                textFieldBuscar.setBounds(294, 263, 530, 30);
-                panelBusqueda.add(textFieldBuscar);
+        textFieldBuscar = new JTextField();
+        textFieldBuscar.setBounds(294, 263, 530, 30);
+        panelBusqueda.add(textFieldBuscar);
                 
                         radioBoton1 = new JRadioButton("Ropa");
                         radioBoton1.setBounds(304, 205, 100, 30);
@@ -194,7 +194,8 @@ public class clienteCatalogo extends JFrame {
                                                 botonBuscar.addActionListener(new ActionListener() {
                                                     public void actionPerformed(ActionEvent e) {
                                                         // Lógica de búsqueda por nombre
-                                                        String nombreBusqueda = textFieldBuscar.getText();
+                                                    	 String nombreBusqueda = textFieldBuscar.getText();
+                                                         textoBusqueda = nombreBusqueda;  // Guardar el texto de búsqueda
                                                         buscarPorNombre(nombreBusqueda);
                                                     }
                                                 });
@@ -260,6 +261,7 @@ public class clienteCatalogo extends JFrame {
         lblNewLabel_2_1.setBounds(21, 100, 677, 82);
         panelBusqueda.add(lblNewLabel_2_1);
         
+       
       
 
         // Agregar algunas tarjetas de pedidos iniciales
@@ -297,7 +299,7 @@ public class clienteCatalogo extends JFrame {
         String tipoDetalleSeleccionado = obtenerTipoDetalleSeleccionado();
         
         JPanel panelBusqueda = new JPanel();
-        panelBusqueda.setBackground(Color.white);
+        panelBusqueda.setBackground(Color.pink);
         panelBusqueda.setLayout(null);
 
         textFieldBuscar = new JTextField();
@@ -371,7 +373,8 @@ public class clienteCatalogo extends JFrame {
         botonBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Lógica de búsqueda por nombre
-                String nombreBusqueda = textFieldBuscar.getText();
+            	 String nombreBusqueda = textFieldBuscar.getText();
+                 textoBusqueda = nombreBusqueda;  // Guardar el texto de búsqueda
                 buscarPorNombre(nombreBusqueda);
             }
         });
@@ -441,7 +444,8 @@ public class clienteCatalogo extends JFrame {
          
 			System.out.println("blcle de categora"+nombre);
          panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
-    
+         // Restablecer el texto de búsqueda después de la búsqueda
+         textFieldBuscar.setText(textoBusqueda);
      // Refrescar la vista después de agregar las nuevas tarjetas
      panelTarjetas.revalidate();
      panelTarjetas.repaint();
