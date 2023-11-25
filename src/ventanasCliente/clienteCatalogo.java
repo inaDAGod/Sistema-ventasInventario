@@ -83,31 +83,20 @@ public class clienteCatalogo extends JFrame {
 
         JPanel panel_2 = new JPanel();
         panel_2.setBackground(new Color(255, 182, 193));
-        panel_2.setBounds(0, 0, 1200, 625);
+        panel_2.setBounds(0, 0, 1190, 625);
         panel_2.setLayout(null);  // Cambiado a un diseño nulo
         panelBase.add(panel_2);
 
         panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); // Cambié el GridLayout a 1 columna
-        panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
+        panelTarjetas.setBackground(new Color(255, 182, 193)); // Establecer el fondo negro al SCROLLL
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
-        scrollPane.setBounds(125, 147, 946, 425);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(0, 0, 1190, 625);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
         panel_2.add(scrollPane);
-
-        JPanel panel_3 = new JPanel();
-        panel_3.setBackground(new Color(0, 0, 0));
-        panel_3.setBounds(125, 49, 946, 98);
-        panel_2.add(panel_3);
-        panel_3.setLayout(null);
-
-        JLabel lblNewLabel_1 = new JLabel("Mis pedidos");
-        lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setBounds(28, 21, 303, 66);
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
-        panel_3.add(lblNewLabel_1);
 
         // Agregar algunas tarjetas de pedidos iniciales
         List<Pedido> listaPedidos = obtenerNuevosPedidos(); // Debes implementar esta función
@@ -178,7 +167,7 @@ public class clienteCatalogo extends JFrame {
 
         public TarjetaPedido(Pedido pedido) {
             setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
-            setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Borde para la tarjeta
+            setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); // Borde para la tarjeta
 
             // Panel para el texto "Ropa"
             JPanel panelTexto = new JPanel();
@@ -237,14 +226,8 @@ public class clienteCatalogo extends JFrame {
 
                 JPanel panelDetalles = new JPanel();
                 panelDetalles.setBackground(Color.BLACK);
-                panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
-                JLabel labelNombre = new JLabel("Nombre: " + producto.getNombre());
-                labelNombre.setForeground(Color.WHITE); // Color blanco
-                JLabel labelPrecio = new JLabel("Precio: " + producto.getPrecio());
-                labelPrecio.setForeground(Color.GREEN); // Color verde
-
-                panelDetalles.add(labelNombre);
-                panelDetalles.add(labelPrecio);
+         
+              
 
                 buttonProducto.add(panelDetalles, gbc);
                 buttonProducto.setPreferredSize(new Dimension(anchuraCalculada, alturaDeseada));
@@ -265,13 +248,14 @@ public class clienteCatalogo extends JFrame {
 
                 // Fijar el tamaño preferido del cardPanel
                 cardPanel.setPreferredSize(new Dimension(anchuraCalculada + 20, alturaDeseada + 20));
-
+                panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
                 panelTarjetas.add(cardPanel);
             }
 
             JScrollPane scrollPane = new JScrollPane(panelTarjetas);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Cambié a HORIZONTAL_SCROLLBAR_ALWAYS
+            scrollPane.setPreferredSize(new Dimension(400, 300));
             scrollPane.setBackground(Color.white);
 
             // Agregar scrollPane al panel de tarjeta en la región central
