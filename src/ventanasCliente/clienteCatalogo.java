@@ -142,6 +142,7 @@ public class clienteCatalogo extends JFrame {
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
         
         JPanel panelTexto5 = new JPanel();
+       
         panelTexto5.setBackground(new Color(0, 0, 0));
         panelTexto5.setLayout(new BorderLayout());
 
@@ -152,10 +153,13 @@ public class clienteCatalogo extends JFrame {
         
        
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
+        scrollPane.setBounds(0, 0, 1190, 625);
         JPanel panelBusqueda = new JPanel();
         panelBusqueda.setBackground(new Color(255, 182, 193));
+       
         panelTarjetas.add(panelBusqueda);
-        
         panelBusqueda.setLayout(null);
         
                 // Componentes del buscador
@@ -233,33 +237,32 @@ public class clienteCatalogo extends JFrame {
                                                         });
                                                         
                                                         
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBounds(0, 0, 1190, 625);
-       
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
-        panel_2.add(scrollPane);
+                                                        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                                                        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
+                                                        scrollPane.setBounds(0, 0, 1190, 500);panel_2.add(scrollPane);
        
         panelTarjetas.add(panelBusqueda, BorderLayout.NORTH);
         
         JLabel lblNewLabel_1 = new JLabel("INGRESE DATOS A BUSCAR :");
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         lblNewLabel_1.setBounds(10, 260, 274, 32);
+        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panelBusqueda.add(lblNewLabel_1); 
         
         JLabel lblNewLabel_2 = new JLabel("CATÁLOGO ");
-        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 60));
         lblNewLabel_2.setBounds(23, 11, 362, 115);
+        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 60));
         panelBusqueda.add(lblNewLabel_2);
         
         JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
-        lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         lblNewLabel_1_1.setBounds(10, 202, 274, 32);
+        lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panelBusqueda.add(lblNewLabel_1_1);
         
         JLabel lblNewLabel_2_1 = new JLabel("NOVEDADES DE LA TEMPORADA");
-        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
         lblNewLabel_2_1.setBounds(21, 100, 677, 82);
+        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
         panelBusqueda.add(lblNewLabel_2_1);
+    
         
        
       
@@ -299,7 +302,7 @@ public class clienteCatalogo extends JFrame {
         String tipoDetalleSeleccionado = obtenerTipoDetalleSeleccionado();
         
         JPanel panelBusqueda = new JPanel();
-        panelBusqueda.setBackground(Color.pink);
+        panelBusqueda.setBackground(new Color(255, 182, 193));
         panelBusqueda.setLayout(null);
 
         textFieldBuscar = new JTextField();
@@ -363,6 +366,7 @@ public class clienteCatalogo extends JFrame {
                 
             	TarjetaPedido tarjeta = new TarjetaPedido(eti);
                 panelTarjetas.add(tarjeta);
+                //panelTarjetas.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
             }
         }
 
@@ -480,12 +484,9 @@ public class clienteCatalogo extends JFrame {
             JPanel panelTarjetas = new JPanel();
             panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); // Cambié a FlowLayout y ajusté los espacios
             panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
-            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
+            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2)); // Margen de 10 píxeles para la tarjeta
 
             
-
-
-           
            
             for (productos producto11 : listaProductos) {
             	if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
