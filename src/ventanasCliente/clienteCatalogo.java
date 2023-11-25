@@ -8,9 +8,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class clienteCatalogo extends JFrame {
     private static final long serialVersionUID = 1L;
-
+    private JTextField textFieldBuscar;
+    private JRadioButton radioBoton1, radioBoton2, radioBoton3;
+    private ButtonGroup grupoRadioBotones;
+    private JButton botonBuscar;
     private JPanel panelTarjetas;
 
     public static void main(String[] args) {
@@ -33,6 +37,9 @@ public class clienteCatalogo extends JFrame {
         panel.setBounds(0, 0, 1200, 763);
         getContentPane().add(panel);
         panel.setLayout(null);
+
+        // Agrupar los JRadioButton para que solo se pueda seleccionar uno
+        grupoRadioBotones = new ButtonGroup();
 
         JPanel panel_1 = new JPanel();
         panel_1.setForeground(Color.WHITE);
@@ -91,81 +98,133 @@ public class clienteCatalogo extends JFrame {
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); // Cambié el GridLayout a 1 columna
         panelTarjetas.setBackground(new Color(255, 182, 193)); // Establecer el fondo negro al SCROLLL
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
+        
+        JPanel panelTexto5 = new JPanel();
+        panelTexto5.setBackground(new Color(0, 0, 0));
+        panelTexto5.setLayout(new BorderLayout());
 
+        JLabel lblRopa = new JLabel("Ropa"); // Aquí debes obtener el tipo de producto desde el pedido
+        lblRopa.setForeground(new Color(255, 255, 255));
+        lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 50));
+        lblRopa.setHorizontalAlignment(JLabel.LEFT);
+        
+       
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
+        JPanel panelBusqueda = new JPanel();
+        panelTarjetas.add(panelBusqueda);
+        
+        panelBusqueda.setLayout(null);
+        
+                // Componentes del buscador
+                textFieldBuscar = new JTextField();
+                textFieldBuscar.setBounds(294, 263, 530, 30);
+                panelBusqueda.add(textFieldBuscar);
+                
+                        radioBoton1 = new JRadioButton("Ropa");
+                        radioBoton1.setBounds(304, 205, 100, 30);
+                        panelBusqueda.add(radioBoton1);
+                        
+                                radioBoton2 = new JRadioButton("Accesorios");
+                                radioBoton2.setBounds(495, 205, 100, 30);
+                                panelBusqueda.add(radioBoton2);
+                                
+                                        radioBoton3 = new JRadioButton("Maquillaje");
+                                        radioBoton3.setBounds(699, 205, 100, 30);
+                                        panelBusqueda.add(radioBoton3);
+                                        grupoRadioBotones.add(radioBoton1);
+                                        grupoRadioBotones.add(radioBoton2);
+                                        grupoRadioBotones.add(radioBoton3);
+                                        
+                                                botonBuscar = new JButton("Buscar");
+                                                botonBuscar.setBounds(915, 231, 100, 30);
+                                                panelBusqueda.add(botonBuscar);
+                                                
+                                                        // Agregar ActionListener al botón de búsqueda
+                                                        botonBuscar.addActionListener(new ActionListener() {
+                                                            public void actionPerformed(ActionEvent e) {
+                                                                // Lógica de búsqueda aquí
+                                                                // Puedes acceder al texto ingresado en el JTextField con textFieldBuscar.getText()
+                                                                // Puedes obtener la opción seleccionada con grupoRadioBotones.getSelection()
+                                                                // Realiza la búsqueda y actualiza las tarjetas según tus necesidades
+                                                            }
+                                                        });
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0, 0, 1190, 625);
+       
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
         panel_2.add(scrollPane);
+       
+        panelTarjetas.add(panelBusqueda, BorderLayout.NORTH);
+        
+        JLabel lblNewLabel_1 = new JLabel("INGRESE DATOS A BUSCAR :");
+        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        lblNewLabel_1.setBounds(10, 260, 274, 32);
+        panelBusqueda.add(lblNewLabel_1);
+        
+        JLabel lblNewLabel_2 = new JLabel("CATÁLOGO ");
+        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 60));
+        lblNewLabel_2.setBounds(23, 11, 362, 115);
+        panelBusqueda.add(lblNewLabel_2);
+        
+        JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
+        lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        lblNewLabel_1_1.setBounds(10, 202, 274, 32);
+        panelBusqueda.add(lblNewLabel_1_1);
+        
+        JLabel lblNewLabel_2_1 = new JLabel("NOVEDADES DE LA TEMPORADA");
+        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
+        lblNewLabel_2_1.setBounds(21, 100, 677, 82);
+        panelBusqueda.add(lblNewLabel_2_1);
 
         // Agregar algunas tarjetas de pedidos iniciales
-        List<Pedido> listaPedidos = obtenerNuevosPedidos(); // Debes implementar esta función
-        agregarTarjetasPedidos(listaPedidos);
+        
+        List<etiquetas> listaEtiquetas = new ArrayList<>();
+
+        etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
+        etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
+        // Agrega más etiquetas según sea necesario...
+        etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
+        // Agrega más etiquetas según sea necesario...
+        etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
+        // Agrega más etiquetas según sea necesario...
+        etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
+        // Agrega más etiquetas según sea necesario...
+        etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
+        // Agrega más etiquetas según sea necesario...
+
+        listaEtiquetas.add(etiqueta1);
+        listaEtiquetas.add(etiqueta3);
+        listaEtiquetas.add(etiqueta4);
+        listaEtiquetas.add(etiqueta5);
+        listaEtiquetas.add(etiqueta6);
+        listaEtiquetas.add(etiqueta2);
+        // Agrega más etiquetas según sea necesario...
+    	System.out.println(etiqueta1.toString());
+    	System.out.println(etiqueta2.toString());
+        agregarTarjetasPedidos(listaEtiquetas);
+       
     }
 
-    private void agregarTarjetasPedidos(List<Pedido> pedidos) {
-        for (Pedido pedido : pedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+    private void agregarTarjetasPedidos(List<etiquetas> listaEtiquetas) {
+        for (etiquetas eti : listaEtiquetas) {
+            TarjetaPedido tarjeta = new TarjetaPedido(eti);
+      
+			System.out.println("blcle de categora"+eti.getCtiquetas());
             panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
         }
         // Refrescar la vista después de agregar las nuevas tarjetas
         panelTarjetas.revalidate();
         panelTarjetas.repaint();
     }
+    
+    
    
-    private List<productos> obtenerListaProductos() {
-    	 List<productos> listaProductos = new ArrayList<>();
-
-         productos producto1 = new productos("P1", "Producto 1", "Descripción 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-         productos producto2 = new productos("P2", "Producto 2", "Descripción 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-         productos producto3 = new productos("P3", "Producto 3", "Descripción 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-         productos producto4 = new productos("P4", "Producto 4", "Descripción 4", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-         productos producto5 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-         productos producto6 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-         productos producto7 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-
-         listaProductos.add(producto7);
-         listaProductos.add(producto1);
-         listaProductos.add(producto2);
-         listaProductos.add(producto3);
-         listaProductos.add(producto4);
-         listaProductos.add(producto5);
-         listaProductos.add(producto6);
-         return listaProductos;
-    }
-    private List<Pedido> obtenerNuevosPedidos() {
-        List<Pedido> listaPedidos = new ArrayList<>();
-
-        Pedido pedido1 = new Pedido(1, "01/01/2023", "PENDIENTE", "/ruta/imagen1.png");
-        Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
-        Pedido pedido11 = new Pedido(3, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido21 = new Pedido(4, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
-        // ... (resto de la simulación)
-        Pedido pedido113 = new Pedido(5, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido213 = new Pedido(6, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
-        // ... (resto de la simulación)
-        Pedido pedido114 = new Pedido(7, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido214 = new Pedido(8, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
-
-        listaPedidos.add(pedido113);
-        listaPedidos.add(pedido213);
-        listaPedidos.add(pedido114);
-        listaPedidos.add(pedido214);
-        listaPedidos.add(pedido11);
-        listaPedidos.add(pedido21);
-        listaPedidos.add(pedido1);
-        listaPedidos.add(pedido2);
-
-        return listaPedidos;
-    }
 
     public class TarjetaPedido extends JPanel {
         private static final long serialVersionUID = 1L;
 
-        public TarjetaPedido(Pedido pedido) {
+        public TarjetaPedido(etiquetas etiqueta) {
+        	
             setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
             setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); // Borde para la tarjeta
 
@@ -173,11 +232,11 @@ public class clienteCatalogo extends JFrame {
             JPanel panelTexto = new JPanel();
             panelTexto.setBackground(new Color(0, 0, 0));
             panelTexto.setLayout(new BorderLayout());
-
-            JLabel lblRopa = new JLabel("Ropa"); // Aquí debes obtener el tipo de producto desde el pedido
+            System.out.println(etiqueta.getDetalle());
+            JLabel lblRopa = new JLabel(etiqueta.getDetalle()); // Aquí debes obtener el tipo de producto desde el pedido
             lblRopa.setForeground(new Color(255, 255, 255));
             lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 50));
-            lblRopa.setHorizontalAlignment(JLabel.CENTER);
+            lblRopa.setHorizontalAlignment(JLabel.LEFT);
 
             panelTexto.add(lblRopa, BorderLayout.CENTER);
 
@@ -189,9 +248,29 @@ public class clienteCatalogo extends JFrame {
             panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
             panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
 
-            List<productos> listaProductos = obtenerListaProductos(); // Debes implementar esta función
+            List<productos> listaProductos = new ArrayList<>();
 
-            for (productos producto : listaProductos) {
+            productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
+            productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
+            productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
+            productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
+            productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
+            productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+            productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+
+            listaProductos.add(producto7);
+            listaProductos.add(producto1);
+            listaProductos.add(producto2);
+            listaProductos.add(producto3);
+            listaProductos.add(producto4);
+            listaProductos.add(producto5);
+            listaProductos.add(producto6);
+
+            
+       
+           
+            for (productos producto11 : listaProductos) {
+            	if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
                 JPanel cardPanel = new JPanel();
                 cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
                 cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -199,7 +278,7 @@ public class clienteCatalogo extends JFrame {
                 JButton buttonProducto = new JButton();
                 buttonProducto.setLayout(new GridBagLayout());
 
-                ImageIcon iconProducto = new ImageIcon(producto.getRuta_imagen());
+                ImageIcon iconProducto = new ImageIcon(producto11.getRuta_imagen());
 
                 int alturaDeseada = 200;
                 int anchuraCalculada = (alturaDeseada * iconProducto.getIconWidth()) / iconProducto.getIconHeight();
@@ -262,6 +341,6 @@ public class clienteCatalogo extends JFrame {
             add(scrollPane, BorderLayout.CENTER);
 
             setBackground(Color.WHITE);
-        }
+        }}
     
 }}
