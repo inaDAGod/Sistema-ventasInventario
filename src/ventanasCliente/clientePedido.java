@@ -1,49 +1,101 @@
 package ventanasCliente;
 
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.SystemColor;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import java.awt.Font;
 
-public class clientePedido extends JFrame {
-
+class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-    	EventQueue.invokeLater(new Runnable() {
-    	    public void run() {
-    	        try {
-    	            clientePedido frame = new clientePedido();
-    	            frame.setVisible(true);
-    	        } catch (Exception e) {
-    	            e.printStackTrace();
-    	        }
-    	    }
-    	});
-	}
+    public TarjetaPedido(Pedido pedido) {
+    	
+    	 setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
+         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Borde para la tarjeta
+         
 
-    /**
-     * Create the frame.
-     */
+        ImageIcon iconPedido = new ImageIcon(
+                "src\\imagenesJhess\\carritos3.png");
+        Image imagenOriginal = iconPedido.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
+        JLabel labelImagen = new JLabel(iconRedimensionado); // Imagen del pedido
+
+        JPanel panelImagen = new JPanel();
+        panelImagen.setLayout(new BorderLayout());
+        panelImagen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Margen de 10 píxeles
+        panelImagen.add(labelImagen, BorderLayout.WEST); // Imagen a la izquierda
+        panelImagen.setBackground(Color.WHITE); // Fondo blanco
+        JPanel panelDetalles = new JPanel();
+        panelDetalles.setLayout(new GridLayout(0, 1)); // Diseño para los detalles del pedido
+
+        JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getNumeroCompra());
+        JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
+        JLabel labelEstado = new JLabel("Estado: " + pedido.getEstado());
+
+       
+
+        panelDetalles.add(labelNumeroCompra);
+        panelDetalles.add(labelFecha);
+        panelDetalles.add(labelEstado);
+        panelDetalles.setBackground(Color.WHITE); // Fondo blanco
+        // Botón para más información
+        JButton buttonInfo = new JButton("Más Información");
+        buttonInfo.setForeground(Color.WHITE);
+        buttonInfo.setBackground(new Color(255, 182, 193)); // Fondo rosado
+        
+        
+        // Aumentar el tamaño de la fuente para los detalles
+        Font font = new Font("Times New Roman", Font.PLAIN, 30);
+        labelNumeroCompra.setFont(font);
+        labelFecha.setFont(font);
+        labelEstado.setFont(font);
+        buttonInfo.setFont(font);
+
+        // Panel para el botón de más información
+        JPanel panelInfo = new JPanel();
+        panelInfo.setLayout(new BorderLayout());
+        panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10)); // Margen de 10 píxeles
+        panelInfo.add(buttonInfo, BorderLayout.CENTER); // Botón en el centro
+        panelInfo.setBackground(Color.WHITE); // Fondo blanco
+        // Agregar imagen y detalles al panel
+        add(panelImagen, BorderLayout.WEST);
+        add(panelDetalles, BorderLayout.CENTER);
+
+        // Agregar botón de más información a la misma altura que la imagen
+        add(panelInfo, BorderLayout.EAST);
+        setBackground(Color.WHITE);
+    }
+}
+
+public class clientePedido extends JFrame {
+    private static final long serialVersionUID = 1L;
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    clientePedido frame = new clientePedido();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public clientePedido() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -55,13 +107,14 @@ public class clientePedido extends JFrame {
         panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setForeground(SystemColor.activeCaptionBorder);
+        panel_1.setForeground(Color.WHITE);
         panel_1.setBounds(0, 0, 1200, 140);
         panel.add(panel_1);
         panel_1.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("");
-        ImageIcon icon = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
+        ImageIcon icon = new ImageIcon(
+                "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
         Image image = icon.getImage().getScaledInstance(139, 118, Image.SCALE_SMOOTH);
         lblNewLabel.setIcon(new ImageIcon(image));
         lblNewLabel.setBounds(24, 11, 139, 118);
@@ -83,7 +136,8 @@ public class clientePedido extends JFrame {
         btnOferta_1_1.setBounds(564, 44, 139, 36);
         panel_1.add(btnOferta_1_1);
 
-        ImageIcon iconPerfil =new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
+        ImageIcon iconPerfil = new ImageIcon(
+                "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
         Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
 
         JButton btnOferta_2 = new JButton("");
@@ -92,92 +146,57 @@ public class clientePedido extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
+        panel_2.setBackground(new Color(255, 182, 193));
         panel_2.setBounds(0, 137, 1200, 625);
+        panel_2.setLayout(null);  // Cambiado a un diseño nulo
         panel.add(panel_2);
-
+        
         JPanel panelTarjetas = new JPanel();
-        FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 10, 10); // Alineación a la izquierda
-        panelTarjetas.setLayout(flowLayout);
-
-        
-        
-        
-        
-        
-        
-        
+        panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); // Cambié el GridLayout a 1 columna
+        panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
+        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
+        panel_2.add(panelTarjetas);
         
         List<Pedido> listaPedidos = new ArrayList<>();
 
         // Simulación de datos para cinco pedidos
         Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
         Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        
+        // ... (resto de la simulación)
+        Pedido pedido11 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
+        Pedido pedido21 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
         // ... (resto de la simulación)
 
+        listaPedidos.add(pedido11);
+        listaPedidos.add(pedido21);
         listaPedidos.add(pedido1);
         listaPedidos.add(pedido2);
+
         // ... (resto de la simulación)
 
-        panelTarjetas.setLayout(new GridLayout(0, 4, 10, 10)); // 4 tarjetas por fila con 10 de espacio entre ellas
-
         for (Pedido pedido : listaPedidos) {
-            JButton buttonPedido = new JButton();
-            buttonPedido.setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
-
-            ImageIcon iconPedido = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
-            Image imagenOriginal = iconPedido.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-            ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
-            JLabel labelImagen = new JLabel(iconRedimensionado); // Imagen del pedido
-
-            JPanel panelImagen = new JPanel();
-            panelImagen.setLayout(new BorderLayout());
-            panelImagen.add(labelImagen, BorderLayout.CENTER);
-
-            JPanel panelDetalles = new JPanel();
-            panelDetalles.setLayout(new GridLayout(0, 1)); // Diseño para los detalles del pedido
-
-            JLabel labelNumeroCompra = new JLabel("Número de Compra: " + pedido.getNumeroCompra());
-            JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
-            JLabel labelEstado = new JLabel("Estado: " + pedido.getEstado());
-
-            panelDetalles.add(labelNumeroCompra);
-            panelDetalles.add(labelFecha);
-            panelDetalles.add(labelEstado);
-
-            // Botón del basurero
-            ImageIcon iconBasurero = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
-            Image imagenBasurero = iconBasurero.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-            ImageIcon iconBasureroReducido = new ImageIcon(imagenBasurero);
-            JButton buttonBasurero = new JButton(iconBasureroReducido);
-
-            // Panel para el botón del basurero
-            JPanel panelBasurero = new JPanel();
-            panelBasurero.setLayout(new BorderLayout());
-            panelBasurero.add(buttonBasurero, BorderLayout.EAST);
-
-            // Agregar imagen y detalles al panel
-            buttonPedido.add(panelImagen, BorderLayout.WEST);
-            buttonPedido.add(panelDetalles, BorderLayout.CENTER);
-
-            // Agregar botón de basurero en la esquina inferior derecha
-            buttonPedido.add(panelBasurero, BorderLayout.SOUTH);
-
-            buttonPedido.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Borde para los botones
-
-            buttonPedido.addActionListener(e -> {
-                JFrame frame = (JFrame) SwingUtilities.getRoot(buttonPedido);
-                frame.dispose(); // Cerrar la ventana actual al hacer clic en la tarjeta
-            });
-
-            panelTarjetas.add(buttonPedido); // Agregar la "tarjeta" al panel de tarjetas
+            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+          
+            panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
         }
         panel_2.setLayout(null);
+        
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
-        scrollPane.setBounds(125, 97, 946, 306);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBounds(125, 147, 946, 425);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
         panel_2.add(scrollPane);
-      
+        
+        JPanel panel_3 = new JPanel();
+        panel_3.setBackground(new Color(0, 0, 0));
+        panel_3.setBounds(125, 49, 946, 98);
+        panel_2.add(panel_3);
+        panel_3.setLayout(null);
+        
+        JLabel lblNewLabel_1 = new JLabel("Mis pedidos");
+        lblNewLabel_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1.setBounds(28, 21, 303, 66);
+        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
+        panel_3.add(lblNewLabel_1);
     }
 }

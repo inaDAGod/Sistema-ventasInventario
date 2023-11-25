@@ -1,6 +1,7 @@
 package ventanasCliente;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
@@ -39,6 +40,7 @@ public class clienteOfertas extends JFrame {
     }
 
     public clienteOfertas() {
+    	float descuento=(float) 0.2;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -50,7 +52,7 @@ public class clienteOfertas extends JFrame {
 
         JPanel panel_1 = new JPanel();
         panel_1.setForeground(SystemColor.activeCaptionBorder);
-        panel_1.setBounds(0, 0, 1200, 140);
+        panel_1.setBounds(0, 0, 1190, 140);
         panel.add(panel_1);
         panel_1.setLayout(null);
 
@@ -87,98 +89,120 @@ public class clienteOfertas extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
+        panel_2.setBackground(new Color(255, 182, 193));
         panel_2.setBounds(0, 137, 1200, 625);
         panel.add(panel_2);
 
         JPanel panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new BoxLayout(panelTarjetas, BoxLayout.X_AXIS));
+        List<productos> listaProductos = new ArrayList<>();
 
-        List<Pedido> listaPedidos = new ArrayList<>();
+        productos producto1 = new productos("P1", "Producto 1", "Descripción 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
+        productos producto2 = new productos("P2", "Producto 2", "Descripción 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
+        productos producto3 = new productos("P3", "Producto 3", "Descripción 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
+        productos producto4 = new productos("P4", "Producto 4", "Descripción 4", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
+        productos producto5 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
+        productos producto6 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+        productos producto7 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
 
-        Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+        listaProductos.add(producto7);
+        listaProductos.add(producto1);
+        listaProductos.add(producto2);
+        listaProductos.add(producto3);
+        listaProductos.add(producto4);
+        listaProductos.add(producto5);
+        listaProductos.add(producto6);
 
-        listaPedidos.add(pedido1);
-        listaPedidos.add(pedido2);
+       
+        
+       
 
-        Pedido pedido11 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido21 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+        for (productos Productos : listaProductos) {
+            if (Productos.isOfetado()) {
+                JPanel cardPanel = new JPanel();
+                cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
+                cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        listaPedidos.add(pedido11);
-        listaPedidos.add(pedido21);
+                JButton buttonPedido = new JButton();
+                buttonPedido.setLayout(new GridBagLayout());
 
-        Pedido pedido13 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido23 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+                ImageIcon iconPedido = new ImageIcon(Productos.getRuta_imagen());
 
-        listaPedidos.add(pedido13);
-        listaPedidos.add(pedido23);
+                int alturaDeseada = 200;
+                int anchuraCalculada = (alturaDeseada * iconPedido.getIconWidth()) / iconPedido.getIconHeight();
+                Image imagenOriginal = iconPedido.getImage().getScaledInstance(anchuraCalculada, alturaDeseada, Image.SCALE_SMOOTH);
 
-        for (Pedido pedido : listaPedidos) {
-            JPanel cardPanel = new JPanel();
-            cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
-            cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
+                JLabel labelImagen = new JLabel(iconRedimensionado);
+                labelImagen.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
 
-            JButton buttonPedido = new JButton();
-            buttonPedido.setLayout(new GridBagLayout());
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.weightx = 1.0;
+                gbc.weighty = 1.0;
+                gbc.anchor = GridBagConstraints.NORTH;
 
-            ImageIcon iconPedido = new ImageIcon(
-                    "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
-            Image imagenOriginal = iconPedido.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-            ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
-            JLabel labelImagen = new JLabel(iconRedimensionado);
-            labelImagen.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+                buttonPedido.add(labelImagen, gbc);
 
-            GridBagConstraints gbc = new GridBagConstraints();
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.weightx = 1.0;
-            gbc.weighty = 1.0;
-            gbc.anchor = GridBagConstraints.NORTH;
+                gbc.gridx = 0;
+                gbc.gridy = 1;
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.anchor = GridBagConstraints.SOUTH;
 
-            buttonPedido.add(labelImagen, gbc);
+                JPanel panelDetalles = new JPanel();
+                panelDetalles.setBackground(Color.PINK);
+                panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
+                JLabel labelNumeroCompra = new JLabel("Nombre: " + Productos.getNombre());
+                float valor = Productos.getPrecio() * descuento;
+                JLabel labelFecha = new JLabel("Antes: " + (Productos.getPrecio() + valor));
+                labelFecha.setForeground(Color.RED); // Color rojo
+                JLabel labelEstado = new JLabel("Ahora: " + Productos.getPrecio());
+                labelEstado.setForeground(Color.GREEN); // Color verde
+                panelDetalles.add(labelNumeroCompra);
+                panelDetalles.add(labelFecha);
+                panelDetalles.add(labelEstado);
 
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.anchor = GridBagConstraints.SOUTH;
+                buttonPedido.add(panelDetalles, gbc);
+                buttonPedido.setPreferredSize(new Dimension(anchuraCalculada, alturaDeseada));
 
-            JPanel panelDetalles = new JPanel();
-            panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
-            JLabel labelNumeroCompra = new JLabel("Número de Compra: " + pedido.getNumeroCompra());
-            JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
-            JLabel labelEstado = new JLabel("Estado: " + pedido.getEstado());
-            panelDetalles.add(labelNumeroCompra);
-            panelDetalles.add(labelFecha);
-            panelDetalles.add(labelEstado);
+                Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
-            buttonPedido.add(panelDetalles, gbc);
+                // Cambiar el color de los botones
+                buttonPedido.setBackground(Color.PINK);
 
-            Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
-            buttonPedido.setBorder(BorderFactory.createCompoundBorder(border,
-                    BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+                buttonPedido.addActionListener(e -> {
+                    JFrame frame = (JFrame) SwingUtilities.getRoot(buttonPedido);
+                    frame.dispose();
+                });
+                buttonPedido.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-            buttonPedido.addActionListener(e -> {
-                JFrame frame = (JFrame) SwingUtilities.getRoot(buttonPedido);
-                frame.dispose();
-            });
-
-            cardPanel.add(buttonPedido);
-            panelTarjetas.add(cardPanel);
+                cardPanel.add(buttonPedido);
+                
+                // Fijar el tamaño preferido del cardPanel
+                
+                panelTarjetas.add(cardPanel);
+            }
         }
-
         panel_2.setLayout(null);
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        scrollPane.setBounds(125, 97, 946, 306);
+        scrollPane.setBounds(130, 170, 946, 306);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBackground(Color.white);
 
         panel_2.add(scrollPane);
         
-        JLabel lblNewLabel_1 = new JLabel("OFERTAS");
+        JLabel lblNewLabel_1 = new JLabel(" OFERTAS DISPONIBLES");
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-        lblNewLabel_1.setBounds(10, 29, 197, 53);
+        lblNewLabel_1.setBounds(10, 29, 413, 53);
         panel_2.add(lblNewLabel_1);
+        
+        JPanel panel_3 = new JPanel();
+        panel_3.setBackground(new Color(255, 255, 255));
+        panel_3.setBounds(10, 29, 413, 53);
+        panel_2.add(panel_3);
     }
 }
