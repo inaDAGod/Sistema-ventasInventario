@@ -101,7 +101,7 @@ public class funcionarioSobreNea extends JFrame {
 
         JPanel panel_3 = new JPanel();
         panel_3.setBackground(new Color(255, 182, 193));
-        panel_3.setBounds(0, 5, 595, 647);
+        panel_3.setBounds(0, 5, 595, 621);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
@@ -109,7 +109,7 @@ public class funcionarioSobreNea extends JFrame {
         ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
         Image image2 = icon2.getImage().getScaledInstance(585, 573, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
-        lblNewLabel_2.setBounds(10, 74, 585, 573);
+        lblNewLabel_2.setBounds(72, 97, 465, 476);
         panel_3.add(lblNewLabel_2);
 
         JLabel lblNewLabel_1_1 = new JLabel("Sobre nea");
@@ -161,32 +161,7 @@ public class funcionarioSobreNea extends JFrame {
         btnNewButton_1_1.setBounds(502, 421, 83, 43);
         panel_3_1.add(btnNewButton_1_1);
 
-        JButton btnNewButton_2 = new JButton("");
-        ImageIcon iconButton2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\jiji.jpng.png");
-        Image imageButton2 = iconButton2.getImage().getScaledInstance(83, 43, Image.SCALE_SMOOTH);
-        btnNewButton_2.setIcon(new ImageIcon(imageButton2));
-        btnNewButton_2.setBounds(243, 276, 83, 43);
-        panel_3_1.add(btnNewButton_2);
-
-        JButton btnNewButton_3 = new JButton("");
-        ImageIcon iconButton3 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\jiji.jpng.png");
-        Image imageButton3 = iconButton3.getImage().getScaledInstance(83, 43, Image.SCALE_SMOOTH);
-        btnNewButton_3.setIcon(new ImageIcon(imageButton3));
-        btnNewButton_3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Acción del botón
-                txtNaEsUna.setEditable(true);
-            }
-        });
-        btnNewButton_3.setBounds(512, 276, 83, 43);
-        panel_3_1.add(btnNewButton_3);
-
-        JButton btnNewButton_4 = new JButton("");
-        ImageIcon iconButton4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\jiji.jpng.png");
-        Image imageButton4 = iconButton4.getImage().getScaledInstance(83, 43, Image.SCALE_SMOOTH);
-        btnNewButton_4.setIcon(new ImageIcon(imageButton4));
-        btnNewButton_4.setBounds(512, 28, 83, 43);
-        panel_3_1.add(btnNewButton_4);
+       
 
         txtNaEsUna = new JTextField();
         txtNaEsUna.setEditable(false); // Bloquear el JTextField

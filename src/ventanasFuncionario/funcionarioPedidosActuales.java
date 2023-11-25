@@ -1,5 +1,4 @@
-package ventanasCliente;
-
+package ventanasFuncionario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+
+import ventanasCliente.Pedido;
+
 import java.awt.Font;
 
 class TarjetaPedido extends JPanel {
@@ -44,12 +46,14 @@ class TarjetaPedido extends JPanel {
         JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getNumeroCompra());
         JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
         JLabel labelEstado = new JLabel("Estado: " + pedido.getEstado());
+        JLabel labelPago = new JLabel("Pago: " + pedido.getEstado());
 
        
 
         panelDetalles.add(labelNumeroCompra);
         panelDetalles.add(labelFecha);
         panelDetalles.add(labelEstado);
+        panelDetalles.add(labelPago);
         panelDetalles.setBackground(Color.WHITE); // Fondo blanco
         // Botón para más información
         JButton buttonInfo = new JButton("Más Información");
@@ -63,6 +67,7 @@ class TarjetaPedido extends JPanel {
         labelFecha.setFont(font);
         labelEstado.setFont(font);
         buttonInfo.setFont(font);
+        labelPago.setFont(font);
 
         // Panel para el botón de más información
         JPanel panelInfo = new JPanel();
@@ -80,14 +85,14 @@ class TarjetaPedido extends JPanel {
     }
 }
 
-public class clientePedido extends JFrame {
+public class funcionarioPedidosActuales extends JFrame {
     private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	clientePedido frame = new clientePedido();
+                	funcionarioPedidosActuales frame = new funcionarioPedidosActuales();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -96,7 +101,7 @@ public class clientePedido extends JFrame {
         });
     }
 
-    public clientePedido() {
+    public funcionarioPedidosActuales() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -160,13 +165,25 @@ public class clientePedido extends JFrame {
         List<Pedido> listaPedidos = new ArrayList<>();
 
         // Simulación de datos para cinco pedidos
-        Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
+        Pedido pedido1 = new Pedido(1, "01/01/2023", "PENDIENTE", "/ruta/imagen1.png");
         Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
         // ... (resto de la simulación)
-        Pedido pedido11 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido21 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+        Pedido pedido11 = new Pedido(3, "01/01/2023", "En proceso", "/ruta/imagen1.png");
+        Pedido pedido21 = new Pedido(4, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+        // ... (resto de la simulación)
+        // ... (resto de la simulación)
+        Pedido pedido113 = new Pedido(5, "01/01/2023", "En proceso", "/ruta/imagen1.png");
+        Pedido pedido213 = new Pedido(6, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
+        // ... (resto de la simulación)
+        // ... (resto de la simulación)
+        Pedido pedido114 = new Pedido(7, "01/01/2023", "En proceso", "/ruta/imagen1.png");
+        Pedido pedido214 = new Pedido(8, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
         // ... (resto de la simulación)
 
+        listaPedidos.add(pedido113);
+        listaPedidos.add(pedido213);
+        listaPedidos.add(pedido114);
+        listaPedidos.add(pedido214);
         listaPedidos.add(pedido11);
         listaPedidos.add(pedido21);
         listaPedidos.add(pedido1);
@@ -175,9 +192,11 @@ public class clientePedido extends JFrame {
         // ... (resto de la simulación)
 
         for (Pedido pedido : listaPedidos) {
+        	if(pedido.getEstado().equals("PENDIENTE")) {
             TarjetaPedido tarjeta = new TarjetaPedido(pedido);
           
-            panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
+            panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas}
+        	}
         }
         panel_2.setLayout(null);
         
@@ -193,9 +212,9 @@ public class clientePedido extends JFrame {
         panel_2.add(panel_3);
         panel_3.setLayout(null);
         
-        JLabel lblNewLabel_1 = new JLabel("Mis pedidos");
+        JLabel lblNewLabel_1 = new JLabel("Pedidos actuales");
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setBounds(28, 21, 303, 66);
+        lblNewLabel_1.setBounds(28, 21, 466, 66);
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
         panel_3.add(lblNewLabel_1);
     }
