@@ -84,4 +84,21 @@ public class PanelLogin extends JPanel {
 		fondo.setBounds(0, 0, 1200, 680);
 		add(fondo);
 	}
+
+	public JTextField getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(JTextField usuario) {
+		this.usuario = usuario;
+	}
+
+	public JPasswordField getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(JPasswordField contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+	
 }
