@@ -103,26 +103,21 @@ public class GestorUsuarios {
 	    return usuarios;
 	}
 
-	 public boolean verificarCredenciales(String usuario, String contrasenia) {
+	 public Usuario verificarCredenciales(String usuario, String contrasenia) {
 		 	boolean bandera = false;
 	        for (Usuario u : usuarios) {
 	            if (u.getUsuario().equals(usuario) ) {
 	            	if(u.getContrasenia().equals(contrasenia))  {
-	            		 return true; 
+	            		 return u;
 	            	}
 	            	else {
 	            		JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Uy", JOptionPane.ERROR_MESSAGE);
-	            		return false;
+	            		return null;
 	            	}
 	            }
 	        }
-	        if(bandera) {
-	        	return true;
-	        }
-	        else {
-	        	JOptionPane.showMessageDialog(null, "No se encontro el usuario", "Uy", JOptionPane.ERROR_MESSAGE);
-	        	return false;
-	        }
+	        JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Uy", JOptionPane.ERROR_MESSAGE);
+    		return null;
 	    }
 	
 	
