@@ -11,7 +11,7 @@ public class GestorUsuarios {
 	private ArrayList<Usuario> usuarios;
 
 	public GestorUsuarios() {
-		this.usuarios = new ArrayList<>();
+		this.usuarios = obtenerTodosLosUsuarios();
 	}
 
 	public ArrayList<Usuario> getUsuarios() {
@@ -22,6 +22,11 @@ public class GestorUsuarios {
 		this.usuarios = usuarios;
 	}
 	
+	@Override
+	public String toString() {
+		return "GestorUsuarios [usuarios=" + usuarios + "]";
+	}
+
 	public void addUsuario(Usuario usuario) throws SQLException {
 	    Conexion con = new Conexion();
 	    Connection conexion = con.getConexionPostgres();
@@ -54,7 +59,71 @@ public class GestorUsuarios {
 	        }
 	    }
 	}
+	
+	public ArrayList<Usuario> obtenerTodosLosUsuarios() {
+	    ArrayList<Usuario> usuarios = new ArrayList<>();
+	    Conexion con = new Conexion();
+	    Connection conexion = con.getConexionPostgres();
+	    PreparedStatement statement = null;
+	    ResultSet resultSet = null;
 
+	    try {
+	        String query = "SELECT cusuario, nombre, correo, contrasenia, funcionario, super_usuario FROM usuarios";
+	        statement = conexion.prepareStatement(query);
+	        resultSet = statement.executeQuery();
+
+	        while (resultSet.next()) {
+	            String usuario = resultSet.getString("cusuario");
+	            String nombre = resultSet.getString("nombre");
+	            String correo = resultSet.getString("correo");
+	            String contrasenia = resultSet.getString("contrasenia");
+	            Boolean funcionario = resultSet.getBoolean("funcionario");
+	            Boolean superUsuario = resultSet.getBoolean("super_usuario");
+	            Usuario user = new Usuario(usuario, nombre, correo, contrasenia, funcionario, superUsuario);
+	            usuarios.add(user);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (resultSet != null) {
+	                resultSet.close();
+	            }
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conexion != null) {
+	                conexion.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+
+	    return usuarios;
+	}
+
+	 public boolean verificarCredenciales(String usuario, String contrasenia) {
+		 	boolean bandera = false;
+	        for (Usuario u : usuarios) {
+	            if (u.getUsuario().equals(usuario) ) {
+	            	if(u.getContrasenia().equals(contrasenia))  {
+	            		 return true; 
+	            	}
+	            	else {
+	            		JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Uy", JOptionPane.ERROR_MESSAGE);
+	            		return false;
+	            	}
+	            }
+	        }
+	        if(bandera) {
+	        	return true;
+	        }
+	        else {
+	        	JOptionPane.showMessageDialog(null, "No se encontro el usuario", "Uy", JOptionPane.ERROR_MESSAGE);
+	        	return false;
+	        }
+	    }
 	
 	
 
