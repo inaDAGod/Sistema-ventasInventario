@@ -7,6 +7,9 @@ import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import ventasInventario.BD.Controladores.ControladorRegistro;
+
 import java.awt.SystemColor;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
@@ -42,6 +45,7 @@ public class PanelRegistro extends JPanel {
 		JButton btnRegistrar = new JButton("Regístrate");
 		btnRegistrar.setBounds(466, 489, 300, 50);
 		add(btnRegistrar);
+	
 		
 		vContra = new JTextField();
 		vContra.setColumns(10);
@@ -113,5 +117,44 @@ public class PanelRegistro extends JPanel {
 		fondo.setBounds(0, 0, 1200, 680);
 		add(fondo);
 		
+		
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorRegistro controladorRegistro =new ControladorRegistro(PanelRegistro.this);
+				controladorRegistro.registroVerificacion();
+			}
+		});
 	}
+	public JTextField getNombre() {
+		return nombre;
+	}
+	public void setNombre(JTextField nombre) {
+		this.nombre = nombre;
+	}
+	public JTextField getCorreo() {
+		return correo;
+	}
+	public void setCorreo(JTextField correo) {
+		this.correo = correo;
+	}
+	public JTextField getContrasenia() {
+		return contrasenia;
+	}
+	public void setContrasenia(JTextField contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+	public JTextField getvContra() {
+		return vContra;
+	}
+	public void setvContra(JTextField vContra) {
+		this.vContra = vContra;
+	}
+	public JTextField getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(JTextField usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 }

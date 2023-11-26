@@ -1,4 +1,4 @@
-package ventasInventario.POO;
+package ventasInventario.BD.Modelo;
 
 import java.time.*;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Pedido {
 		this.fecha_reserva = fecha_reserva;
 		this.estadoPedido = EstadoPedido.confirmado;
 		this.fecha_limite = fecha_reserva.plusDays(3);
-		this.productos = new ArrayList();
+		this.productos = new ArrayList<>();
 		this.total = 0.0;
 	}
 

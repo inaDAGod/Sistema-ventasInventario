@@ -1,4 +1,4 @@
-package ventasInventario.POO;
+package ventasInventario.BD.Modelo;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ public class Carrito {
 	
 	public Carrito(Usuario usuario) {
 		this.usuario = usuario;
-		this.productos = new ArrayList();
+		this.productos = new ArrayList<>();
 		this.total = 0.0;
 	}
 

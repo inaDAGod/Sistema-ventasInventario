@@ -1,4 +1,4 @@
-package ventasInventario.POO;
+package ventasInventario.BD.Modelo;
 
 public class Usuario {
 	
@@ -9,15 +9,14 @@ public class Usuario {
 	private Boolean funcionario;
 	private Boolean super_usuario;
 	
-	public Usuario(String usuario, String nombre, String correo, String contrasenia, Boolean funcionario,
-			Boolean super_usuario) {
+	public Usuario(String usuario, String nombre, String correo, String contrasenia) {
 		super();
 		this.usuario = usuario;
 		this.nombre = nombre;
 		this.correo = correo;
 		this.contrasenia = contrasenia;
-		this.funcionario = funcionario;
-		this.super_usuario = super_usuario;
+		this.funcionario = false;
+		this.super_usuario = false;
 	}
 
 	public String getUsuario() {

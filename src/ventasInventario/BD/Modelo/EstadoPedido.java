@@ -1,4 +1,4 @@
-package ventasInventario.POO;
+package ventasInventario.BD.Modelo;
 
 public interface EstadoPedido {
 	final static String confirmado = "ESPERA PAGO";
