@@ -46,7 +46,7 @@ public class NuevoProducto extends JFrame {
 	 * Create the frame.
 	 */
 	public NuevoProducto() {
-		setLayout(null);
+		getContentPane().setLayout(null);
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		setSize(1200,800);
@@ -145,7 +145,7 @@ public class NuevoProducto extends JFrame {
 		talla.add(ninguna);
 		detalles.add(talla);
 		
-		add(detalles);
+		getContentPane().add(detalles);
 		
 		JLabel txEtiquetas = new JLabel("Etiquetas:");
 		txEtiquetas.setFont(new Font("Times New Roman", Font.PLAIN, 30));
@@ -205,7 +205,7 @@ public class NuevoProducto extends JFrame {
 		
 		
 		JLabel imagen = new JLabel("New label");
-		imagen.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\blanco(1200x800).jpg"));
+		imagen.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/blanco(1200x800).jpg")));
 		imagen.setBounds(159, 256, 250, 300);
 		getContentPane().add(imagen);
 		
@@ -221,8 +221,10 @@ public class NuevoProducto extends JFrame {
 		
 		//barra Superior
 		
-		JButton btnUsuario = new JButton("usuario");
+		JButton btnUsuario = new JButton("");
+		btnUsuario.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/user(100x100).jpg")));
 		btnUsuario.setBounds(1000, 10, 100, 100);
+		btnUsuario.setHorizontalTextPosition(SwingConstants.CENTER);
 		getContentPane().add(btnUsuario);
 		
 		JButton btnLogo = new JButton("");
@@ -231,28 +233,38 @@ public class NuevoProducto extends JFrame {
         btnLogo.setBounds(42, 10, 200, 100);
         getContentPane().add(btnLogo);
         
-        JButton btnBack = new JButton(">");
+        JButton btnBack = new JButton("");
+        btnBack.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/backrosa2(50x50).jpg")));
         btnBack.setBounds(1124, 35, 50, 50);
+        btnBack.setHorizontalTextPosition(SwingConstants.CENTER);
         getContentPane().add(btnBack);
         
-        JButton btnInicio = new JButton("Inicio");
+        JButton btnInicio = new JButton("");
+        btnInicio.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnInicio(90x50).jpg")));
+        btnInicio.setHorizontalTextPosition(SwingConstants.CENTER);
         btnInicio.setBounds(330, 36, 90, 50);
         getContentPane().add(btnInicio);
         
-        JButton btnProductos = new JButton("Productos");
+        JButton btnProductos = new JButton("");
+        btnProductos.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnProductos(90x50).jpg")));
+        btnProductos.setHorizontalTextPosition(SwingConstants.CENTER);
         btnProductos.setBounds(420, 36, 90, 50);
         getContentPane().add(btnProductos);
         
-        JButton btnOfertas = new JButton("Ofertas");
+        JButton btnOfertas = new JButton("");
+        btnOfertas.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnOfertas(90x50).jpg")));
+        btnOfertas.setHorizontalTextPosition(SwingConstants.CENTER);
         btnOfertas.setBounds(510, 36, 90, 50);
         getContentPane().add(btnOfertas);
         
-        JButton btnSobreNea = new JButton("¿Quiénes somos?");
+        JButton btnSobreNea = new JButton("");
+        btnSobreNea.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnSobreNea(120x50).jpg")));
+        btnSobreNea.setHorizontalTextPosition(SwingConstants.CENTER);
         btnSobreNea.setBounds(600, 36, 120, 50);
         getContentPane().add(btnSobreNea);
         
         JLabel crosa = new JLabel("New label");
-        crosa.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\rosa2(1200x800).jpg"));
+        crosa.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/rosa2(1200x800).jpg")));
         crosa.setBounds(111, 150, 941, 582);
         getContentPane().add(crosa);
         

@@ -80,7 +80,7 @@ public class PanelLogin extends JPanel {
 		
 		JLabel fondo = new JLabel("New label");
 		fondo.setHorizontalAlignment(SwingConstants.CENTER);
-		fondo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\rosa1(1200x800).jpg"));
+		fondo.setIcon(new ImageIcon(PanelLogin.class.getResource("/imagenes/rosa1(1200x800).jpg")));
 		fondo.setBounds(0, 0, 1200, 680);
 		add(fondo);
 	}
