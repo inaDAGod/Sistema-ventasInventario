@@ -18,6 +18,15 @@ public class Usuario {
 		this.funcionario = false;
 		this.super_usuario = false;
 	}
+	public Usuario(String usuario, String nombre, String correo, String contrasenia,Boolean funcionario) {
+		super();
+		this.usuario = usuario;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.contrasenia = contrasenia;
+		this.funcionario = funcionario;
+		this.super_usuario = false;
+	}
 
 	public String getUsuario() {
 		return usuario;

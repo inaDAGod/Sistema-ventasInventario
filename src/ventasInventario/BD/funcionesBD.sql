@@ -6,6 +6,14 @@ end;
 $crearUsuario$
 language plpgsql;
 
+create or replace function registrarUsuario(usuario varchar(30), nombre varchar(50),correo varchar(40),contrasenia varchar(20),funcionario boolean)
+returns void as $crearUsuario$
+begin
+    insert into usuarios values (usuario,nombre,correo,contrasenia,funcionario, FALSE);
+end;
+$crearUsuario$
+language plpgsql;
+
 --select registrarse('danialee14','dani','danialee14@gmail.com','admin123');
 
 

@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Controladores.ControladorRegistro;
+
 public class NuevoFuncionario extends JFrame {
 
 	JTextField nombre, correo, contrasenia, usuario;
@@ -51,7 +53,7 @@ public class NuevoFuncionario extends JFrame {
 		JButton btnAnadir = new JButton("Añadir funcionario");
 		btnAnadir.setBounds(738, 622, 300, 50);
 		getContentPane().add(btnAnadir);
-
+		
 		
 		contrasenia = new JTextField();
 		contrasenia.setColumns(10);
@@ -163,6 +165,45 @@ public class NuevoFuncionario extends JFrame {
         btnSobreNea.setHorizontalTextPosition(SwingConstants.CENTER);
         btnSobreNea.setBounds(600, 36, 120, 50);
         getContentPane().add(btnSobreNea);
+        btnAnadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorRegistro controladorRegistro =new ControladorRegistro(NuevoFuncionario.this);
+				controladorRegistro.registroFuncionario();
+			}
+		});
 	}
+
+	public JTextField getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(JTextField nombre) {
+		this.nombre = nombre;
+	}
+
+	public JTextField getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(JTextField correo) {
+		this.correo = correo;
+	}
+
+	public JTextField getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(JTextField contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+
+	public JTextField getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(JTextField usuario) {
+		this.usuario = usuario;
+	}
+	
 
 }

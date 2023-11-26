@@ -26,17 +26,25 @@ public class GestorUsuarios {
 	    Conexion con = new Conexion();
 	    Connection conexion = con.getConexionPostgres();
 	    CallableStatement s = null;
-	    String query = "{call registrarse(?, ?, ?, ?)}";
+	    String query = "{call registrarUsuario(?, ?, ?, ?, ?)}";
 	    try {
 	        s = conexion.prepareCall(query);
 	        s.setString(1, usuario.getUsuario());
 	        s.setString(2, usuario.getNombre());
 	        s.setString(3, usuario.getCorreo());
 	        s.setString(4, usuario.getContrasenia());
+	        s.setBoolean(5, usuario.getFuncionario());
 	        s.executeUpdate();
-	        JOptionPane.showMessageDialog(null, "Bienvenido a Néa", "Registrado correctamente", JOptionPane.INFORMATION_MESSAGE);
+	        this.usuarios.add(usuario);
+	        JOptionPane.showMessageDialog(null, "Registrado Correctamente", "Bienvenido a Néa", JOptionPane.INFORMATION_MESSAGE);
 	    } catch (SQLException e) {
-	        System.out.println(e.getMessage());
+	    	if(e.getSQLState().equals("23505")) {
+	    		JOptionPane.showMessageDialog(null, "Ya hay un usuario igual", "Uy", JOptionPane.ERROR_MESSAGE);
+	    	}
+	    	else {
+	    		System.out.println(e.getMessage());
+	    	}
+	        
 	    } finally {
 	        if (s != null) {
 	            s.close();
