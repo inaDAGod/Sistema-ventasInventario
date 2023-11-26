@@ -25,23 +25,23 @@ class TarjetaPedido extends JPanel {
 
     public TarjetaPedido(Pedido pedido) {
     	
-    	 setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
-         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); // Borde para la tarjeta
+    	 setLayout(new BorderLayout());
+         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
          
 
         ImageIcon iconPedido = new ImageIcon(
                 "src\\imagenesJhess\\carritos3.png");
         Image imagenOriginal = iconPedido.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
-        JLabel labelImagen = new JLabel(iconRedimensionado); // Imagen del pedido
+        JLabel labelImagen = new JLabel(iconRedimensionado); 
 
         JPanel panelImagen = new JPanel();
         panelImagen.setLayout(new BorderLayout());
-        panelImagen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Margen de 10 píxeles
-        panelImagen.add(labelImagen, BorderLayout.WEST); // Imagen a la izquierda
-        panelImagen.setBackground(Color.WHITE); // Fondo blanco
+        panelImagen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelImagen.add(labelImagen, BorderLayout.WEST);
+        panelImagen.setBackground(Color.WHITE); 
         JPanel panelDetalles = new JPanel();
-        panelDetalles.setLayout(new GridLayout(0, 1)); // Diseño para los detalles del pedido
+        panelDetalles.setLayout(new GridLayout(0, 1)); 
 
         JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getNumeroCompra());
         JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
@@ -54,14 +54,13 @@ class TarjetaPedido extends JPanel {
         panelDetalles.add(labelFecha);
         panelDetalles.add(labelEstado);
         panelDetalles.add(labelPago);
-        panelDetalles.setBackground(Color.WHITE); // Fondo blanco
-        // Botón para más información
+        panelDetalles.setBackground(Color.WHITE);
         JButton buttonInfo = new JButton("Más Información");
         buttonInfo.setForeground(Color.WHITE);
-        buttonInfo.setBackground(new Color(255, 182, 193)); // Fondo rosado
+        buttonInfo.setBackground(new Color(255, 182, 193)); 
         
         
-        // Aumentar el tamaño de la fuente para los detalles
+       
         Font font = new Font("Times New Roman", Font.PLAIN, 30);
         labelNumeroCompra.setFont(font);
         labelFecha.setFont(font);
@@ -69,17 +68,14 @@ class TarjetaPedido extends JPanel {
         buttonInfo.setFont(font);
         labelPago.setFont(font);
 
-        // Panel para el botón de más información
+        
         JPanel panelInfo = new JPanel();
         panelInfo.setLayout(new BorderLayout());
-        panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10)); // Margen de 10 píxeles
-        panelInfo.add(buttonInfo, BorderLayout.CENTER); // Botón en el centro
-        panelInfo.setBackground(Color.WHITE); // Fondo blanco
-        // Agregar imagen y detalles al panel
-        add(panelImagen, BorderLayout.WEST);
+        panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10));
+        panelInfo.add(buttonInfo, BorderLayout.CENTER); 
+        panelInfo.setBackground(Color.WHITE); 
+       add(panelImagen, BorderLayout.WEST);
         add(panelDetalles, BorderLayout.CENTER);
-
-        // Agregar botón de más información a la misma altura que la imagen
         add(panelInfo, BorderLayout.EAST);
         setBackground(Color.WHITE);
     }
@@ -153,32 +149,28 @@ public class funcionarioPedidosActuales extends JFrame {
         JPanel panel_2 = new JPanel();
         panel_2.setBackground(new Color(255, 182, 193));
         panel_2.setBounds(0, 137, 1200, 625);
-        panel_2.setLayout(null);  // Cambiado a un diseño nulo
+        panel_2.setLayout(null);  
         panel.add(panel_2);
         
         JPanel panelTarjetas = new JPanel();
-        panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); // Cambié el GridLayout a 1 columna
-        panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
-        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
+        panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
+        panelTarjetas.setBackground(Color.black); 
+        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel_2.add(panelTarjetas);
         
         List<Pedido> listaPedidos = new ArrayList<>();
-
-        // Simulación de datos para cinco pedidos
         Pedido pedido1 = new Pedido(1, "01/01/2023", "PENDIENTE", "/ruta/imagen1.png");
         Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
+       
         Pedido pedido11 = new Pedido(3, "01/01/2023", "En proceso", "/ruta/imagen1.png");
         Pedido pedido21 = new Pedido(4, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
-        // ... (resto de la simulación)
+       
         Pedido pedido113 = new Pedido(5, "01/01/2023", "En proceso", "/ruta/imagen1.png");
         Pedido pedido213 = new Pedido(6, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
-        // ... (resto de la simulación)
+      
         Pedido pedido114 = new Pedido(7, "01/01/2023", "En proceso", "/ruta/imagen1.png");
         Pedido pedido214 = new Pedido(8, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
-        // ... (resto de la simulación)
+        
 
         listaPedidos.add(pedido113);
         listaPedidos.add(pedido213);
@@ -189,13 +181,13 @@ public class funcionarioPedidosActuales extends JFrame {
         listaPedidos.add(pedido1);
         listaPedidos.add(pedido2);
 
-        // ... (resto de la simulación)
+        
 
         for (Pedido pedido : listaPedidos) {
         	if(pedido.getEstado().equals("PENDIENTE")) {
             TarjetaPedido tarjeta = new TarjetaPedido(pedido);
           
-            panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas}
+            panelTarjetas.add(tarjeta);
         	}
         }
         panel_2.setLayout(null);
@@ -203,7 +195,7 @@ public class funcionarioPedidosActuales extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         scrollPane.setBounds(125, 147, 946, 425);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
         panel_2.add(scrollPane);
         
         JPanel panel_3 = new JPanel();

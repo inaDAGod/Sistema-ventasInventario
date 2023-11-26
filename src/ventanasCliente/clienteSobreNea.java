@@ -41,7 +41,7 @@ public class clienteSobreNea extends JFrame {
      */
     public clienteSobreNea() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 1200, 800); // Cambié las dimensiones del JFrame
+        setBounds(100, 100, 1200, 800); 
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);

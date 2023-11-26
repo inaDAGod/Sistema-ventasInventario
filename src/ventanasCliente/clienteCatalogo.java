@@ -26,16 +26,11 @@ public class clienteCatalogo extends JFrame {
     
     etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
     etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
-    // Agrega más etiquetas según sea necesario...
-    etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
-    // Agrega más etiquetas según sea necesario...
+   etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
     etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
-    // Agrega más etiquetas según sea necesario...
     etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
-    // Agrega más etiquetas según sea necesario...
     etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
-    // Agrega más etiquetas según sea necesario...
-
+    
 
     productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
     productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
@@ -194,12 +189,12 @@ public class clienteCatalogo extends JFrame {
                                                 botonBuscar.setBounds(911, 263, 100, 30);
                                                 panelBusqueda.add(botonBuscar);
                                                 
-                                                        // Agregar ActionListener al botón de búsqueda
+                                                       
                                                 botonBuscar.addActionListener(new ActionListener() {
                                                     public void actionPerformed(ActionEvent e) {
-                                                        // Lógica de búsqueda por nombre
+                                                     
                                                     	 String nombreBusqueda = textFieldBuscar.getText();
-                                                         textoBusqueda = nombreBusqueda;  // Guardar el texto de búsqueda
+                                                         textoBusqueda = nombreBusqueda;  
                                                         buscarPorNombre(nombreBusqueda);
                                                     }
                                                 });
@@ -238,7 +233,7 @@ public class clienteCatalogo extends JFrame {
                                                         
                                                         
                                                         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                                                        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
+                                                        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); 
                                                         scrollPane.setBounds(0, 0, 1190, 500);panel_2.add(scrollPane);
        
         panelTarjetas.add(panelBusqueda, BorderLayout.NORTH);
@@ -263,13 +258,6 @@ public class clienteCatalogo extends JFrame {
         lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
         panelBusqueda.add(lblNewLabel_2_1);
     
-        
-       
-      
-
-        // Agregar algunas tarjetas de pedidos iniciales
-        
-       
         agregarTarjetasPedidos(listaEtiquetas);
        
     }
@@ -277,17 +265,13 @@ public class clienteCatalogo extends JFrame {
     
 
     private void agregarTarjetasPedidos(List<etiquetas> listaEtiquetas) {
-    	
-    	
-    	 
-         
-        for (etiquetas eti : listaEtiquetas) {
+     for (etiquetas eti : listaEtiquetas) {
             TarjetaPedido tarjeta = new TarjetaPedido(eti);
       
 			System.out.println("blcle de categora"+eti.getCtiquetas());
-            panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
+            panelTarjetas.add(tarjeta); 
         }
-        // Refrescar la vista después de agregar las nuevas tarjetas
+       
         panelTarjetas.revalidate();
         panelTarjetas.repaint();
         
@@ -296,7 +280,7 @@ public class clienteCatalogo extends JFrame {
     
     
     private void filtrarTarjetas(List<etiquetas> listaEtiquetas) {
-        // Obtener el tipo de detalle seleccionado
+      
     	panelTarjetas.removeAll();
     	
         String tipoDetalleSeleccionado = obtenerTipoDetalleSeleccionado();
@@ -357,28 +341,24 @@ public class clienteCatalogo extends JFrame {
 
 
         panelTarjetas.add(panelBusqueda);
-        // Limpiar las tarjetas actuales
-       
-        
-        // Filtrar las tarjetas según el tipo de detalle seleccionado
+      
         for (etiquetas eti : listaEtiquetas) {
             if (eti.getDetalle().equals(tipoDetalleSeleccionado)) {
                 
             	TarjetaPedido tarjeta = new TarjetaPedido(eti);
                 panelTarjetas.add(tarjeta);
-                //panelTarjetas.setBounds(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
+               
             }
         }
 
-        // Actualizar la vista
+      
         panelTarjetas.revalidate();
         panelTarjetas.repaint();
-     // Agregar ActionListener al botón de búsqueda
+  
         botonBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Lógica de búsqueda por nombre
-            	 String nombreBusqueda = textFieldBuscar.getText();
-                 textoBusqueda = nombreBusqueda;  // Guardar el texto de búsqueda
+             String nombreBusqueda = textFieldBuscar.getText();
+                 textoBusqueda = nombreBusqueda;  
                 buscarPorNombre(nombreBusqueda);
             }
         });
@@ -424,33 +404,22 @@ public class clienteCatalogo extends JFrame {
         } else if (radioBoton3.isSelected()) {
             return "Detalle 3";
         }
-        // Puedes agregar más casos según sea necesario
+      
         return "";
     }
     private void restaurarEstadoOriginal() {
-        // Limpiar las tarjetas actuales
-        panelTarjetas.removeAll();
-        
-        // Agregar las tarjetas del estado original
-        filtrarTarjetas(listaEtiquetas);
+      panelTarjetas.removeAll();
+      filtrarTarjetas(listaEtiquetas);
         agregarTarjetasPedidos(listaEtiquetas);
-        
-        // Actualizar la vista
         panelTarjetas.revalidate();
         panelTarjetas.repaint();
     }
     private void buscarPorNombre(String nombre) {
-       // Limpiar las tarjetas actuales
-
-    	filtrarTarjetas(listaEtiquetas);
-        // Agregar las tarjetas del estado original
-    	TarjetaProducto tarjeta = new TarjetaProducto(nombre);
-         
-			System.out.println("blcle de categora"+nombre);
-         panelTarjetas.add(tarjeta); // Agregar la "tarjeta" al panel de tarjetas
-         // Restablecer el texto de búsqueda después de la búsqueda
+       filtrarTarjetas(listaEtiquetas);
+       TarjetaProducto tarjeta = new TarjetaProducto(nombre);
+System.out.println("blcle de categora"+nombre);
+      panelTarjetas.add(tarjeta); 
          textFieldBuscar.setText(textoBusqueda);
-     // Refrescar la vista después de agregar las nuevas tarjetas
      panelTarjetas.revalidate();
      panelTarjetas.repaint();
         
@@ -462,29 +431,24 @@ public class clienteCatalogo extends JFrame {
         private static final long serialVersionUID = 1L;
 
         public TarjetaPedido(etiquetas etiqueta) {
-        	
-            setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
-            setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); // Borde para la tarjeta
-
-            // Panel para el texto "Ropa"
-            JPanel panelTexto = new JPanel();
+        	setLayout(new BorderLayout()); 
+            setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); 
+ JPanel panelTexto = new JPanel();
             panelTexto.setBackground(new Color(0, 0, 0));
             panelTexto.setLayout(new BorderLayout());
             System.out.println(etiqueta.getDetalle());
-            JLabel lblRopa = new JLabel(etiqueta.getDetalle()); // Aquí debes obtener el tipo de producto desde el pedido
+            JLabel lblRopa = new JLabel(etiqueta.getDetalle()); 
             lblRopa.setForeground(new Color(255, 255, 255));
             lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 50));
             lblRopa.setHorizontalAlignment(JLabel.LEFT);
 
             panelTexto.add(lblRopa, BorderLayout.CENTER);
-
-            // Agregar panelTexto al panel de tarjeta en la región norte
             add(panelTexto, BorderLayout.NORTH);
 
             JPanel panelTarjetas = new JPanel();
-            panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); // Cambié a FlowLayout y ajusté los espacios
-            panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
-            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2)); // Margen de 10 píxeles para la tarjeta
+            panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+            panelTarjetas.setBackground(Color.black); 
+            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
             
            
@@ -532,19 +496,17 @@ public class clienteCatalogo extends JFrame {
 
                 Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
-                // Cambiar el color de los botones
                 buttonProducto.setBackground(Color.BLACK);
 
                 buttonProducto.addActionListener(e -> {
-                    // Acción al hacer clic en el botón del producto
-                    // Puedes agregar tu lógica aquí
+                  
                 });
 
                 buttonProducto.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
                 cardPanel.add(buttonProducto);
 
-                // Fijar el tamaño preferido del cardPanel
+              
                 cardPanel.setPreferredSize(new Dimension(anchuraCalculada + 20, alturaDeseada + 20));
                 panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
                 panelTarjetas.add(cardPanel);
@@ -552,11 +514,11 @@ public class clienteCatalogo extends JFrame {
 
             JScrollPane scrollPane = new JScrollPane(panelTarjetas);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Cambié a HORIZONTAL_SCROLLBAR_ALWAYS
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
             scrollPane.setPreferredSize(new Dimension(400, 300));
             scrollPane.setBackground(Color.white);
 
-            // Agregar scrollPane al panel de tarjeta en la región central
+           
             add(scrollPane, BorderLayout.CENTER);
 
             setBackground(Color.WHITE);
@@ -569,29 +531,19 @@ public class clienteCatalogo extends JFrame {
 
             public TarjetaProducto(String nombre) {
             	
-                setLayout(new BorderLayout()); // Diseño para cada "tarjeta"
-                setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); // Borde para la tarjeta
-
-                // Panel para el texto "Ropa"
+                setLayout(new BorderLayout());
+                setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); 
+              
                 JPanel panelTexto = new JPanel();
                 panelTexto.setBackground(new Color(0, 0, 0));
                 panelTexto.setLayout(new BorderLayout());
-                
-
-                // Agregar panelTexto al panel de tarjeta en la región norte
                 add(panelTexto, BorderLayout.NORTH);
 
                 JPanel panelTarjetas = new JPanel();
-                panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); // Cambié a FlowLayout y ajusté los espacios
-                panelTarjetas.setBackground(Color.black); // Establecer el fondo negro al SCROLLL
-                panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
-
-                
-
-
-               
-               
-                for (productos producto11 : listaProductos) {
+                panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
+                panelTarjetas.setBackground(Color.black);
+                panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+                 for (productos producto11 : listaProductos) {
                 	
                 	 if (producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())) 
                 	 {System.out.println("nombnrProductos ("+producto11.getNombre()+")== nombreBuscado ("+nombre+")");
@@ -631,26 +583,20 @@ public class clienteCatalogo extends JFrame {
                     JPanel panelDetalles = new JPanel();
                     panelDetalles.setBackground(Color.BLACK);
              
-                  
-
                     buttonProducto.add(panelDetalles, gbc);
                     buttonProducto.setPreferredSize(new Dimension(anchuraCalculada, alturaDeseada));
 
                     Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
-                    // Cambiar el color de los botones
                     buttonProducto.setBackground(Color.BLACK);
 
                     buttonProducto.addActionListener(e -> {
-                        // Acción al hacer clic en el botón del producto
-                        // Puedes agregar tu lógica aquí
+                      
                     });
 
                     buttonProducto.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
                     cardPanel.add(buttonProducto);
-
-                    // Fijar el tamaño preferido del cardPanel
                     cardPanel.setPreferredSize(new Dimension(anchuraCalculada + 20, alturaDeseada + 20));
                     panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
                     panelTarjetas.add(cardPanel);
@@ -658,11 +604,11 @@ public class clienteCatalogo extends JFrame {
 
                 JScrollPane scrollPane = new JScrollPane(panelTarjetas);
                 scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); // Cambié a HORIZONTAL_SCROLLBAR_ALWAYS
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
                 scrollPane.setPreferredSize(new Dimension(400, 300));
                 scrollPane.setBackground(Color.white);
 
-                // Agregar scrollPane al panel de tarjeta en la región central
+                
                 add(scrollPane, BorderLayout.CENTER);
 
                 setBackground(Color.WHITE);

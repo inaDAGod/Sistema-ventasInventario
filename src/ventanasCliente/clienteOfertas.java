@@ -156,12 +156,12 @@ public class clienteOfertas extends JFrame {
                 panelDetalles.setBackground(Color.BLACK);
                 panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
                 JLabel labelNumeroCompra = new JLabel("Nombre: " + Productos.getNombre());
-                labelNumeroCompra.setForeground(Color.WHITE); // Color rojo
+                labelNumeroCompra.setForeground(Color.WHITE); 
                 float valor = Productos.getPrecio() * descuento;
                 JLabel labelFecha = new JLabel("Antes: " + (Productos.getPrecio() + valor));
-                labelFecha.setForeground(Color.RED); // Color rojo
+                labelFecha.setForeground(Color.RED); 
                 JLabel labelEstado = new JLabel("Ahora: " + Productos.getPrecio());
-                labelEstado.setForeground(Color.GREEN); // Color verde
+                labelEstado.setForeground(Color.GREEN);
                 panelDetalles.add(labelNumeroCompra);
                 panelDetalles.add(labelFecha);
                 panelDetalles.add(labelEstado);
@@ -171,7 +171,6 @@ public class clienteOfertas extends JFrame {
 
                 Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
-                // Cambiar el color de los botones
                 buttonPedido.setBackground(Color.BLACK);
 
                 buttonPedido.addActionListener(e -> {
@@ -181,8 +180,6 @@ public class clienteOfertas extends JFrame {
                 buttonPedido.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
                 cardPanel.add(buttonPedido);
-                
-                // Fijar el tamaño preferido del cardPanel
                 
                 panelTarjetas.add(cardPanel);
             }

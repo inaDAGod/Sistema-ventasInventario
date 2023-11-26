@@ -129,16 +129,12 @@ public class funcionarioSobreNea extends JFrame {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abrir el selector de archivos
-                JFileChooser fileChooser = new JFileChooser();
+               JFileChooser fileChooser = new JFileChooser();
                 int result = fileChooser.showOpenDialog(null);
 
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    // Obtener la ruta de la imagen seleccionada
                     String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
-
-                    // Mostrar la imagen en un JLabel (o en otro componente visual)
-                    ImageIcon selectedImageIcon = new ImageIcon(imagePath);
+ImageIcon selectedImageIcon = new ImageIcon(imagePath);
                     lblNewLabel_2.setIcon(selectedImageIcon);
                 }
             }
@@ -184,37 +180,33 @@ public class funcionarioSobreNea extends JFrame {
         btnNewButton_1_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abrir el selector de archivos
                 JFileChooser fileChooser = new JFileChooser();
                 int result = fileChooser.showOpenDialog(null);
 
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    // Obtener la ruta de la imagen seleccionada
                     String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
-
-                    // Mostrar la imagen en un JLabel (o en otro componente visual)
-                    ImageIcon selectedImageIcon = new ImageIcon(imagePath);
+ImageIcon selectedImageIcon = new ImageIcon(imagePath);
                     lblNewLabel_2.setIcon(selectedImageIcon);
                 }
             }
         });
 
         txtNaEsUna = new JTextField();
-        txtNaEsUna.setEditable(false); // Bloquear el JTextField
+        txtNaEsUna.setEditable(false); 
         txtNaEsUna.setText("Néa es una empresa que abrió sus puertas en 2021, se dedica a la venta de una amplia variedad de productos cuidadosamente seleccionados de artículos que abarcan accesorios, dermo-cosméticos, cremas, maquillaje, ropa, entre otros productos. ");
         txtNaEsUna.setBounds(10, 78, 585, 187);
         panel_3_1.add(txtNaEsUna);
         txtNaEsUna.setColumns(10);
 
         txtAvCalle = new JTextField();
-        txtAvCalle.setEditable(false); // Bloquear el JTextField
+        txtAvCalle.setEditable(false);
         txtAvCalle.setText("Av....... Calle....");
         txtAvCalle.setBounds(10, 327, 316, 107);
         panel_3_1.add(txtAvCalle);
         txtAvCalle.setColumns(10);
 
         textField = new JTextField();
-        textField.setEditable(false); // Bloquear el JTextField
+        textField.setEditable(false); 
         textField.setText("77777761");
         textField.setBounds(446, 355, 127, 36);
         panel_3_1.add(textField);
@@ -236,7 +228,6 @@ public class funcionarioSobreNea extends JFrame {
 
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Acción del botón Editar
                 txtNaEsUna.setEditable(true);
                 txtAvCalle.setEditable(true);
                 textField.setEditable(true);
@@ -249,8 +240,7 @@ public class funcionarioSobreNea extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Acción del botón Cancelar
-                txtNaEsUna.setEditable(false);
+               txtNaEsUna.setEditable(false);
                 txtAvCalle.setEditable(false);
                 textField.setEditable(false);
 
@@ -262,7 +252,6 @@ public class funcionarioSobreNea extends JFrame {
 
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Acción del botón Guardar
                 txtNaEsUna.setEditable(false);
                 txtAvCalle.setEditable(false);
                 textField.setEditable(false);

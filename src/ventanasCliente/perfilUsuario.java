@@ -182,8 +182,7 @@ public class perfilUsuario extends JFrame {
         textField_3.setColumns(10);
         textField_3.setBounds(205, 375, 214, 28);
         panel_4.add(textField_3);
-        
-        // Método para inicializar los campos de texto con contenido ficticio
+       
         inicializarCamposTexto();
         
         JPanel panel_5 = new JPanel();
@@ -204,10 +203,10 @@ public class perfilUsuario extends JFrame {
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (btnEditar.getText().equals("Editar")) {
-                    // Si se presiona "Editar", desbloquear campos y mostrar el botón "Cancelar"
+                    
                     editarPerfil();
                 } else {
-                    // Si se presiona "Guardar" o "Cancelar", bloquear campos y ocultar el botón "Cancelar"
+                   
                     cancelarEdicion();
                 }
             }
@@ -227,7 +226,7 @@ public class perfilUsuario extends JFrame {
             }
         });
         btnCancelar.setBounds(253, 19, 162, 33);
-        btnCancelar.setVisible(false); // Inicialmente oculto
+        btnCancelar.setVisible(false); 
         panel_5.add(btnCancelar);
     }
     private void inicializarCamposTexto() {
@@ -258,9 +257,7 @@ public class perfilUsuario extends JFrame {
 
     private void cancelarEdicion() {
         bloquearCamposTexto();
-
-        // Restaurar la información original (puedes implementar lógica específica para obtener la información desde la base de datos)
-        textField.setText("Nombre desde la base de datos");
+textField.setText("Nombre desde la base de datos");
         textField_1.setText("Correo desde la base de datos");
         textField_2.setText("Usuario desde la base de datos");
         textField_3.setText("Contraseña desde la base de datos");
@@ -274,8 +271,6 @@ public class perfilUsuario extends JFrame {
         String usuario = textField_2.getText();
         String contraseña = textField_3.getText();
 
-        // Aquí puedes realizar la lógica para guardar la información en la base de datos o en otro lugar
-        // Por ahora, solo imprimiré la información en la consola
         System.out.println("Nombre: " + nombre);
         System.out.println("Correo: " + correo);
         System.out.println("Usuario: " + usuario);
