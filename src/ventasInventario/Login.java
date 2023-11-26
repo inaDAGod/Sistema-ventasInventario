@@ -32,6 +32,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		setSize(1200,800);
@@ -46,27 +47,34 @@ public class Login extends JFrame {
         getContentPane().add(pl);
         
         JButton btnLogo = new JButton("");
-        btnLogo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\LogoGris(200x100).jpg"));
+        btnLogo.setIcon(new ImageIcon(Login.class.getResource("/imagenes/LogoGris(200x100).jpg")));
         btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
         btnLogo.setBounds(42, 11, 200, 100);
         getContentPane().add(btnLogo);
         
-        JButton btnInicio = new JButton("Inicio");
+        JButton btnInicio = new JButton("");
+        btnInicio.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnInicio(90x50).jpg")));
+        btnInicio.setHorizontalTextPosition(SwingConstants.CENTER);
         btnInicio.setBounds(330, 36, 90, 50);
         getContentPane().add(btnInicio);
         
-        JButton btnProductos = new JButton("Productos");
+        JButton btnProductos = new JButton("");
+        btnProductos.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnProductos(90x50).jpg")));
+        btnProductos.setHorizontalTextPosition(SwingConstants.CENTER);
         btnProductos.setBounds(420, 36, 90, 50);
         getContentPane().add(btnProductos);
         
-        JButton btnOfertas = new JButton("Ofertas");
+        JButton btnOfertas = new JButton("");
+        btnOfertas.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnOfertas(90x50).jpg")));
+        btnOfertas.setHorizontalTextPosition(SwingConstants.CENTER);
         btnOfertas.setBounds(510, 36, 90, 50);
         getContentPane().add(btnOfertas);
         
-        JButton btnSobreNea = new JButton("¿Quiénes somos?");
+        JButton btnSobreNea = new JButton("");
+        btnSobreNea.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnSobreNea(120x50).jpg")));
+        btnSobreNea.setHorizontalTextPosition(SwingConstants.CENTER);
         btnSobreNea.setBounds(600, 36, 120, 50);
         getContentPane().add(btnSobreNea);
-        pl.setVisible(true);
     	
 	}
 

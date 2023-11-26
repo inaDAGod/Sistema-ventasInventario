@@ -1,7 +1,6 @@
 package ventasInventario;
 
 import java.awt.Color;
-
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -14,16 +13,16 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class Inventario extends JFrame {
+public class Favoritos extends JFrame {
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
-	PanelInventario pinv= new PanelInventario();
+	PanelFavoritos pinv= new PanelFavoritos();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inventario frame = new Inventario();
+					Favoritos frame = new Favoritos();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,8 +30,10 @@ public class Inventario extends JFrame {
 			}
 		});
 	}
-	public Inventario() {
-		getContentPane().setBackground(new Color(193, 123, 160));
+
+
+	public Favoritos() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
@@ -52,7 +53,7 @@ public class Inventario extends JFrame {
         
 		//barra superior
 		JButton btnUsuario = new JButton("");
-		btnUsuario.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/user(100x100).jpg")));
+		btnUsuario.setIcon(new ImageIcon(Favoritos.class.getResource("/imagenes/user(100x100).jpg")));
 		btnUsuario.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnUsuario.setBounds(1000, 10, 100, 100);
 		getContentPane().add(btnUsuario);
@@ -64,7 +65,7 @@ public class Inventario extends JFrame {
         getContentPane().add(btnLogo);
         
         JButton btnBack = new JButton("");
-        btnBack.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/backrosa3(50x50).jpg")));
+        btnBack.setIcon(new ImageIcon(Favoritos.class.getResource("/imagenes/backblanco(50x50).jpg")));
         btnBack.setHorizontalTextPosition(SwingConstants.CENTER);
         btnBack.setBounds(1124, 35, 50, 50);
         getContentPane().add(btnBack);
@@ -92,9 +93,7 @@ public class Inventario extends JFrame {
         btnSobreNea.setHorizontalTextPosition(SwingConstants.CENTER);
         btnSobreNea.setBounds(600, 36, 120, 50);
         getContentPane().add(btnSobreNea);
-        
-        
-		
+     
 	}
 
 }

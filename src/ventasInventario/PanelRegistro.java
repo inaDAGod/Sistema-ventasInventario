@@ -104,12 +104,12 @@ public class PanelRegistro extends JPanel {
 		add(txNombre);
 		
 		JLabel cblanco = new JLabel("New label");
-		cblanco.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\blanco(1200x800).jpg"));
+		cblanco.setIcon(new ImageIcon(PanelRegistro.class.getResource("/imagenes/blanco(1200x800).jpg")));
 		cblanco.setBounds(213, 52, 800, 539);
 		add(cblanco);
 		
 		JLabel fondo = new JLabel("New label");
-		fondo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\rosa2(1200x800).jpg"));
+		fondo.setIcon(new ImageIcon(PanelRegistro.class.getResource("/imagenes/rosa2(1200x800).jpg")));
 		fondo.setBounds(0, 0, 1200, 680);
 		add(fondo);
 		
