@@ -29,12 +29,16 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class NuevoProducto extends JFrame {
-	private JTextField nombre,producto, marca, id, cantidad, cant;
+	private JTextField nombre,producto, marca, id,  cant,precio;
 	private JMenu color,talla;
 	private JMenuBar detalles;
-	private ArrayList <String> colores;
 	private ArrayList <String> etiquetas;
 	private ControladorProducto controladorProducto;
+	private JTextArea descripcion;
+	private JComboBox cboxEtiquetas1;
+	private JComboBox cboxEtiquetas2;
+	private JComboBox cboxEtiquetas3;
+	private Integer cantEtiquetas;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,11 +71,6 @@ public class NuevoProducto extends JFrame {
 		JButton btnAnadir = new JButton("Añadir producto");
 		btnAnadir.setBounds(909, 670, 110, 50);
 		getContentPane().add(btnAnadir);
-		btnAnadir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		
 		JLabel txNombre = new JLabel("Nombre:");
 		txNombre.setFont(new Font("Times New Roman", Font.PLAIN, 30));
@@ -83,6 +82,17 @@ public class NuevoProducto extends JFrame {
 		nombre.setBounds(616, 266, 350, 32);
 		getContentPane().add(nombre);
 		nombre.setColumns(10);
+		
+		JLabel txPrecio = new JLabel("Precio:");
+		txPrecio.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		txPrecio.setBounds(468, 200, 111, 40);
+		getContentPane().add(txPrecio);
+		
+		precio = new JTextField();
+		precio.setBackground(SystemColor.menu);
+		precio.setBounds(616, 200, 350, 32);
+		getContentPane().add(precio);
+		precio.setColumns(10);
 		
 		
 		JLabel txtId = new JLabel("ID:");
@@ -113,7 +123,7 @@ public class NuevoProducto extends JFrame {
 		txDescripcion.setBounds(430, 415, 149, 40);
 		getContentPane().add(txDescripcion);
 		
-		JTextArea descripcion = new JTextArea();
+		descripcion = new JTextArea();
 		descripcion.setBackground(SystemColor.menu);
 		descripcion.setBounds(616, 413, 350, 108);
 		getContentPane().add(descripcion);
@@ -156,7 +166,7 @@ public class NuevoProducto extends JFrame {
 		talla.add(xl);
 		talla.add(ninguna);
 		detalles.add(talla);
-			getContentPane().add(detalles);
+		getContentPane().add(detalles);
 		
 		
 		
@@ -167,39 +177,41 @@ public class NuevoProducto extends JFrame {
 		txEtiquetas.setBounds(459, 613, 120, 40);
 		getContentPane().add(txEtiquetas);
 		int x=620,y=615;
-		JComboBox cboxEtiquetas1 = new JComboBox();
+		cboxEtiquetas1 = new JComboBox();
+		cboxEtiquetas2 = new JComboBox();
+		cboxEtiquetas3 = new JComboBox();
 		cboxEtiquetas1.setBounds(x, y, 100, 25);
 		getContentPane().add(cboxEtiquetas1);
-		controladorProducto = new ControladorProducto();
+		controladorProducto = new ControladorProducto(NuevoProducto.this);
 		etiquetas = controladorProducto.todasEtiquetas();
 		for(String eti: etiquetas) {
 			cboxEtiquetas1.addItem(eti);
 		}
-		
+		cantEtiquetas=1;
 		JButton btnMas = new JButton("+");
 		btnMas.addActionListener(new ActionListener() {
-			int c=1;
+			
 			public void actionPerformed(ActionEvent e) {
-				if(c==1) {
-					JComboBox cboxEtiquetas2 = new JComboBox();
+				if(cantEtiquetas==1) {
+					
 					cboxEtiquetas2.setBounds(x+105, y, 100, 25);
 					getContentPane().add(cboxEtiquetas2);
 					for(String eti: etiquetas) {
 						cboxEtiquetas2.addItem(eti);
 					}
 				}
-				if(c==2) {
-					JComboBox cboxEtiquetas3 = new JComboBox();
+				if(cantEtiquetas==2) {
+					
 					cboxEtiquetas3.setBounds(x+210, y, 100, 25);
 					getContentPane().add(cboxEtiquetas3);
 					for(String eti: etiquetas) {
 						cboxEtiquetas3.addItem(eti);
 					}
 				}
-				if(c>=3) {
+				if(cantEtiquetas>=3) {
 					JOptionPane.showMessageDialog(null,"Solo se pueden añadir 3 etiquetas.");
 				}
-				c++;
+				cantEtiquetas++;
 			}
 		});
 		btnMas.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -291,6 +303,22 @@ public class NuevoProducto extends JFrame {
         fondo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\blanco(1200x800).jpg"));
         fondo.setBounds(0, 120, 1200, 680);
         getContentPane().add(fondo);
+        
+        btnAnadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controladorProducto.registroProducto();
+				
+			}
+		});
+		
+	}
+	
+	public JTextArea getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(JTextArea descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public JTextField getNombre() {
@@ -299,6 +327,22 @@ public class NuevoProducto extends JFrame {
 
 	public void setNombre(JTextField nombre) {
 		this.nombre = nombre;
+	}
+	
+	public JTextField getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(JTextField precio) {
+		this.precio = precio;
+	}
+	
+	public Integer getCantEtiquetas() {
+		return cantEtiquetas;
+	}
+
+	public void setCantEtiquetas(Integer cantEtiquetas) {
+		this.cantEtiquetas = cantEtiquetas;
 	}
 
 	public JTextField getProducto() {
@@ -325,13 +369,7 @@ public class NuevoProducto extends JFrame {
 		this.id = id;
 	}
 
-	public JTextField getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(JTextField cantidad) {
-		this.cantidad = cantidad;
-	}
+	
 
 	public JTextField getCant() {
 		return cant;
@@ -365,13 +403,7 @@ public class NuevoProducto extends JFrame {
 		this.detalles = detalles;
 	}
 
-	public ArrayList<String> getColores() {
-		return colores;
-	}
-
-	public void setColores(ArrayList<String> colores) {
-		this.colores = colores;
-	}
+	
 
 	public ArrayList<String> getEtiquetas() {
 		return etiquetas;
@@ -388,6 +420,32 @@ public class NuevoProducto extends JFrame {
 	public void setControladorProducto(ControladorProducto controladorProducto) {
 		this.controladorProducto = controladorProducto;
 	}
+
+	public JComboBox getCboxEtiquetas1() {
+		return cboxEtiquetas1;
+	}
+
+	public void setCboxEtiquetas1(JComboBox cboxEtiquetas1) {
+		this.cboxEtiquetas1 = cboxEtiquetas1;
+	}
+
+	public JComboBox getCboxEtiquetas2() {
+		return cboxEtiquetas2;
+	}
+
+	public void setCboxEtiquetas2(JComboBox cboxEtiquetas2) {
+		this.cboxEtiquetas2 = cboxEtiquetas2;
+	}
+
+	public JComboBox getCboxEtiquetas3() {
+		return cboxEtiquetas3;
+	}
+
+	public void setCboxEtiquetas3(JComboBox cboxEtiquetas3) {
+		this.cboxEtiquetas3 = cboxEtiquetas3;
+	}
+	
+	
 	
 	
 }

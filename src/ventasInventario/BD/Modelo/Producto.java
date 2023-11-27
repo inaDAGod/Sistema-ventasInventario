@@ -30,6 +30,24 @@ public class Producto {
 		this.imagenes = imagenes;
 		this.etiquetas = etiquetas;
 	}
+	
+
+	public Producto(String cproducto, String nombre, String descripcion, Double precio, Integer cantidad, String marca,
+			String color, String talla, ArrayList<String> etiquetas) {
+
+		this.cproducto = cproducto;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.cantidad = cantidad;
+		this.marca = marca;
+		this.color = color;
+		this.talla = talla;
+		this.imagenes = new ArrayList<>();
+		this.ofertado = false;
+		this.etiquetas = etiquetas;
+	}
+
 
 	public String getCproducto() {
 		return cproducto;

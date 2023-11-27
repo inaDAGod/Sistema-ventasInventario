@@ -40,7 +40,7 @@ language plpgsql;
 --select *from productos
 
 create or replace function agregarEtiquetaProducto(cetiqueta varchar(20),cproducto varchar(50))
-return void as $etiquetar$
+returns void as $etiquetar$
 begin
     insert into etiquetas_producto values(cetiqueta,cproducto);
 end;

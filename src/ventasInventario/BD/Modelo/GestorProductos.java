@@ -1,5 +1,6 @@
 package ventasInventario.BD.Modelo;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 
@@ -36,51 +37,55 @@ public class GestorProductos {
 	}
 	
 	public void addProducto(Producto producto) throws SQLException {
-		 Conexion con = new Conexion();
-		    Connection conexion = con.getConexionPostgres();
-		    CallableStatement s = null;
-		    CallableStatement sEtiqueta = null;
-		    String query = "{call registrarProducto(?, ?, ?, ?, ?,?,?,?)}";
-		    try {
-		        s = conexion.prepareCall(query);
-		        s.setString(1, producto.getCproducto());
-		        s.setString(2, producto.getNombre());
-		        s.setString(3, producto.getDescripcion());
-		        s.setDouble(4, producto.getPrecio());
-		        s.setInt(5, producto.getCantidad());
-		        s.setString(6, producto.getMarca());
-		        s.setString(7, producto.getColor());
-		        s.setString(7, producto.getTalla());
-		        s.executeUpdate();
-		        
-		        String queryEtiqueta = "{call agregarEtiquetaProducto(?, ?)}";
-		        for (String etiqueta : producto.getEtiquetas()) {
-		                sEtiqueta.setString(1, etiqueta);
-		                sEtiqueta.setString(2, producto.getCproducto());
-		                sEtiqueta.executeUpdate();
-		            
-		        }
-		        
-		        this.productos.add(producto);
-		        JOptionPane.showMessageDialog(null, "Registrado Correctamente", "Bienvenido a Néa", JOptionPane.INFORMATION_MESSAGE);
-		    } catch (SQLException e) {
-		    	if(e.getSQLState().equals("23505")) {
-		    		JOptionPane.showMessageDialog(null, "Ya hay un usuario igual", "Uy", JOptionPane.ERROR_MESSAGE);
-		    	}
-		    	else {
-		    		System.out.println(e.getMessage());
-		    	}
-		        
-		    } finally {
-		        if (s != null) {
-		            s.close();
-		        }
-		        if (conexion != null) {
-		            conexion.close();
-		        }
-		    }
-		    
+	    Conexion con = new Conexion();
+	    Connection conexion = con.getConexionPostgres();
+	    CallableStatement s = null;
+	    CallableStatement sEtiqueta = null;
+	    BigDecimal precio = BigDecimal.valueOf(producto.getPrecio());
+	    String query = "{call registrarProducto(?, ?, ?, ?, ?,?,?,?)}";
+	    
+	    try {
+	        s = conexion.prepareCall(query);
+	        s.setString(1, producto.getCproducto());
+	        s.setString(2, producto.getNombre());
+	        s.setString(3, producto.getDescripcion());
+	        s.setBigDecimal(4, precio);
+	        s.setInt(5, producto.getCantidad());
+	        s.setString(6, producto.getMarca());
+	        s.setString(7, producto.getColor());
+	        s.setString(8, producto.getTalla());
+	        s.executeUpdate();
+
+	        String queryEtiqueta = "{call agregarEtiquetaProducto(?, ?)}";
+	        sEtiqueta = conexion.prepareCall(queryEtiqueta); // Aquí se inicializa sEtiqueta
+	        
+	        for (String etiqueta : producto.getEtiquetas()) {
+	            sEtiqueta.setString(1, etiqueta);
+	            sEtiqueta.setString(2, producto.getCproducto());
+	            sEtiqueta.executeUpdate();
+	        }
+
+	        this.productos.add(producto);
+	        JOptionPane.showMessageDialog(null, "Registrado Correctamente", "Producto nuevo", JOptionPane.INFORMATION_MESSAGE);
+	    } catch (SQLException e) {
+	        if (e.getSQLState().equals("23505")) {
+	            JOptionPane.showMessageDialog(null, "Ya hay un producto con ese ID", "Uy", JOptionPane.ERROR_MESSAGE);
+	        } else {
+	            System.out.println(e.getMessage());
+	        }
+	    } finally {
+	        if (s != null) {
+	            s.close();
+	        }
+	        if (sEtiqueta != null) { // Verifica que sEtiqueta no sea nulo antes de cerrarlo
+	            sEtiqueta.close();
+	        }
+	        if (conexion != null) {
+	            conexion.close();
+	        }
+	    }
 	}
+
 	
 	public ArrayList<String> obtenerEtiquetas() {
 	    ArrayList<String> etiquetas = new ArrayList<>();
