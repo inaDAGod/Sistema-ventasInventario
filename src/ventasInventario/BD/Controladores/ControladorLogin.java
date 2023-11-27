@@ -2,6 +2,8 @@ package ventasInventario.BD.Controladores;
 
 import javax.swing.JOptionPane;
 
+import ventanasCliente.clienteInicio;
+import ventasInventario.Login;
 import ventasInventario.PanelLogin;
 import ventasInventario.BD.Modelo.GestorUsuarios;
 import ventasInventario.BD.Modelo.Usuario;
@@ -12,7 +14,7 @@ public class ControladorLogin {
 	public ControladorLogin(PanelLogin panelLogin) {
 		this.panelLogin = panelLogin;
 	}
-	public void verificacionLogin() {
+	public Boolean verificacionLogin() {
 		String usuario = panelLogin.getUsuario().getText();
 		String contrasenia = panelLogin.getContrasenia().getText();
 		//System.out.println(usuario + " " + contrasenia);
@@ -25,10 +27,14 @@ public class ControladorLogin {
 			}
 			else {
 				System.out.println("No es funcionario" + usu);
-				//mandar a inicio de cliente
+				clienteInicio frame = new clienteInicio();
+                frame.setVisible(true);
+                
 			}
+			return true;
+			
 		}
-		
+		return false;
 	}
 	
 	
