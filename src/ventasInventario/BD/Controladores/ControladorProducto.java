@@ -7,16 +7,52 @@ import java.util.*;
 import javax.swing.*;
 
 import ventasInventario.NuevoProducto;
+import ventasInventario.PanelInventario;
 import ventasInventario.BD.Modelo.GestorProductos;
 import ventasInventario.BD.Modelo.Producto;
 
 public class ControladorProducto {
 	private GestorProductos gestorProductos;
 	private NuevoProducto nuevoProducto;
+	private PanelInventario panelInventario;
+	
 	public ControladorProducto(NuevoProducto nuevoProducto) {
 		this.gestorProductos = new GestorProductos();
 		this.nuevoProducto = nuevoProducto;
 	}
+	
+	
+
+	public ControladorProducto(PanelInventario panelInventario) {
+		this.gestorProductos = new GestorProductos();
+		this.panelInventario = panelInventario;
+	}
+
+	
+
+	public NuevoProducto getNuevoProducto() {
+		return nuevoProducto;
+	}
+
+
+
+	public void setNuevoProducto(NuevoProducto nuevoProducto) {
+		this.nuevoProducto = nuevoProducto;
+	}
+
+
+
+	public PanelInventario getPanelInventario() {
+		return panelInventario;
+	}
+
+
+
+	public void setPanelInventario(PanelInventario panelInventario) {
+		this.panelInventario = panelInventario;
+	}
+
+
 
 	public GestorProductos getGestorProductos() {
 		return gestorProductos;
@@ -28,6 +64,10 @@ public class ControladorProducto {
 	
 	public ArrayList<String> todasEtiquetas(){
 		return this.gestorProductos.getEtiquetas();
+	}
+	
+	public ArrayList<Producto> todosProductos(){
+		return this.gestorProductos.getProductos();
 	}
 	
 	public void registroProducto() {

@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import ventasInventario.BD.Controladores.ControladorProducto;
+import ventasInventario.BD.Modelo.Producto;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -19,26 +23,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public class PanelInventario extends JPanel {
 	JTable table;
-	ArrayList<String> productos;
-	ArrayList<Integer>  cantidad;
-	ArrayList<Double>  precio;
+	private ArrayList<Producto> productos;
+	private ControladorProducto controladorProducto;
     DefaultTableModel modelo;
     private JTextField tfProductoBuscado;
 	public PanelInventario() {
-		productos = new ArrayList<>();
-        cantidad = new ArrayList<>();
-        precio = new ArrayList<>();
-        
+		controladorProducto = new ControladorProducto(PanelInventario.this);
+        productos = controladorProducto.todosProductos();
 		setLayout(null);
-		productos.add("Prod1"); cantidad.add(1); precio.add(110.1);
-		productos.add("Prod2"); cantidad.add(10); precio.add(120.1);
-		productos.add("Prod3"); cantidad.add(12); precio.add(130.1);
 		
         Object[][] datos = new Object[productos.size()][3];
         for (int i = 0; i < productos.size(); i++) {
-            datos[i][0] = productos.get(i);
-            datos[i][1] = cantidad.get(i);
-            datos[i][2] = precio.get(i);
+            datos[i][0] = productos.get(i).getNombre();
+            datos[i][1] = productos.get(i).getCantidad();
+            datos[i][2] = productos.get(i).getPrecio();
         }
         
         modelo = new DefaultTableModel(datos, new String[]{"Productos", "Cantidad", "Precio"}) {
@@ -122,10 +120,10 @@ public class PanelInventario extends JPanel {
             boolean seEncontro = false;
 
             for (int i = 0; i < productos.size(); i++) {
-                String nombreProducto = productos.get(i).toLowerCase();
+                String nombreProducto = productos.get(i).getNombre().toLowerCase();
 
                 if (nombreProducto.equals(productoBuscado) || nombreProducto.startsWith(productoBuscado)) {
-                    modeloFiltrado.addRow(new Object[]{productos.get(i), cantidad.get(i), precio.get(i)});
+                    modeloFiltrado.addRow(new Object[]{productos.get(i).getNombre(),productos.get(i).getCantidad(), productos.get(i).getPrecio()});
                     seEncontro = true;
                 }
             }

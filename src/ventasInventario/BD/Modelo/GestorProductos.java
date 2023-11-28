@@ -13,7 +13,7 @@ public class GestorProductos {
 	private ArrayList<String> etiquetas;
 
 	public GestorProductos() {
-		this.productos = new ArrayList<>();//cambiar por funcion que saca de la base de datos
+		this.productos = obtenerProductos();
 		this.etiquetas = obtenerEtiquetas();
 	}
 
@@ -104,6 +104,32 @@ public class GestorProductos {
 	    }
 
 	    return etiquetas;
+	}
+	
+	public ArrayList<Producto> obtenerProductos(){
+		ArrayList <Producto> produc = new ArrayList<>();
+		Conexion con = new Conexion();
+		try (Connection conexion = con.getConexionPostgres();
+		         PreparedStatement statement = conexion.prepareStatement("SELECT cproducto, nombre, descripcion,precio, cantidad, marca, color,talla,ofertado FROM productos");
+		         ResultSet resultSet = statement.executeQuery()) {
+
+		        while (resultSet.next()) {
+		            String cproducto = resultSet.getString("cproducto");
+		            String nombre = resultSet.getString("nombre");
+		            String descripcion  = resultSet.getString("descripcion");
+		            BigDecimal precioBigDecimal = resultSet.getBigDecimal("precio");
+		            Double precioDouble = precioBigDecimal.doubleValue();
+		            Integer cantidad = resultSet.getInt("cantidad");
+		            String marca  = resultSet.getString("descripcion");
+		            String color  = resultSet.getString("descripcion");
+		            String talla  = resultSet.getString("descripcion");
+		            Boolean ofertado = resultSet.getBoolean("ofertado");
+		            produc.add(new Producto(cproducto, nombre, descripcion, precioDouble, cantidad, marca, color, talla, ofertado, null, null, null));
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		return produc;
 	}
 
 	
