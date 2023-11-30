@@ -2,6 +2,7 @@ package ventasInventario.BD.Modelo;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -106,31 +107,85 @@ public class GestorProductos {
 	    return etiquetas;
 	}
 	
-	public ArrayList<Producto> obtenerProductos(){
-		ArrayList <Producto> produc = new ArrayList<>();
-		Conexion con = new Conexion();
-		try (Connection conexion = con.getConexionPostgres();
-		         PreparedStatement statement = conexion.prepareStatement("SELECT cproducto, nombre, descripcion,precio, cantidad, marca, color,talla,ofertado FROM productos");
-		         ResultSet resultSet = statement.executeQuery()) {
+	public ArrayList<Producto> obtenerProductos() {
+	    ArrayList<Producto> productos = new ArrayList<>();
+	    Conexion con = new Conexion();
+	    try (Connection conexion = con.getConexionPostgres();
+	         PreparedStatement statement = conexion.prepareStatement("SELECT cproducto, nombre, descripcion, precio, cantidad, marca, color, talla, ofertado FROM productos");
+	         ResultSet resultSet = statement.executeQuery()) {
 
-		        while (resultSet.next()) {
-		            String cproducto = resultSet.getString("cproducto");
-		            String nombre = resultSet.getString("nombre");
-		            String descripcion  = resultSet.getString("descripcion");
-		            BigDecimal precioBigDecimal = resultSet.getBigDecimal("precio");
-		            Double precioDouble = precioBigDecimal.doubleValue();
-		            Integer cantidad = resultSet.getInt("cantidad");
-		            String marca  = resultSet.getString("descripcion");
-		            String color  = resultSet.getString("descripcion");
-		            String talla  = resultSet.getString("descripcion");
-		            Boolean ofertado = resultSet.getBoolean("ofertado");
-		            produc.add(new Producto(cproducto, nombre, descripcion, precioDouble, cantidad, marca, color, talla, ofertado, null, null, null));
-		        }
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    }
-		return produc;
+	        while (resultSet.next()) {
+	            String cproducto = resultSet.getString("cproducto");
+	            String nombre = resultSet.getString("nombre");
+	            String descripcion = resultSet.getString("descripcion");
+	            Double precio = resultSet.getBigDecimal("precio").doubleValue();
+	            Integer cantidad = resultSet.getInt("cantidad");
+	            String marca = resultSet.getString("marca");
+	            String color = resultSet.getString("color");
+	            String talla = resultSet.getString("talla");
+	            Boolean ofertado = resultSet.getBoolean("ofertado");
+
+	            ArrayList<String> etiquetas = obtenerEtiquetasPorProducto(cproducto, conexion);
+	            ArrayList<String> imagenes = obtenerImagenesPorProducto(cproducto, conexion);
+	            Oferta oferta = null;
+
+	            if (ofertado) {
+	                oferta = obtenerOfertaPorProducto(cproducto, conexion);
+	            }
+
+	            productos.add(new Producto(cproducto, nombre, descripcion, precio, cantidad, marca, color, talla, ofertado, oferta, imagenes, etiquetas));
+	           
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    System.out.println(productos);
+	    return productos;
 	}
+
+	private ArrayList<String> obtenerEtiquetasPorProducto(String cproducto, Connection conexion) throws SQLException {
+	    ArrayList<String> etiquetas = new ArrayList<>();
+	    String query = "SELECT b.cetiqueta FROM etiquetas_producto b WHERE b.cproducto = ?";
+	    try (PreparedStatement statement = conexion.prepareStatement(query)) {
+	        statement.setString(1, cproducto);
+	        ResultSet resultSet = statement.executeQuery();
+	        while (resultSet.next()) {
+	            etiquetas.add(resultSet.getString("cetiqueta"));
+	        }
+	    }
+	    return etiquetas;
+	}
+
+	private ArrayList<String> obtenerImagenesPorProducto(String cproducto, Connection conexion) throws SQLException {
+	    ArrayList<String> imagenes = new ArrayList<>();
+	    String query = "SELECT c.ruta FROM imagenes c WHERE c.cproducto = ?";
+	    try (PreparedStatement statement = conexion.prepareStatement(query)) {
+	        statement.setString(1, cproducto);
+	        ResultSet resultSet = statement.executeQuery();
+	        while (resultSet.next()) {
+	            imagenes.add(resultSet.getString("ruta"));
+	        }
+	    }
+	    return imagenes;
+	}
+
+	private Oferta obtenerOfertaPorProducto(String cproducto, Connection conexion) throws SQLException {
+	    String query = "SELECT porcentaje, preciooferta, cantidad_inicial, fecha_inicio, fecha_fin FROM ofertas WHERE cproducto = ?";
+	    try (PreparedStatement statement = conexion.prepareStatement(query)) {
+	        statement.setString(1, cproducto);
+	        ResultSet resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            int porcentaje = resultSet.getInt("porcentaje");
+	            double precioOferta = resultSet.getBigDecimal("preciooferta").doubleValue();
+	            int cantidadInicial = resultSet.getInt("cantidad_inicial");
+	            LocalDate fechaInicio = resultSet.getDate("fecha_inicio").toLocalDate();
+	            LocalDate fechaFin = resultSet.getDate("fecha_fin").toLocalDate();
+	            return new Oferta(porcentaje, precioOferta, cantidadInicial, fechaInicio, fechaFin);
+	        }
+	    }
+	    return null;
+	}
+
 
 	
 	
