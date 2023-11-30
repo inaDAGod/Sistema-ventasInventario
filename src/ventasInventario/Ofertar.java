@@ -95,7 +95,7 @@ public class Ofertar extends JFrame {
 		contentPane.add(lbFInicio);
 		
 		txFechaInicio = new JTextField();
-		txFechaInicio.setText("dd/mm/yyyy");
+		txFechaInicio.setText("yyyy-mm-dd");
 		txFechaInicio.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		txFechaInicio.setBounds(180, 130, 160, 20);
 		contentPane.add(txFechaInicio);
@@ -107,7 +107,7 @@ public class Ofertar extends JFrame {
 		contentPane.add(lbFFin);
 		
 		txtDdmmyyyy = new JTextField();
-		txtDdmmyyyy.setText("dd/mm/yyyy");
+		txtDdmmyyyy.setText("yyyy-mm-dd");
 		txtDdmmyyyy.setColumns(10);
 		txtDdmmyyyy.setBounds(180, 170, 156, 20);
 		contentPane.add(txtDdmmyyyy);
