@@ -19,6 +19,7 @@ public class ListadoClientes extends JFrame {
 	JScrollPane scrollPane;
 	JTable tabla;
 	PanelListadoClientes panelInferior= new PanelListadoClientes();
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

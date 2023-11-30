@@ -1,4 +1,4 @@
-package ventasInventario.POO;
+package ventasInventario.BD.Modelo;
 
 public class Nea {
 	private String telefono;

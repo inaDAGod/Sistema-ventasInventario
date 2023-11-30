@@ -1,4 +1,4 @@
-package ventasInventario.POO;
+package ventasInventario.BD.Modelo;
 
 public interface EtiquetasProductos {
 	final static String ropa = "ROPA";

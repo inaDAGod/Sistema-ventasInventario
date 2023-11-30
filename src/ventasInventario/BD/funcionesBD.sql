@@ -6,6 +6,14 @@ end;
 $crearUsuario$
 language plpgsql;
 
+create or replace function registrarUsuario(usuario varchar(30), nombre varchar(50),correo varchar(40),contrasenia varchar(20),funcionario boolean)
+returns void as $crearUsuario$
+begin
+    insert into usuarios values (usuario,nombre,correo,contrasenia,funcionario, FALSE);
+end;
+$crearUsuario$
+language plpgsql;
+
 --select registrarse('danialee14','dani','danialee14@gmail.com','admin123');
 
 
@@ -32,7 +40,7 @@ language plpgsql;
 --select *from productos
 
 create or replace function agregarEtiquetaProducto(cetiqueta varchar(20),cproducto varchar(50))
-return void as $etiquetar$
+returns void as $etiquetar$
 begin
     insert into etiquetas_producto values(cetiqueta,cproducto);
 end;

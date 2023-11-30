@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import ventasInventario.BD.Controladores.ControladorLogin;
+
 public class PanelLogin extends JPanel {
 	private JTextField usuario;
 	private JPasswordField contrasenia;
@@ -36,6 +38,7 @@ public class PanelLogin extends JPanel {
 		JButton btnIniciar = new JButton("Iniciar sesión");
 		btnIniciar.setBounds(377, 450, 150, 50);
 		add(btnIniciar);
+	
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
@@ -83,5 +86,32 @@ public class PanelLogin extends JPanel {
 		fondo.setIcon(new ImageIcon(PanelLogin.class.getResource("/imagenes/rosa1(1200x800).jpg")));
 		fondo.setBounds(0, 0, 1200, 680);
 		add(fondo);
+		
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorLogin controlador = new ControladorLogin(PanelLogin.this);
+				controlador.verificacionLogin();
+					
+				
+				
+			}
+		});
 	}
+
+	public JTextField getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(JTextField usuario) {
+		this.usuario = usuario;
+	}
+
+	public JPasswordField getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(JPasswordField contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+	
 }
