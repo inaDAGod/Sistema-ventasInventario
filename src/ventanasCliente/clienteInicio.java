@@ -9,6 +9,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.GroupLayout.Alignment;
 
 
@@ -25,8 +28,13 @@ public class clienteInicio extends JFrame {
     private List<productos> listaProductos = new ArrayList<>();
     private String textoBusqueda = "";
     private JScrollPane scrollPane;
-    private JPanel panelSuperior; 
-    private JPanel panelInferior;
+
+    // para el carrucel 	
+    private JPanel carruselPanel;
+    private List<String>  listaImagenes = new ArrayList<>();
+    private int currentIndex = 0;
+    private Timer timer;
+    
     // panelBusqueda.setBackground(Color.blue); define color
     etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
     etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
@@ -44,7 +52,8 @@ public class clienteInicio extends JFrame {
     productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
     productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
     productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-
+    //imagenes carusel	
+    
  
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -71,6 +80,13 @@ public class clienteInicio extends JFrame {
         listaProductos.add(producto4);
         listaProductos.add(producto5);
         listaProductos.add(producto6);
+        
+       //imagenes carusel
+        listaImagenes.add("src/imagenesJhess/personas.jfif");
+        listaImagenes.add("src/imagenesJhess/lapiz");
+        listaImagenes.add("src/imagenesJhess/camara");
+        listaImagenes.add("src/imagenesJhess/lapiz");
+        
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -118,7 +134,7 @@ public class clienteInicio extends JFrame {
                 "src/imagenesJhess/perfilpersona.png");
         Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
 
-        JButton btnOferta_2 = new JButton("");
+        JButton btnOferta_2 = new JButton(" holaaaaaaaaaaa");
         btnOferta_2.setIcon(new ImageIcon(imagePerfil));
         btnOferta_2.setBounds(1048, 11, 130, 118);
         panel_1.add(btnOferta_2);
@@ -141,30 +157,16 @@ public class clienteInicio extends JFrame {
         JPanel panelSuperiorContainer = new JPanel(new BorderLayout());
         panel_2.add(panelSuperiorContainer, BorderLayout.NORTH);
         
-        this.panelSuperior = new JPanel();
-        this.panelSuperior.setBackground(new Color(255, 182, 193));
-        this.panelSuperior.setLayout(new FlowLayout(FlowLayout.CENTER)); 
-        panelSuperiorContainer.add(new JScrollPane(panelSuperior), BorderLayout.CENTER);
+       
        
         
         
-        ImageIcon imagen1 = new ImageIcon("src/imagenesJhess/perfilpersona.png");
-        JLabel labelImagen1 = new JLabel(imagen1);
-        this.panelSuperior.add(labelImagen1);
-
-        ImageIcon imagen2 = new ImageIcon("src/imagenesJhess/perfilpersona.png");
-        JLabel labelImagen2 = new JLabel(imagen2);
-        this.panelSuperior.add(labelImagen2);
-
-        ImageIcon imagen3 = new ImageIcon("src/imagenesJhess/perfilpersona.png");
-        JLabel labelImagen3 = new JLabel(imagen3);
-        this.panelSuperior.add(labelImagen3);
-
         
+   
+      
         panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
         panelTarjetas.setBackground(new Color(255, 182, 193)); 
-        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
         JPanel panelTexto5 = new JPanel();
         panelTexto5.setBackground(Color.blue);
       
@@ -186,8 +188,9 @@ public class clienteInicio extends JFrame {
         JPanel panelBusqueda = new JPanel();
         panelBusqueda.setBackground(new Color(255, 182, 193));
         panelBusqueda.setBounds(0, 0, 100, 300);
-       
+        
         panelTarjetas.add(panelBusqueda);
+        panelTarjetas.add(panelSuperiorContainer);
         
            
         textFieldBuscar = new JTextField();
@@ -207,50 +210,7 @@ public class clienteInicio extends JFrame {
                                         grupoRadioBotones.add(radioBoton3);
                                        
                                         
-                                                botonBuscar = new JButton("Buscar");
-                                                
-                                                      
-                                                botonBuscar.addActionListener(new ActionListener() {
-                                                    public void actionPerformed(ActionEvent e) {
-                                                      
-                                                    	 String nombreBusqueda = textFieldBuscar.getText();
-                                                         textoBusqueda = nombreBusqueda; 
-                                                        buscarPorNombre(nombreBusqueda);
-                                                    }
-                                                });
-                                                        radioBoton1.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                	filtrarTarjetas(listaEtiquetas);
-                                                                }
-                                                            }
-                                                        });
-
-                                                        radioBoton2.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                	filtrarTarjetas(listaEtiquetas);
-                                                                }
-                                                            }
-                                                        });
-
-                                                        radioBoton3.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                
-                                                                    filtrarTarjetas(listaEtiquetas);
-                                                                }
-                                                            }
-                                                        });
-                                                        radioBoton3_1.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                
-                                                                	 restaurarEstadoOriginal();
-                                                                }
-                                                            }
-                                                        });
-                                                        
+                                             
                                                         
                                                         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
                                                         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
@@ -264,64 +224,13 @@ public class clienteInicio extends JFrame {
         
        
         
-        JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
-        lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-
-        GroupLayout gl_panelBusqueda = new GroupLayout(panelBusqueda);
-        gl_panelBusqueda.setHorizontalGroup(
-        	gl_panelBusqueda.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelBusqueda.createSequentialGroup()
-        			.addGap(10)
-        			.addGroup(gl_panelBusqueda.createParallelGroup(Alignment.LEADING)
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-        					.addGap(10)
-        					.addComponent(radioBoton1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-        					.addGap(65)
-        					.addComponent(radioBoton2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-        					.addGap(80)
-        					.addComponent(radioBoton3, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-        					.addGap(77)
-        					.addComponent(radioBoton3_1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-        					.addGap(30)
-        					.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, 530, GroupLayout.PREFERRED_SIZE)
-        					.addGap(55)
-        					.addComponent(botonBuscar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))))
-        );
-        gl_panelBusqueda.setVerticalGroup(
-        	gl_panelBusqueda.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_panelBusqueda.createSequentialGroup()
-        			.addGap(11)
-        			.addGroup(gl_panelBusqueda.createParallelGroup(Alignment.LEADING)
-        				.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(radioBoton1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(radioBoton2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(radioBoton3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(radioBoton3_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(27)
-        			.addGroup(gl_panelBusqueda.createParallelGroup(Alignment.LEADING)
-        				.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(textFieldBuscar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(gl_panelBusqueda.createSequentialGroup()
-        					.addGap(3)
-        					.addComponent(botonBuscar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
-        );
-        panelBusqueda.setLayout(gl_panelBusqueda);
+        
+       
         panelBusqueda.setBounds(0, 10, 10, 10);
         panelBusqueda.setBackground(Color.blue);
         agregarTarjetasPedidos(listaEtiquetas);     
+        restaurarEstadoOriginal();
+
     }
     
     
@@ -352,27 +261,84 @@ public class clienteInicio extends JFrame {
         String tipoDetalleSeleccionado = obtenerTipoDetalleSeleccionado();
         
         JPanel panelBusqueda = new JPanel();
+        
+        panelBusqueda.setBounds(0, 0, 0, 0);
         panelBusqueda.setBackground(new Color(255, 182, 193));
         panelBusqueda.setLayout(null);
+        
+        //*CARRUSEL
+        JPanel panel_2 = new JPanel();
+        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBounds(0, 0, 1190, 625);
+        panel_2.setLayout(new BorderLayout());
+      
+        
+        JPanel panelSuperiorContainer = new JPanel(new BorderLayout());
+        panelSuperiorContainer.setBackground(Color.blue);
+        panel_2.add(panelSuperiorContainer, BorderLayout.NORTH);
+        
+        carruselPanel = new JPanel(new BorderLayout());
+        
+        getContentPane().add(carruselPanel, BorderLayout.CENTER);
+        carruselPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10,10)); 
+        JButton prevButton = new JButton("Anterior");
+        JButton nextButton = new JButton("Siguiente");
+
+        prevButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showPreviousImage();
+            }
+        });
+
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showNextImage();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(prevButton);
+        buttonPanel.add(nextButton);
+        buttonPanel.setBackground(new Color(255, 182, 193));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0)); 
+      
+        JLabel labelImagen7 = new JLabel("BIENVENIDOS A NEA");
+        labelImagen7.setFont(new Font("Times New Roman", Font.PLAIN, 70));
+        labelImagen7.setBounds(400, 100, 800, 100);
+        panel_2.add(buttonPanel, BorderLayout.SOUTH );
+        panel_2.add(labelImagen7, BorderLayout.NORTH);
+        startTimer();
+        showImage();
+        panel_2.add(carruselPanel);
+        panelTarjetas.add(panel_2);
+        //*FIN
+        
+        
 
         textFieldBuscar = new JTextField();
-        textFieldBuscar.setBounds(294, 263, 530, 30);
+        textFieldBuscar.setBounds(100, 263, 730, 30);
         panelBusqueda.add(textFieldBuscar);
 
         radioBoton1 = new JRadioButton("Ropa");
-        radioBoton1.setBounds(304, 205, 100, 30);
+        radioBoton1.setBounds(304, 150, 100, 30);
+        radioBoton1.setBackground(new Color(255, 182, 193));
         panelBusqueda.add(radioBoton1);
 
         radioBoton2 = new JRadioButton("Accesorios");
-        radioBoton2.setBounds(495, 205, 100, 30);
+        radioBoton2.setBackground(new Color(255, 182, 193));
+        radioBoton2.setBounds(495, 150, 100, 30);
         panelBusqueda.add(radioBoton2);
 
         radioBoton3 = new JRadioButton("Maquillaje");
-        radioBoton3.setBounds(699, 205, 100, 30);
+        radioBoton3.setBounds(699, 150, 100, 30);
+        radioBoton3.setBackground(new Color(255, 182, 193));
         panelBusqueda.add(radioBoton3);
         
         radioBoton3_1 = new JRadioButton("Todo");
-        radioBoton3_1.setBounds(861, 205, 100, 30);
+        radioBoton3_1.setBounds(861, 150, 100, 30);
+        radioBoton3_1.setBackground(new Color(255, 182, 193));
         panelBusqueda.add(radioBoton3_1);
         
 
@@ -385,16 +351,27 @@ public class clienteInicio extends JFrame {
         botonBuscar.setBounds(911, 263, 100, 30);
         panelBusqueda.add(botonBuscar);
         
-        JLabel lblNewLabel_1 = new JLabel("INGRESE DATOS A BUSCAR :");
+        
+        JLabel lblNewLabel_11 = new JLabel("Novedades del mes");
+        lblNewLabel_11.setFont(new Font("Times New Roman", Font.PLAIN, 70));
+        lblNewLabel_11.setBounds(10, 0, 1200, 150);
+        panelBusqueda.add(lblNewLabel_11); 
+  
+        JLabel lblNewLabel_1 = new JLabel("SELECCIONE LA CATEGORIA:");
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        lblNewLabel_1.setBounds(10, 260, 274, 32);
+        lblNewLabel_1.setBounds(10, 150, 350, 32);
         panelBusqueda.add(lblNewLabel_1); 
         
         
-        JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
+        JLabel lblNewLabel_1_1 = new JLabel("INGRESE DATOS EL NOMBRE DEL PRODUCTO :");
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        lblNewLabel_1_1.setBounds(10, 202, 274, 32);
+        lblNewLabel_1_1.setBounds(10, 202, 800, 32);
         panelBusqueda.add(lblNewLabel_1_1);
+      
+   
+        
+        
+      
         
         
 
@@ -470,6 +447,8 @@ public class clienteInicio extends JFrame {
        
         return "";
     }
+    
+    
     private void restaurarEstadoOriginal() {
         
         panelTarjetas.removeAll();
@@ -478,6 +457,9 @@ public class clienteInicio extends JFrame {
          panelTarjetas.revalidate();
         panelTarjetas.repaint();
     }
+    
+    
+    
     private void buscarPorNombre(String nombre) {
        
 
@@ -494,6 +476,38 @@ public class clienteInicio extends JFrame {
         
         
    }
+    //funciones caruel
+    private void startTimer() {
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                showNextImage();
+            }
+        }, 0, 3000); // Cambia 3000 a la cantidad de milisegundos entre imágenes
+    }
+
+    private void showImage() {
+        carruselPanel.removeAll();
+        carruselPanel.setBackground(new Color(255, 182, 193));
+        String imagePath = listaImagenes.get(currentIndex);
+        ImageIcon imageIcon12 = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
+        JLabel imageLabel3 = new JLabel(imageIcon12);
+        carruselPanel.add(imageLabel3);
+        //PARA QUE SE VAYA HACIA ARRIBA EL SROLL
+        carruselPanel.revalidate();
+        carruselPanel.repaint();
+    }
+
+    private void showNextImage() {
+        currentIndex = (currentIndex + 1) % listaImagenes.size();
+        showImage();
+    }
+
+    private void showPreviousImage() {
+        currentIndex = (currentIndex - 1 + listaImagenes.size()) % listaImagenes.size();
+        showImage();
+    }
     
     
     public class TarjetaPedido extends JPanel {
@@ -537,7 +551,7 @@ public class clienteInicio extends JFrame {
                 ImageIcon iconProducto = new ImageIcon(producto11.getRuta_imagen());
 
                 int alturaDeseada = 200;
-                int anchuraCalculada = (alturaDeseada * iconProducto.getIconWidth()) / iconProducto.getIconHeight();
+                int anchuraCalculada = 200;
                 Image imagenOriginal = iconProducto.getImage().getScaledInstance(anchuraCalculada, alturaDeseada, Image.SCALE_SMOOTH);
 
                 ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
@@ -588,7 +602,7 @@ public class clienteInicio extends JFrame {
             JScrollPane scrollPane = new JScrollPane(panelTarjetas);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
-            scrollPane.setPreferredSize(new Dimension(400, 300));
+            scrollPane.setPreferredSize(new Dimension(400, 200));
             scrollPane.setBackground(Color.white);
 
           
@@ -635,7 +649,7 @@ public class clienteInicio extends JFrame {
                     ImageIcon iconProducto = new ImageIcon(producto11.getRuta_imagen());
 
                     int alturaDeseada = 200;
-                    int anchuraCalculada = (alturaDeseada * iconProducto.getIconWidth()) / iconProducto.getIconHeight();
+                    int anchuraCalculada = 200;
                     Image imagenOriginal = iconProducto.getImage().getScaledInstance(anchuraCalculada, alturaDeseada, Image.SCALE_SMOOTH);
 
                     ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
