@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import ventasInventario.BD.Controladores.ControladorCarrito;
 import ventasInventario.BD.Modelo.Carrito;
 import ventasInventario.BD.Modelo.Producto;
 import ventasInventario.BD.Modelo.ProductoCarrito;
@@ -26,11 +27,13 @@ import ventasInventario.BD.Modelo.Usuario;
 public class PanelCarrito extends JPanel {
 	JTable table;
 	private Carrito carritos ;
+	private ControladorCarrito controladorCarrito;
 	
     DefaultTableModel modelo;
 	public PanelCarrito(Usuario usuario) {
-
-        carritos =  new Carrito(usuario);
+		controladorCarrito =  new ControladorCarrito(usuario);
+		
+        carritos =  controladorCarrito.getCarrito();
 		setLayout(null);
 
 
@@ -151,6 +154,7 @@ public class PanelCarrito extends JPanel {
 	        carritos.setTotal(carritos.getTotal() - productoAEliminar.getMonto());
 	        carritos.getProductos().remove(productoAEliminar);
 	        modelo.removeRow(filaSeleccionada);
+	        controladorCarrito.eliminarProducto(productoAEliminar);
 	        actualizarTotalCarrito();
 	        JOptionPane.showMessageDialog(this, "Producto eliminado del carrito: " + productoAEliminar.getProducto().getNombre(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
 	    } else {

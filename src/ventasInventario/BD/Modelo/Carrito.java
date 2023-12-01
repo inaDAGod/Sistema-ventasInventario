@@ -120,6 +120,22 @@ public class Carrito {
 	    }
 	}
 	
+	public void eliminarDeCarrito(ProductoCarrito productoCarrito) {
+	    Conexion con = new Conexion();
+	    try (Connection conexion = con.getConexionPostgres();
+	         PreparedStatement statement = conexion.prepareStatement("DELETE FROM carrito_productos WHERE cproducto = ? and cusuario = ?")) {
+	        statement.setString(1, productoCarrito.getProducto().getCproducto());
+	        statement.setString(2, usuario.getUsuario());
+	        statement.executeUpdate();
+	        
+
+	    } catch (SQLException e) {
+	        // Maneja las excepciones SQL aquí
+	        e.printStackTrace();
+	    }
+	}
+
+	
 	
 	
 	

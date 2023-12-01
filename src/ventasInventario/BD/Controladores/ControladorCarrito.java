@@ -13,10 +13,27 @@ public class ControladorCarrito {
 		this.carrito = new Carrito(usuario);
 	}
 	
+	
+	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
+
+
 	public void anadirACarrito(Producto producto, Integer cantidad) {
 		ProductoCarrito productoCarrito = new ProductoCarrito(producto, cantidad);
 		carrito.guardarEnCarrito(productoCarrito);
 	}
 	
+	public void  eliminarProducto(ProductoCarrito producto) {
+		carrito.eliminarDeCarrito(producto);
+	}
 	
 }
