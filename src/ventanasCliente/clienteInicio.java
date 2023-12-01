@@ -27,7 +27,7 @@ public class clienteInicio extends JFrame {
     private JScrollPane scrollPane;
     private JPanel panelSuperior; 
     private JPanel panelInferior;
-    
+    // panelBusqueda.setBackground(Color.blue); define color
     etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
     etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
     etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
@@ -87,6 +87,7 @@ public class clienteInicio extends JFrame {
         panel_1.setForeground(Color.WHITE);
         panel_1.setBounds(0, 0, 1200, 140);
         panel.add(panel_1);
+       
         panel_1.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("");
@@ -130,20 +131,21 @@ public class clienteInicio extends JFrame {
         panelBase.setLayout(null);
         panel.add(panelBase);
 
+
         JPanel panel_2 = new JPanel();
         panel_2.setBackground(new Color(255, 182, 193));
         panel_2.setBounds(0, 0, 1190, 625);
         panel_2.setLayout(new BorderLayout());
         panelBase.add(panel_2);
-
+        
         JPanel panelSuperiorContainer = new JPanel(new BorderLayout());
         panel_2.add(panelSuperiorContainer, BorderLayout.NORTH);
-
+        
         this.panelSuperior = new JPanel();
         this.panelSuperior.setBackground(new Color(255, 182, 193));
         this.panelSuperior.setLayout(new FlowLayout(FlowLayout.CENTER)); 
         panelSuperiorContainer.add(new JScrollPane(panelSuperior), BorderLayout.CENTER);
-        	
+       
         
         
         ImageIcon imagen1 = new ImageIcon("src/imagenesJhess/perfilpersona.png");
@@ -158,13 +160,14 @@ public class clienteInicio extends JFrame {
         JLabel labelImagen3 = new JLabel(imagen3);
         this.panelSuperior.add(labelImagen3);
 
-       
+        
         panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
         panelTarjetas.setBackground(new Color(255, 182, 193)); 
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
         JPanel panelTexto5 = new JPanel();
-   
+        panelTexto5.setBackground(Color.blue);
+      
       
         panelTexto5.setBackground(new Color(0, 0, 0));
         panelTexto5.setLayout(new BorderLayout());
@@ -179,19 +182,21 @@ public class clienteInicio extends JFrame {
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(0, 0, 1190, 625);
+        
         JPanel panelBusqueda = new JPanel();
         panelBusqueda.setBackground(new Color(255, 182, 193));
+        panelBusqueda.setBounds(0, 0, 100, 300);
        
         panelTarjetas.add(panelBusqueda);
         
            
         textFieldBuscar = new JTextField();
                 
-                        radioBoton1 = new JRadioButton("Ropa");
+         radioBoton1 = new JRadioButton("Ropa");
                         
-                                radioBoton2 = new JRadioButton("Accesorios");
+         radioBoton2 = new JRadioButton("Accesorios");
                                 
-                                        radioBoton3 = new JRadioButton("Maquillaje");
+          radioBoton3 = new JRadioButton("Maquillaje");
                                         
                                         radioBoton3_1 = new JRadioButton("Todo");
                                       
@@ -262,8 +267,6 @@ public class clienteInicio extends JFrame {
         JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 
-       
-        panelTarjetas.add(panelBusqueda, BorderLayout.NORTH);
         GroupLayout gl_panelBusqueda = new GroupLayout(panelBusqueda);
         gl_panelBusqueda.setHorizontalGroup(
         	gl_panelBusqueda.createParallelGroup(Alignment.LEADING)
@@ -316,14 +319,9 @@ public class clienteInicio extends JFrame {
         					.addComponent(botonBuscar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
         );
         panelBusqueda.setLayout(gl_panelBusqueda);
-
-     
-        agregarTarjetasPedidos(listaEtiquetas);
-        
-       
-      
-
-     
+        panelBusqueda.setBounds(0, 10, 10, 10);
+        panelBusqueda.setBackground(Color.blue);
+        agregarTarjetasPedidos(listaEtiquetas);     
     }
     
     

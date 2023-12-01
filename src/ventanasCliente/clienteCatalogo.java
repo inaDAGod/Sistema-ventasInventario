@@ -83,7 +83,7 @@ public class clienteCatalogo extends JFrame {
         panel_1.setBounds(0, 0, 1200, 140);
         panel.add(panel_1);
         panel_1.setLayout(null);
-
+        
         JLabel lblNewLabel = new JLabel("");
         ImageIcon icon = new ImageIcon(
                 "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
@@ -115,6 +115,7 @@ public class clienteCatalogo extends JFrame {
         JButton btnOferta_2 = new JButton("");
         btnOferta_2.setIcon(new ImageIcon(imagePerfil));
         btnOferta_2.setBounds(1048, 11, 130, 118);
+        
         panel_1.add(btnOferta_2);
         
        
@@ -164,18 +165,23 @@ public class clienteCatalogo extends JFrame {
                 
                         radioBoton1 = new JRadioButton("Ropa");
                         radioBoton1.setBounds(304, 205, 100, 30);
+                        radioBoton1.setBackground(new Color(255, 182, 193));
+
                         panelBusqueda.add(radioBoton1);
                         
                                 radioBoton2 = new JRadioButton("Accesorios");
                                 radioBoton2.setBounds(495, 205, 100, 30);
+                                radioBoton2.setBackground(new Color(255, 182, 193));
                                 panelBusqueda.add(radioBoton2);
                                 
                                         radioBoton3 = new JRadioButton("Maquillaje");
                                         radioBoton3.setBounds(699, 205, 100, 30);
+                                        radioBoton3.setBackground(new Color(255, 182, 193));
                                         panelBusqueda.add(radioBoton3);
                                         
                                         radioBoton3_1 = new JRadioButton("Todo");
                                         radioBoton3_1.setBounds(861, 205, 100, 30);
+                                        radioBoton3_1.setBackground(new Color(255, 182, 193));
                                         panelBusqueda.add(radioBoton3_1);
                                       
                                         
@@ -188,7 +194,7 @@ public class clienteCatalogo extends JFrame {
                                                 botonBuscar = new JButton("Buscar");
                                                 botonBuscar.setBounds(911, 263, 100, 30);
                                                 panelBusqueda.add(botonBuscar);
-                                                
+                                             
                                                        
                                                 botonBuscar.addActionListener(new ActionListener() {
                                                     public void actionPerformed(ActionEvent e) {
@@ -202,6 +208,8 @@ public class clienteCatalogo extends JFrame {
                                                             public void itemStateChanged(ItemEvent e) {
                                                                 if (e.getStateChange() == ItemEvent.SELECTED) {
                                                                 	filtrarTarjetas(listaEtiquetas);
+                                                                	restaurarEstiloRadioButtons();
+                                                                    cambiarEstiloRadioButton(radioBoton1);
                                                                 }
                                                             }
                                                         });
@@ -210,6 +218,8 @@ public class clienteCatalogo extends JFrame {
                                                             public void itemStateChanged(ItemEvent e) {
                                                                 if (e.getStateChange() == ItemEvent.SELECTED) {
                                                                 	filtrarTarjetas(listaEtiquetas);
+                                                                	restaurarEstiloRadioButtons();
+                                                                    cambiarEstiloRadioButton(radioBoton2);
                                                                 }
                                                             }
                                                         });
@@ -219,6 +229,8 @@ public class clienteCatalogo extends JFrame {
                                                                 if (e.getStateChange() == ItemEvent.SELECTED) {
                                                                 
                                                                     filtrarTarjetas(listaEtiquetas);
+                                                                    restaurarEstiloRadioButtons();
+                                                                    cambiarEstiloRadioButton(radioBoton3);
                                                                 }
                                                             }
                                                         });
@@ -227,6 +239,9 @@ public class clienteCatalogo extends JFrame {
                                                                 if (e.getStateChange() == ItemEvent.SELECTED) {
                                                                 
                                                                 	 restaurarEstadoOriginal();
+                                                                	 restaurarEstiloRadioButtons();
+                                                                     cambiarEstiloRadioButton(radioBoton3_1);
+                                                                	 
                                                                 }
                                                             }
                                                         });
@@ -238,7 +253,7 @@ public class clienteCatalogo extends JFrame {
        
         panelTarjetas.add(panelBusqueda, BorderLayout.NORTH);
         
-        JLabel lblNewLabel_1 = new JLabel("INGRESE DATOS A BUSCAR :");
+        JLabel lblNewLabel_1 = new JLabel("Busqueda:");
         lblNewLabel_1.setBounds(10, 260, 274, 32);
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panelBusqueda.add(lblNewLabel_1); 
@@ -248,7 +263,7 @@ public class clienteCatalogo extends JFrame {
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 60));
         panelBusqueda.add(lblNewLabel_2);
         
-        JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
+        JLabel lblNewLabel_1_1 = new JLabel("");
         lblNewLabel_1_1.setBounds(10, 202, 274, 32);
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panelBusqueda.add(lblNewLabel_1_1);
@@ -295,19 +310,24 @@ public class clienteCatalogo extends JFrame {
 
         radioBoton1 = new JRadioButton("Ropa");
         radioBoton1.setBounds(304, 205, 100, 30);
+        radioBoton1.setBackground(new Color(255, 182, 193));
+
         panelBusqueda.add(radioBoton1);
-
-        radioBoton2 = new JRadioButton("Accesorios");
-        radioBoton2.setBounds(495, 205, 100, 30);
-        panelBusqueda.add(radioBoton2);
-
-        radioBoton3 = new JRadioButton("Maquillaje");
-        radioBoton3.setBounds(699, 205, 100, 30);
-        panelBusqueda.add(radioBoton3);
         
-        radioBoton3_1 = new JRadioButton("Todo");
-        radioBoton3_1.setBounds(861, 205, 100, 30);
-        panelBusqueda.add(radioBoton3_1);
+                radioBoton2 = new JRadioButton("Accesorios");
+                radioBoton2.setBounds(495, 205, 100, 30);
+                radioBoton2.setBackground(new Color(255, 182, 193));
+                panelBusqueda.add(radioBoton2);
+                
+                        radioBoton3 = new JRadioButton("Maquillaje");
+                        radioBoton3.setBounds(699, 205, 100, 30);
+                        radioBoton3.setBackground(new Color(255, 182, 193));
+                        panelBusqueda.add(radioBoton3);
+                        
+                        radioBoton3_1 = new JRadioButton("Todo");
+                        radioBoton3_1.setBounds(861, 205, 100, 30);
+                        radioBoton3_1.setBackground(new Color(255, 182, 193));
+                        panelBusqueda.add(radioBoton3_1);
         
 
         grupoRadioBotones.add(radioBoton1);
@@ -319,7 +339,7 @@ public class clienteCatalogo extends JFrame {
         botonBuscar.setBounds(911, 263, 100, 30);
         panelBusqueda.add(botonBuscar);
         
-        JLabel lblNewLabel_1 = new JLabel("INGRESE DATOS A BUSCAR :");
+        JLabel lblNewLabel_1 = new JLabel("Busqueda: ");
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         lblNewLabel_1.setBounds(10, 260, 274, 32);
         panelBusqueda.add(lblNewLabel_1); 
@@ -329,7 +349,7 @@ public class clienteCatalogo extends JFrame {
         lblNewLabel_2.setBounds(23, 11, 362, 115);
         panelBusqueda.add(lblNewLabel_2);
         
-        JLabel lblNewLabel_1_1 = new JLabel("SELECCIONE EL DATO:");
+        JLabel lblNewLabel_1_1 = new JLabel(" ");
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         lblNewLabel_1_1.setBounds(10, 202, 274, 32);
         panelBusqueda.add(lblNewLabel_1_1);
@@ -360,12 +380,15 @@ public class clienteCatalogo extends JFrame {
              String nombreBusqueda = textFieldBuscar.getText();
                  textoBusqueda = nombreBusqueda;  
                 buscarPorNombre(nombreBusqueda);
+               
             }
         });
         radioBoton1.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                 	filtrarTarjetas(listaEtiquetas);
+                	 restaurarEstiloRadioButtons();
+                     cambiarEstiloRadioButton(radioBoton1);
                 }
             }
         });
@@ -374,6 +397,8 @@ public class clienteCatalogo extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                 	filtrarTarjetas(listaEtiquetas);
+                	 restaurarEstiloRadioButtons();
+                     cambiarEstiloRadioButton(radioBoton2);
                 }
             }
         });
@@ -383,6 +408,8 @@ public class clienteCatalogo extends JFrame {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                 
                     filtrarTarjetas(listaEtiquetas);
+                    restaurarEstiloRadioButtons();
+                    cambiarEstiloRadioButton(radioBoton3);
                 }
             }
         });
@@ -391,6 +418,8 @@ public class clienteCatalogo extends JFrame {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                 
                 	 restaurarEstadoOriginal();
+                	 restaurarEstiloRadioButtons();
+                     cambiarEstiloRadioButton(radioBoton3_1);
                 }
             }
         });
@@ -425,6 +454,21 @@ System.out.println("blcle de categora"+nombre);
         
         
    }
+    private void cambiarEstiloRadioButton(JRadioButton radioButton) {
+        radioButton.setForeground(Color.white);  // Cambia el color del texto cuando está seleccionado
+        // También puedes cambiar otros estilos, por ejemplo:
+        // radioButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
+    }
+
+    // Agrega este método para restaurar el estilo de todos los JRadioButton
+    private void restaurarEstiloRadioButtons() {
+        radioBoton1.setForeground(Color.BLACK);
+        radioBoton2.setForeground(Color.BLACK);
+        radioBoton3.setForeground(Color.BLACK);
+        radioBoton3_1.setForeground(Color.BLACK);
+        // También puedes restaurar otros estilos a su valor original
+    }
+
     
     
     public class TarjetaPedido extends JPanel {
