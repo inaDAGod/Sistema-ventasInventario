@@ -18,27 +18,25 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import ventasInventario.BD.Modelo.Carrito;
+import ventasInventario.BD.Modelo.Usuario;
+
 public class PanelCarrito extends JPanel {
 	JTable table;
-	ArrayList<String> productos;
-	ArrayList<Integer>  cantidad;
-	ArrayList<Double>  precio;
+	private Carrito carritos ;
+	
     DefaultTableModel modelo;
-	public PanelCarrito() {
-		productos = new ArrayList<>();
-        cantidad = new ArrayList<>();
-        precio = new ArrayList<>();
-        
+	public PanelCarrito(Usuario usuario) {
+
+        carritos =  new Carrito(usuario);
 		setLayout(null);
-		productos.add("Prod1"); cantidad.add(1); precio.add(110.1);
-		productos.add("Prod2"); cantidad.add(10); precio.add(120.1);
-		productos.add("Prod3"); cantidad.add(12); precio.add(130.1);
-		
-        Object[][] datos = new Object[productos.size()][3];
-        for (int i = 0; i < productos.size(); i++) {
-            datos[i][0] = productos.get(i);
-            datos[i][1] = cantidad.get(i);
-            datos[i][2] = precio.get(i);
+
+
+        Object[][] datos = new Object[carritos.getProductos().size()][3];
+        for (int i = 0; i < carritos.getProductos().size(); i++) {
+            datos[i][0] = carritos.getProductos().get(i).getProducto().getNombre();
+            datos[i][1] = carritos.getProductos().get(i).getCantidad();
+            datos[i][2] = carritos.getProductos().get(i).getMonto();
         }
         
         modelo = new DefaultTableModel(datos, new String[]{"Productos", "Cantidad", "Precio"}) {
@@ -56,7 +54,7 @@ public class PanelCarrito extends JPanel {
         table.getColumnModel().getColumn(2).setPreferredWidth(60);
         
         DecimalFormat DosDecimales = new DecimalFormat("#.##");
-        String total = DosDecimales.format(TotalCarrito(precio));
+        String total = DosDecimales.format(carritos.getTotal());
         
         JButton btnPedido = new JButton("Realizar pedido");
         btnPedido.addActionListener(new ActionListener() {
@@ -149,13 +147,12 @@ public class PanelCarrito extends JPanel {
            
             String productoAEliminar = (String) table.getValueAt(filaSeleccionada, 0);
 
-            int indice = productos.indexOf(productoAEliminar);
+            int indice = carritos.getProductos().indexOf(productoAEliminar);
+            carritos.setTotal(carritos.getTotal() - carritos.getProductos().get(indice).getMonto());
             if (indice != -1) {
-                productos.remove(indice);
-                cantidad.remove(indice);
-                precio.remove(indice);
+                carritos.getProductos().remove(indice);
             }
-
+          
             modelo.removeRow(filaSeleccionada);
 
             actualizarTotalCarrito();
@@ -171,7 +168,7 @@ public class PanelCarrito extends JPanel {
    }
    private void actualizarTotalCarrito() {
        DecimalFormat DosDecimales = new DecimalFormat("#.##");
-       String total = DosDecimales.format(TotalCarrito(precio));
+       String total = DosDecimales.format(carritos.getTotal());
 
        JLabel LTotal = (JLabel) getComponentAt(915, 490);
        LTotal.setText("Total: \t\tBs. \t\t " + total);

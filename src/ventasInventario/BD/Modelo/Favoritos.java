@@ -41,7 +41,10 @@ public class Favoritos {
 	public String toString() {
 		return "Favoritos [productos=" + productos + ", usuario=" + usuario + "]";
 	}
-	
+	/***
+	 * sacar todos los productos favoritos del usuario
+	 * @return
+	 */
 	public ArrayList<Producto> sacarProductosFavoritos() {
 	    ArrayList<Producto> favs = new ArrayList<>();
 	    GestorProductos gestorProductos = new GestorProductos();

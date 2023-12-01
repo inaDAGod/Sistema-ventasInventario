@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ventasInventario.BD.Controladores.ControladorCarrito;
 import ventasInventario.BD.Controladores.ControladorFavorito;
 import ventasInventario.BD.Modelo.*;
 
@@ -142,6 +143,12 @@ public class PanelProductoCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ControladorFavorito controladorFavorito = new ControladorFavorito(usuario);
 				controladorFavorito.anadirFavorito(producto);
+			}
+		});
+		btnAnadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorCarrito controladorCarrito =  new ControladorCarrito(usuario);
+				controladorCarrito.anadirACarrito(producto,  Integer.parseInt(cbxCantidad.getSelectedItem().toString()));
 			}
 		});
 	}

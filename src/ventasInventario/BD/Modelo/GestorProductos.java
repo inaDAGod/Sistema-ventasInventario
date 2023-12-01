@@ -139,7 +139,7 @@ public class GestorProductos {
 	    } catch (SQLException e) {
 	    	JOptionPane.showMessageDialog(null, "Parece que hubo un error", "Uy", JOptionPane.ERROR_MESSAGE);
 	    }
-	    System.out.println(productos);
+	    //System.out.println(productos);
 	    return productos;
 	}
 
