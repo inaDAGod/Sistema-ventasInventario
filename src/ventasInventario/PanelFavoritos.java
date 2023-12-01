@@ -16,28 +16,28 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import ventasInventario.BD.Controladores.ControladorFavorito;
+import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
+
 import java.awt.Color;
 
 public class PanelFavoritos extends JPanel {
 	JTable table;
-	ArrayList<String> productos;
-	ArrayList<Double>  precio;
+	ArrayList<Producto> productos;
     DefaultTableModel modelo;
     private JTextField tfProductoBuscado;
-	public PanelFavoritos() {
+	public PanelFavoritos(Usuario usuario) {
 		setBackground(new Color(193, 123, 160));
-		productos = new ArrayList<>();
-        precio = new ArrayList<>();
-        
+		ControladorFavorito controladorFavorito = new ControladorFavorito(usuario);
+		productos = controladorFavorito.listaFavoritosUsuario();
 		setLayout(null);
-		productos.add("Prod1");precio.add(110.1);
-		productos.add("Prod2"); precio.add(120.1);
-		productos.add("Prod3"); precio.add(130.1);
 		
         Object[][] datos = new Object[productos.size()][2];
         for (int i = 0; i < productos.size(); i++) {
-            datos[i][0] = productos.get(i); 
-            datos[i][1] = precio.get(i);
+            datos[i][0] = productos.get(i).getNombre(); 
+            datos[i][1] = productos.get(i).getPrecio();
         }
         
         modelo = new DefaultTableModel(datos, new String[]{"Productos", "Precio"}) {
@@ -113,10 +113,10 @@ public class PanelFavoritos extends JPanel {
             boolean seEncontro = false;
 
             for (int i = 0; i < productos.size(); i++) {
-                String nombreProducto = productos.get(i).toLowerCase();
+                String nombreProducto = productos.get(i).getNombre().toLowerCase();
 
                 if (nombreProducto.equals(productoBuscado) || nombreProducto.startsWith(productoBuscado)) {
-                    modeloFiltrado.addRow(new Object[]{productos.get(i), precio.get(i)});
+                    modeloFiltrado.addRow(new Object[]{productos.get(i).getNombre(), productos.get(i).getPrecio()});
                     seEncontro = true;
                 }
             }

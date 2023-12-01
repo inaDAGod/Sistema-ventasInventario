@@ -13,16 +13,20 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.Usuario;
+
 public class Favoritos extends JFrame {
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
-	PanelFavoritos pinv= new PanelFavoritos();
+	PanelFavoritos pinv;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					Favoritos frame = new Favoritos();
+				try { 
+					//ejemplo de usuario
+					Usuario u = new Usuario("danialee14", null, null, null);
+					Favoritos frame = new Favoritos(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +36,8 @@ public class Favoritos extends JFrame {
 	}
 
 
-	public Favoritos() {
+	public Favoritos(Usuario usuario) {
+		pinv= new PanelFavoritos(usuario);
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setSize(1200,800);
 		getContentPane().setLayout(null);

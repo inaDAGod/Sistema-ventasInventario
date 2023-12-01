@@ -186,6 +186,16 @@ public class GestorProductos {
 	    return null;
 	}
 	
+	
+	public Producto buscarProductoEspecifico(String cproductoBuscado) {
+		for(Producto producto: productos) {
+			if(cproductoBuscado.equals(producto.getCproducto())){
+				return producto;
+			}
+		}
+		return null;
+	}
+	
 
 
 	

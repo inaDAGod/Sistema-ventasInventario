@@ -1,13 +1,15 @@
 package ventasInventario.BD.Controladores;
 
+import java.util.ArrayList;
+
 import ventasInventario.PanelProductoCliente;
 import ventasInventario.BD.Modelo.*;
 
 public class ControladorFavorito {
 	private Favoritos favoritos;
 	
-	public ControladorFavorito(Usuario u) {
-		this.favoritos = new Favoritos(u);
+	public ControladorFavorito(Usuario usuario) {
+		this.favoritos = new Favoritos(usuario);
 	}
 	
 
@@ -18,6 +20,11 @@ public class ControladorFavorito {
 
 	public void setFavoritos(Favoritos favoritos) {
 		this.favoritos = favoritos;
+	}
+	
+	public ArrayList<Producto> listaFavoritosUsuario(){
+	
+		return favoritos.getProductos();
 	}
 
 

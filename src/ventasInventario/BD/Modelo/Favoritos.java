@@ -2,6 +2,8 @@ package ventasInventario.BD.Modelo;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,8 +16,9 @@ public class Favoritos {
 	private Usuario usuario;
 	
 	public Favoritos(Usuario usuario) {
-		this.productos = sacarProductosFavoritos();
 		this.usuario = usuario;
+		this.productos = sacarProductosFavoritos();
+		
 	}
 
 	public ArrayList<Producto> getProductos() {
@@ -39,10 +42,26 @@ public class Favoritos {
 		return "Favoritos [productos=" + productos + ", usuario=" + usuario + "]";
 	}
 	
-	public  ArrayList<Producto> sacarProductosFavoritos(){//sacar favoritos del usuario de la BD
-		ArrayList<Producto> favs = new ArrayList<>();
-		return favs;
+	public ArrayList<Producto> sacarProductosFavoritos() {
+	    ArrayList<Producto> favs = new ArrayList<>();
+	    GestorProductos gestorProductos = new GestorProductos();
+	    Conexion con = new Conexion();
+	    try (Connection conexion = con.getConexionPostgres();
+	         PreparedStatement statement = conexion.prepareStatement("select cproducto  from favoritos where cusuario = ?")) {
+	        statement.setString(1, usuario.getUsuario());
+	        ResultSet resultSet = statement.executeQuery();
+	        while (resultSet.next()) {
+	            String cproducto = resultSet.getString("cproducto");
+	            favs.add(gestorProductos.buscarProductoEspecifico(cproducto));
+	        }
+	    } catch (SQLException e) {
+	    	JOptionPane.showMessageDialog(null, "Parece que ocurrio un error", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+	    }
+	    
+	    return favs;
 	}
+
 	/***
 	 * se guarda el producto para favoritos de cierto usuario
 	 * @param p producto que se guardara en favoritos del usuario
