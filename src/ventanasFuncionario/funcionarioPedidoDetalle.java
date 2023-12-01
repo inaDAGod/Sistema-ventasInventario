@@ -1,4 +1,4 @@
-package ventanasCliente;
+package ventanasFuncionario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,23 +6,31 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+//* poner abajo las clases 
+import ventanasCliente.Pedido;
+import ventanasCliente.clientePedidoDetalle;
+import ventanasCliente.productos;
 
 import java.awt.Font;
 
 
-public class clientePedidoDetalle extends JFrame {
+public class funcionarioPedidoDetalle extends JFrame {
     private static final long serialVersionUID = 1L;
     private List<Pedido> listaPedidos = new ArrayList<>();
 
@@ -48,7 +56,7 @@ public class clientePedidoDetalle extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	clientePedidoDetalle frame = new clientePedidoDetalle();
+                	funcionarioPedidoDetalle frame = new funcionarioPedidoDetalle();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -57,7 +65,7 @@ public class clientePedidoDetalle extends JFrame {
         });
     }
 
-    public clientePedidoDetalle() {
+    public funcionarioPedidoDetalle() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -111,6 +119,10 @@ public class clientePedidoDetalle extends JFrame {
         panel_2.setBounds(0, 137, 1200, 625);
         panel_2.setLayout(null);  
         panel.add(panel_2);
+        
+      
+
+        
         
         JPanel panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
@@ -175,15 +187,23 @@ public class clientePedidoDetalle extends JFrame {
         lblNewLabel_2_1.setBounds(24, 39, 296, 23);
         panel_4.add(lblNewLabel_2_1);
         
-        JLabel lblNewLabel_2_1_1 = new JLabel("Estado :"+pedido11.getEstado());
+        JLabel lblNewLabel_2_1_1 = new JLabel("Estado :");
         lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel_2_1_1.setBounds(24, 65, 253, 23);
         panel_4.add(lblNewLabel_2_1_1);
         
-        JLabel lblNewLabel_2_1_2 = new JLabel("Pago :"+pedido11.getEstado());
+        JComboBox comboBox = new JComboBox();
+        comboBox.setBounds(110, 65, 200, 23);
+        panel_4.add(comboBox);
+        
+        JLabel lblNewLabel_2_1_2 = new JLabel("Pago :");
         lblNewLabel_2_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel_2_1_2.setBounds(24, 90, 253, 29);
         panel_4.add(lblNewLabel_2_1_2);
+        
+        JComboBox comboBox2 = new JComboBox();
+        comboBox2.setBounds(110, 95, 200, 23);
+        panel_4.add(comboBox2);
     }
 
 
