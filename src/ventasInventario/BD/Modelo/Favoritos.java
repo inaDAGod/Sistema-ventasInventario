@@ -43,7 +43,10 @@ public class Favoritos {
 		ArrayList<Producto> favs = new ArrayList<>();
 		return favs;
 	}
-	
+	/***
+	 * se guarda el producto para favoritos de cierto usuario
+	 * @param p producto que se guardara en favoritos del usuario
+	 */
 	public void guardarProductoFavorito(Producto p) {
 	    String cpro = p.getCproducto();
 	    String cusuario = this.usuario.getUsuario();
