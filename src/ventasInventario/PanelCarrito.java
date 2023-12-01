@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import ventasInventario.BD.Modelo.Carrito;
+import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.ProductoCarrito;
 import ventasInventario.BD.Modelo.Usuario;
 
 public class PanelCarrito extends JPanel {
@@ -140,28 +142,22 @@ public class PanelCarrito extends JPanel {
     }
 
     // Método para eliminar la fila seleccionada de la tabla
-    private void eliminarFilaSeleccionada() {
-    	int filaSeleccionada = table.getSelectedRow();
+	private void eliminarFilaSeleccionada() {
+	    int filaSeleccionada = table.getSelectedRow();
 
-    	if (filaSeleccionada != -1) {
-           
-            String productoAEliminar = (String) table.getValueAt(filaSeleccionada, 0);
+	    if (filaSeleccionada != -1) {
+	        ProductoCarrito productoAEliminar = carritos.getProductos().get(filaSeleccionada);
 
-            int indice = carritos.getProductos().indexOf(productoAEliminar);
-            carritos.setTotal(carritos.getTotal() - carritos.getProductos().get(indice).getMonto());
-            if (indice != -1) {
-                carritos.getProductos().remove(indice);
-            }
-          
-            modelo.removeRow(filaSeleccionada);
+	        carritos.setTotal(carritos.getTotal() - productoAEliminar.getMonto());
+	        carritos.getProductos().remove(productoAEliminar);
+	        modelo.removeRow(filaSeleccionada);
+	        actualizarTotalCarrito();
+	        JOptionPane.showMessageDialog(this, "Producto eliminado del carrito: " + productoAEliminar.getProducto().getNombre(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+	    }
+	}
 
-            actualizarTotalCarrito();
-
-            JOptionPane.showMessageDialog(this, "Producto eliminado del carrito: " + productoAEliminar, "Eliminado", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
-        }
-    }
     
    private void abrirProducto(String producto) {
 		 JOptionPane.showMessageDialog(this, "Aqui añadimos la venta de producto hehe: ", producto, JOptionPane.INFORMATION_MESSAGE);
