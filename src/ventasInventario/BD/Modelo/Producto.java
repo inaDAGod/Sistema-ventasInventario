@@ -181,6 +181,10 @@ public class Producto {
 				+ etiquetas + "]";
 	}
 	
+	/***
+	 * guarda la oferta de un producto en la BD 
+	 * @param oferta del producto 
+	 */
 	public void ofertar(Oferta oferta) {
 	    Conexion con = new Conexion();
 	    Connection conexion = con.getConexionPostgres();
