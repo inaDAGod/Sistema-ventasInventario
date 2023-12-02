@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import ventasInventario.BD.Modelo.Producto;
-import ventasInventario.BD.Modelo.ProductosPedido;
 import ventasInventario.BD.Modelo.Usuario;
 
 public class ProductoCliente extends JFrame {

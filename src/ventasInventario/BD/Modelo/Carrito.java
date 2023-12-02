@@ -134,6 +134,11 @@ public class Carrito {
 	        e.printStackTrace();
 	    }
 	}
+	
+	public void resetCarrito() {
+		this.productos = new ArrayList<>();
+		this.total = 0.0;
+	}
 
 	
 	
