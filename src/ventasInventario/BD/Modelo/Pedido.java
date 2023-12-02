@@ -103,7 +103,6 @@ public class Pedido {
 	}
 	
 	public void nuevoPedido() {
-		Carrito carritoActual = new Carrito(usuario);
 	    Conexion con = new Conexion();
 	    Connection conexion = con.getConexionPostgres();
 	    CallableStatement s = null;
@@ -112,7 +111,6 @@ public class Pedido {
 	        s = conexion.prepareCall(query);
 	        s.setString(1, usuario.getUsuario());
 	        s.executeUpdate();
-	        carritoActual.resetCarrito();
 	        
 	        JOptionPane.showMessageDialog(null, "Se confirmo correctamente el carrito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 	    } catch (SQLException e) {
