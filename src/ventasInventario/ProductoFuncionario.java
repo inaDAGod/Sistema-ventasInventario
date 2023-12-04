@@ -2,6 +2,7 @@ package ventasInventario;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,17 +14,24 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.Producto;
+
 public class ProductoFuncionario extends JFrame {
 
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
-	PanelProductoFuncionario pinv= new PanelProductoFuncionario();
+	PanelProductoFuncionario pinv;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProductoFuncionario frame = new ProductoFuncionario();
+					ArrayList<String> eti = new ArrayList<>();
+					eti.add("ROPA");
+					eti.add("NIÑO");
+					Producto p = new Producto("P123", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
+					p.setOfertado(false);
+					ProductoFuncionario frame = new ProductoFuncionario(p);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +43,8 @@ public class ProductoFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ProductoFuncionario() {
+	public ProductoFuncionario(Producto producto) {
+		pinv= new PanelProductoFuncionario(producto);
 		getContentPane().setBackground(new Color(239, 222, 230));
 		getContentPane().setLayout(null);
 		setSize(1200,800);
