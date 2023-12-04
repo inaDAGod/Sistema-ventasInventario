@@ -122,7 +122,8 @@ public class PanelProductoFuncionario extends JPanel {
 		JButton btnEditar = new JButton("Editar campos");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				habilitarModoEdicion();
+				EditarProducto frame = new EditarProducto(producto);
+				frame.setVisible(true);
 			}
 		});
 		btnEditar.setBounds(927, 38, 165, 50);
