@@ -39,7 +39,7 @@ public class ProductoCliente extends JFrame {
 					ProductoCliente frame = new ProductoCliente(u,p);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e);
 				}
 			}
 		});

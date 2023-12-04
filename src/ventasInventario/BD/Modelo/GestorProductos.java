@@ -196,6 +196,91 @@ public class GestorProductos {
 		return null;
 	}
 	
+	public void editarProducto(Producto productoEditado) {
+	    Conexion con = new Conexion();
+	    Connection conexion = con.getConexionPostgres();
+	    PreparedStatement s = null;
+	    try {
+	        String updateQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, cantidad = ?, marca = ?, color = ?, talla = ? WHERE cproducto = ?";
+	        s = conexion.prepareStatement(updateQuery);
+	        s.setString(1, productoEditado.getNombre());
+	        s.setString(2, productoEditado.getDescripcion());
+	        s.setBigDecimal(3, BigDecimal.valueOf(productoEditado.getPrecio()));
+	        s.setInt(4, productoEditado.getCantidad());
+	        s.setString(5, productoEditado.getMarca());
+	        s.setString(6, productoEditado.getColor());
+	        s.setString(7, productoEditado.getTalla());
+	        s.setString(8, productoEditado.getCproducto()); 
+	        editarEtiquetasProducto(productoEditado.getCproducto(), productoEditado.getEtiquetas());
+	        int rowsAffected = s.executeUpdate();
+	        if (rowsAffected > 0) {
+	            JOptionPane.showMessageDialog(null, "Producto actualizado correctamente", "Editar Producto", JOptionPane.INFORMATION_MESSAGE);
+	        } else {
+	            JOptionPane.showMessageDialog(null, "No se pudo actualizar el producto", "Editar Producto", JOptionPane.ERROR_MESSAGE);
+	        }
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al editar el producto", "Editar Producto", JOptionPane.ERROR_MESSAGE);
+	        System.out.println(e.getMessage());
+	    } finally {
+	        try {
+	            if (s != null) {
+	                s.close();
+	            }
+	            if (conexion != null) {
+	                conexion.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+	}
+	
+	public void editarEtiquetasProducto(String cproducto, ArrayList<String> nuevasEtiquetas) {
+	    Conexion con = new Conexion();
+	    Connection conexion = con.getConexionPostgres();
+	    PreparedStatement insertEtiqueta = null;
+	    PreparedStatement deleteEtiquetas = null;
+
+	    try {
+	        // Eliminar las etiquetas existentes del producto
+	        String deleteQuery = "DELETE FROM etiquetas_producto WHERE cproducto = ?";
+	        deleteEtiquetas = conexion.prepareStatement(deleteQuery);
+	        deleteEtiquetas.setString(1, cproducto);
+	        deleteEtiquetas.executeUpdate();
+
+	        // Insertar las nuevas etiquetas
+	        String insertQuery = "INSERT INTO etiquetas_producto(cproducto, cetiqueta) VALUES (?, ?)";
+	        insertEtiqueta = conexion.prepareStatement(insertQuery);
+
+	        for (String etiqueta : nuevasEtiquetas) {
+	            insertEtiqueta.setString(1, cproducto);
+	            insertEtiqueta.setString(2, etiqueta);
+	            insertEtiqueta.executeUpdate();
+	        }
+
+	        JOptionPane.showMessageDialog(null, "Etiquetas actualizadas correctamente", "Editar Etiquetas", JOptionPane.INFORMATION_MESSAGE);
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al editar las etiquetas del producto", "Editar Etiquetas", JOptionPane.ERROR_MESSAGE);
+	        System.out.println(e.getMessage());
+	    } finally {
+	        try {
+	            if (insertEtiqueta != null) {
+	                insertEtiqueta.close();
+	            }
+	            if (deleteEtiquetas != null) {
+	                deleteEtiquetas.close();
+	            }
+	            if (conexion != null) {
+	                conexion.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+	}
+
+
+
 
 
 	

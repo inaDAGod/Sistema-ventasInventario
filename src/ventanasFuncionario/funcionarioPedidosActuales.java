@@ -1,4 +1,7 @@
 package ventanasFuncionario;
+
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,7 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
-import ventanasCliente.Pedido;
+import ventasInventario.BD.Controladores.ControladorPedidos;
+import ventasInventario.BD.Modelo.GestorPedidos;
+import ventasInventario.BD.Modelo.Pedido;
+import ventasInventario.BD.Modelo.Usuario;
 
 import java.awt.Font;
 
@@ -25,8 +31,8 @@ class TarjetaPedido extends JPanel {
 
     public TarjetaPedido(Pedido pedido) {
     	
-    	 setLayout(new BorderLayout());
-         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    	 setLayout(new BorderLayout()); 
+         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); 
          
 
         ImageIcon iconPedido = new ImageIcon(
@@ -38,23 +44,22 @@ class TarjetaPedido extends JPanel {
         JPanel panelImagen = new JPanel();
         panelImagen.setLayout(new BorderLayout());
         panelImagen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panelImagen.add(labelImagen, BorderLayout.WEST);
+        panelImagen.add(labelImagen, BorderLayout.WEST); 
         panelImagen.setBackground(Color.WHITE); 
         JPanel panelDetalles = new JPanel();
         panelDetalles.setLayout(new GridLayout(0, 1)); 
 
-        JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getNumeroCompra());
-        JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
-        JLabel labelEstado = new JLabel("Estado: " + pedido.getEstado());
-        JLabel labelPago = new JLabel("Pago: " + pedido.getEstado());
+        JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getCpedido());
+        JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha_reserva());
+        JLabel labelEstado = new JLabel("Estado: " + pedido.getEstadoPedido());
 
        
 
         panelDetalles.add(labelNumeroCompra);
         panelDetalles.add(labelFecha);
         panelDetalles.add(labelEstado);
-        panelDetalles.add(labelPago);
-        panelDetalles.setBackground(Color.WHITE);
+        panelDetalles.setBackground(Color.WHITE); 
+      
         JButton buttonInfo = new JButton("Más Información");
         buttonInfo.setForeground(Color.WHITE);
         buttonInfo.setBackground(new Color(255, 182, 193)); 
@@ -66,20 +71,22 @@ class TarjetaPedido extends JPanel {
         labelFecha.setFont(font);
         labelEstado.setFont(font);
         buttonInfo.setFont(font);
-        labelPago.setFont(font);
 
-        
         JPanel panelInfo = new JPanel();
         panelInfo.setLayout(new BorderLayout());
-        panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10));
+        panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10)); 
         panelInfo.add(buttonInfo, BorderLayout.CENTER); 
-        panelInfo.setBackground(Color.WHITE); 
-       add(panelImagen, BorderLayout.WEST);
+        panelInfo.setBackground(Color.WHITE);
+      
+        add(panelImagen, BorderLayout.WEST);
         add(panelDetalles, BorderLayout.CENTER);
+
+      
         add(panelInfo, BorderLayout.EAST);
         setBackground(Color.WHITE);
     }
-}
+    }
+
 
 public class funcionarioPedidosActuales extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -98,6 +105,7 @@ public class funcionarioPedidosActuales extends JFrame {
     }
 
     public funcionarioPedidosActuales() {
+    	ControladorPedidos controladorPedidos = new ControladorPedidos();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -115,7 +123,7 @@ public class funcionarioPedidosActuales extends JFrame {
 
         JLabel lblNewLabel = new JLabel("");
         ImageIcon icon = new ImageIcon(
-                "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
+        		"C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
         Image image = icon.getImage().getScaledInstance(139, 118, Image.SCALE_SMOOTH);
         lblNewLabel.setIcon(new ImageIcon(image));
         lblNewLabel.setBounds(24, 11, 139, 118);
@@ -138,7 +146,7 @@ public class funcionarioPedidosActuales extends JFrame {
         panel_1.add(btnOferta_1_1);
 
         ImageIcon iconPerfil = new ImageIcon(
-                "C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
+                "src/imagenesJhess/perfilpersona.png");
         Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
 
         JButton btnOferta_2 = new JButton("");
@@ -158,37 +166,12 @@ public class funcionarioPedidosActuales extends JFrame {
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel_2.add(panelTarjetas);
         
-        List<Pedido> listaPedidos = new ArrayList<>();
-        Pedido pedido1 = new Pedido(1, "01/01/2023", "PENDIENTE", "/ruta/imagen1.png");
-        Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-       
-        Pedido pedido11 = new Pedido(3, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido21 = new Pedido(4, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-       
-        Pedido pedido113 = new Pedido(5, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido213 = new Pedido(6, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
-      
-        Pedido pedido114 = new Pedido(7, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido214 = new Pedido(8, "02/01/2023", "PENDIENTE", "/ruta/imagen2.png");
-        
-
-        listaPedidos.add(pedido113);
-        listaPedidos.add(pedido213);
-        listaPedidos.add(pedido114);
-        listaPedidos.add(pedido214);
-        listaPedidos.add(pedido11);
-        listaPedidos.add(pedido21);
-        listaPedidos.add(pedido1);
-        listaPedidos.add(pedido2);
-
-        
-
+ 
+        ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosPendientes();
         for (Pedido pedido : listaPedidos) {
-        	if(pedido.getEstado().equals("PENDIENTE")) {
             TarjetaPedido tarjeta = new TarjetaPedido(pedido);
           
             panelTarjetas.add(tarjeta);
-        	}
         }
         panel_2.setLayout(null);
         
@@ -204,10 +187,10 @@ public class funcionarioPedidosActuales extends JFrame {
         panel_2.add(panel_3);
         panel_3.setLayout(null);
         
-        JLabel lblNewLabel_1 = new JLabel("Pedidos actuales");
+        JLabel lblNewLabel_1 = new JLabel("Pedidos Pendientes");
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setBounds(28, 21, 466, 66);
+        lblNewLabel_1.setBounds(28, 21, 303, 66);
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
         panel_3.add(lblNewLabel_1);
-    }
-}
+    }}
+

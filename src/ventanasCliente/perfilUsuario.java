@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ventasInventario.BD.Modelo.Usuario;
+
 public class perfilUsuario extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +27,7 @@ public class perfilUsuario extends JFrame {
     private JTextField textField_3;
     private JButton btnEditar;
     private JButton btnCancelar;
-
+    private Usuario usuario;
     /**
      * Launch the application.
      */
@@ -33,7 +35,8 @@ public class perfilUsuario extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    perfilUsuario frame = new perfilUsuario();
+                	Usuario u = new Usuario("danialee14");
+                    perfilUsuario frame = new perfilUsuario(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -45,8 +48,8 @@ public class perfilUsuario extends JFrame {
     /**
      * Create the frame.
      */
-    public perfilUsuario() {
-
+    public perfilUsuario(Usuario u) {
+    	this.usuario = u;
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -206,8 +209,7 @@ public class perfilUsuario extends JFrame {
                     
                     editarPerfil();
                 } else {
-                   
-                    cancelarEdicion();
+                	guardarCambios();
                 }
             }
         });
@@ -230,10 +232,10 @@ public class perfilUsuario extends JFrame {
         panel_5.add(btnCancelar);
     }
     private void inicializarCamposTexto() {
-        textField.setText("Nombre desde la base de datos");
-        textField_1.setText("Correo desde la base de datos");
-        textField_2.setText("Usuario desde la base de datos");
-        textField_3.setText("Contraseña desde la base de datos");
+        textField.setText(usuario.getNombre());
+        textField_1.setText(usuario.getCorreo());
+        textField_2.setText(usuario.getUsuario());
+        textField_3.setText(usuario.getContrasenia());
 
         bloquearCamposTexto();
     }
@@ -248,7 +250,6 @@ public class perfilUsuario extends JFrame {
     private void editarPerfil() {
         textField.setEditable(true);
         textField_1.setEditable(true);
-        textField_2.setEditable(true);
         textField_3.setEditable(true);
 
         btnEditar.setText("Guardar");
@@ -257,10 +258,6 @@ public class perfilUsuario extends JFrame {
 
     private void cancelarEdicion() {
         bloquearCamposTexto();
-textField.setText("Nombre desde la base de datos");
-        textField_1.setText("Correo desde la base de datos");
-        textField_2.setText("Usuario desde la base de datos");
-        textField_3.setText("Contraseña desde la base de datos");
         inicializarCamposTexto();
         btnEditar.setText("Editar");
         btnCancelar.setVisible(false);
@@ -270,10 +267,10 @@ textField.setText("Nombre desde la base de datos");
         String correo = textField_1.getText();
         String usuario = textField_2.getText();
         String contraseña = textField_3.getText();
+        Usuario editado = new Usuario(usuario, nombre, correo, contraseña);
+        this.usuario.editarUsuario(editado);
+        btnEditar.setText("Editar");
+        btnCancelar.setVisible(false);
 
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Usuario: " + usuario);
-        System.out.println("Contraseña: " + contraseña);
     }
 }
