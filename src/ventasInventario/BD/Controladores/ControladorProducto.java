@@ -6,6 +6,7 @@ import java.util.*;
 
 import javax.swing.*;
 
+import ventasInventario.EditarProducto;
 import ventasInventario.NuevoProducto;
 import ventasInventario.PanelInventario;
 import ventasInventario.BD.Modelo.GestorProductos;
@@ -15,6 +16,7 @@ public class ControladorProducto {
 	private GestorProductos gestorProductos;
 	private NuevoProducto nuevoProducto;
 	private PanelInventario panelInventario;
+	private EditarProducto editarProducto;
 	
 	public ControladorProducto(NuevoProducto nuevoProducto) {
 		this.gestorProductos = new GestorProductos();
@@ -26,8 +28,12 @@ public class ControladorProducto {
 	public ControladorProducto() {
 		this.gestorProductos =  new GestorProductos(); 
 	}
-
-
+	
+	public ControladorProducto(EditarProducto editarProducto) {
+		this.gestorProductos = new GestorProductos();
+		this.editarProducto = editarProducto;
+	}
+	
 
 	public ControladorProducto(PanelInventario panelInventario) {
 		this.gestorProductos = new GestorProductos();
@@ -136,6 +142,63 @@ public class ControladorProducto {
 		
 		
 	}
+	
+	public void editarProducto() {
+		if(!editarProducto.getId().getText().isEmpty() && !editarProducto.getNombre().getText().isEmpty() && !editarProducto.getDescripcion().getText().isEmpty() && !editarProducto.getPrecio().getText().isEmpty() && 
+				!editarProducto.getCant().getText().isEmpty()) {
+			String cprodu = editarProducto.getId().getText();
+			String nombre = editarProducto.getNombre().getText();
+			String descrip = editarProducto.getDescripcion().getText();
+			Double precio = Double.parseDouble(editarProducto.getPrecio().getText());
+			Integer cantidad = Integer.parseInt(editarProducto.getCant().getText());
+			String marca = editarProducto.getMarca().getText();
+			String color = "";
+			for (Component comp : editarProducto.getColor().getPopupMenu().getComponents()) {
+			    if (comp instanceof JCheckBoxMenuItem) {
+			        JCheckBoxMenuItem checkBoxMenuItem = (JCheckBoxMenuItem) comp;
+			        if (checkBoxMenuItem.isSelected()) {
+			            color += checkBoxMenuItem.getText() + "\n";
+			        }
+			    }
+			}
+			String talla = "";
+			for (Component comp : editarProducto.getTalla().getPopupMenu().getComponents()) {
+			    if (comp instanceof JCheckBoxMenuItem) {
+			        JCheckBoxMenuItem checkBoxMenuItem = (JCheckBoxMenuItem) comp;
+			        if (checkBoxMenuItem.isSelected()) {
+			        	talla += checkBoxMenuItem.getText() + "\n";
+			        }
+			    }
+			}
+			
+			
+			
+			ArrayList<String> eti = new ArrayList<>();
+			for(int i = 0 ; i < editarProducto.getCantEtiquetas();i++) {
+				if(i == 0) {
+					eti.add((String) editarProducto.getCboxEtiquetas1().getSelectedItem());
+				}
+				if(i == 1) {
+					eti.add((String) editarProducto.getCboxEtiquetas2().getSelectedItem());
+				}	
+				if(i == 2) {
+					eti.add((String) editarProducto.getCboxEtiquetas3().getSelectedItem());
+				}
+			}
+			Producto productoEditado = new Producto(cprodu, nombre, descrip, precio, cantidad, marca, color, talla, eti);
+			gestorProductos.editarProducto(productoEditado);
+			
+			
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Revisa lo campo y llena todos", "Uy", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+		
+	}
+	
+	
 	
 	
 }

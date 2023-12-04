@@ -34,7 +34,7 @@ public class ProductoFuncionario extends JFrame {
 					ProductoFuncionario frame = new ProductoFuncionario(p);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					
 				}
 			}
 		});

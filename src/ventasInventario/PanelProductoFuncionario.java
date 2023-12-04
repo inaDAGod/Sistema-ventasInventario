@@ -148,6 +148,9 @@ public class PanelProductoFuncionario extends JPanel {
         btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	
+            	
                 deshabilitarModoEdicion();
             }
         });
