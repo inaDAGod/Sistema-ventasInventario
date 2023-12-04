@@ -30,6 +30,11 @@ public class Usuario {
 	
 	
 
+	public Usuario(String usuario) {
+		this.usuario = usuario;
+		this.funcionario = false;
+		this.super_usuario = false;
+	}
 	public Usuario(String usuario, String nombre, String correo, String contrasenia, Boolean funcionario,
 			Boolean super_usuario) {
 	

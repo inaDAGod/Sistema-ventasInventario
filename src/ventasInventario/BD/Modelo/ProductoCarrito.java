@@ -10,6 +10,13 @@ public class ProductoCarrito {
 		this.cantidad = cantidad;
 		this.monto = calcularMonto() ;
 	}
+	
+	public ProductoCarrito(Producto producto, Integer cantidad, Double monto) {
+
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.monto = monto;
+	}
 
 	public Producto getProducto() {
 		return producto;

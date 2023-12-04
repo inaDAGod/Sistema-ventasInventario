@@ -110,7 +110,7 @@ language plpgsql;
 --select *from favoritos;
 
 create or replace function confirmarCarrito(cusu varchar(30))
-returns void as $confiCarrito$
+returns varchar as $confiCarrito$
 declare
     fin date;
     total numeric;
@@ -134,6 +134,7 @@ begin
     close curs;
 
     delete from carrito_productos where cusuario = cusu;
+	return next_key;
 end;
 $confiCarrito$
 language plpgsql;
