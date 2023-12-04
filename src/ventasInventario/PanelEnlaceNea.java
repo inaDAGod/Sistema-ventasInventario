@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 
 public class PanelEnlaceNea extends JPanel {    
-	public PanelEnlaceNea() {
+	public PanelEnlaceNea(String numeroPedido) {
         setLayout(null);
         
         JTextArea txtrParaCompletarEl = new JTextArea();
@@ -32,7 +32,8 @@ public class PanelEnlaceNea extends JPanel {
         fondo2.setBounds(359, 189, 500, 265);
         add(fondo2);
         
-        JLabel lbPedido = new JLabel("Pedido:");
+        JLabel lbPedido = new JLabel("Pedido: P" + numeroPedido);
+        System.out.println("Pedido: P" + numeroPedido);
         lbPedido.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lbPedido.setBounds(364, 131, 67, 25);
         add(lbPedido);

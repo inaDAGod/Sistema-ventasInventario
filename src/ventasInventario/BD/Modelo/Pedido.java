@@ -3,6 +3,7 @@ package ventasInventario.BD.Modelo;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.*;
 import java.util.ArrayList;
 
@@ -102,22 +103,24 @@ public class Pedido {
 				+ ", productos=" + productos + "]";
 	}
 	
-	public void nuevoPedido() {
+	public String nuevoPedido() {
 	    Conexion con = new Conexion();
 	    Connection conexion = con.getConexionPostgres();
 	    CallableStatement s = null;
-	    String query = "{call confirmarCarrito(?)}";
+	    String query = "{? = call confirmarCarrito(?)}";
+	    String pedidoGenerado = null;
 	    try {
 	        s = conexion.prepareCall(query);
-	        s.setString(1, usuario.getUsuario());
-	        s.executeUpdate();
+	        s.registerOutParameter(1, Types.VARCHAR); 
+	        s.setString(2, usuario.getUsuario());
+	        s.execute();
 	        
-	        JOptionPane.showMessageDialog(null, "Se confirmo correctamente el carrito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	        pedidoGenerado = s.getString(1);
+
+	        JOptionPane.showMessageDialog(null, "Se confirmó correctamente el carrito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 	    } catch (SQLException e) {
-	        
-	            JOptionPane.showMessageDialog(null, "Error al realizar el pedido", "Error", JOptionPane.ERROR_MESSAGE);
-	            System.out.println(e.getMessage());
-	        
+	        JOptionPane.showMessageDialog(null, "Error al realizar el pedido", "Error", JOptionPane.ERROR_MESSAGE);
+	        System.out.println(e.getMessage());
 	    } finally {
 	        try {
 	            if (s != null) {
@@ -131,7 +134,9 @@ public class Pedido {
 	            System.out.println(ex.getMessage());
 	        }
 	    }
+	    return pedidoGenerado; 
 	}
+
 	
 	
 	

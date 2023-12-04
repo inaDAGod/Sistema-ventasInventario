@@ -67,14 +67,18 @@ public class PanelCarrito extends JPanel {
         btnPedido.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	controladorPedido.confirmarCarrito();
-               PanelEnlaceNea enlace= new PanelEnlaceNea();
+            if(carritos.getProductos().size()>0) {
+            	PanelEnlaceNea enlace= new PanelEnlaceNea(controladorPedido.confirmarCarrito());
             	enlace.setSize(1200,790);
 				enlace.setLocation(0,0);
 				removeAll();
 			    add(enlace,BorderLayout.CENTER);
 				revalidate();
 				repaint();
+            }
+            else {
+            	 JOptionPane.showMessageDialog(null, "No hay productos en tu carrito", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             }
         });
         btnPedido.setBounds(943, 550, 170, 50);

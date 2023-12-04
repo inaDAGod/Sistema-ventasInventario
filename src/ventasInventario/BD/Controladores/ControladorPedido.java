@@ -13,7 +13,7 @@ public class ControladorPedido {
 	}
 
 
-	public void confirmarCarrito() {
-		pedidoNuevo.nuevoPedido();
+	public String confirmarCarrito() {
+		return pedidoNuevo.nuevoPedido();
 	}
 }
