@@ -31,6 +31,18 @@ public class Pedido {
 	}
 	
 	
+	public Pedido(String cpedido, Usuario usuario, String estadoPedido, LocalDate fecha_reserva, LocalDate fecha_limite,
+			Double total, ArrayList<ProductoCarrito> productos) {
+		this.cpedido = cpedido;
+		this.usuario = usuario;
+		this.estadoPedido = estadoPedido;
+		this.fecha_reserva = fecha_reserva;
+		this.fecha_limite = fecha_limite;
+		this.total = total;
+		this.productos = productos;
+	}
+
+
 	public Pedido(Usuario usuario) {
 		this.usuario = usuario;
 		this.productos = new ArrayList<>();

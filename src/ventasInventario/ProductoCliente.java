@@ -34,7 +34,7 @@ public class ProductoCliente extends JFrame {
 					ArrayList<String> eti = new ArrayList<>();
 					eti.add("ROPA");
 					eti.add("NIÑO");
-					Producto p = new Producto("P456", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
+					Producto p = new Producto("P123", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
 					p.setOfertado(false);
 					ProductoCliente frame = new ProductoCliente(u,p);
 					frame.setVisible(true);
