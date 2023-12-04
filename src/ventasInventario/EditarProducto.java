@@ -41,27 +41,7 @@ public class EditarProducto extends JFrame {
 	private JComboBox cboxEtiquetas2;
 	private JComboBox cboxEtiquetas3;
 	private Integer cantEtiquetas;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ArrayList<String> eti = new ArrayList<>();
-					eti.add("ROPA");
-					eti.add("NIÑO");
-					Producto p = new Producto("P123", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
-					p.setOfertado(false);
-					EditarProducto frame = new EditarProducto(p);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public EditarProducto(Producto producto) {
 		getContentPane().setLayout(null);
 		setSize(1200,800);
