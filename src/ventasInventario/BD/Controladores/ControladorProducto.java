@@ -23,6 +23,12 @@ public class ControladorProducto {
 	
 	
 
+	public ControladorProducto() {
+		this.gestorProductos =  new GestorProductos(); 
+	}
+
+
+
 	public ControladorProducto(PanelInventario panelInventario) {
 		this.gestorProductos = new GestorProductos();
 		this.panelInventario = panelInventario;
@@ -66,7 +72,7 @@ public class ControladorProducto {
 		return this.gestorProductos.getEtiquetas();
 	}
 	
-	public ArrayList<Producto> todosProductos(){
+	public ArrayList<Producto> todosProductos(){ //para sacar todos los productos en la BD 
 		return this.gestorProductos.getProductos();
 	}
 	

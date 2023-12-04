@@ -27,7 +27,7 @@ public class ControladorLogin {
 			}
 			else {
 				System.out.println("No es funcionario" + usu);
-				clienteInicio frame = new clienteInicio();
+				clienteInicio frame = new clienteInicio(); // se deberia mandar el usuario, esto facilitaria todo
                 frame.setVisible(true);
                 
 			}

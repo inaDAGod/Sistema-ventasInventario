@@ -38,6 +38,7 @@ public class ControladorRegistro {
         		Usuario u = new Usuario(usuario, nombre, correo, contrasenia);
         		try {
 					usuarios.addUsuario(u);
+					//mandarlo a la pantalla de inicio de clientes con su usuario
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "Parece que hubo un error vuelve a intentarlo", "Uy", JOptionPane.ERROR_MESSAGE);
 				}	
@@ -62,7 +63,7 @@ public class ControladorRegistro {
         		GestorUsuarios usuarios = new GestorUsuarios();
         		Usuario u = new Usuario(usuario, nombre, correo, contrasenia,true);
         		try {
-					usuarios.addUsuario(u);
+					usuarios.addUsuario(u); //solo lo añade el otro funcionario deberia ingresar desde su dispositivo
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "Parece que hubo un error vuelve a intentarlo", "Uy", JOptionPane.ERROR_MESSAGE);
 				}

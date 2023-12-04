@@ -118,7 +118,7 @@ public class PanelProductoFuncionario extends JPanel {
 		JButton btnOfertar = new JButton("Ofertar");
 		btnOfertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ofertar ventanaOfertar = new Ofertar();
+				Ofertar ventanaOfertar = new Ofertar(null); //se deberia mandar el productoooooooooooooooo
 			    ventanaOfertar.setVisible(true);
 			}
 		});

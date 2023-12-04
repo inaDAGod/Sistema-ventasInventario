@@ -1,7 +1,14 @@
 package ventasInventario.BD.Modelo;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.*;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import ventasInventario.BD.Conexion;
 
 public class Pedido {
 	private String cpedido;
@@ -10,7 +17,7 @@ public class Pedido {
 	private LocalDate fecha_reserva;
 	private LocalDate fecha_limite;
 	private Double total;
-	private ArrayList<ProductosPedido> productos;
+	private ArrayList<ProductoCarrito> productos;
 	
 	public Pedido(String cpedido, Usuario usuario, LocalDate fecha_reserva) {
 		this.cpedido = cpedido;
@@ -21,6 +28,13 @@ public class Pedido {
 		this.productos = new ArrayList<>();
 		this.total = 0.0;
 	}
+	
+	
+	public Pedido(Usuario usuario) {
+		this.usuario = usuario;
+		this.productos = new ArrayList<>();
+	}
+
 
 	public String getCpedido() {
 		return cpedido;
@@ -70,13 +84,16 @@ public class Pedido {
 		this.total = total;
 	}
 
-	public ArrayList<ProductosPedido> getProductos() {
+
+	public ArrayList<ProductoCarrito> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(ArrayList<ProductosPedido> productos) {
+
+	public void setProductos(ArrayList<ProductoCarrito> productos) {
 		this.productos = productos;
 	}
+
 
 	@Override
 	public String toString() {
@@ -84,6 +101,39 @@ public class Pedido {
 				+ ", fecha_reserva=" + fecha_reserva + ", fecha_limite=" + fecha_limite + ", total=" + total
 				+ ", productos=" + productos + "]";
 	}
+	
+	public void nuevoPedido() {
+	    Conexion con = new Conexion();
+	    Connection conexion = con.getConexionPostgres();
+	    CallableStatement s = null;
+	    String query = "{call confirmarCarrito(?)}";
+	    try {
+	        s = conexion.prepareCall(query);
+	        s.setString(1, usuario.getUsuario());
+	        s.executeUpdate();
+	        
+	        JOptionPane.showMessageDialog(null, "Se confirmo correctamente el carrito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	    } catch (SQLException e) {
+	        
+	            JOptionPane.showMessageDialog(null, "Error al realizar el pedido", "Error", JOptionPane.ERROR_MESSAGE);
+	            System.out.println(e.getMessage());
+	        
+	    } finally {
+	        try {
+	            if (s != null) {
+	                s.close();
+	            }
+	            if (conexion != null) {
+	                conexion.close();
+	            }
+	        } catch (SQLException ex) {
+	            JOptionPane.showMessageDialog(null, "Error al cerrar la conexión.", "Error", JOptionPane.ERROR_MESSAGE);
+	            System.out.println(ex.getMessage());
+	        }
+	    }
+	}
+	
+	
 	
 	
 	
