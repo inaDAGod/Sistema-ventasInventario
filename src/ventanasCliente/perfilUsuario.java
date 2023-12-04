@@ -35,7 +35,7 @@ public class perfilUsuario extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	Usuario u = new Usuario("danialee14", "dani", "dani@gmail.com", "admin123");
+                	Usuario u = new Usuario("danialee14");
                     perfilUsuario frame = new perfilUsuario(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
