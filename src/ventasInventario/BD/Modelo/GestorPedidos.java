@@ -20,6 +20,20 @@ public class GestorPedidos {
 		this.todosPedidos = sacarTodosPedidos();
 	}
 	
+
+
+	public ArrayList<Pedido> getTodosPedidos() {
+		return todosPedidos;
+	}
+
+
+
+	public void setTodosPedidos(ArrayList<Pedido> todosPedidos) {
+		this.todosPedidos = todosPedidos;
+	}
+
+
+
 	public ArrayList<Pedido> sacarTodosPedidos() {
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 		  Conexion con = new Conexion();
