@@ -209,8 +209,7 @@ public class perfilUsuario extends JFrame {
                     
                     editarPerfil();
                 } else {
-                   
-                    cancelarEdicion();
+                	guardarCambios();
                 }
             }
         });
@@ -268,7 +267,10 @@ public class perfilUsuario extends JFrame {
         String correo = textField_1.getText();
         String usuario = textField_2.getText();
         String contraseña = textField_3.getText();
-
+        Usuario editado = new Usuario(usuario, nombre, correo, contraseña);
+        this.usuario.editarUsuario(editado);
+        btnEditar.setText("Editar");
+        btnCancelar.setVisible(false);
 
     }
 }
