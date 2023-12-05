@@ -13,16 +13,19 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.Usuario;
+
 public class Carrito extends JFrame {
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
-	PanelCarrito panelInferior= new PanelCarrito();
+	PanelCarrito panelInferior;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Carrito frame = new Carrito();
+					Usuario u = new Usuario("danialee14", null, null, null);
+					Carrito frame = new Carrito(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +37,8 @@ public class Carrito extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Carrito() {
+	public Carrito(Usuario usuario) {
+		panelInferior= new PanelCarrito(usuario);
 		getContentPane().setBackground(new Color(239, 222, 230));
 		setSize(1200,800);
 		getContentPane().setLayout(null);

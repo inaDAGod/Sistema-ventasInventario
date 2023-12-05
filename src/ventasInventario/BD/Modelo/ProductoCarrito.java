@@ -8,7 +8,14 @@ public class ProductoCarrito {
 	public ProductoCarrito(Producto producto, Integer cantidad) {
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.monto = producto.getPrecio() * cantidad;
+		this.monto = calcularMonto() ;
+	}
+	
+	public ProductoCarrito(Producto producto, Integer cantidad, Double monto) {
+
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.monto = monto;
 	}
 
 	public Producto getProducto() {
@@ -38,6 +45,13 @@ public class ProductoCarrito {
 	@Override
 	public String toString() {
 		return "ProductoCarrito [producto=" + producto + ", cantidad=" + cantidad + ", monto=" + monto + "]";
+	}
+	
+	public Double calcularMonto() {
+		if(producto.getOfertado()) {
+			return producto.getOferta().getPrecioOferta() * cantidad;
+		}
+		return producto.getPrecio() * cantidad;
 	}
 	
 	

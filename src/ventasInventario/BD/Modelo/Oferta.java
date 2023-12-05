@@ -17,6 +17,17 @@ public class Oferta {
 		this.fechaFin = fechaFin;
 		this.porcentaje = (int) (((precioOferta-precio)/precio)*100);
 	}
+	
+
+	public Oferta(Integer porcentaje, Double precioOferta, Integer cantidadInicial, LocalDate fechaInicio,
+			LocalDate fechaFin) {
+		this.porcentaje = porcentaje;
+		this.precioOferta = precioOferta;
+		this.cantidadInicial = cantidadInicial;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+	}
+
 
 	public Integer getPorcentaje() {
 		return porcentaje;

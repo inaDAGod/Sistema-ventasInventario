@@ -1,6 +1,15 @@
 package ventasInventario.BD.Modelo;
 
+import java.math.BigDecimal;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+import ventasInventario.BD.Conexion;
 
 public class Producto {
 	private String cproducto;
@@ -171,6 +180,56 @@ public class Producto {
 				+ ", ofertado=" + ofertado + ", oferta=" + oferta + ", imagenes=" + imagenes + ", etiquetas="
 				+ etiquetas + "]";
 	}
+	
+	/***
+	 * guarda la oferta de un producto en la BD 
+	 * @param oferta del producto 
+	 */
+	public void ofertar(Oferta oferta) {
+	    Conexion con = new Conexion();
+	    Connection conexion = con.getConexionPostgres();
+	    CallableStatement s = null;
+	    String query = "{call ofertar(?, ?, ?, ?, ?)}";
+
+	    try {
+	        s = conexion.prepareCall(query);
+	        s.setString(1, getCproducto());
+	        s.setBigDecimal(2, BigDecimal.valueOf(oferta.getPrecioOferta()));
+	        s.setInt(3, oferta.getCantidadInicial());
+	        s.setDate(4, java.sql.Date.valueOf(oferta.getFechaInicio()));
+	        s.setDate(5, java.sql.Date.valueOf(oferta.getFechaFin()));
+	        s.executeUpdate();
+
+	        // Actualización del campo "ofertado" en la base de datos
+	        String updateQuery = "UPDATE productos SET ofertado = true WHERE cproducto = ?";
+	        PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
+	        updateStatement.setString(1, getCproducto());
+	        updateStatement.executeUpdate();
+	      JOptionPane.showMessageDialog(null,"Oferta realizada con éxito","Oferta Exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+	    } catch (SQLException e) {
+	    	if (e.getSQLState().equals("23505")) {
+	            JOptionPane.showMessageDialog(null, "La oferta para este producto ya existe.", "Error de duplicado", JOptionPane.ERROR_MESSAGE);
+	        } else {
+	     
+	            JOptionPane.showMessageDialog(null, "Error al procesar la oferta.", "Error", JOptionPane.ERROR_MESSAGE);
+	            System.out.println(e.getMessage()); 
+	        }
+	    } finally {
+	        try {
+	            if (s != null) {
+	                s.close();
+	            }
+	            if (conexion != null) {
+	                conexion.close();
+	            }
+	        } catch (SQLException ex) {
+	            JOptionPane.showMessageDialog(null, "Parece que hubo un error", "Uy", JOptionPane.ERROR_MESSAGE);
+	            System.out.println(ex);
+	        }
+	    }
+	}
+
 	
 	
 	

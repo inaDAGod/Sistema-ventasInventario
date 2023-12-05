@@ -16,6 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+
+import ventasInventario.BD.Controladores.ControladorPedidos;
+import ventasInventario.BD.Modelo.GestorPedidos;
+import ventasInventario.BD.Modelo.Pedido;
+import ventasInventario.BD.Modelo.Usuario;
+
 import java.awt.Font;
 
 class TarjetaPedido extends JPanel {
@@ -41,9 +47,9 @@ class TarjetaPedido extends JPanel {
         JPanel panelDetalles = new JPanel();
         panelDetalles.setLayout(new GridLayout(0, 1)); 
 
-        JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getNumeroCompra());
-        JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha());
-        JLabel labelEstado = new JLabel("Estado: " + pedido.getEstado());
+        JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getCpedido());
+        JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha_reserva());
+        JLabel labelEstado = new JLabel("Estado: " + pedido.getEstadoPedido());
 
        
 
@@ -87,7 +93,8 @@ public class clientePedido extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	clientePedido frame = new clientePedido();
+                	Usuario u = new Usuario("danialee14");
+                	clientePedido frame = new clientePedido(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -96,7 +103,8 @@ public class clientePedido extends JFrame {
         });
     }
 
-    public clientePedido() {
+    public clientePedido(Usuario usuario) {
+    	ControladorPedidos controladorPedidos = new ControladorPedidos();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -157,20 +165,8 @@ public class clientePedido extends JFrame {
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel_2.add(panelTarjetas);
         
-        List<Pedido> listaPedidos = new ArrayList<>();
-
-      
-        Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-        Pedido pedido11 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-        Pedido pedido21 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-       
-
-        listaPedidos.add(pedido11);
-        listaPedidos.add(pedido21);
-        listaPedidos.add(pedido1);
-        listaPedidos.add(pedido2);
-
+ 
+        ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosCliente(usuario);
         for (Pedido pedido : listaPedidos) {
             TarjetaPedido tarjeta = new TarjetaPedido(pedido);
           

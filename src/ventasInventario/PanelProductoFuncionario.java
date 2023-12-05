@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import ventasInventario.BD.Modelo.Producto;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,7 +25,7 @@ public class PanelProductoFuncionario extends JPanel {
 	JButton btnMas, btnGuardar,btnSubirFoto;
 	JTextArea txaDescripcion,txaDetalles;
 	boolean modoEditar=false;
-	public PanelProductoFuncionario() {
+	public PanelProductoFuncionario(Producto producto) {
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		
@@ -42,7 +45,7 @@ public class PanelProductoFuncionario extends JPanel {
 		txaDescripcion.setFont(new Font("Rockwell", Font.PLAIN, 15));
 		txaDescripcion.setLineWrap(true);
 		txaDescripcion.setWrapStyleWord(true);
-		txaDescripcion.setText("gergre ert tre retrtre trtrwe tret rtrewewt tr retre tre tert vtretertet45teqw etreqrewfet  treter gedfdrgre ertwfdre retrtrdfdse trtrwfewe tret rtrfeet tr retre tre tert vtretertet45teqw etreqrewfet  treterewe gergre ert tre retrtre trtrwe tret rtret tr retre tre tert vtretertet45teqw etreqrewfet  treterfwrf");
+		txaDescripcion.setText(producto.getDescripcion());
 		txaDescripcion.setBackground(new Color(193, 123, 160));
 		txaDescripcion.setBounds(455, 152, 637, 116);
 		add(txaDescripcion);
@@ -57,49 +60,59 @@ public class PanelProductoFuncionario extends JPanel {
 		txaDetalles.setFont(new Font("Rockwell", Font.PLAIN, 15));
 		txaDetalles.setWrapStyleWord(true);
 		txaDetalles.setLineWrap(true);
-		txaDetalles.setText("gergre ert tre retrtre trtrwe tret rtrewewt tr retre tre tert vtretertet45teqw etreqrewfet  treter gedfdrgre ertwfdre retrtrdfdse trtrwfewe tret rtrfeet tr retre tre tert vtretertet45teqw etreqrewfet  treterewe gergre ert tre retrtre trtrwe tret rtret tr retre tre tert vtretertet45teqw etreqrewfet  treterfwrf");
+		txaDetalles.setText("Marca: " + producto.getMarca() +"\nColores: " + producto.getColor() + "\n Tallas:" + producto.getTalla());
 		txaDetalles.setBackground(new Color(193, 123, 160));
 		txaDetalles.setBounds(455, 336, 637, 116);
 		add(txaDetalles);
 		
 		
 		
-		JLabel lbProducto = new JLabel("Nombre del producto");
+		JLabel lbProducto = new JLabel(producto.getNombre());
 		lbProducto.setFont(new Font("Times New Roman", Font.PLAIN, 50));
 		lbProducto.setBounds(56, 38, 752, 46);
 		add(lbProducto);
-		
 		txtEtiqueta = new JTextField();
-		txtEtiqueta.setEditable(false);
-		txtEtiqueta.setBackground(new Color(180, 167, 213));
-		txtEtiqueta.setText("Etiqueta");
-		txtEtiqueta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		txtEtiqueta.setBounds(455, 479, 100, 40);
-		add(txtEtiqueta);
-		txtEtiqueta.setColumns(10);
-		
 		txtEtiqueta2 = new JTextField();
-		txtEtiqueta2.setEditable(false);
-		txtEtiqueta2.setText("Etiqueta2");
-		txtEtiqueta2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		txtEtiqueta2.setColumns(10);
-		txtEtiqueta2.setBackground(new Color(162, 195, 200));
-		txtEtiqueta2.setBounds(582, 479, 100, 40);
-		add(txtEtiqueta2);
-		
 		txtEtiqueta3 = new JTextField();
-		txtEtiqueta3.setEditable(false);
-		txtEtiqueta3.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEtiqueta3.setText("Etiqueta3");
-		txtEtiqueta3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		txtEtiqueta3.setColumns(10);
-		txtEtiqueta3.setBackground(new Color(255, 229, 154));
-		txtEtiqueta3.setBounds(708, 479, 100, 40);
-		add(txtEtiqueta3);
+		for(int i = 0; i < producto.getEtiquetas().size(); i++) {
+			if(i == 0) {
+				
+				txtEtiqueta.setEditable(false);
+				txtEtiqueta.setBackground(new Color(180, 167, 213));
+				txtEtiqueta.setText(producto.getEtiquetas().get(i));
+				txtEtiqueta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				txtEtiqueta.setBounds(455, 479, 100, 40);
+				add(txtEtiqueta);
+				txtEtiqueta.setColumns(10);
+			}
+			if(i == 1) {
+				
+				txtEtiqueta2.setEditable(false);
+				txtEtiqueta2.setText(producto.getEtiquetas().get(i));
+				txtEtiqueta2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				txtEtiqueta2.setColumns(10);
+				txtEtiqueta2.setBackground(new Color(162, 195, 200));
+				txtEtiqueta2.setBounds(582, 479, 100, 40);
+				add(txtEtiqueta2);
+			}
+			if(i == 2) {
+				
+				txtEtiqueta3.setEditable(false);
+				txtEtiqueta3.setHorizontalAlignment(SwingConstants.LEFT);
+				txtEtiqueta3.setText(producto.getEtiquetas().get(i));
+				txtEtiqueta3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				txtEtiqueta3.setColumns(10);
+				txtEtiqueta3.setBackground(new Color(255, 229, 154));
+				txtEtiqueta3.setBounds(708, 479, 100, 40);
+				add(txtEtiqueta3);
+			}
+			
+		}
+		
 		
 		txPrecio = new JTextField();
 		txPrecio.setEditable(false);
-		txPrecio.setText("Bs. precio");
+		txPrecio.setText(producto.getPrecio() + " Bs.");
 		txPrecio.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		txPrecio.setColumns(10);
 		txPrecio.setBackground(new Color(255, 229, 154));
@@ -109,7 +122,8 @@ public class PanelProductoFuncionario extends JPanel {
 		JButton btnEditar = new JButton("Editar campos");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				habilitarModoEdicion();
+				EditarProducto frame = new EditarProducto(producto);
+				frame.setVisible(true);
 			}
 		});
 		btnEditar.setBounds(927, 38, 165, 50);
@@ -118,7 +132,7 @@ public class PanelProductoFuncionario extends JPanel {
 		JButton btnOfertar = new JButton("Ofertar");
 		btnOfertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ofertar ventanaOfertar = new Ofertar();
+				Ofertar ventanaOfertar = new Ofertar(producto);
 			    ventanaOfertar.setVisible(true);
 			}
 		});
@@ -135,6 +149,9 @@ public class PanelProductoFuncionario extends JPanel {
         btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
+            	
+            	
                 deshabilitarModoEdicion();
             }
         });

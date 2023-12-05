@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ventasInventario.BD.Controladores.ControladorOferta;
+import ventasInventario.BD.Modelo.*;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Ofertar extends JFrame {
@@ -23,6 +28,7 @@ public class Ofertar extends JFrame {
 	private JTextField txtDdmmyyyy;
 	private JTextField txPrecioOferta;
 	private JLabel lbPrecioOferta;
+	private Producto producto;
 
 	/**
 	 * Launch the application.
@@ -31,10 +37,16 @@ public class Ofertar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ofertar frame = new Ofertar();
+					//ejemplo producto
+					ArrayList<String> eti = new ArrayList<>();
+					eti.add("ROPA");
+					eti.add("NIÑO");
+					Producto p = new Producto("P456", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
+					Ofertar frame = new Ofertar(p);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e);
+					
 				}
 			}
 		});
@@ -43,7 +55,8 @@ public class Ofertar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Ofertar() {
+	public Ofertar(Producto p) {
+		this.producto = p;
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -71,7 +84,7 @@ public class Ofertar extends JFrame {
 		
 		txtBsPrecio = new JTextField();
 		txtBsPrecio.setEditable(false);
-		txtBsPrecio.setText("Bs. Precio");
+		txtBsPrecio.setText(Double.toString(producto.getPrecio()));
 		txtBsPrecio.setBounds(101, 27, 61, 22);
 		contentPane.add(txtBsPrecio);
 		txtBsPrecio.setColumns(10);
@@ -82,7 +95,7 @@ public class Ofertar extends JFrame {
 		contentPane.add(lbFInicio);
 		
 		txFechaInicio = new JTextField();
-		txFechaInicio.setText("dd/mm/yyyy");
+		txFechaInicio.setText("yyyy-mm-dd");
 		txFechaInicio.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		txFechaInicio.setBounds(180, 130, 160, 20);
 		contentPane.add(txFechaInicio);
@@ -94,7 +107,7 @@ public class Ofertar extends JFrame {
 		contentPane.add(lbFFin);
 		
 		txtDdmmyyyy = new JTextField();
-		txtDdmmyyyy.setText("dd/mm/yyyy");
+		txtDdmmyyyy.setText("yyyy-mm-dd");
 		txtDdmmyyyy.setColumns(10);
 		txtDdmmyyyy.setBounds(180, 170, 156, 20);
 		contentPane.add(txtDdmmyyyy);
@@ -119,17 +132,63 @@ public class Ofertar extends JFrame {
 
         // Procesar la respuesta del usuario
         if (confirmacion == JOptionPane.YES_OPTION) {
-            realizarOferta();
+          
+            ControladorOferta controladorOferta = new ControladorOferta(Ofertar.this);
+           
+            controladorOferta.ofertarProducto(producto);
+            
+            
         } else {
         }
     }
 
-    private void realizarOferta() {
-        
-        JOptionPane.showMessageDialog(
-                Ofertar.this,
-                "Oferta realizada con éxito",
-                "Oferta Exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
-    }
+	public JTextField getTxtBsPrecio() {
+		return txtBsPrecio;
+	}
+
+	public void setTxtBsPrecio(JTextField txtBsPrecio) {
+		this.txtBsPrecio = txtBsPrecio;
+	}
+
+	public JTextField getTxFechaInicio() {
+		return txFechaInicio;
+	}
+
+	public void setTxFechaInicio(JTextField txFechaInicio) {
+		this.txFechaInicio = txFechaInicio;
+	}
+
+	public JTextField getTxtDdmmyyyy() {
+		return txtDdmmyyyy;
+	}
+
+	public void setTxtDdmmyyyy(JTextField txtDdmmyyyy) {
+		this.txtDdmmyyyy = txtDdmmyyyy;
+	}
+
+	public JTextField getTxPrecioOferta() {
+		return txPrecioOferta;
+	}
+
+	public void setTxPrecioOferta(JTextField txPrecioOferta) {
+		this.txPrecioOferta = txPrecioOferta;
+	}
+
+	public JLabel getLbPrecioOferta() {
+		return lbPrecioOferta;
+	}
+
+	public void setLbPrecioOferta(JLabel lbPrecioOferta) {
+		this.lbPrecioOferta = lbPrecioOferta;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+    
+    
 }

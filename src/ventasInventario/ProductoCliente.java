@@ -2,6 +2,7 @@ package ventasInventario;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,28 +14,39 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
+
 public class ProductoCliente extends JFrame {
 
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
-	PanelProductoCliente pinv= new PanelProductoCliente();
+	PanelProductoCliente pinv;
 	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProductoCliente frame = new ProductoCliente();
+					//ejemplo solo para ver si da
+					Usuario u = new Usuario("danialee14", null, null, null);
+					ArrayList<String> eti = new ArrayList<>();
+					eti.add("ROPA");
+					eti.add("NIÑO");
+					Producto p = new Producto("P123", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
+					p.setOfertado(false);
+					ProductoCliente frame = new ProductoCliente(u,p);
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e);
 				}
 			}
 		});
 	}
 
-	public ProductoCliente() {
+	public ProductoCliente(Usuario usuario, Producto producto) {
+		pinv = new PanelProductoCliente(usuario,producto);
 		getContentPane().setLayout(null);
 		setSize(1200,800);
 		getContentPane().setLayout(null);

@@ -18,27 +18,32 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import ventasInventario.BD.Controladores.ControladorCarrito;
+import ventasInventario.BD.Controladores.ControladorPedido;
+import ventasInventario.BD.Modelo.Carrito;
+import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.ProductoCarrito;
+import ventasInventario.BD.Modelo.Usuario;
+
 public class PanelCarrito extends JPanel {
 	JTable table;
-	ArrayList<String> productos;
-	ArrayList<Integer>  cantidad;
-	ArrayList<Double>  precio;
+	private Carrito carritos ;
+	private ControladorCarrito controladorCarrito;
+	private ControladorPedido controladorPedido;
+	
     DefaultTableModel modelo;
-	public PanelCarrito() {
-		productos = new ArrayList<>();
-        cantidad = new ArrayList<>();
-        precio = new ArrayList<>();
-        
+	public PanelCarrito(Usuario usuario) {
+		controladorCarrito =  new ControladorCarrito(usuario);
+		controladorPedido = new ControladorPedido(usuario);
+        carritos =  controladorCarrito.getCarrito();
 		setLayout(null);
-		productos.add("Prod1"); cantidad.add(1); precio.add(110.1);
-		productos.add("Prod2"); cantidad.add(10); precio.add(120.1);
-		productos.add("Prod3"); cantidad.add(12); precio.add(130.1);
-		
-        Object[][] datos = new Object[productos.size()][3];
-        for (int i = 0; i < productos.size(); i++) {
-            datos[i][0] = productos.get(i);
-            datos[i][1] = cantidad.get(i);
-            datos[i][2] = precio.get(i);
+
+
+        Object[][] datos = new Object[carritos.getProductos().size()][3];
+        for (int i = 0; i < carritos.getProductos().size(); i++) {
+            datos[i][0] = carritos.getProductos().get(i).getProducto().getNombre();
+            datos[i][1] = carritos.getProductos().get(i).getCantidad();
+            datos[i][2] = carritos.getProductos().get(i).getMonto();
         }
         
         modelo = new DefaultTableModel(datos, new String[]{"Productos", "Cantidad", "Precio"}) {
@@ -56,19 +61,24 @@ public class PanelCarrito extends JPanel {
         table.getColumnModel().getColumn(2).setPreferredWidth(60);
         
         DecimalFormat DosDecimales = new DecimalFormat("#.##");
-        String total = DosDecimales.format(TotalCarrito(precio));
+        String total = DosDecimales.format(carritos.getTotal());
         
         JButton btnPedido = new JButton("Realizar pedido");
         btnPedido.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               PanelEnlaceNea enlace= new PanelEnlaceNea();
+            if(carritos.getProductos().size()>0) {
+            	PanelEnlaceNea enlace= new PanelEnlaceNea(controladorPedido.confirmarCarrito());
             	enlace.setSize(1200,790);
 				enlace.setLocation(0,0);
 				removeAll();
 			    add(enlace,BorderLayout.CENTER);
 				revalidate();
 				repaint();
+            }
+            else {
+            	 JOptionPane.showMessageDialog(null, "No hay productos en tu carrito", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             }
         });
         btnPedido.setBounds(943, 550, 170, 50);
@@ -142,36 +152,30 @@ public class PanelCarrito extends JPanel {
     }
 
     // Método para eliminar la fila seleccionada de la tabla
-    private void eliminarFilaSeleccionada() {
-    	int filaSeleccionada = table.getSelectedRow();
+	private void eliminarFilaSeleccionada() {
+	    int filaSeleccionada = table.getSelectedRow();
 
-    	if (filaSeleccionada != -1) {
-           
-            String productoAEliminar = (String) table.getValueAt(filaSeleccionada, 0);
+	    if (filaSeleccionada != -1) {
+	        ProductoCarrito productoAEliminar = carritos.getProductos().get(filaSeleccionada);
 
-            int indice = productos.indexOf(productoAEliminar);
-            if (indice != -1) {
-                productos.remove(indice);
-                cantidad.remove(indice);
-                precio.remove(indice);
-            }
+	        carritos.setTotal(carritos.getTotal() - productoAEliminar.getMonto());
+	        carritos.getProductos().remove(productoAEliminar);
+	        modelo.removeRow(filaSeleccionada);
+	        controladorCarrito.eliminarProducto(productoAEliminar);
+	        actualizarTotalCarrito();
+	        JOptionPane.showMessageDialog(this, "Producto eliminado del carrito: " + productoAEliminar.getProducto().getNombre(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+	    }
+	}
 
-            modelo.removeRow(filaSeleccionada);
-
-            actualizarTotalCarrito();
-
-            JOptionPane.showMessageDialog(this, "Producto eliminado del carrito: " + productoAEliminar, "Eliminado", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
-        }
-    }
     
    private void abrirProducto(String producto) {
 		 JOptionPane.showMessageDialog(this, "Aqui añadimos la venta de producto hehe: ", producto, JOptionPane.INFORMATION_MESSAGE);
    }
    private void actualizarTotalCarrito() {
        DecimalFormat DosDecimales = new DecimalFormat("#.##");
-       String total = DosDecimales.format(TotalCarrito(precio));
+       String total = DosDecimales.format(carritos.getTotal());
 
        JLabel LTotal = (JLabel) getComponentAt(915, 490);
        LTotal.setText("Total: \t\tBs. \t\t " + total);
