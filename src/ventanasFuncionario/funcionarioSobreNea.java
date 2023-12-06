@@ -96,34 +96,35 @@ public class funcionarioSobreNea extends JFrame {
         panel_1.add(btnOferta_1_1);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(214, 166, 190));//CONTNEDRO 1 99
         panel_2.setBounds(0, 137, 1200, 663);
         panel.add(panel_2);
         panel_2.setLayout(null);
 
         JPanel panel_3 = new JPanel();
-        panel_3.setBackground(new Color(255, 182, 193));
+        panel_3.setBackground(new Color(214, 166, 190));//CONTNEDRO 2 105
         panel_3.setBounds(0, 5, 595, 621);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_2 = new JLabel("");
         ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
-        Image image2 = icon2.getImage().getScaledInstance(585, 573, Image.SCALE_SMOOTH);
+        Image image2 = icon2.getImage().getScaledInstance(465, 476, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
         lblNewLabel_2.setBounds(72, 97, 465, 476);
         panel_3.add(lblNewLabel_2);
 
-        JLabel lblNewLabel_1_1 = new JLabel("Sobre nea");
-        lblNewLabel_1_1.setBounds(10, 11, 254, 52);
+        JLabel lblNewLabel_1_1 = new JLabel("SOBRE NEA");
+        lblNewLabel_1_1.setForeground(Color.WHITE); //letras nea 118
+        lblNewLabel_1_1.setBounds(10, 11, 500, 52);
         panel_3.add(lblNewLabel_1_1);
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 47));
 
         JButton btnNewButton_1 = new JButton("");
         ImageIcon iconButton1 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\camara2.jpg");
-        Image imageButton1 = iconButton1.getImage().getScaledInstance(83, 43, Image.SCALE_SMOOTH);
+        Image imageButton1 = iconButton1.getImage().getScaledInstance(70, 50, Image.SCALE_SMOOTH);
         btnNewButton_1.setIcon(new ImageIcon(imageButton1));
-        btnNewButton_1.setBounds(512, 30, 83, 43);
+        btnNewButton_1.setBounds(512, 30, 70, 50);
         panel_3.add(btnNewButton_1);
         
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -141,16 +142,16 @@ ImageIcon selectedImageIcon = new ImageIcon(imagePath);
         });
 
         JPanel panel_3_1 = new JPanel();
-        panel_3_1.setBackground(new Color(255, 182, 193));
+        panel_3_1.setBackground(new Color(214, 166, 190));//CONTNEDRO 3 144
         panel_3_1.setBounds(605, 5, 595, 647);
         panel_2.add(panel_3_1);
         panel_3_1.setLayout(null);
 
         JLabel lblNewLabel_4 = new JLabel("");
         ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
-        Image image4 = icon4.getImage().getScaledInstance(585, 182, Image.SCALE_SMOOTH);
+        Image image4 = icon4.getImage().getScaledInstance(555, 140, Image.SCALE_SMOOTH);
         lblNewLabel_4.setIcon(new ImageIcon(image4));
-        lblNewLabel_4.setBounds(0, 465, 585, 182);
+        lblNewLabel_4.setBounds(0, 455, 585, 182);
         panel_3_1.add(lblNewLabel_4);
 
         JLabel lblNewLabel_1_1_1 = new JLabel("Contactanos");
@@ -172,9 +173,9 @@ ImageIcon selectedImageIcon = new ImageIcon(imagePath);
 
         JButton btnNewButton_1_1 = new JButton("");
         ImageIcon iconButton1_1 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\camara2.jpg");
-        Image imageButton1_1 = iconButton1_1.getImage().getScaledInstance(83, 43, Image.SCALE_SMOOTH);
+        Image imageButton1_1 = iconButton1_1.getImage().getScaledInstance(70, 50, Image.SCALE_SMOOTH);
         btnNewButton_1_1.setIcon(new ImageIcon(imageButton1_1));
-        btnNewButton_1_1.setBounds(502, 421, 83, 43);
+        btnNewButton_1_1.setBounds(502, 421, 70, 50);
         panel_3_1.add(btnNewButton_1_1);
 
         btnNewButton_1_1.addActionListener(new ActionListener() {
@@ -194,12 +195,14 @@ ImageIcon selectedImageIcon = new ImageIcon(imagePath);
         txtNaEsUna = new JTextField();
         txtNaEsUna.setEditable(false); 
         txtNaEsUna.setText("Néa es una empresa que abrió sus puertas en 2021, se dedica a la venta de una amplia variedad de productos cuidadosamente seleccionados de artículos que abarcan accesorios, dermo-cosméticos, cremas, maquillaje, ropa, entre otros productos. ");
+        txtNaEsUna.setBackground(new Color(239, 222, 230));//INPUT
         txtNaEsUna.setBounds(10, 78, 585, 187);
         panel_3_1.add(txtNaEsUna);
         txtNaEsUna.setColumns(10);
 
         txtAvCalle = new JTextField();
         txtAvCalle.setEditable(false);
+        txtAvCalle.setBackground(new Color(239, 222, 230));//INPUT
         txtAvCalle.setText("Av....... Calle....");
         txtAvCalle.setBounds(10, 327, 316, 107);
         panel_3_1.add(txtAvCalle);
@@ -207,22 +210,29 @@ ImageIcon selectedImageIcon = new ImageIcon(imagePath);
 
         textField = new JTextField();
         textField.setEditable(false); 
+        textField.setBackground(new Color(239, 222, 230));//INPUT
         textField.setText("77777761");
         textField.setBounds(446, 355, 127, 36);
         panel_3_1.add(textField);
         textField.setColumns(10);
 
         JButton btnEditar = new JButton("EDITAR");
-        btnEditar.setBounds(0, 0, 139, 36);
+        btnEditar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnEditar.setForeground(Color.WHITE); 
+        btnEditar.setBounds(425, 10, 139, 36);
         panel_3_1.add(btnEditar);
 
         JButton btnCancelar = new JButton("CANCELAR");
-        btnCancelar.setBounds(150, 0, 139, 36);
+        btnCancelar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnCancelar.setForeground(Color.WHITE); 
+        btnCancelar.setBounds(280, 10, 139, 36);
         btnCancelar.setVisible(false);
         panel_3_1.add(btnCancelar);
 
         JButton btnGuardar = new JButton("GUARDAR");
-        btnGuardar.setBounds(0, 0, 139, 36);
+        btnGuardar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnGuardar.setForeground(Color.WHITE); 
+        btnGuardar.setBounds(425, 10, 139, 36);
         btnGuardar.setVisible(false);
         panel_3_1.add(btnGuardar);
 

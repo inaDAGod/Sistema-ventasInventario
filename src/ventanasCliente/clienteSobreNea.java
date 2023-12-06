@@ -93,17 +93,19 @@ public class clienteSobreNea extends JFrame {
         panel_2.setBounds(0, 137, 1200, 663);
         panel.add(panel_2);
         panel_2.setLayout(null);
+        panel_2.setBackground(new Color(239, 222, 230));//CONTENDOR IMAGEN 96
 
         JPanel panel_3 = new JPanel();
         panel_3.setBounds(0, 5, 595, 647);
+        panel_3.setBackground(new Color(239, 222, 230));//CONTENDOR IMAGEN 99
         panel_2.add(panel_3);
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_2 = new JLabel("");
         ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
-        Image image2 = icon2.getImage().getScaledInstance(585, 573, Image.SCALE_SMOOTH);
+        Image image2 = icon2.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
-        lblNewLabel_2.setBounds(10, 74, 585, 573);
+        lblNewLabel_2.setBounds(74, 40, 585, 573);
         panel_3.add(lblNewLabel_2);
 
         JLabel lblNewLabel_1_1 = new JLabel("Sobre nea");
@@ -113,6 +115,7 @@ public class clienteSobreNea extends JFrame {
 
         JPanel panel_3_1 = new JPanel();
         panel_3_1.setBounds(605, 5, 595, 647);
+        panel_3_1.setBackground(new Color(239, 222, 230));//CONTENDOR IMAGEN 180
         panel_2.add(panel_3_1);
         panel_3_1.setLayout(null);
 
@@ -122,9 +125,9 @@ public class clienteSobreNea extends JFrame {
 
         JLabel lblNewLabel_4 = new JLabel("");
         ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
-        Image image4 = icon4.getImage().getScaledInstance(585, 182, Image.SCALE_SMOOTH);
+        Image image4 = icon4.getImage().getScaledInstance(585, 150, Image.SCALE_SMOOTH);
         lblNewLabel_4.setIcon(new ImageIcon(image4));
-        lblNewLabel_4.setBounds(0, 465, 585, 182);
+        lblNewLabel_4.setBounds(0, 420, 555, 182);
         panel_3_1.add(lblNewLabel_4);
 
         JLabel lblNewLabel_1_1_1 = new JLabel("Contactanos");

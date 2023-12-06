@@ -1,81 +1,106 @@
-package ventanasCliente;
-import javax.swing.*;
-import javax.swing.border.Border;
+package ventanasFuncionario;
 
-import ventanasFuncionario.funcionarioInicio.TarjetaPedido;
-import ventanasFuncionario.funcionarioInicio.TarjetaProducto;
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+
+import ventanasCliente.etiquetas;
+import ventanasCliente.productos;
 
 
-public class clienteInicio extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private JTextField textFieldBuscar;
-    private JRadioButton radioBoton1, radioBoton2, radioBoton3, radioBoton3_1;
-    private ButtonGroup grupoRadioBotones;
-    private JButton botonBuscar, botonBuscar1;
-    private JPanel panelTarjetas;
-    private JPanel panelBusqueda;
-    private JPanel panel_2;
-    private List<etiquetas> listaEtiquetas = new ArrayList<>();
-    private List<productos> listaProductos = new ArrayList<>();
-    private String textoBusqueda = "";
-    private JScrollPane scrollPane;
-
-    
-    private JPanel navegador;
-    private  JPanel SuperiorNavegador;
-    private JButton btnOferta_2;
-    
-    // para el carrucel 	
-    private JPanel carruselPanel;
-    private List<String>  listaImagenes = new ArrayList<>();
-    private int currentIndex = 0;
-    private Timer timer;
-    
-    // panelBusqueda.setBackground(Color.blue); define color
-    etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
-    etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
-    etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
-  etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
-   etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
-     etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
-   
 
 
-    productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-    productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-    productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-    productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-    productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-    productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    //imagenes carusel	
-    
- 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-            	clienteInicio frame = new clienteInicio();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
+public class funcionarioInicio extends JFrame {
+	  private static final long serialVersionUID = 1L;
+	    private JTextField textFieldBuscar;
+	    private JRadioButton radioBoton1, radioBoton2, radioBoton3, radioBoton3_1;
+	    private ButtonGroup grupoRadioBotones;
+	    private JButton botonBuscar, botonBuscar1;
+	    private JPanel panelTarjetas;
+	    private JPanel panelBusqueda;
+	    private JPanel panel_2;
+	    private List<etiquetas> listaEtiquetas = new ArrayList<>();
+	    private List<productos> listaProductos = new ArrayList<>();
+	    private String textoBusqueda = "";
+	    private JScrollPane scrollPane;
+	    
+	    
+	    private JPanel navegador;
+	    private  JPanel SuperiorNavegador;
+	    private JButton btnOferta_2;
+	    // para el carrucel 	
+	    private JPanel carruselPanel;
+	    private List<String>  listaImagenes = new ArrayList<>();
+	    private int currentIndex = 0;
+	    private Timer timer;
+	    
+	    // panelBusqueda.setBackground(Color.blue); define color
+	    etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
+	    etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
+	    etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
+	  etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
+	   etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
+	     etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
+	   
 
-    public clienteInicio() {
-    	   listaEtiquetas.add(new etiquetas(1, "Detalle 1"));
+
+	    productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
+	    productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
+	    productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
+	    productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
+	    productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
+	    productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+	    productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+	    //imagenes carusel	
+	    
+	 
+	    public static void main(String[] args) {
+	        EventQueue.invokeLater(() -> {
+	            try {
+	            	funcionarioInicio frame = new funcionarioInicio();
+	                frame.setVisible(true);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        });
+	    }
+
+	    public funcionarioInicio() {
+	        listaEtiquetas.add(new etiquetas(1, "Detalle 1"));
 	        listaEtiquetas.add(new etiquetas(2, "Detalle 2"));
 	        listaEtiquetas.add(new etiquetas(2, "Detalle 3"));
 	        listaEtiquetas.add(new etiquetas(2, "Detalle 4"));
@@ -113,7 +138,7 @@ public class clienteInicio extends JFrame {
 	        navegador.setBackground(new Color(250, 232, 235));
 	        navegador.setLayout(null);
 	        navegador.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
-	        navegador.setBounds(850, 0, 350, 800);
+	        navegador.setBounds(880, 0, 320, 800);
 	        panel.add(navegador);
 	        navegador.setVisible(false);
 	        
@@ -142,7 +167,7 @@ public class clienteInicio extends JFrame {
 	        btnUsuario.add(labelImagen7, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	       
 	      //BOTON mIS FAVORITOS
-	        JButton buttonProducto5 = new JButton("  Mis Favoritos");
+	        JButton buttonProducto5 = new JButton("  Añadir Producto");
 	        buttonProducto5.setBounds(25, 120, 300, 70);
 	        buttonProducto5.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonProducto5.setLayout(new BorderLayout());
@@ -160,7 +185,7 @@ public class clienteInicio extends JFrame {
 	        
 	        
 	      //BOTON MIS PEDIDOS
-	        JButton buttonMisPedidos = new JButton("Mis Pedidos");
+	        JButton buttonMisPedidos = new JButton("Añadir funcionario");
 	        buttonMisPedidos.setBounds(25, 220, 300, 70);
 	        buttonMisPedidos.setLayout(new BorderLayout());
 	        buttonMisPedidos.setVisible(true);
@@ -175,10 +200,28 @@ public class clienteInicio extends JFrame {
 	        JLabel labelImagen21 = new JLabel(iconRedimensionado21);
 	        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 	        buttonMisPedidos.add(labelImagen21, BorderLayout.WEST);  // Colocar la imagen a la izquierda
+	        
+	      //BOTON MIS listado
+	        JButton buttonListado = new JButton("Listado de clientes");
+	        buttonListado.setBounds(25, 320, 300, 70);
+	        buttonListado.setLayout(new BorderLayout());
+	        buttonListado.setVisible(true);
+	        buttonListado.setBackground(new Color(250, 232, 235));
+	        buttonListado.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
+	        buttonListado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+	        buttonListado.setForeground(Color.BLACK);
+	        navegador.add(buttonListado);
+	        ImageIcon iconProducto218 = new ImageIcon("src/imagenesJhess/pedido.png");
+	        Image imagenOriginal218 = iconProducto218.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+	        ImageIcon iconRedimensionado218 = new ImageIcon(imagenOriginal218);
+	        JLabel labelImagen218 = new JLabel(iconRedimensionado218);
+	        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+	        buttonListado.add(labelImagen218, BorderLayout.WEST);  // Colocar la imagen a la izquierda
+	        
 	       
 	        //BOTON AJUSTES
-	        JButton buttonAjustes = new JButton("Ajustes");
-	        buttonAjustes.setBounds(25, 320, 300, 70);
+	        JButton buttonAjustes = new JButton("Todos los pedidos");
+	        buttonAjustes.setBounds(25, 420, 300, 70);
 	        buttonAjustes.setLayout(new BorderLayout());
 	        buttonAjustes.setVisible(true);
 	        navegador.add(buttonAjustes);
@@ -195,7 +238,7 @@ public class clienteInicio extends JFrame {
 	        
 	        //BOTON MIS CERRAR SESION
 	        JButton buttonCerrar = new JButton("Cerrar sesion");
-	        buttonCerrar.setBounds(25, 420, 300, 70);
+	        buttonCerrar.setBounds(25, 520, 300, 70);
 	        buttonCerrar.setLayout(new BorderLayout());
 	        buttonCerrar.setVisible(true);
 	        buttonCerrar.setBackground(new Color(250, 232, 235));
@@ -206,7 +249,7 @@ public class clienteInicio extends JFrame {
 	        ImageIcon iconProducto215 = new ImageIcon("src/imagenesJhess/salir.png");
 	        Image imagenOriginal215 = iconProducto215.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
 	        ImageIcon iconRedimensionado215 = new ImageIcon(imagenOriginal215);
-	        JLabel labelImagen215 = new JLabel(iconRedimensionado21);
+	        JLabel labelImagen215 = new JLabel(iconRedimensionado215);
 	        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 	        buttonCerrar.add(labelImagen215, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	        
@@ -240,7 +283,7 @@ public class clienteInicio extends JFrame {
 	        btnNewButton.setBounds(330, 44, 125, 36);
 	        panel_1.add(btnNewButton);
 
-	        JButton btnOferta = new JButton("Productos");
+	        JButton btnOferta = new JButton("Inventario");
 	        btnOferta.setBackground(new Color(220, 100, 150));
 	        btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -248,20 +291,20 @@ public class clienteInicio extends JFrame {
 	        btnOferta.setBounds(454, 44, 125, 36);
 	        panel_1.add(btnOferta);
 	        
-	        JButton btnOferta_1_1 = new JButton("Oferta");
+	        JButton btnOferta_1_1 = new JButton("Pedidos actuales");
 	        btnOferta_1_1.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta_1_1.setBackground(new Color(220, 100, 150));
 	        btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta_1_1.setForeground(Color.WHITE);
-	        btnOferta_1_1.setBounds(578, 44, 120, 36);
+	        btnOferta_1_1.setBounds(578, 44, 150, 36);
 	        panel_1.add(btnOferta_1_1);
 
-	        JButton btnOferta_1 = new JButton("Quienes somos?");
+	        JButton btnOferta_1 = new JButton("Sobre Nea");
 	        btnOferta_1.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta_1.setBackground(new Color(220, 100, 150));
 	        btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta_1.setForeground(Color.WHITE);
-	        btnOferta_1.setBounds(698, 44, 140, 36);
+	        btnOferta_1.setBounds(728, 44, 150, 36);
 	        panel_1.add(btnOferta_1);
 
 	      
@@ -977,3 +1020,4 @@ public class clienteInicio extends JFrame {
 
 	        }}
 
+	   

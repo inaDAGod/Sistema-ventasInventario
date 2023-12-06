@@ -39,6 +39,10 @@ public class clienteCatalogo extends JFrame {
     productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
     productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
     productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto71 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto72 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto73 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto74 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
 
  
     public static void main(String[] args) {
@@ -60,6 +64,10 @@ public class clienteCatalogo extends JFrame {
         listaEtiquetas.add(new etiquetas(2, "Detalle 5"));
         listaEtiquetas.add(new etiquetas(2, "Detalle 6"));
         listaProductos.add(producto7);
+        listaProductos.add(producto71);
+        listaProductos.add(producto72);
+        listaProductos.add(producto73);
+        listaProductos.add(producto74);
         listaProductos.add(producto1);
         listaProductos.add(producto2);
         listaProductos.add(producto3);
@@ -127,153 +135,81 @@ public class clienteCatalogo extends JFrame {
         panel.add(panelBase);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(214, 166, 190));
         panel_2.setBounds(0, 0, 1190, 625);
         panel_2.setLayout(new BorderLayout());  // Cambiado a un BorderLayout
         panelBase.add(panel_2);
 
         panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); // Cambié el GridLayout a 1 columna
-        panelTarjetas.setBackground(new Color(255, 182, 193)); // Establecer el fondo negro al SCROLLL
-        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margen de 10 píxeles para la tarjeta
+        panelTarjetas.setBackground(new Color(214, 166, 190)); // Establecer el fondo negro al SCROLLL
+        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Margen de 10 píxeles para la tarjeta
         
         JPanel panelTexto5 = new JPanel();
-       
-        panelTexto5.setBackground(new Color(0, 0, 0));
-        panelTexto5.setLayout(new BorderLayout());
 
         JLabel lblRopa = new JLabel("Ropa"); // Aquí debes obtener el tipo de producto desde el pedido
-        lblRopa.setForeground(new Color(255, 255, 255));
-        lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 50));
-        lblRopa.setHorizontalAlignment(JLabel.LEFT);
+        
         
        
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); // Cambié a VERTICAL_SCROLLBAR_ALWAYS
-        scrollPane.setBounds(0, 0, 1190, 625);
+  
         JPanel panelBusqueda = new JPanel();
-        panelBusqueda.setBackground(new Color(255, 182, 193));
+      
        
         panelTarjetas.add(panelBusqueda);
         panelBusqueda.setLayout(null);
         
                 // Componentes del buscador
         textFieldBuscar = new JTextField();
-        textFieldBuscar.setBounds(294, 263, 530, 30);
-        panelBusqueda.add(textFieldBuscar);
-                
-                        radioBoton1 = new JRadioButton("Ropa");
-                        radioBoton1.setBounds(304, 205, 100, 30);
-                        radioBoton1.setBackground(new Color(255, 182, 193));
 
-                        panelBusqueda.add(radioBoton1);
+                
+         radioBoton1 = new JRadioButton("Ropa");
+                     
+
+         panelBusqueda.add(radioBoton1);
                         
-                                radioBoton2 = new JRadioButton("Accesorios");
-                                radioBoton2.setBounds(495, 205, 100, 30);
-                                radioBoton2.setBackground(new Color(255, 182, 193));
-                                panelBusqueda.add(radioBoton2);
+         radioBoton2 = new JRadioButton("Accesorios");
+                               
                                 
-                                        radioBoton3 = new JRadioButton("Maquillaje");
-                                        radioBoton3.setBounds(699, 205, 100, 30);
-                                        radioBoton3.setBackground(new Color(255, 182, 193));
-                                        panelBusqueda.add(radioBoton3);
+          radioBoton3 = new JRadioButton("Maquillaje");
+                                      
                                         
-                                        radioBoton3_1 = new JRadioButton("Todo");
-                                        radioBoton3_1.setBounds(861, 205, 100, 30);
-                                        radioBoton3_1.setBackground(new Color(255, 182, 193));
-                                        panelBusqueda.add(radioBoton3_1);
+          radioBoton3_1 = new JRadioButton("Todo");
+                                     
                                       
                                         
                                         
-                                        grupoRadioBotones.add(radioBoton1);
-                                        grupoRadioBotones.add(radioBoton2);
-                                        grupoRadioBotones.add(radioBoton3);
+         grupoRadioBotones.add(radioBoton1);
+           grupoRadioBotones.add(radioBoton2);
+          grupoRadioBotones.add(radioBoton3);
                                        
                                         
-                                                botonBuscar = new JButton("Buscar");
-                                                botonBuscar.setBounds(911, 263, 100, 30);
-                                                panelBusqueda.add(botonBuscar);
+        botonBuscar = new JButton("Buscar");
+                                             
                                              
                                                        
-                                                botonBuscar.addActionListener(new ActionListener() {
-                                                    public void actionPerformed(ActionEvent e) {
-                                                     
-                                                    	 String nombreBusqueda = textFieldBuscar.getText();
-                                                         textoBusqueda = nombreBusqueda;  
-                                                        buscarPorNombre(nombreBusqueda);
-                                                    }
-                                                });
-                                                        radioBoton1.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                	filtrarTarjetas(listaEtiquetas);
-                                                                	restaurarEstiloRadioButtons();
-                                                                    cambiarEstiloRadioButton(radioBoton1);
-                                                                }
-                                                            }
-                                                        });
-
-                                                        radioBoton2.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                	filtrarTarjetas(listaEtiquetas);
-                                                                	restaurarEstiloRadioButtons();
-                                                                    cambiarEstiloRadioButton(radioBoton2);
-                                                                }
-                                                            }
-                                                        });
-
-                                                        radioBoton3.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                
-                                                                    filtrarTarjetas(listaEtiquetas);
-                                                                    restaurarEstiloRadioButtons();
-                                                                    cambiarEstiloRadioButton(radioBoton3);
-                                                                }
-                                                            }
-                                                        });
-                                                        radioBoton3_1.addItemListener(new ItemListener() {
-                                                            public void itemStateChanged(ItemEvent e) {
-                                                                if (e.getStateChange() == ItemEvent.SELECTED) {
-                                                                
-                                                                	 restaurarEstadoOriginal();
-                                                                	 restaurarEstiloRadioButtons();
-                                                                     cambiarEstiloRadioButton(radioBoton3_1);
-                                                                	 
-                                                                }
-                                                            }
-                                                        });
+                                               
                                                         
-                                                        
-                                                        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                                                        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); 
-                                                        scrollPane.setBounds(0, 0, 1190, 500);panel_2.add(scrollPane);
+       scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); 
+        scrollPane.setBounds(0, 0, 1190, 500);panel_2.add(scrollPane);
        
         panelTarjetas.add(panelBusqueda, BorderLayout.NORTH);
         
         JLabel lblNewLabel_1 = new JLabel("Busqueda:");
-        lblNewLabel_1.setBounds(10, 260, 274, 32);
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        panelBusqueda.add(lblNewLabel_1); 
+      
         
         JLabel lblNewLabel_2 = new JLabel("CATÁLOGO ");
-        lblNewLabel_2.setBounds(23, 11, 362, 115);
-        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 60));
-        panelBusqueda.add(lblNewLabel_2);
+      
         
         JLabel lblNewLabel_1_1 = new JLabel("");
-        lblNewLabel_1_1.setBounds(10, 202, 274, 32);
-        lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        panelBusqueda.add(lblNewLabel_1_1);
+       
         
         JLabel lblNewLabel_2_1 = new JLabel("NOVEDADES DE LA TEMPORADA");
-        lblNewLabel_2_1.setBounds(21, 100, 677, 82);
-        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
-        panelBusqueda.add(lblNewLabel_2_1);
-    
+      
         agregarTarjetasPedidos(listaEtiquetas);
+   	 restaurarEstadoOriginal();
+	 restaurarEstiloRadioButtons();
        
     }
     
@@ -301,33 +237,37 @@ public class clienteCatalogo extends JFrame {
         String tipoDetalleSeleccionado = obtenerTipoDetalleSeleccionado();
         
         JPanel panelBusqueda = new JPanel();
-        panelBusqueda.setBackground(new Color(255, 182, 193));
+        panelBusqueda.setBackground(new Color(214, 166, 190));/////aquiii cambiar color
         panelBusqueda.setLayout(null);
 
         textFieldBuscar = new JTextField();
-        textFieldBuscar.setBounds(294, 263, 530, 30);
+        textFieldBuscar.setBounds(300, 263, 530, 30);
         panelBusqueda.add(textFieldBuscar);
 
         radioBoton1 = new JRadioButton("Ropa");
         radioBoton1.setBounds(304, 205, 100, 30);
-        radioBoton1.setBackground(new Color(255, 182, 193));
+        radioBoton1.setBackground(new Color(214, 166, 190));
+        radioBoton1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 
         panelBusqueda.add(radioBoton1);
         
-                radioBoton2 = new JRadioButton("Accesorios");
-                radioBoton2.setBounds(495, 205, 100, 30);
-                radioBoton2.setBackground(new Color(255, 182, 193));
-                panelBusqueda.add(radioBoton2);
+        radioBoton2 = new JRadioButton("Accesorios");
+        radioBoton2.setBounds(495, 205, 100, 30);
+        radioBoton2.setBackground(new Color(214, 166, 190));
+        radioBoton2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        panelBusqueda.add(radioBoton2);
                 
-                        radioBoton3 = new JRadioButton("Maquillaje");
-                        radioBoton3.setBounds(699, 205, 100, 30);
-                        radioBoton3.setBackground(new Color(255, 182, 193));
-                        panelBusqueda.add(radioBoton3);
+        radioBoton3 = new JRadioButton("Maquillaje");
+        radioBoton3.setBounds(699, 205, 100, 30);
+        radioBoton3.setBackground(new Color(214, 166, 190));
+        radioBoton3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        panelBusqueda.add(radioBoton3);
                         
-                        radioBoton3_1 = new JRadioButton("Todo");
-                        radioBoton3_1.setBounds(861, 205, 100, 30);
-                        radioBoton3_1.setBackground(new Color(255, 182, 193));
-                        panelBusqueda.add(radioBoton3_1);
+        radioBoton3_1 = new JRadioButton("Todo");
+        radioBoton3_1.setBounds(861, 205, 100, 30);
+        radioBoton3_1.setBackground(new Color(214, 166, 190));
+        radioBoton3_1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        panelBusqueda.add(radioBoton3_1);
         
 
         grupoRadioBotones.add(radioBoton1);
@@ -337,16 +277,19 @@ public class clienteCatalogo extends JFrame {
         
         botonBuscar = new JButton("Buscar");
         botonBuscar.setBounds(911, 263, 100, 30);
+        botonBuscar.setBackground(new Color(162, 195, 200));
+        botonBuscar.setForeground(Color.WHITE);
+        botonBuscar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panelBusqueda.add(botonBuscar);
         
-        JLabel lblNewLabel_1 = new JLabel("Busqueda: ");
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        lblNewLabel_1.setBounds(10, 260, 274, 32);
+        JLabel lblNewLabel_1 = new JLabel("Ingrese el nombre del producto: ");
+        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+        lblNewLabel_1.setBounds(20, 260, 364, 32);
         panelBusqueda.add(lblNewLabel_1); 
         
         JLabel lblNewLabel_2 = new JLabel("CATÁLOGO ");
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 60));
-        lblNewLabel_2.setBounds(23, 11, 362, 115);
+        lblNewLabel_2.setBounds(10, 0, 362, 115);
         panelBusqueda.add(lblNewLabel_2);
         
         JLabel lblNewLabel_1_1 = new JLabel(" ");
@@ -355,6 +298,7 @@ public class clienteCatalogo extends JFrame {
         panelBusqueda.add(lblNewLabel_1_1);
         
         JLabel lblNewLabel_2_1 = new JLabel("NOVEDADES DE LA TEMPORADA");
+        lblNewLabel_2_1.setForeground(Color.white);
         lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 37));
         lblNewLabel_2_1.setBounds(21, 100, 677, 82);
         panelBusqueda.add(lblNewLabel_2_1);
@@ -476,31 +420,39 @@ System.out.println("blcle de categora"+nombre);
 
         public TarjetaPedido(etiquetas etiqueta) {
         	setLayout(new BorderLayout()); 
-            setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); 
- JPanel panelTexto = new JPanel();
-            panelTexto.setBackground(new Color(0, 0, 0));
+            setBorder(BorderFactory.createLineBorder(Color.black, 3)); 
+            
+            JPanel panelTexto = new JPanel();
+            panelTexto.setBackground(new Color(193, 123, 160));
             panelTexto.setLayout(new BorderLayout());
+            add(panelTexto, BorderLayout.NORTH);
+            panelTexto.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
             System.out.println(etiqueta.getDetalle());
+            
+            //boorras desde aqui pa mas bonito
             JLabel lblRopa = new JLabel(etiqueta.getDetalle()); 
-            lblRopa.setForeground(new Color(255, 255, 255));
-            lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 50));
+            lblRopa.setForeground(new Color(0,0,0));
+            lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 40));
             lblRopa.setHorizontalAlignment(JLabel.LEFT);
+            
 
             panelTexto.add(lblRopa, BorderLayout.CENTER);
             add(panelTexto, BorderLayout.NORTH);
-
+            	//hasta aqui
+            //scroll conde se acumulan los productos por categoria
             JPanel panelTarjetas = new JPanel();
             panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-            panelTarjetas.setBackground(Color.black); 
-            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+            panelTarjetas.setBackground(new Color(239, 222, 230)); 
+            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+         
             
            
             for (productos producto11 : listaProductos) {
             	if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
                 JPanel cardPanel = new JPanel();
                 cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
-                cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));//borde de cada producto
 
                 JButton buttonProducto = new JButton();
                 buttonProducto.setLayout(new GridBagLayout());
@@ -530,17 +482,17 @@ System.out.println("blcle de categora"+nombre);
                 gbc.fill = GridBagConstraints.HORIZONTAL;
                 gbc.anchor = GridBagConstraints.SOUTH;
 
-                JPanel panelDetalles = new JPanel();
-                panelDetalles.setBackground(Color.BLACK);
+                //JPanel panelDetalles = new JPanel();
+                //panelDetalles.setBackground(Color.WHITE);
          
               
 
-                buttonProducto.add(panelDetalles, gbc);
+                //buttonProducto.add(panelDetalles, gbc);
                 buttonProducto.setPreferredSize(new Dimension(anchuraCalculada, alturaDeseada));
 
-                Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+                Border border = BorderFactory.createLineBorder(Color.black, 1);
 
-                buttonProducto.setBackground(Color.BLACK);
+                buttonProducto.setBackground(Color.WHITE);
 
                 buttonProducto.addActionListener(e -> {
                   
@@ -560,7 +512,7 @@ System.out.println("blcle de categora"+nombre);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
             scrollPane.setPreferredSize(new Dimension(400, 300));
-            scrollPane.setBackground(Color.white);
+            scrollPane.setBackground(Color.black);
 
            
             add(scrollPane, BorderLayout.CENTER);
@@ -576,17 +528,32 @@ System.out.println("blcle de categora"+nombre);
             public TarjetaProducto(String nombre) {
             	
                 setLayout(new BorderLayout());
-                setBorder(BorderFactory.createLineBorder(Color.WHITE, 1)); 
-              
+                setBorder(BorderFactory.createLineBorder(Color.black,3)); 
                 JPanel panelTexto = new JPanel();
-                panelTexto.setBackground(new Color(0, 0, 0));
+                panelTexto.setBackground(new Color(193, 123, 160));
                 panelTexto.setLayout(new BorderLayout());
                 add(panelTexto, BorderLayout.NORTH);
+                panelTexto.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
+   
+                
+                //boorras desde aqui pa mas bonito
+                JLabel lblRopa = new JLabel("Buscas esto ....."); 
+                lblRopa.setForeground(new Color(0,0,0));
+                lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+                lblRopa.setHorizontalAlignment(JLabel.LEFT);
+                
+
+                panelTexto.add(lblRopa, BorderLayout.CENTER);
+                add(panelTexto, BorderLayout.NORTH);
+                	//hasta aqui
+                //scroll conde se acumulan los productos por categoria
+      
 
                 JPanel panelTarjetas = new JPanel();
                 panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
-                panelTarjetas.setBackground(Color.black);
+                panelTarjetas.setBackground(new Color(239, 222, 230)); 
                 panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+                panelTarjetas.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
                  for (productos producto11 : listaProductos) {
                 	
                 	 if (producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())) 
@@ -594,7 +561,7 @@ System.out.println("blcle de categora"+nombre);
                 	 System.out.println("resultado  ("+producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())+")");
                     JPanel cardPanel = new JPanel();
                     cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
-                    cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                    cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
                     JButton buttonProducto = new JButton();
                     buttonProducto.setLayout(new GridBagLayout());
@@ -624,15 +591,15 @@ System.out.println("blcle de categora"+nombre);
                     gbc.fill = GridBagConstraints.HORIZONTAL;
                     gbc.anchor = GridBagConstraints.SOUTH;
 
-                    JPanel panelDetalles = new JPanel();
-                    panelDetalles.setBackground(Color.BLACK);
+                   // JPanel panelDetalles = new JPanel();
+                    //panelDetalles.setBackground(Color.black);
              
-                    buttonProducto.add(panelDetalles, gbc);
+                    //buttonProducto.add(panelDetalles, gbc);
                     buttonProducto.setPreferredSize(new Dimension(anchuraCalculada, alturaDeseada));
 
-                    Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
+                    Border border = BorderFactory.createLineBorder(Color.black, 1);
 
-                    buttonProducto.setBackground(Color.BLACK);
+                    buttonProducto.setBackground(Color.white);
 
                     buttonProducto.addActionListener(e -> {
                       
@@ -650,7 +617,7 @@ System.out.println("blcle de categora"+nombre);
                 scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
                 scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS); 
                 scrollPane.setPreferredSize(new Dimension(400, 300));
-                scrollPane.setBackground(Color.white);
+                scrollPane.setBackground(Color.black);
 
                 
                 add(scrollPane, BorderLayout.CENTER);
