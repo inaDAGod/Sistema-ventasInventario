@@ -115,10 +115,10 @@ public class funcionarioInicio extends JFrame {
 	        listaProductos.add(producto6);
 	        
 	       //imagenes carusel
-	        listaImagenes.add("src/imagenesJhess/personas.jfif");
-	        listaImagenes.add("src/imagenesJhess/lapiz");
-	        listaImagenes.add("src/imagenesJhess/camara");
-	        listaImagenes.add("src/imagenesJhess/lapiz");
+	        listaImagenes.add("src/imagenesJhess/caru2.jfif");
+	        listaImagenes.add("src/imagenesJhess/caru.jpg");
+	        listaImagenes.add("src/imagenesJhess/caru1.jpg");
+	        listaImagenes.add("src/imagenesJhess/caru5.jpg");
 	        
 
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -783,9 +783,9 @@ public class funcionarioInicio extends JFrame {
 	        carruselPanel.removeAll();
 	        carruselPanel.setBackground(new Color(193, 123, 160));
 	        String imagePath = listaImagenes.get(currentIndex);
-	        ImageIcon imageIcon12 = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));
-	        JLabel imageLabel3 = new JLabel(imageIcon12);
-	        carruselPanel.add(imageLabel3);
+	        ImageIcon imageIcon127 = new ImageIcon(new ImageIcon(imagePath).getImage().getScaledInstance(550, 220, Image.SCALE_DEFAULT));
+	        JLabel imageLabel37 = new JLabel(imageIcon127);
+	        carruselPanel.add(imageLabel37);
 	       
 	        //PARA QUE SE VAYA HACIA ARRIBA EL SROLL
 	        carruselPanel.revalidate();
