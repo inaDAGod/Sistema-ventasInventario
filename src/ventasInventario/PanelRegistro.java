@@ -138,13 +138,13 @@ public class PanelRegistro extends JPanel {
 	public void setCorreo(JTextField correo) {
 		this.correo = correo;
 	}
-	public JTextField getContrasenia() {
+	public JPasswordField getContrasenia() {
 		return contrasenia;
 	}
 	public void setContrasenia(JPasswordField contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-	public JTextField getvContra() {
+	public JPasswordField getvContra() {
 		return vContra;
 	}
 	public void setvContra(JPasswordField vContra) {
