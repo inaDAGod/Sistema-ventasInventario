@@ -21,7 +21,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 //* poner abajo las clases 
 import ventanasCliente.Pedido;
 import ventanasCliente.clientePedidoDetalle;
@@ -33,6 +36,7 @@ import java.awt.Font;
 public class funcionarioPedidoDetalle extends JFrame {
     private static final long serialVersionUID = 1L;
     private List<Pedido> listaPedidos = new ArrayList<>();
+ 
 
     Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
     Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
@@ -122,7 +126,7 @@ public class funcionarioPedidoDetalle extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(214,166,190));
         panel_2.setBounds(0, 137, 1200, 625);
         panel_2.setLayout(null);  
         panel.add(panel_2);
@@ -133,7 +137,7 @@ public class funcionarioPedidoDetalle extends JFrame {
         
         JPanel panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
-        panelTarjetas.setBackground(Color.black);
+        panelTarjetas.setBackground(new Color(162,195,200));//lo de afuera de detalle
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
         panel_2.add(panelTarjetas);
         
@@ -168,12 +172,16 @@ public class funcionarioPedidoDetalle extends JFrame {
         
         
         scrollPane.setBounds(125, 223, 946, 349);
+
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
        JPanel panel_3 = new JPanel();
-        panel_3.setBackground(Color.BLACK);
+        panel_3.setBackground(new Color(162,195,200));//lo de afuera de la tabla
         panel_3.setBounds(125, 49, 946, 176);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
+
+        panel_3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
         JLabel lblNewLabel_1 = new JLabel("");
         ImageIcon iconCarrito = new ImageIcon(clientePedidoDetalle.class.getResource("/imagenesJhess/carritos3.png"));
@@ -182,14 +190,15 @@ public class funcionarioPedidoDetalle extends JFrame {
         lblNewLabel_1.setBounds(10, 24, 204, 130);
         panel_3.add(lblNewLabel_1);
         
-        
+       
         
         
         JPanel panel_4 = new JPanel();
-        panel_4.setBackground(Color.WHITE);
+        panel_4.setBackground(new Color(239, 222, 230));
         panel_4.setBounds(250, 24, 650, 130);
         panel_3.add(panel_4);
         panel_4.setLayout(null);
+        panel_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
         JLabel lblNewLabel_2 = new JLabel("Pedido :"+pedido11.getNumeroCompra());
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
@@ -207,8 +216,13 @@ public class funcionarioPedidoDetalle extends JFrame {
         panel_4.add(lblNewLabel_2_1_1);
         
         JComboBox comboBox = new JComboBox();
+        comboBox.addItem("ESPERA PAGO");
+        comboBox.addItem("CANCELADO");
+        comboBox.addItem("PAGADO A ENTREGAR");
+        comboBox.addItem("FINALIZADO");
         comboBox.setBounds(110, 65, 200, 23);
         panel_4.add(comboBox);
+        comboBox.setEnabled(false);
         
         JLabel lblNewLabel_2_1_2 = new JLabel("Pago :");
         lblNewLabel_2_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
@@ -216,9 +230,71 @@ public class funcionarioPedidoDetalle extends JFrame {
         panel_4.add(lblNewLabel_2_1_2);
         
         JComboBox comboBox2 = new JComboBox();
+        comboBox2.addItem("ESPERA PAGO");
+        comboBox2.addItem("CANCELADO");
+        comboBox2.addItem("PAGADO A ENTREGAR");
+        comboBox2.addItem("FINALIZADO");
+        
         comboBox2.setBounds(110, 95, 200, 23);
         panel_4.add(comboBox2);
         panel_2.add(scrollPane, BorderLayout.CENTER);
+        comboBox2.setEnabled(false);
+        
+        
+        
+        JButton btnEditar = new JButton("EDITAR");
+        btnEditar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnEditar.setForeground(Color.WHITE); 
+        btnEditar.setBounds(500, 10, 139, 36);
+        panel_4.add(btnEditar);
+
+        JButton btnCancelar = new JButton("CANCELAR");
+        btnCancelar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnCancelar.setForeground(Color.WHITE); 
+        btnCancelar.setBounds(360, 10, 139, 36);
+        btnCancelar.setVisible(false);
+        panel_4.add(btnCancelar);
+
+        JButton btnGuardar = new JButton("GUARDAR");
+        btnGuardar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnGuardar.setForeground(Color.WHITE); 
+        btnGuardar.setBounds(500, 10, 139, 36);
+        btnGuardar.setVisible(false);
+        panel_4.add(btnGuardar);
+
+        btnEditar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	comboBox2.setEnabled(true);
+            	comboBox.setEnabled(true);
+            	
+                btnEditar.setVisible(false);
+                btnCancelar.setVisible(true);
+                btnGuardar.setVisible(true);
+            }
+        });
+
+        btnCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	comboBox2.setEnabled(false);
+            	comboBox.setEnabled(false);
+
+                btnEditar.setVisible(true);
+                btnCancelar.setVisible(false);
+                btnGuardar.setVisible(false);
+            }
+        });
+
+        btnGuardar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	comboBox2.setEnabled(false);
+            	comboBox.setEnabled(false);
+
+                btnEditar.setVisible(true);
+                btnCancelar.setVisible(false);
+                btnGuardar.setVisible(false);
+            }
+        });
+        
     }
 
 
@@ -227,15 +303,16 @@ public class funcionarioPedidoDetalle extends JFrame {
 
         public TarjetaPedido(Pedido pedido, List<productos> listaProductos) {
             setLayout(new BorderLayout()); 
-            setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
             DefaultTableModel modeloTabla = new DefaultTableModel();
-          
-
+           
+       
             modeloTabla.addColumn("Nombre");
             modeloTabla.addColumn("Descripción");
             modeloTabla.addColumn("Cantidad");
             modeloTabla.addColumn("Marca");
             modeloTabla.addColumn("Precio");
+         
             float montoTotal = 0;
             for (productos producto : listaProductos) {
                 modeloTabla.addRow(new Object[] {
@@ -249,24 +326,50 @@ public class funcionarioPedidoDetalle extends JFrame {
                 });
                 montoTotal += producto.getPrecio() * producto.getCantidad();
             }
+            
+            
 
             JTable tablaProductos = new JTable(modeloTabla);
 
-            JScrollPane scrollPane = new JScrollPane(tablaProductos);
+         // Personalizar colores de celdas y encabezados
+         personalizarTabla(tablaProductos);
 
-            
+         JScrollPane scrollPane = new JScrollPane(tablaProductos);
+
+       
+            tablaProductos.setBackground(new Color(255,229,154));//boton editar 204
+            tablaProductos.setForeground(Color.BLACK); 
+            tablaProductos.setBounds(500, 10, 139, 36);
+           
 
             JLabel labelMonto = new JLabel("Monto Total: " + montoTotal + " Bs.");
             labelMonto.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+            labelMonto.setForeground(Color.white); 
 
             JPanel panelMonto = new JPanel();
             panelMonto.add(labelMonto);
-
+            panelMonto.setBackground(new Color(184, 140, 158));//boton editar 204
+            
+            panelMonto.setBounds(500, 10, 139, 36);
            
             add(scrollPane, BorderLayout.CENTER); 
             add(panelMonto, BorderLayout.SOUTH); 
             setBackground(Color.WHITE);
-            Dimension preferredSize = new Dimension(500, 10); 
+            Dimension preferredSize = new Dimension(500, 0); 
             setPreferredSize(preferredSize);
         }
-    }}
+    }
+    private void personalizarTabla(JTable tabla) {
+       DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
+        renderizador.setBackground(new Color(239, 222, 230)); // Cambia el color a tu elección
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(renderizador);
+        }
+
+        JTableHeader encabezados = tabla.getTableHeader();
+        encabezados.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
+        encabezados.setBackground(new Color(184, 140, 158)); // Cambia el color a tu elección
+        encabezados.setForeground(Color.white);
+    }
+    }
+

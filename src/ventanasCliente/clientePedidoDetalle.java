@@ -17,7 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.Font;
 
@@ -121,7 +123,7 @@ public class clientePedidoDetalle extends JFrame {
         
         JPanel panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
-        panelTarjetas.setBackground(Color.black);
+        panelTarjetas.setBackground(new Color(162,195,200));//lo de afuera de detalle
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
         panel_2.add(panelTarjetas);
         
@@ -154,14 +156,15 @@ public class clientePedidoDetalle extends JFrame {
         
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         
-        
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         scrollPane.setBounds(125, 223, 946, 349);
        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
        JPanel panel_3 = new JPanel();
-        panel_3.setBackground(Color.BLACK);
+       panel_3.setBackground(new Color(162,195,200));//lo de afuera de la tabla
         panel_3.setBounds(125, 49, 946, 176);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
+        panel_3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
         JLabel lblNewLabel_1 = new JLabel("");
         ImageIcon iconCarrito = new ImageIcon(clientePedidoDetalle.class.getResource("/imagenesJhess/carritos3.png"));
@@ -174,10 +177,11 @@ public class clientePedidoDetalle extends JFrame {
         
         
         JPanel panel_4 = new JPanel();
-        panel_4.setBackground(Color.WHITE);
+        panel_4.setBackground(new Color(239, 222, 230));
         panel_4.setBounds(250, 24, 650, 130);
         panel_3.add(panel_4);
         panel_4.setLayout(null);
+        panel_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
         JLabel lblNewLabel_2 = new JLabel("Pedido :"+pedido11.getNumeroCompra());
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
@@ -208,14 +212,16 @@ public class clientePedidoDetalle extends JFrame {
 
         public TarjetaPedido(Pedido pedido, List<productos> listaProductos) {
             setLayout(new BorderLayout()); 
-            setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+            setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
             DefaultTableModel modeloTabla = new DefaultTableModel();
-          
+           
+       
             modeloTabla.addColumn("Nombre");
             modeloTabla.addColumn("Descripción");
             modeloTabla.addColumn("Cantidad");
             modeloTabla.addColumn("Marca");
             modeloTabla.addColumn("Precio");
+         
             float montoTotal = 0;
             for (productos producto : listaProductos) {
                 modeloTabla.addRow(new Object[] {
@@ -225,28 +231,53 @@ public class clientePedidoDetalle extends JFrame {
                         producto.getCantidad(),
                         producto.getMarca(),
                         producto.getPrecio()
-                       
                   
                 });
                 montoTotal += producto.getPrecio() * producto.getCantidad();
             }
+            
+            
+
             JTable tablaProductos = new JTable(modeloTabla);
 
-            JScrollPane scrollPane = new JScrollPane(tablaProductos);
+         // Personalizar colores de celdas y encabezados
+         personalizarTabla(tablaProductos);
 
+         JScrollPane scrollPane = new JScrollPane(tablaProductos);
+
+       
+            tablaProductos.setBackground(new Color(255,229,154));//boton editar 204
+            tablaProductos.setForeground(Color.BLACK); 
+            tablaProductos.setBounds(500, 10, 139, 36);
            
-           
+
             JLabel labelMonto = new JLabel("Monto Total: " + montoTotal + " Bs.");
             labelMonto.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+            labelMonto.setForeground(Color.white); 
 
             JPanel panelMonto = new JPanel();
             panelMonto.add(labelMonto);
-
+            panelMonto.setBackground(new Color(184, 140, 158));//boton editar 204
+            
+            panelMonto.setBounds(500, 10, 139, 36);
            
             add(scrollPane, BorderLayout.CENTER); 
             add(panelMonto, BorderLayout.SOUTH); 
             setBackground(Color.WHITE);
-            Dimension preferredSize = new Dimension(500, 10); 
+            Dimension preferredSize = new Dimension(500, 0); 
             setPreferredSize(preferredSize);
         }
-    }}
+    }
+    private void personalizarTabla(JTable tabla) {
+       DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
+        renderizador.setBackground(new Color(239, 222, 230)); // Cambia el color a tu elección
+        for (int i = 0; i < tabla.getColumnCount(); i++) {
+            tabla.getColumnModel().getColumn(i).setCellRenderer(renderizador);
+        }
+
+        JTableHeader encabezados = tabla.getTableHeader();
+        encabezados.setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
+        encabezados.setBackground(new Color(184, 140, 158)); // Cambia el color a tu elección
+        encabezados.setForeground(Color.white);
+    }
+    }
