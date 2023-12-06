@@ -28,4 +28,12 @@ public class ControladorPedidos {
 		return pendientes;
 	}
 	
+	public ArrayList<Pedido> pedidosTodos(){
+		ArrayList<Pedido> pendientes = new ArrayList<>();
+		for(Pedido p : this.gestorPedido.getTodosPedidos()) {
+			pendientes.add(p);
+		}
+		return pendientes;
+	}
+	
 }

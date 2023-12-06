@@ -50,6 +50,13 @@ public class funcionarioPedidoDetalle extends JFrame {
     productos producto5 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
     productos producto6 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
     productos producto7 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto11 = new productos("P1", "Producto 1", "Descripción 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
+    productos producto21 = new productos("P2", "Producto 2", "Descripción 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
+    productos producto31 = new productos("P3", "Producto 3", "Descripción 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
+    productos producto41 = new productos("P4", "Producto 4", "Descripción 4", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
+    productos producto51 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
+    productos producto61 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
+    productos producto71 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
 
    
     public static void main(String[] args) {
@@ -143,6 +150,13 @@ public class funcionarioPedidoDetalle extends JFrame {
         listaProductos.add(producto4);
         listaProductos.add(producto5);
         listaProductos.add(producto6);
+        listaProductos.add(producto71);
+        listaProductos.add(producto11);
+        listaProductos.add(producto21);
+        listaProductos.add(producto31);
+        listaProductos.add(producto41);
+        listaProductos.add(producto51);
+        listaProductos.add(producto61);
 
       
             TarjetaPedido tarjeta = new TarjetaPedido(pedido11,listaProductos);
@@ -204,6 +218,7 @@ public class funcionarioPedidoDetalle extends JFrame {
         JComboBox comboBox2 = new JComboBox();
         comboBox2.setBounds(110, 95, 200, 23);
         panel_4.add(comboBox2);
+        panel_2.add(scrollPane, BorderLayout.CENTER);
     }
 
 
@@ -215,32 +230,31 @@ public class funcionarioPedidoDetalle extends JFrame {
             setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
             DefaultTableModel modeloTabla = new DefaultTableModel();
           
+
             modeloTabla.addColumn("Nombre");
             modeloTabla.addColumn("Descripción");
-            modeloTabla.addColumn("Precio");
             modeloTabla.addColumn("Cantidad");
             modeloTabla.addColumn("Marca");
-            modeloTabla.addColumn("Color");
+            modeloTabla.addColumn("Precio");
+            float montoTotal = 0;
             for (productos producto : listaProductos) {
                 modeloTabla.addRow(new Object[] {
                     
                         producto.getNombre(),
                         producto.getDescripcion(),
-                        producto.getPrecio(),
                         producto.getCantidad(),
                         producto.getMarca(),
-                        producto.getColor()
+                        producto.getPrecio()
+                  
                 });
+                montoTotal += producto.getPrecio() * producto.getCantidad();
             }
 
             JTable tablaProductos = new JTable(modeloTabla);
 
             JScrollPane scrollPane = new JScrollPane(tablaProductos);
 
-            float montoTotal = 0;
-            for (productos producto : listaProductos) {
-                montoTotal += producto.getPrecio() * producto.getCantidad();
-            }
+            
 
             JLabel labelMonto = new JLabel("Monto Total: " + montoTotal + " Bs.");
             labelMonto.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -252,7 +266,7 @@ public class funcionarioPedidoDetalle extends JFrame {
             add(scrollPane, BorderLayout.CENTER); 
             add(panelMonto, BorderLayout.SOUTH); 
             setBackground(Color.WHITE);
-            Dimension preferredSize = new Dimension(500, (listaProductos.size() + 1) * 25); 
+            Dimension preferredSize = new Dimension(500, 10); 
             setPreferredSize(preferredSize);
         }
     }}
