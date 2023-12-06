@@ -4,6 +4,7 @@ package ventanasCliente;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -90,11 +91,14 @@ public class clienteOfertas extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(193, 123, 160));
         panel_2.setBounds(0, 137, 1200, 625);
         panel.add(panel_2);
 
         JPanel panelTarjetas = new JPanel();
+        panelTarjetas.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelTarjetas.setBackground(new Color(239, 222, 230)); 
+        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelTarjetas.setLayout(new BoxLayout(panelTarjetas, BoxLayout.X_AXIS));
         List<productos> listaProductos = new ArrayList<>();
 
@@ -122,15 +126,15 @@ public class clienteOfertas extends JFrame {
             if (Productos.isOfetado()) {
                 JPanel cardPanel = new JPanel();
                 cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
-                cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
                 JButton buttonPedido = new JButton();
                 buttonPedido.setLayout(new GridBagLayout());
 
                 ImageIcon iconPedido = new ImageIcon(Productos.getRuta_imagen());
 
-                int alturaDeseada = 200;
-                int anchuraCalculada = (alturaDeseada * iconPedido.getIconWidth()) / iconPedido.getIconHeight();
+                int alturaDeseada = 300;
+                int anchuraCalculada = 300;
                 Image imagenOriginal = iconPedido.getImage().getScaledInstance(anchuraCalculada, alturaDeseada, Image.SCALE_SMOOTH);
 
                 ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
@@ -153,14 +157,17 @@ public class clienteOfertas extends JFrame {
                 gbc.anchor = GridBagConstraints.SOUTH;
 
                 JPanel panelDetalles = new JPanel();
-                panelDetalles.setBackground(Color.BLACK);
+                panelDetalles.setBackground(Color.white);
                 panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
                 JLabel labelNumeroCompra = new JLabel("Nombre: " + Productos.getNombre());
-                labelNumeroCompra.setForeground(Color.WHITE); 
+                labelNumeroCompra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+                labelNumeroCompra.setForeground(Color.BLACK); 
                 float valor = Productos.getPrecio() * descuento;
                 JLabel labelFecha = new JLabel("Antes: " + (Productos.getPrecio() + valor));
+                labelFecha.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelFecha.setForeground(Color.RED); 
                 JLabel labelEstado = new JLabel("Ahora: " + Productos.getPrecio());
+                labelEstado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelEstado.setForeground(Color.GREEN);
                 panelDetalles.add(labelNumeroCompra);
                 panelDetalles.add(labelFecha);
@@ -171,7 +178,7 @@ public class clienteOfertas extends JFrame {
 
                 Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
-                buttonPedido.setBackground(Color.BLACK);
+                buttonPedido.setBackground(Color.white);
 
                 buttonPedido.addActionListener(e -> {
                     JFrame frame = (JFrame) SwingUtilities.getRoot(buttonPedido);
@@ -188,20 +195,19 @@ public class clienteOfertas extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        scrollPane.setBounds(130, 170, 946, 306);
+        scrollPane.setBounds(10, 170, 1170, 456);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setBackground(Color.white);
 
         panel_2.add(scrollPane);
-        
+       
         JLabel lblNewLabel_1 = new JLabel(" OFERTAS DISPONIBLES");
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-        lblNewLabel_1.setBounds(10, 29, 413, 53);
+        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 80));
+        lblNewLabel_1.setForeground(Color.white);
+        lblNewLabel_1.setBounds(10, 29, 1200, 100);
         panel_2.add(lblNewLabel_1);
         
-        JPanel panel_3 = new JPanel();
-        panel_3.setBackground(new Color(255, 255, 255));
-        panel_3.setBounds(10, 29, 413, 53);
-        panel_2.add(panel_3);
+      
+        
     }
 }
