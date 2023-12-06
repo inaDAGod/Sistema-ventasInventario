@@ -30,9 +30,9 @@ class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public TarjetaPedido(Pedido pedido) {
-    	
+    	 
     	 setLayout(new BorderLayout()); 
-         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); 
+         setBorder(BorderFactory.createLineBorder(Color.BLACK, 0)); 
          
 
         ImageIcon iconPedido = new ImageIcon(
@@ -48,7 +48,7 @@ class TarjetaPedido extends JPanel {
         panelImagen.setBackground(Color.WHITE); 
         JPanel panelDetalles = new JPanel();
         panelDetalles.setLayout(new GridLayout(0, 1)); 
-
+       
         JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getCpedido());
         JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha_reserva());
         JLabel labelEstado = new JLabel("Estado: " + pedido.getEstadoPedido());
@@ -62,7 +62,9 @@ class TarjetaPedido extends JPanel {
       
         JButton buttonInfo = new JButton("Más Información");
         buttonInfo.setForeground(Color.WHITE);
-        buttonInfo.setBackground(new Color(255, 182, 193)); 
+        buttonInfo.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
+        buttonInfo.setBounds(0, 0, 300, 1500);
+        buttonInfo.setBackground(new Color(167, 134, 252)); 
         
         
        
@@ -95,7 +97,9 @@ public class funcionarioPedidosActuales extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	funcionarioPedidosActuales frame = new funcionarioPedidosActuales();
+                	ControladorPedidos controladorPedidos = new ControladorPedidos();
+                	 ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosPendientes();
+                	funcionarioPedidosActuales frame = new funcionarioPedidosActuales(listaPedidos);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -104,8 +108,8 @@ public class funcionarioPedidosActuales extends JFrame {
         });
     }
 
-    public funcionarioPedidosActuales() {
-    	ControladorPedidos controladorPedidos = new ControladorPedidos();
+    public funcionarioPedidosActuales(ArrayList<Pedido> listaPedidos) {
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -116,7 +120,7 @@ public class funcionarioPedidosActuales extends JFrame {
         panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setForeground(Color.WHITE);
+        panel_1.setForeground(new Color(239, 222, 230));
         panel_1.setBounds(0, 0, 1200, 140);
         panel.add(panel_1);
         panel_1.setLayout(null);
@@ -155,7 +159,7 @@ public class funcionarioPedidosActuales extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(214, 166, 190));
         panel_2.setBounds(0, 137, 1200, 625);
         panel_2.setLayout(null);  
         panel.add(panel_2);
@@ -166,8 +170,10 @@ public class funcionarioPedidosActuales extends JFrame {
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel_2.add(panelTarjetas);
         
+        panelTarjetas.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
+        panelTarjetas.setBackground(new Color(255, 229, 154)); 
  
-        ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosPendientes();
+        
         for (Pedido pedido : listaPedidos) {
             TarjetaPedido tarjeta = new TarjetaPedido(pedido);
           
@@ -178,7 +184,8 @@ public class funcionarioPedidosActuales extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         scrollPane.setBounds(125, 147, 946, 425);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
         panel_2.add(scrollPane);
         
         JPanel panel_3 = new JPanel();
@@ -186,10 +193,12 @@ public class funcionarioPedidosActuales extends JFrame {
         panel_3.setBounds(125, 49, 946, 98);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
+        panel_3.setBackground(new Color(255, 229, 154)); 
+        panel_3.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
         
         JLabel lblNewLabel_1 = new JLabel("Pedidos Pendientes");
-        lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setBounds(28, 21, 303, 66);
+        lblNewLabel_1.setForeground(new Color(0, 0, 0));
+        lblNewLabel_1.setBounds(28, 21, 500, 66);
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
         panel_3.add(lblNewLabel_1);
     }}

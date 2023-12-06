@@ -114,7 +114,7 @@ public class perfilUsuario extends JFrame {
         panel_2.setLayout(null);
 
         JPanel panel_3 = new JPanel();
-        panel_3.setBackground(new Color(255, 153, 204));
+        panel_3.setBackground(new Color(214, 166, 190));//color fondo 117
         panel_3.setBounds(0, 5, 1190, 647);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
@@ -129,6 +129,7 @@ public class perfilUsuario extends JFrame {
 
         JPanel panel_4 = new JPanel();
         panel_4.setBackground(SystemColor.text);
+        panel_4.setBackground(new Color(239, 222, 230));//contenedor 131
         panel_4.setBounds(300, 59, 584, 523);
         panel_3.add(panel_4);
         panel_4.setLayout(null);
@@ -189,7 +190,8 @@ public class perfilUsuario extends JFrame {
         inicializarCamposTexto();
         
         JPanel panel_5 = new JPanel();
-        panel_5.setBackground(SystemColor.text);
+        panel_5.setBackground(new Color(239, 222, 230));//pnael de boton 192
+      
         panel_5.setBounds(0, 460, 584, 63);
         panel_4.add(panel_5);
         panel_5.setLayout(null);
@@ -200,8 +202,8 @@ public class perfilUsuario extends JFrame {
         Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
 
         btnEditar = new JButton("Editar");
-
-        btnEditar.setBackground(new Color(199, 21, 133));
+        btnEditar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnEditar.setForeground(Color.WHITE);  // Color del texto del botón204
         btnEditar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -220,7 +222,8 @@ public class perfilUsuario extends JFrame {
         
 
         btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBackground(new Color(199, 21, 133));
+        btnCancelar.setBackground(new Color(162, 195, 200));//boton editar 223
+        btnCancelar.setForeground(Color.WHITE);  // Color del texto del botón 223
         btnCancelar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
