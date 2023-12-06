@@ -57,11 +57,12 @@ class TarjetaPedido extends JPanel {
         panelDetalles.add(labelFecha);
         panelDetalles.add(labelEstado);
         panelDetalles.setBackground(Color.WHITE); 
-      
+        
+        
         JButton buttonInfo = new JButton("Más Información");
         buttonInfo.setForeground(Color.WHITE);
-        buttonInfo.setBackground(new Color(255, 182, 193)); 
-        
+        buttonInfo.setBackground(new Color(112, 76, 94)); 
+        buttonInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
         
        
         Font font = new Font("Times New Roman", Font.PLAIN, 30);
@@ -75,6 +76,7 @@ class TarjetaPedido extends JPanel {
         panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10)); 
         panelInfo.add(buttonInfo, BorderLayout.CENTER); 
         panelInfo.setBackground(Color.WHITE);
+        
       
         add(panelImagen, BorderLayout.WEST);
         add(panelDetalles, BorderLayout.CENTER);
@@ -115,7 +117,7 @@ public class clientePedido extends JFrame {
         panel.setLayout(null);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setForeground(Color.WHITE);
+       
         panel_1.setBounds(0, 0, 1200, 140);
         panel.add(panel_1);
         panel_1.setLayout(null);
@@ -154,14 +156,14 @@ public class clientePedido extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(241, 200, 219));
         panel_2.setBounds(0, 137, 1200, 625);
         panel_2.setLayout(null);  
         panel.add(panel_2);
         
         JPanel panelTarjetas = new JPanel();
         panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
-        panelTarjetas.setBackground(Color.black); 
+        panelTarjetas.setBackground(new Color(184, 140, 158)); 
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panel_2.add(panelTarjetas);
         
@@ -169,7 +171,8 @@ public class clientePedido extends JFrame {
         ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosCliente(usuario);
         for (Pedido pedido : listaPedidos) {
             TarjetaPedido tarjeta = new TarjetaPedido(pedido);
-          
+            tarjeta.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
+            
             panelTarjetas.add(tarjeta);
         }
         panel_2.setLayout(null);
@@ -178,18 +181,20 @@ public class clientePedido extends JFrame {
         JScrollPane scrollPane = new JScrollPane(panelTarjetas);
         scrollPane.setBounds(125, 147, 946, 425);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
         panel_2.add(scrollPane);
         
         JPanel panel_3 = new JPanel();
-        panel_3.setBackground(new Color(0, 0, 0));
+        panel_3.setBackground(new Color(255, 255, 255));
         panel_3.setBounds(125, 49, 946, 98);
         panel_2.add(panel_3);
         panel_3.setLayout(null);
         
         JLabel lblNewLabel_1 = new JLabel("Mis pedidos");
-        lblNewLabel_1.setForeground(new Color(255, 255, 255));
+        lblNewLabel_1.setForeground(new Color(112, 76, 94));
         lblNewLabel_1.setBounds(28, 21, 303, 66);
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
+        panel_3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
         panel_3.add(lblNewLabel_1);
     }}
 

@@ -8,6 +8,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -107,6 +108,7 @@ public class perfilUsuario extends JFrame {
         btnOferta_2.setIcon(new ImageIcon(imagePerfil));
         btnOferta_2.setBounds(1048, 11, 130, 118);
         panel_1.add(btnOferta_2);
+      
 
         JPanel panel_2 = new JPanel();
         panel_2.setBounds(0, 137, 1200, 663);
@@ -134,6 +136,7 @@ public class perfilUsuario extends JFrame {
         panel_3.add(panel_4);
         panel_4.setLayout(null);
 
+        panel_4.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
         JLabel lblNewLabel_1_1 = new JLabel("Mi Perfil");
         lblNewLabel_1_1.setBounds(215, 0, 173, 55);
         panel_4.add(lblNewLabel_1_1);
@@ -192,7 +195,7 @@ public class perfilUsuario extends JFrame {
         JPanel panel_5 = new JPanel();
         panel_5.setBackground(new Color(239, 222, 230));//pnael de boton 192
       
-        panel_5.setBounds(0, 460, 584, 63);
+        panel_5.setBounds(3, 450, 575, 63);
         panel_4.add(panel_5);
         panel_5.setLayout(null);
 

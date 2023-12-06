@@ -103,6 +103,7 @@ public class clienteInicio extends JFrame {
 	        JPanel panel = new JPanel();
 	        panel.setBounds(0, 0, 1200, 763);
 	        getContentPane().add(panel);
+	        
 	        panel.setLayout(null);
 
 	        grupoRadioBotones = new ButtonGroup();
@@ -218,8 +219,9 @@ public class clienteInicio extends JFrame {
 	        //FIONNN
 	        JPanel panel_1 = new JPanel();
 	        panel_1.setBackground(new Color(117, 14, 73));
-	        panel_1.setBounds(0, 0, 1200, 140);
+	        panel_1.setBounds(2, 0, 1190, 136);
 	        panel.add(panel_1);
+	        panel_1.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
 	       
 	        panel_1.setLayout(null);
 

@@ -126,7 +126,7 @@ public class clienteCatalogo extends JFrame {
         
         panel_1.add(btnOferta_2);
         
-       
+        
 
 
         JPanel panelBase = new JPanel();
@@ -518,7 +518,8 @@ System.out.println("blcle de categora"+nombre);
             add(scrollPane, BorderLayout.CENTER);
 
             setBackground(Color.WHITE);
-        }}}
+        }}
+        }
     
     
     

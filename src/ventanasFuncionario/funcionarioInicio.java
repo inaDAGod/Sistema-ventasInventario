@@ -166,7 +166,7 @@ public class funcionarioInicio extends JFrame {
 	        labelImagen7.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 	        btnUsuario.add(labelImagen7, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	       
-	      //BOTON mIS FAVORITOS
+	      //BOTON añadir productos
 	        JButton buttonProducto5 = new JButton("  Añadir Producto");
 	        buttonProducto5.setBounds(25, 120, 300, 70);
 	        buttonProducto5.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
@@ -184,7 +184,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonProducto5.add(labelImagen2, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	        
 	        
-	      //BOTON MIS PEDIDOS
+	      //BOTON añadir funcionario
 	        JButton buttonMisPedidos = new JButton("Añadir funcionario");
 	        buttonMisPedidos.setBounds(25, 220, 300, 70);
 	        buttonMisPedidos.setLayout(new BorderLayout());
@@ -201,7 +201,7 @@ public class funcionarioInicio extends JFrame {
 	        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 	        buttonMisPedidos.add(labelImagen21, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	        
-	      //BOTON MIS listado
+	      //BOTON MIS listado de clientes
 	        JButton buttonListado = new JButton("Listado de clientes");
 	        buttonListado.setBounds(25, 320, 300, 70);
 	        buttonListado.setLayout(new BorderLayout());
@@ -219,7 +219,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonListado.add(labelImagen218, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	        
 	       
-	        //BOTON AJUSTES
+	        //BOTON todos los pedidos
 	        JButton buttonAjustes = new JButton("Todos los pedidos");
 	        buttonAjustes.setBounds(25, 420, 300, 70);
 	        buttonAjustes.setLayout(new BorderLayout());
@@ -261,8 +261,9 @@ public class funcionarioInicio extends JFrame {
 	        //FIONNN
 	        JPanel panel_1 = new JPanel();
 	        panel_1.setBackground(new Color(117, 14, 73));
-	        panel_1.setBounds(0, 0, 1200, 140);
+	        panel_1.setBounds(2, 0, 1190, 136);
 	        panel.add(panel_1);
+	        panel_1.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
 	       
 	        panel_1.setLayout(null);
 

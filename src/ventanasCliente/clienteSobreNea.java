@@ -110,24 +110,26 @@ public class clienteSobreNea extends JFrame {
 
         JLabel lblNewLabel_1_1 = new JLabel("Sobre nea");
         lblNewLabel_1_1.setBounds(10, 11, 254, 52);
+        lblNewLabel_1_1.setForeground(new Color(112, 76, 94));
         panel_3.add(lblNewLabel_1_1);
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 47));
 
         JPanel panel_3_1 = new JPanel();
         panel_3_1.setBounds(605, 5, 595, 647);
-        panel_3_1.setBackground(new Color(239, 222, 230));//CONTENDOR IMAGEN 180
+        panel_3_1.setBackground(new Color(241, 200, 219));//CONTENDOR IMAGEN 180
         panel_2.add(panel_3_1);
         panel_3_1.setLayout(null);
 
         JLabel lblNewLabel_3 = new JLabel("Néa es una empresa que abrió sus puertas en 2021, se dedica a la venta de una amplia variedad de productos cuidadosamente seleccionados de artículos que abarcan accesorios, dermo-cosméticos, cremas, maquillaje, ropa, entre otros productos. ");
         lblNewLabel_3.setBounds(10, 78, 563, 207);
+        lblNewLabel_3.setBackground(new Color(0, 0, 0));//CONTENDOR IMAGEN 180
         panel_3_1.add(lblNewLabel_3);
 
         JLabel lblNewLabel_4 = new JLabel("");
         ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
         Image image4 = icon4.getImage().getScaledInstance(585, 150, Image.SCALE_SMOOTH);
         lblNewLabel_4.setIcon(new ImageIcon(image4));
-        lblNewLabel_4.setBounds(0, 420, 555, 182);
+        lblNewLabel_4.setBounds(20, 420, 555, 182);
         panel_3_1.add(lblNewLabel_4);
 
         JLabel lblNewLabel_1_1_1 = new JLabel("Contactanos");
@@ -142,7 +144,7 @@ public class clienteSobreNea extends JFrame {
 
         JLabel lblNewLabel_3_1 = new JLabel("Av....... Calle....");
         lblNewLabel_3_1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-        lblNewLabel_3_1.setBounds(0, 324, 331, 117);
+        lblNewLabel_3_1.setBounds(20, 300, 331, 117);
         panel_3_1.add(lblNewLabel_3_1);
 
         JLabel lblNewLabel_5 = new JLabel("");

@@ -116,7 +116,7 @@ public class clientePedidoDetalle extends JFrame {
         panel_1.add(btnOferta_2);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(255, 182, 193));
+        panel_2.setBackground(new Color(193, 123, 160));
         panel_2.setBounds(0, 137, 1200, 625);
         panel_2.setLayout(null);  
         panel.add(panel_2);

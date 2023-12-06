@@ -124,8 +124,9 @@ public class InicioGeneral extends JFrame {
 
 	        JPanel panel_1 = new JPanel();
 	        panel_1.setBackground(Color.white);
-	        panel_1.setBounds(0, 0, 1200, 140);
+	        panel_1.setBounds(2, 0, 1180, 137);
 	        panel.add(panel_1);
+	        panel_1.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
 	       
 	        panel_1.setLayout(null);
 
