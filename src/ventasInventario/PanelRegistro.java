@@ -1,6 +1,7 @@
 package ventasInventario;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
@@ -19,8 +20,8 @@ import java.awt.event.ActionEvent;
 public class PanelRegistro extends JPanel {
 	private JTextField nombre;
 	private JTextField correo;
-	private JTextField contrasenia;
-	private JTextField vContra;
+	private JPasswordField contrasenia;
+	private JPasswordField vContra;
 	private JTextField usuario;
 	public PanelRegistro() {
 		setLayout(null);
@@ -47,13 +48,13 @@ public class PanelRegistro extends JPanel {
 		add(btnRegistrar);
 	
 		
-		vContra = new JTextField();
+		vContra = new JPasswordField();
 		vContra.setColumns(10);
 		vContra.setBackground(SystemColor.menu);
 		vContra.setBounds(522, 415, 350, 40);
 		add(vContra);
 		
-		contrasenia = new JTextField();
+		contrasenia = new JPasswordField();
 		contrasenia.setColumns(10);
 		contrasenia.setBackground(SystemColor.menu);
 		contrasenia.setBounds(522, 364, 350, 40);
@@ -140,13 +141,13 @@ public class PanelRegistro extends JPanel {
 	public JTextField getContrasenia() {
 		return contrasenia;
 	}
-	public void setContrasenia(JTextField contrasenia) {
+	public void setContrasenia(JPasswordField contrasenia) {
 		this.contrasenia = contrasenia;
 	}
 	public JTextField getvContra() {
 		return vContra;
 	}
-	public void setvContra(JTextField vContra) {
+	public void setvContra(JPasswordField vContra) {
 		this.vContra = vContra;
 	}
 	public JTextField getUsuario() {

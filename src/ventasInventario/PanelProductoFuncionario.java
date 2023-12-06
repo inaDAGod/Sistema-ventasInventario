@@ -15,7 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import ventasInventario.BD.Modelo.Producto;
-
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,6 +26,9 @@ public class PanelProductoFuncionario extends JPanel {
 	JButton btnMas, btnGuardar,btnSubirFoto;
 	JTextArea txaDescripcion,txaDetalles;
 	boolean modoEditar=false;
+	String ruta;
+	JLabel foto;
+	
 	public PanelProductoFuncionario(Producto producto) {
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
@@ -34,7 +38,7 @@ public class PanelProductoFuncionario extends JPanel {
 		lbDescrpcion.setBounds(455, 95, 120, 46);
 		add(lbDescrpcion);
 		
-		JLabel foto = new JLabel("New label");
+		foto = new JLabel("New label");
 		foto.setIcon(new ImageIcon(PanelProductoCliente.class.getResource("/imagenes/rosa1(1200x800).jpg")));
 		foto.setBounds(103, 119, 300, 400);
 		add(foto);
@@ -68,7 +72,7 @@ public class PanelProductoFuncionario extends JPanel {
 		
 		
 		JLabel lbProducto = new JLabel(producto.getNombre());
-		lbProducto.setFont(new Font("Times New Roman", Font.PLAIN, 50));
+		lbProducto.setFont(new Font("Times New Roman", Font.PLAIN, 45));
 		lbProducto.setBounds(56, 38, 752, 46);
 		add(lbProducto);
 		txtEtiqueta = new JTextField();
@@ -139,19 +143,29 @@ public class PanelProductoFuncionario extends JPanel {
 		btnOfertar.setBounds(927, 552, 165, 50);
 		add(btnOfertar);
 		
+		btnSubirFoto = new JButton("Subir foto");
+		btnSubirFoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+		        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "gif","jfif"));
+		        int seleccion = fileChooser.showOpenDialog(null);        
+		        if (seleccion == JFileChooser.APPROVE_OPTION) {
+		            ruta = fileChooser.getSelectedFile().getPath();
+		            foto.setIcon(new ImageIcon(ruta));
+		        }	
+			}
+		});
+        btnSubirFoto.setBounds(314, 530, 89, 23);
+        add(btnSubirFoto);
+		
 	}
 	
 	private void habilitarModoEdicion() {
-        btnSubirFoto = new JButton("Subir foto");
-        btnSubirFoto.setBounds(314, 530, 89, 23);
-        add(btnSubirFoto);
         btnSubirFoto.setVisible(true);
+        add(btnSubirFoto);
         btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-            	
-            	
                 deshabilitarModoEdicion();
             }
         });
@@ -207,6 +221,7 @@ public class PanelProductoFuncionario extends JPanel {
         
     }
     private void deshabilitarModoEdicion() {
+    	
     	txaDescripcion.setEditable(false);
 		txaDetalles.setEditable(false);
 		txtEtiqueta.setEditable(false);
