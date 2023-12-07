@@ -38,7 +38,7 @@ import java.awt.Font;
 public class funcionarioPedidoDetalle extends JFrame {
     private static final long serialVersionUID = 1L;
     private Pedido pedido;
-   
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -248,10 +248,11 @@ public class funcionarioPedidoDetalle extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	comboBox2.setEnabled(false);
             	comboBox.setEnabled(false);
-
+            	pedido.actualizarEstado(comboBox.getSelectedItem().toString());
                 btnEditar.setVisible(true);
                 btnCancelar.setVisible(false);
                 btnGuardar.setVisible(false);
+                
             }
         });
         
