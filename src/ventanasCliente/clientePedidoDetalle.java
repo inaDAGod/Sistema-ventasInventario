@@ -31,13 +31,13 @@ import java.awt.Font;
 
 public class clientePedidoDetalle extends JFrame {
     private static final long serialVersionUID = 1L;
-    private ventasInventario.BD.Modelo.Pedido pedido;
+    private Pedido pedido;
    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	GestorPedidos p = new GestorPedidos();
+                	GestorPedidos p = new GestorPedidos();//para probar
                 	clientePedidoDetalle frame = new clientePedidoDetalle(p.getTodosPedidos().get(0));
                     frame.setVisible(true);
                 } catch (Exception e) {
