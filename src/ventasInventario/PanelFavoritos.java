@@ -29,9 +29,10 @@ public class PanelFavoritos extends JPanel {
 	ArrayList<Producto> productos;
     DefaultTableModel modelo;
     private JTextField tfProductoBuscado;
+    private ControladorFavorito controladorFavorito ;
 	public PanelFavoritos(Usuario usuario) {
 		setBackground(new Color(193, 123, 160));
-		ControladorFavorito controladorFavorito = new ControladorFavorito(usuario);
+		controladorFavorito = new ControladorFavorito(usuario);
 		productos = controladorFavorito.listaFavoritosUsuario();
 		setLayout(null);
 		
@@ -165,13 +166,20 @@ public class PanelFavoritos extends JPanel {
     // Método para eliminar la fila seleccionada de la tabla
 	private void eliminarFilaSeleccionada() {
 	    int filaSeleccionada = table.getSelectedRow();
+
 	    if (filaSeleccionada != -1) {
+	        Producto productoAEliminar = productos.get(filaSeleccionada);
+
+	      
+	        productos.remove(productoAEliminar);
 	        modelo.removeRow(filaSeleccionada);
-	        JOptionPane.showMessageDialog(this, "Producto eliminado del carrito: ", "Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	        controladorFavorito.eliminarProducto(productoAEliminar);
+	        JOptionPane.showMessageDialog(this, "Producto eliminado del favoritos: " + productoAEliminar.getNombre(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
 	    } else {
 	        JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
 	    }
 	}
+	
 	private void abrirProducto(String producto) {
 		
 		 JOptionPane.showMessageDialog(this, "Aqui añadimos la ventan de producto hehe: ", producto, JOptionPane.INFORMATION_MESSAGE);
