@@ -58,49 +58,40 @@ public class NuevoFuncionario extends JFrame {
 		contrasenia = new JTextField();
 		contrasenia.setColumns(10);
 		contrasenia.setBackground(SystemColor.menu);
-		contrasenia.setBounds(630, 503, 350, 40);
+		contrasenia.setBounds(449, 503, 477, 40);
 		getContentPane().add(contrasenia);
 		
 		correo = new JTextField();
 		correo.setColumns(10);
 		correo.setBackground(SystemColor.menu);
-		correo.setBounds(630, 450, 350, 40);
+		correo.setBounds(449, 439, 477, 40);
 		getContentPane().add(correo);
 		
 		nombre = new JTextField();
 		nombre.setBackground(SystemColor.menu);
-		nombre.setBounds(630, 387, 350, 40);
+		nombre.setBounds(449, 376, 477, 40);
 		getContentPane().add(nombre);
 		nombre.setColumns(10);
 		
 		usuario = new JTextField();
 		usuario.setColumns(10);
 		usuario.setBackground(SystemColor.menu);
-		usuario.setBounds(630, 325, 350, 40);
+		usuario.setBounds(449, 314, 477, 40);
 		getContentPane().add(usuario);
 		
 		JLabel txUsuario = new JLabel("Usuario:");
 		txUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txUsuario.setBounds(493, 336, 114, 29);
+		txUsuario.setBounds(279, 314, 114, 29);
 		getContentPane().add(txUsuario);
-		
-		JLabel imagen = new JLabel("New label");
-		imagen.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/rosa1(1200x800).jpg")));
-		imagen.setBounds(184, 291, 250, 300);
-		getContentPane().add(imagen);
-		
-		JButton btnSubirFoto = new JButton("-");
-		btnSubirFoto.setBounds(184, 600, 50, 50);
-		getContentPane().add(btnSubirFoto);
 		
 		JLabel txContrasenia = new JLabel("Contraseña:");
 		txContrasenia.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txContrasenia.setBounds(466, 503, 141, 29);
+		txContrasenia.setBounds(245, 503, 141, 29);
 		getContentPane().add(txContrasenia);
 		
 		JLabel txCorreo = new JLabel("Correo:");
 		txCorreo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txCorreo.setBounds(510, 450, 99, 29);
+		txCorreo.setBounds(295, 439, 99, 29);
 		getContentPane().add(txCorreo);
 		
 		JLabel txRegistrate = new JLabel("Añadir funcionario");
@@ -110,7 +101,7 @@ public class NuevoFuncionario extends JFrame {
 		
 		JLabel txNombre = new JLabel("Nombre:");
 		txNombre.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txNombre.setBounds(493, 398, 114, 29);
+		txNombre.setBounds(279, 376, 114, 29);
 		getContentPane().add(txNombre);
 		
 		JLabel cblanco = new JLabel("New label");
@@ -131,7 +122,7 @@ public class NuevoFuncionario extends JFrame {
 		getContentPane().add(btnUsuario);
 		
 		JButton btnLogo = new JButton("");
-        btnLogo.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/LogoGris(200x100).jpg")));
+        //btnLogo.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/LogoGris(200x100).jpg")));
         btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
         btnLogo.setBounds(42, 10, 200, 100);
         getContentPane().add(btnLogo);

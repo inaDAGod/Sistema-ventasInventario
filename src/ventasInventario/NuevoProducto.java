@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ventasInventario.BD.Controladores.ControladorProducto;
 
@@ -24,6 +25,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -39,6 +42,7 @@ public class NuevoProducto extends JFrame {
 	private JComboBox cboxEtiquetas2;
 	private JComboBox cboxEtiquetas3;
 	private Integer cantEtiquetas;
+	String ruta;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -85,12 +89,12 @@ public class NuevoProducto extends JFrame {
 		
 		JLabel txPrecio = new JLabel("Precio:");
 		txPrecio.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txPrecio.setBounds(468, 200, 111, 40);
+		txPrecio.setBounds(166, 635, 83, 32);
 		getContentPane().add(txPrecio);
 		
 		precio = new JTextField();
 		precio.setBackground(SystemColor.menu);
-		precio.setBounds(616, 200, 350, 32);
+		precio.setBounds(260, 637, 149, 32);
 		getContentPane().add(precio);
 		precio.setColumns(10);
 		
@@ -120,7 +124,7 @@ public class NuevoProducto extends JFrame {
 		
 		JLabel txDescripcion = new JLabel("Descripcion:");
 		txDescripcion.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txDescripcion.setBounds(430, 415, 149, 40);
+		txDescripcion.setBounds(430, 446, 149, 40);
 		getContentPane().add(txDescripcion);
 		
 		descripcion = new JTextArea();
@@ -220,12 +224,12 @@ public class NuevoProducto extends JFrame {
 		
 		JLabel txCantidad = new JLabel("Cantidad:");
 		txCantidad.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txCantidad.setBounds(464, 529, 120, 40);
+		txCantidad.setBounds(468, 540, 120, 40);
 		getContentPane().add(txCantidad);
 		
 		cant= new JTextField();
 		cant.setBackground(SystemColor.menu);
-		cant.setBounds(616, 532, 66, 32);
+		cant.setBounds(616, 545, 66, 32);
 		getContentPane().add(cant);
 		cant.setColumns(10);
 		
@@ -236,7 +240,23 @@ public class NuevoProducto extends JFrame {
 		getContentPane().add(imagen);
 		
 		JButton btnSubirFoto = new JButton("-");
-		btnSubirFoto.setBounds(159, 567, 50, 50);
+		btnSubirFoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+		        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "gif"));
+		        
+		        int seleccion = fileChooser.showOpenDialog(null);
+		        
+		        if (seleccion == JFileChooser.APPROVE_OPTION) {
+		            // Obtiene la ruta del archivo seleccionado
+		            ruta = fileChooser.getSelectedFile().getPath();
+		            
+		            // Actualiza la imagen en el JLabel 'foto'
+		            imagen.setIcon(new ImageIcon(ruta));
+		        }
+			}
+		});
+		btnSubirFoto.setBounds(343, 567, 66, 32);
 		getContentPane().add(btnSubirFoto);
 		
 		
