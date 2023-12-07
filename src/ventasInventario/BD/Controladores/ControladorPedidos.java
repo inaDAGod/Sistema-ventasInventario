@@ -29,16 +29,8 @@ public class ControladorPedidos {
 		}
 		return pendientes;
 	}
-	/*
-	public ArrayList<Pedido> pedidosTodos(){
-		ArrayList<Pedido> pendientes = new ArrayList<>();
-		for(Pedido p : this.gestorPedido.getTodosPedidos()) {
-			pendientes.add(p);
-		}
-		return pendientes;
-	}
-	*/
-	public ArrayList<Pedido> pedidosTodos(){ // ^ creo que es lo que se queria hacer
+	
+	public ArrayList<Pedido> pedidosTodos(){ 
 		return this.gestorPedido.getTodosPedidos();
 	}
 	
