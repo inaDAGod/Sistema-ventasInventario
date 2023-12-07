@@ -26,48 +26,25 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 //* poner abajo las clases 
-import ventanasCliente.Pedido;
+
 import ventanasCliente.clientePedidoDetalle;
-import ventanasCliente.productos;
+import ventasInventario.BD.Modelo.GestorPedidos;
+import ventasInventario.BD.Modelo.Pedido;
+import ventasInventario.BD.Modelo.ProductoCarrito;
 
 import java.awt.Font;
 
 
 public class funcionarioPedidoDetalle extends JFrame {
     private static final long serialVersionUID = 1L;
-    private List<Pedido> listaPedidos = new ArrayList<>();
- 
-
-    Pedido pedido1 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-    Pedido pedido2 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
-   Pedido pedido11 = new Pedido(1, "01/01/2023", "En proceso", "/ruta/imagen1.png");
-    Pedido pedido21 = new Pedido(2, "02/01/2023", "Entregado", "/ruta/imagen2.png");
+    private Pedido pedido;
     
-
-    
-    private List<productos> listaProductos = new ArrayList<>();
-
-    productos producto1 = new productos("P1", "Producto 1", "Descripción 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-    productos producto2 = new productos("P2", "Producto 2", "Descripción 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-    productos producto3 = new productos("P3", "Producto 3", "Descripción 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-    productos producto4 = new productos("P4", "Producto 4", "Descripción 4", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-    productos producto5 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-    productos producto6 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    productos producto7 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    productos producto11 = new productos("P1", "Producto 1", "Descripción 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-    productos producto21 = new productos("P2", "Producto 2", "Descripción 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-    productos producto31 = new productos("P3", "Producto 3", "Descripción 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-    productos producto41 = new productos("P4", "Producto 4", "Descripción 4", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-    productos producto51 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-    productos producto61 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    productos producto71 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-
-   
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	funcionarioPedidoDetalle frame = new funcionarioPedidoDetalle();
+                	GestorPedidos p = new GestorPedidos();//para probar
+                	funcionarioPedidoDetalle frame = new funcionarioPedidoDetalle(p.getTodosPedidos().get(0));
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -76,7 +53,8 @@ public class funcionarioPedidoDetalle extends JFrame {
         });
     }
 
-    public funcionarioPedidoDetalle() {
+    public funcionarioPedidoDetalle(Pedido p) {
+    	this.pedido = p;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -142,28 +120,9 @@ public class funcionarioPedidoDetalle extends JFrame {
         panel_2.add(panelTarjetas);
         
 
-        listaPedidos.add(pedido11);
-        listaPedidos.add(pedido21);
-        listaPedidos.add(pedido1);
-        listaPedidos.add(pedido2);
-        
-        listaProductos.add(producto7);
-        listaProductos.add(producto1);
-        listaProductos.add(producto2);
-        listaProductos.add(producto3);
-        listaProductos.add(producto4);
-        listaProductos.add(producto5);
-        listaProductos.add(producto6);
-        listaProductos.add(producto71);
-        listaProductos.add(producto11);
-        listaProductos.add(producto21);
-        listaProductos.add(producto31);
-        listaProductos.add(producto41);
-        listaProductos.add(producto51);
-        listaProductos.add(producto61);
 
       
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido11,listaProductos);
+            TarjetaPedido tarjeta = new TarjetaPedido();
           
             panelTarjetas.add(tarjeta);
         panel_2.setLayout(null);
@@ -200,12 +159,12 @@ public class funcionarioPedidoDetalle extends JFrame {
         panel_4.setLayout(null);
         panel_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
-        JLabel lblNewLabel_2 = new JLabel("Pedido :"+pedido11.getNumeroCompra());
+        JLabel lblNewLabel_2 = new JLabel("Pedido :"+pedido.getCpedido());
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel_2.setBounds(24, 11, 296, 23);
         panel_4.add(lblNewLabel_2);
         
-        JLabel lblNewLabel_2_1 = new JLabel("Fecha :"+pedido11.getFecha());
+        JLabel lblNewLabel_2_1 = new JLabel("Fecha :"+pedido.getCpedido());
         lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel_2_1.setBounds(24, 39, 296, 23);
         panel_4.add(lblNewLabel_2_1);
@@ -220,11 +179,12 @@ public class funcionarioPedidoDetalle extends JFrame {
         comboBox.addItem("CANCELADO");
         comboBox.addItem("PAGADO A ENTREGAR");
         comboBox.addItem("FINALIZADO");
+        comboBox.setSelectedItem(pedido.getEstadoPedido());
         comboBox.setBounds(110, 65, 200, 23);
         panel_4.add(comboBox);
         comboBox.setEnabled(false);
         
-        JLabel lblNewLabel_2_1_2 = new JLabel("Pago :");
+       JLabel lblNewLabel_2_1_2 = new JLabel("Pago :"); //los pagos no tienen estados
         lblNewLabel_2_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel_2_1_2.setBounds(24, 90, 253, 29);
         panel_4.add(lblNewLabel_2_1_2);
@@ -288,10 +248,11 @@ public class funcionarioPedidoDetalle extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	comboBox2.setEnabled(false);
             	comboBox.setEnabled(false);
-
+            	pedido.actualizarEstado(comboBox.getSelectedItem().toString());
                 btnEditar.setVisible(true);
                 btnCancelar.setVisible(false);
                 btnGuardar.setVisible(false);
+                
             }
         });
         
@@ -301,7 +262,7 @@ public class funcionarioPedidoDetalle extends JFrame {
     public class TarjetaPedido extends JPanel {
         private static final long serialVersionUID = 1L;
 
-        public TarjetaPedido(Pedido pedido, List<productos> listaProductos) {
+        public TarjetaPedido() {
             setLayout(new BorderLayout()); 
             setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
             DefaultTableModel modeloTabla = new DefaultTableModel();
@@ -312,19 +273,18 @@ public class funcionarioPedidoDetalle extends JFrame {
             modeloTabla.addColumn("Cantidad");
             modeloTabla.addColumn("Marca");
             modeloTabla.addColumn("Precio");
-         
-            float montoTotal = 0;
-            for (productos producto : listaProductos) {
+
+            for (ProductoCarrito produc  : pedido.getProductos()) {
                 modeloTabla.addRow(new Object[] {
                     
-                        producto.getNombre(),
-                        producto.getDescripcion(),
-                        producto.getCantidad(),
-                        producto.getMarca(),
-                        producto.getPrecio()
+                        produc.getProducto().getNombre(),
+                        produc.getProducto().getDescripcion(),
+                        produc.getCantidad(),
+                        produc.getProducto().getMarca(),
+                        produc.getProducto().getPrecio(),
                   
                 });
-                montoTotal += producto.getPrecio() * producto.getCantidad();
+              
             }
             
             
@@ -342,7 +302,7 @@ public class funcionarioPedidoDetalle extends JFrame {
             tablaProductos.setBounds(500, 10, 139, 36);
            
 
-            JLabel labelMonto = new JLabel("Monto Total: " + montoTotal + " Bs.");
+            JLabel labelMonto = new JLabel("Monto Total: " + pedido.getTotal() + " Bs.");
             labelMonto.setFont(new Font("Times New Roman", Font.PLAIN, 20));
             labelMonto.setForeground(Color.white); 
 

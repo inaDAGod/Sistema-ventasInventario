@@ -105,7 +105,21 @@ public class Favoritos {
 	        }
 	    }
 	}
+	
+	public void eliminarDeFavoritos(Producto producto) {
+	    Conexion con = new Conexion();
+	    try (Connection conexion = con.getConexionPostgres();
+	         PreparedStatement statement = conexion.prepareStatement("DELETE FROM favoritos WHERE cproducto = ? and cusuario = ?")) {
+	        statement.setString(1, producto.getCproducto());
+	        statement.setString(2, usuario.getUsuario());
+	        statement.executeUpdate();
+	        
 
+	    } catch (SQLException e) {
+	        // Maneja las excepciones SQL aquí
+	        e.printStackTrace();
+	    }
+	}
 	
 	
 	

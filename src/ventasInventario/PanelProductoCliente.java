@@ -37,9 +37,6 @@ public class PanelProductoCliente extends JPanel {
 		foto.setBounds(103, 119, 300, 400);
 		add(foto);
 		
-		
-		
-		
 		JComboBox cbxCantidad = new JComboBox();
 		cbxCantidad.setBounds(800, 550, 100, 25);
 		for (int i = 1; i <= producto.getCantidad(); i++) {
@@ -49,13 +46,7 @@ public class PanelProductoCliente extends JPanel {
 		JButton btnAnadir = new JButton("Añadir al carrito");
 		btnAnadir.setBounds(927, 542, 165, 50);
 		add(btnAnadir);
-		add(cbxCantidad);
-		String[] colores = producto.getColor().split("\\n"); 
-		JComboBox cbxColor= new JComboBox<>(colores);
-		cbxColor.setBounds(670, 550, 100, 25);
-		
-		
-		add(cbxColor);
+		add(cbxCantidad); 
 		
 		JTextArea txaDescripcion = new JTextArea();
 		txaDescripcion.setEditable(false);
@@ -84,7 +75,7 @@ public class PanelProductoCliente extends JPanel {
 		add(txaDetalles);
 		
 		JLabel lbProducto = new JLabel(producto.getNombre());
-		lbProducto.setFont(new Font("Times New Roman", Font.PLAIN, 50));
+		lbProducto.setFont(new Font("Times New Roman", Font.PLAIN, 45));
 		lbProducto.setBounds(56, 38, 752, 46);
 		add(lbProducto);
 		

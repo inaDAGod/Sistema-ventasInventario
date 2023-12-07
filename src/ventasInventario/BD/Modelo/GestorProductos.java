@@ -278,8 +278,39 @@ public class GestorProductos {
 	        }
 	    }
 	}
+	
+	public ArrayList<Producto> productosPorEtiqueta(String etiqueta) {
+	    ArrayList<Producto> produc = new ArrayList<>();
+	    Conexion con = new Conexion();
+	    try (Connection conexion = con.getConexionPostgres();
+	         PreparedStatement statement = conexion.prepareStatement("SELECT cproducto FROM etiquetas_producto where cetiqueta = ?")) {
+	    	
+	        statement.setString(1, etiqueta); 
 
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            while (resultSet.next()) {
+	                String cproducto = resultSet.getString("cproducto");
+	                Producto producto = buscarProductoEspecifico(cproducto);
+	                if (producto != null) {
+	                    produc.add(producto);
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Parece que hubo un error", "Uy", JOptionPane.ERROR_MESSAGE);
+	    }
+	    return produc;
+	}
 
+	public ArrayList<Producto> productosOfertados(){
+		 ArrayList<Producto> ofertados = new ArrayList<>();
+		 for(Producto p: this.productos) {
+			 if(p.getOfertado()) {
+				 ofertados.add(p);
+			 }
+		 }
+		 return ofertados;
+	}
 
 
 

@@ -102,6 +102,9 @@ public class Producto {
 	}
 
 	public Double getPrecio() {
+		if(this.ofertado) {
+			return this.oferta.getPrecioOferta();
+		}
 		return precio;
 	}
 

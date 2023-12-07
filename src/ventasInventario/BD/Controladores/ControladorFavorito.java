@@ -33,6 +33,10 @@ public class ControladorFavorito {
 		
 	}
 	
+	public void  eliminarProducto(Producto producto) {
+		favoritos.eliminarDeFavoritos(producto);
+	}
+	
 	
 	
 	

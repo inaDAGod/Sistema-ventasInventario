@@ -18,6 +18,8 @@ public class ControladorPedidos {
 		return this.gestorPedido.pedidosClienteEspecifico(usuario);
 	}
 	
+	
+	
 	public ArrayList<Pedido> pedidosPendientes(){
 		ArrayList<Pedido> pendientes = new ArrayList<>();
 		for(Pedido p : this.gestorPedido.getTodosPedidos()) {
@@ -28,12 +30,8 @@ public class ControladorPedidos {
 		return pendientes;
 	}
 	
-	public ArrayList<Pedido> pedidosTodos(){
-		ArrayList<Pedido> pendientes = new ArrayList<>();
-		for(Pedido p : this.gestorPedido.getTodosPedidos()) {
-			pendientes.add(p);
-		}
-		return pendientes;
+	public ArrayList<Pedido> pedidosTodos(){ 
+		return this.gestorPedido.getTodosPedidos();
 	}
 	
 }

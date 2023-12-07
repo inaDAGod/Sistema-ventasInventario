@@ -135,7 +135,8 @@ public class funcionarioSobreNea extends JFrame {
 
                 if (result == JFileChooser.APPROVE_OPTION) {
                     String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
-ImageIcon selectedImageIcon = new ImageIcon(imagePath);
+                    System.out.println(imagePath);
+                    ImageIcon selectedImageIcon = new ImageIcon(imagePath);
                     lblNewLabel_2.setIcon(selectedImageIcon);
                 }
             }
@@ -148,7 +149,7 @@ ImageIcon selectedImageIcon = new ImageIcon(imagePath);
         panel_3_1.setLayout(null);
 
         JLabel lblNewLabel_4 = new JLabel("");
-        ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
+        ImageIcon icon4 = new ImageIcon("src\\imagenesJhess\\ubicacion.JPG");
         Image image4 = icon4.getImage().getScaledInstance(555, 140, Image.SCALE_SMOOTH);
         lblNewLabel_4.setIcon(new ImageIcon(image4));
         lblNewLabel_4.setBounds(0, 455, 585, 182);
@@ -185,9 +186,9 @@ ImageIcon selectedImageIcon = new ImageIcon(imagePath);
                 int result = fileChooser.showOpenDialog(null);
 
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
-ImageIcon selectedImageIcon = new ImageIcon(imagePath);
-                    lblNewLabel_2.setIcon(selectedImageIcon);
+                    String imagePath2 = fileChooser.getSelectedFile().getAbsolutePath();
+                    ImageIcon selectedImageIcon2 = new ImageIcon(imagePath2);
+                    lblNewLabel_4.setIcon(selectedImageIcon2);
                 }
             }
         });

@@ -82,6 +82,13 @@ public class ControladorProducto {
 		return this.gestorProductos.getProductos();
 	}
 	
+	public ArrayList<Producto> etiquetaProductos(String etiqueta){ //para sacar todos los productos en la BD 
+		return this.gestorProductos.productosPorEtiqueta(etiqueta);
+	}
+	
+	public  ArrayList<Producto> ofertados(){
+		return this.gestorProductos.productosOfertados();
+	}
 	public void registroProducto() {
 		if(!nuevoProducto.getId().getText().isEmpty() && !nuevoProducto.getNombre().getText().isEmpty() && !nuevoProducto.getDescripcion().getText().isEmpty() && !nuevoProducto.getPrecio().getText().isEmpty() && 
 				!nuevoProducto.getCant().getText().isEmpty()) {

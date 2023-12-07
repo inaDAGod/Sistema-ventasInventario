@@ -38,8 +38,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
-import ventanasCliente.etiquetas;
-import ventanasCliente.productos;
+import ventasInventario.BD.Controladores.ControladorProducto;
+import ventasInventario.BD.Modelo.Producto;
 
 
 
@@ -53,8 +53,10 @@ public class funcionarioInicio extends JFrame {
 	    private JPanel panelTarjetas;
 	    private JPanel panelBusqueda;
 	    private JPanel panel_2;
-	    private List<etiquetas> listaEtiquetas = new ArrayList<>();
-	    private List<productos> listaProductos = new ArrayList<>();
+	    
+	    private ControladorProducto controladorProducto;
+		private ArrayList<Producto> productos;
+		private ArrayList<String> etiquetas;
 	    private String textoBusqueda = "";
 	    private JScrollPane scrollPane;
 	    
@@ -68,23 +70,7 @@ public class funcionarioInicio extends JFrame {
 	    private int currentIndex = 0;
 	    private Timer timer;
 	    
-	    // panelBusqueda.setBackground(Color.blue); define color
-	    etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
-	    etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
-	    etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
-	  etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
-	   etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
-	     etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
-	   
 
-
-	    productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-	    productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-	    productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-	    productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-	    productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-	    productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-	    productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
 	    //imagenes carusel	
 	    
 	 
@@ -100,19 +86,9 @@ public class funcionarioInicio extends JFrame {
 	    }
 
 	    public funcionarioInicio() {
-	        listaEtiquetas.add(new etiquetas(1, "Detalle 1"));
-	        listaEtiquetas.add(new etiquetas(2, "Detalle 2"));
-	        listaEtiquetas.add(new etiquetas(2, "Detalle 3"));
-	        listaEtiquetas.add(new etiquetas(2, "Detalle 4"));
-	        listaEtiquetas.add(new etiquetas(2, "Detalle 5"));
-	        listaEtiquetas.add(new etiquetas(2, "Detalle 6"));
-	        listaProductos.add(producto7);
-	        listaProductos.add(producto1);
-	        listaProductos.add(producto2);
-	        listaProductos.add(producto3);
-	        listaProductos.add(producto4);
-	        listaProductos.add(producto5);
-	        listaProductos.add(producto6);
+	    	controladorProducto = new ControladorProducto();
+			productos = controladorProducto.todosProductos();
+			etiquetas = controladorProducto.todasEtiquetas();
 	        
 	       //imagenes carusel
 	        listaImagenes.add("src/imagenesJhess/caru2.jfif");
@@ -381,7 +357,7 @@ public class funcionarioInicio extends JFrame {
 	                
 	         radioBoton1 = new JRadioButton("Ropa");
 	                        
-	         radioBoton2 = new JRadioButton("Accesorios");
+	         radioBoton2 = new JRadioButton("Cosmetico");
 	                                
 	          radioBoton3 = new JRadioButton("Maquillaje");
 	                                        
@@ -412,7 +388,7 @@ public class funcionarioInicio extends JFrame {
 	       
 	        panelBusqueda.setBounds(0, 10, 10, 10);
 	        panelBusqueda.setBackground(Color.blue);
-	        agregarTarjetasPedidos(listaEtiquetas);     
+	        agregarTarjetasPedidos();     
 	        restaurarEstadoOriginal();
 
 	        
@@ -440,15 +416,14 @@ public class funcionarioInicio extends JFrame {
 	    
 	    
 
-	    private void agregarTarjetasPedidos(List<etiquetas> listaEtiquetas) {
+	    private void agregarTarjetasPedidos() {
 	    	
 	    	
 	    	 
 	         
-	        for (etiquetas eti : listaEtiquetas) {
+	        for (String eti : etiquetas) {
 	            TarjetaPedido tarjeta = new TarjetaPedido(eti);
 	      
-				System.out.println("blcle de categora"+eti.getCtiquetas());
 	            panelTarjetas.add(tarjeta); 
 	        }
 	      
@@ -459,7 +434,7 @@ public class funcionarioInicio extends JFrame {
 	    }
 	    
 	    
-	    private void filtrarTarjetas(List<etiquetas> listaEtiquetas) {
+	    private void filtrarTarjetas() {
 	     
 	    	panelTarjetas.removeAll();
 	    	
@@ -556,7 +531,7 @@ public class funcionarioInicio extends JFrame {
 	        radioBoton1.setBackground(new Color(239, 222, 230));
 	        panelBusqueda.add(radioBoton1);
 
-	        radioBoton2 = new JRadioButton("Accesorios");
+	        radioBoton2 = new JRadioButton("Cosmetico");
 	        radioBoton2.setBackground(new Color(239, 222, 230));
 	        radioBoton2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 	        radioBoton2.setBounds(495, 150, 100, 30);
@@ -617,8 +592,8 @@ public class funcionarioInicio extends JFrame {
 	       
 	        
 	       
-	        for (etiquetas eti : listaEtiquetas) {
-	            if (eti.getDetalle().equals(tipoDetalleSeleccionado)) {
+	        for (String eti : etiquetas) {
+	            if (eti.equals(tipoDetalleSeleccionado)) {
 	                
 	            	TarjetaPedido tarjeta = new TarjetaPedido(eti);
 	                panelTarjetas.add(tarjeta);
@@ -649,7 +624,7 @@ public class funcionarioInicio extends JFrame {
 	        radioBoton1.addItemListener(new ItemListener() {
 	            public void itemStateChanged(ItemEvent e) {
 	                if (e.getStateChange() == ItemEvent.SELECTED) {
-	                	filtrarTarjetas(listaEtiquetas);
+	                	filtrarTarjetas();
 	               	 restaurarEstiloRadioButtons();
 	                 cambiarEstiloRadioButton(radioBoton1);
 	                 
@@ -666,7 +641,7 @@ public class funcionarioInicio extends JFrame {
 	        radioBoton2.addItemListener(new ItemListener() {
 	            public void itemStateChanged(ItemEvent e) {
 	                if (e.getStateChange() == ItemEvent.SELECTED) {
-	                	filtrarTarjetas(listaEtiquetas);
+	                	filtrarTarjetas();
 	               	 restaurarEstiloRadioButtons();
 	                 cambiarEstiloRadioButton(radioBoton2);
 	                }
@@ -683,7 +658,7 @@ public class funcionarioInicio extends JFrame {
 	            public void itemStateChanged(ItemEvent e) {
 	                if (e.getStateChange() == ItemEvent.SELECTED) {
 	                
-	                    filtrarTarjetas(listaEtiquetas);
+	                    filtrarTarjetas();
 	                    restaurarEstiloRadioButtons();
 	                    cambiarEstiloRadioButton(radioBoton3);
 	                }
@@ -715,11 +690,11 @@ public class funcionarioInicio extends JFrame {
 
 	    private String obtenerTipoDetalleSeleccionado() {
 	        if (radioBoton1.isSelected()) {
-	            return "Detalle 1";
+	            return "ROPA";
 	        } else if (radioBoton2.isSelected()) {
-	            return "Detalle 2";
+	            return "COSMETICO";
 	        } else if (radioBoton3.isSelected()) {
-	            return "Detalle 3";
+	            return "MAQUILLAJE";
 	        }
 	       
 	        return "";
@@ -729,8 +704,8 @@ public class funcionarioInicio extends JFrame {
 	    private void restaurarEstadoOriginal() {
 	        
 	        panelTarjetas.removeAll();
-	      filtrarTarjetas(listaEtiquetas);
-	        agregarTarjetasPedidos(listaEtiquetas);
+	      filtrarTarjetas();
+	        agregarTarjetasPedidos();
 	         panelTarjetas.revalidate();
 	        panelTarjetas.repaint();
 	    }
@@ -740,10 +715,11 @@ public class funcionarioInicio extends JFrame {
 	    private void buscarPorNombre(String nombre) {
 	       
 
-	    	filtrarTarjetas(listaEtiquetas); 
+	    	filtrarTarjetas(); 
 	    	TarjetaProducto tarjeta = new TarjetaProducto(nombre);
 	         
-				System.out.println("blcle de categora"+nombre);
+				
+	    
 	         panelTarjetas.add(tarjeta);
 	       
 	         textFieldBuscar.setText(textoBusqueda);
@@ -807,7 +783,7 @@ public class funcionarioInicio extends JFrame {
 	    public class TarjetaPedido extends JPanel {
 	        private static final long serialVersionUID = 1L;
 
-	        public TarjetaPedido(etiquetas etiqueta) {
+	        public TarjetaPedido(String etiqueta) {
 	        	
 	        	setLayout(new BorderLayout()); 
 	            setBorder(BorderFactory.createLineBorder(Color.black, 3)); 
@@ -817,10 +793,10 @@ public class funcionarioInicio extends JFrame {
 	            panelTexto.setLayout(new BorderLayout());
 	            add(panelTexto, BorderLayout.NORTH);
 	            panelTexto.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
-	            System.out.println(etiqueta.getDetalle());
+	        
 	            
 	            //boorras desde aqui pa mas bonito
-	            JLabel lblRopa = new JLabel(etiqueta.getDetalle()); 
+	            JLabel lblRopa = new JLabel(etiqueta); 
 	            lblRopa.setForeground(new Color(0,0,0));
 	            lblRopa.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 	            lblRopa.setHorizontalAlignment(JLabel.LEFT);
@@ -836,8 +812,8 @@ public class funcionarioInicio extends JFrame {
 	            panelTarjetas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 	         
-	            for (productos producto11 : listaProductos) {
-	            	if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
+	            for (Producto producto11 : controladorProducto.etiquetaProductos(etiqueta)) {
+	            	
 	                JPanel cardPanel = new JPanel();
 	                cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
 	                cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -845,7 +821,7 @@ public class funcionarioInicio extends JFrame {
 	                JButton buttonProducto = new JButton();
 	                buttonProducto.setLayout(new GridBagLayout());
 
-	                ImageIcon iconProducto = new ImageIcon(producto11.getRuta_imagen());
+	                ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 	                int alturaDeseada = 200;
 	                int anchuraCalculada = 200;
@@ -894,7 +870,7 @@ public class funcionarioInicio extends JFrame {
 	                cardPanel.setPreferredSize(new Dimension(anchuraCalculada + 20, alturaDeseada + 20));
 	                panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 	                panelTarjetas.add(cardPanel);
-	            }
+	            
 
 	            JScrollPane scrollPane = new JScrollPane(panelTarjetas);
 	            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -943,11 +919,10 @@ public class funcionarioInicio extends JFrame {
 	                panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 	                panelTarjetas.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
 	                
-	                for (productos producto11 : listaProductos) {
+	                for (Producto producto11 : productos) {
 	                	
 	                	 if (producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())) 
-	                	 {System.out.println("nombnrProductos ("+producto11.getNombre()+")== nombreBuscado ("+nombre+")");
-	                	 System.out.println("resultado  ("+producto11.getNombre().toLowerCase().contains(nombre.toLowerCase())+")");
+	                	 {
 	                    JPanel cardPanel = new JPanel();
 	                    cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
 	                    cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -955,7 +930,7 @@ public class funcionarioInicio extends JFrame {
 	                    JButton buttonProducto = new JButton();
 	                    buttonProducto.setLayout(new GridBagLayout());
 
-	                    ImageIcon iconProducto = new ImageIcon(producto11.getRuta_imagen());
+	                    ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 	                    int alturaDeseada = 200;
 	                    int anchuraCalculada = 200;

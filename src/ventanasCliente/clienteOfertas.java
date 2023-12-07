@@ -21,13 +21,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+
+import ventasInventario.BD.Controladores.ControladorProducto;
+import ventasInventario.BD.Modelo.Producto;
+
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 
 public class clienteOfertas extends JFrame {
 
     private static final long serialVersionUID = 1L;
-
+    private ArrayList<Producto> ofertados;
+    private ControladorProducto controladorProducto;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -42,6 +47,8 @@ public class clienteOfertas extends JFrame {
     }
 
     public clienteOfertas() {
+    	controladorProducto = new ControladorProducto();
+    	ofertados = controladorProducto.ofertados();
     	float descuento=(float) 0.2;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -100,30 +107,13 @@ public class clienteOfertas extends JFrame {
         panelTarjetas.setBackground(new Color(239, 222, 230)); 
         panelTarjetas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelTarjetas.setLayout(new BoxLayout(panelTarjetas, BoxLayout.X_AXIS));
-        List<productos> listaProductos = new ArrayList<>();
-
-        productos producto1 = new productos("P1", "Producto 1", "Descripción 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-        productos producto2 = new productos("P2", "Producto 2", "Descripción 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-        productos producto3 = new productos("P3", "Producto 3", "Descripción 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-        productos producto4 = new productos("P4", "Producto 4", "Descripción 4", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-        productos producto5 = new productos("P5", "Producto 5", "Descripción 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-        productos producto6 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-        productos producto7 = new productos("P6", "Producto 6", "Descripción 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-
-        listaProductos.add(producto7);
-        listaProductos.add(producto1);
-        listaProductos.add(producto2);
-        listaProductos.add(producto3);
-        listaProductos.add(producto4);
-        listaProductos.add(producto5);
-        listaProductos.add(producto6);
+      
 
        
         
        
 
-        for (productos Productos : listaProductos) {
-            if (Productos.isOfetado()) {
+        for (Producto producto: ofertados) {
                 JPanel cardPanel = new JPanel();
                 cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
                 cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -131,7 +121,7 @@ public class clienteOfertas extends JFrame {
                 JButton buttonPedido = new JButton();
                 buttonPedido.setLayout(new GridBagLayout());
 
-                ImageIcon iconPedido = new ImageIcon(Productos.getRuta_imagen());
+                ImageIcon iconPedido = new ImageIcon(producto.getImagenes().get(0));
 
                 int alturaDeseada = 300;
                 int anchuraCalculada = 300;
@@ -159,14 +149,13 @@ public class clienteOfertas extends JFrame {
                 JPanel panelDetalles = new JPanel();
                 panelDetalles.setBackground(Color.white);
                 panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
-                JLabel labelNumeroCompra = new JLabel("Nombre: " + Productos.getNombre());
+                JLabel labelNumeroCompra = new JLabel("Nombre: " + producto.getNombre());
                 labelNumeroCompra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelNumeroCompra.setForeground(Color.BLACK); 
-                float valor = Productos.getPrecio() * descuento;
-                JLabel labelFecha = new JLabel("Antes: " + (Productos.getPrecio() + valor));
+                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecio());
                 labelFecha.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelFecha.setForeground(Color.RED); 
-                JLabel labelEstado = new JLabel("Ahora: " + Productos.getPrecio());
+                JLabel labelEstado = new JLabel("Ahora: " + producto.getOferta().getPrecioOferta());
                 labelEstado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelEstado.setForeground(Color.GREEN);
                 panelDetalles.add(labelNumeroCompra);
@@ -189,7 +178,7 @@ public class clienteOfertas extends JFrame {
                 cardPanel.add(buttonPedido);
                 
                 panelTarjetas.add(cardPanel);
-            }
+            
         }
         panel_2.setLayout(null);
 

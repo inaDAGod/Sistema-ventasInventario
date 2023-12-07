@@ -72,7 +72,7 @@ public class ProductoCliente extends JFrame {
 		getContentPane().add(btnUsuario);
 		
 		JButton btnLogo = new JButton("");
-        btnLogo.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/LogoGris(200x100).jpg")));
+        //btnLogo.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/LogoGris(200x100).jpg")));
         btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
         btnLogo.setBounds(42, 10, 200, 100);
         getContentPane().add(btnLogo);

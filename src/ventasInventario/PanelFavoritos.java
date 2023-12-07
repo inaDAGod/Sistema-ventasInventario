@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ventasInventario.BD.Controladores.ControladorFavorito;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.ProductoCarrito;
 import ventasInventario.BD.Modelo.Usuario;
 
 import java.awt.Color;
@@ -28,9 +29,10 @@ public class PanelFavoritos extends JPanel {
 	ArrayList<Producto> productos;
     DefaultTableModel modelo;
     private JTextField tfProductoBuscado;
+    private ControladorFavorito controladorFavorito ;
 	public PanelFavoritos(Usuario usuario) {
 		setBackground(new Color(193, 123, 160));
-		ControladorFavorito controladorFavorito = new ControladorFavorito(usuario);
+		controladorFavorito = new ControladorFavorito(usuario);
 		productos = controladorFavorito.listaFavoritosUsuario();
 		setLayout(null);
 		
@@ -87,6 +89,15 @@ public class PanelFavoritos extends JPanel {
         btnBuscar.setBounds(1020, 123, 89, 36);
         add(btnBuscar);
         
+        JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		confirmarEliminacion();
+        	}
+        });
+        btnEliminar.setBounds(1007, 174, 102, 26);
+        add(btnEliminar);
+        
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -129,6 +140,46 @@ public class PanelFavoritos extends JPanel {
        
         }
     }
+	private void confirmarEliminacion() {
+        int filaSeleccionada = table.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            // Obtener el nombre del producto en la fila seleccionada
+            String productoAEliminar = (String) table.getValueAt(filaSeleccionada, 0);
+
+            // Mostrar cuadro de diálogo de confirmación
+            int confirmacion = JOptionPane.showConfirmDialog(
+                    PanelFavoritos.this,
+                    "¿Estás seguro de eliminar el producto '" + productoAEliminar + "' del carrito?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario selecciona 'Sí' (Aceptar), proceder con la eliminación
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                eliminarFilaSeleccionada();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    // Método para eliminar la fila seleccionada de la tabla
+	private void eliminarFilaSeleccionada() {
+	    int filaSeleccionada = table.getSelectedRow();
+
+	    if (filaSeleccionada != -1) {
+	        Producto productoAEliminar = productos.get(filaSeleccionada);
+
+	      
+	        productos.remove(productoAEliminar);
+	        modelo.removeRow(filaSeleccionada);
+	        controladorFavorito.eliminarProducto(productoAEliminar);
+	        JOptionPane.showMessageDialog(this, "Producto eliminado del favoritos: " + productoAEliminar.getNombre(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+	    }
+	}
+	
 	private void abrirProducto(String producto) {
 		
 		 JOptionPane.showMessageDialog(this, "Aqui añadimos la ventan de producto hehe: ", producto, JOptionPane.INFORMATION_MESSAGE);
