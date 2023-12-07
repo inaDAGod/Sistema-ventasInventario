@@ -274,7 +274,7 @@ public class NuevoProducto extends JFrame {
 		getContentPane().add(btnUsuario);
 		
 		JButton btnLogo = new JButton("");
-        btnLogo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\LogoGris(200x100).jpg"));
+        //btnLogo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\LogoGris(200x100).jpg"));
         btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
         btnLogo.setBounds(42, 10, 200, 100);
         getContentPane().add(btnLogo);
