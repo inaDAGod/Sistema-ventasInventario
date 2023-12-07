@@ -35,6 +35,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import ventasInventario.Login;
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -575,7 +576,12 @@ public class InicioGeneral extends JFrame {
 
 				JButton buttonProducto = new JButton();
 				buttonProducto.setLayout(new GridBagLayout());
-
+				buttonProducto.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ProductoCliente frame = new ProductoCliente(null,producto11);
+						frame.setVisible(true);
+					}
+				});
 				ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 				int alturaDeseada = 200;
@@ -679,7 +685,12 @@ public class InicioGeneral extends JFrame {
 
 					JButton buttonProducto = new JButton();
 					buttonProducto.setLayout(new GridBagLayout());
-
+					buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoCliente frame = new ProductoCliente(null,producto11);
+							frame.setVisible(true);
+						}
+					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 					int alturaDeseada = 200;
