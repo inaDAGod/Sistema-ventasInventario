@@ -5,6 +5,8 @@ import javax.swing.border.Border;
 
 import ventanasFuncionario.funcionarioInicio.TarjetaPedido;
 import ventanasFuncionario.funcionarioInicio.TarjetaProducto;
+import ventasInventario.PanelLogin;
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 import ventasInventario.BD.Modelo.Usuario;
@@ -51,7 +53,7 @@ public class clienteInicio extends JFrame {
 	// panelBusqueda.setBackground(Color.blue); define color
 	
 	// imagenes carusel
-	/*
+	///*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
@@ -62,7 +64,8 @@ public class clienteInicio extends JFrame {
 				e.printStackTrace();
 			}
 		});
-	}*/
+	}
+	//*/
 
 	public clienteInicio(Usuario u) {
 		this.usuario = u;
@@ -719,7 +722,12 @@ public class clienteInicio extends JFrame {
 
 					JButton buttonProducto = new JButton();
 					buttonProducto.setLayout(new GridBagLayout());
-
+					buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							frame.setVisible(true);
+						}
+					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 					int alturaDeseada = 200;
@@ -823,7 +831,12 @@ public class clienteInicio extends JFrame {
 
 					JButton buttonProducto = new JButton();
 					buttonProducto.setLayout(new GridBagLayout());
-
+					buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							frame.setVisible(true);
+						}
+					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 					int alturaDeseada = 200;
