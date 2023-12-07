@@ -302,7 +302,15 @@ public class GestorProductos {
 	    return produc;
 	}
 
-
+	public ArrayList<Producto> productosOfertados(){
+		 ArrayList<Producto> ofertados = new ArrayList<>();
+		 for(Producto p: this.productos) {
+			 if(p.getOfertado()) {
+				 ofertados.add(p);
+			 }
+		 }
+		 return ofertados;
+	}
 
 
 
