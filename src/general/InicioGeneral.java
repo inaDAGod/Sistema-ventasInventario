@@ -553,7 +553,6 @@ public class InicioGeneral extends JFrame {
 			panelTarjetas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 			for (Producto producto11 : controladorProducto.etiquetaProductos(etiqueta)) {
-				// if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
 				JPanel cardPanel = new JPanel();
 				cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
 				cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
