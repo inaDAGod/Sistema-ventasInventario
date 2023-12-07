@@ -97,7 +97,7 @@ public class Pedido {
 		this.total = total;
 	}
 
-
+	
 	public ArrayList<ProductoCarrito> getProductos() {
 		return productos;
 	}
