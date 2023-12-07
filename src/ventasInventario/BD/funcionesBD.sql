@@ -139,6 +139,24 @@ end;
 $confiCarrito$
 language plpgsql;
 
+create or replace function pagarPedido(cped varchar(50))
+returns void as $pagar$
+declare
+
+    curs cursor for select  *from productos_pedido where cpedido = cped;
+    row record;
+begin 
+    open curs;
+    loop
+        fetch from curs into row;
+        exit when not found;
+            update productos set cantidad = cantidad - row.cantidad where cproducto = row.cproducto ;
+    end loop;
+    close curs;
+end;
+$pagar$
+language plpgsql;
+
 --select confirmarCarrito('danialee14');
 
 --select *from  carrito_productos
