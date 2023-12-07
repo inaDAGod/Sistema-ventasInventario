@@ -34,6 +34,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.Login;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -122,6 +123,7 @@ public class InicioGeneral extends JFrame {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(250, 44, 125, 36);
 		panel_1.add(btnNewButton);
+		
 
 		JButton btnOferta = new JButton("Productos");
 		btnOferta.setBackground(new Color(220, 100, 150));
@@ -153,6 +155,14 @@ public class InicioGeneral extends JFrame {
 		btnvolver.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnvolver.setForeground(Color.WHITE);
 		btnvolver.setBounds(850, 44, 150, 40);
+		btnvolver.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
+				setVisible(false);
+			}
+		});
 		panel_1.add(btnvolver);
 
 		JButton btnvolver2 = new JButton("Registrate ahora!");
@@ -161,6 +171,14 @@ public class InicioGeneral extends JFrame {
 		btnvolver2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnvolver2.setForeground(Color.WHITE);
 		btnvolver2.setBounds(1020, 44, 150, 40);
+		btnvolver2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
+				setVisible(false);
+			}
+		});
 		panel_1.add(btnvolver2);
 
 		JPanel panelBase = new JPanel();
