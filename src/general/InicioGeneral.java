@@ -209,7 +209,7 @@ public class InicioGeneral extends JFrame {
 
 		radioBoton1 = new JRadioButton("Ropa");
 
-		radioBoton2 = new JRadioButton("Accesorios");
+		radioBoton2 = new JRadioButton("Cosmetico");
 
 		radioBoton3 = new JRadioButton("Maquillaje");
 
@@ -327,7 +327,7 @@ public class InicioGeneral extends JFrame {
 		radioBoton1.setBackground(new Color(239, 222, 230));
 		panelBusqueda.add(radioBoton1);
 
-		radioBoton2 = new JRadioButton("Accesorios");
+		radioBoton2 = new JRadioButton("Cosmetico");
 		radioBoton2.setBackground(new Color(239, 222, 230));
 		radioBoton2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		radioBoton2.setBounds(495, 150, 100, 30);
@@ -553,7 +553,6 @@ public class InicioGeneral extends JFrame {
 			panelTarjetas.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 			for (Producto producto11 : controladorProducto.etiquetaProductos(etiqueta)) {
-				// if(etiqueta.getDetalle().equals(producto11.getDescripcion())) {
 				JPanel cardPanel = new JPanel();
 				cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
 				cardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
