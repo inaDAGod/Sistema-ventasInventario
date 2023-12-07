@@ -179,12 +179,12 @@ public class funcionarioPedidoDetalle extends JFrame {
         comboBox.addItem("CANCELADO");
         comboBox.addItem("PAGADO A ENTREGAR");
         comboBox.addItem("FINALIZADO");
-        
+        comboBox.setSelectedItem(pedido.getEstadoPedido());
         comboBox.setBounds(110, 65, 200, 23);
         panel_4.add(comboBox);
         comboBox.setEnabled(false);
         
-       JLabel lblNewLabel_2_1_2 = new JLabel("Pago :");
+       JLabel lblNewLabel_2_1_2 = new JLabel("Pago :"); //los pagos no tienen estados
         lblNewLabel_2_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel_2_1_2.setBounds(24, 90, 253, 29);
         panel_4.add(lblNewLabel_2_1_2);
