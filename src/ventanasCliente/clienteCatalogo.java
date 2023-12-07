@@ -132,7 +132,7 @@ public class clienteCatalogo extends JFrame {
 
 		panelBusqueda.add(radioBoton1);
 
-		radioBoton2 = new JRadioButton("Accesorios");
+		radioBoton2 = new JRadioButton("Cosmetico");
 
 		radioBoton3 = new JRadioButton("Maquillaje");
 
@@ -199,7 +199,7 @@ public class clienteCatalogo extends JFrame {
 
 		panelBusqueda.add(radioBoton1);
 
-		radioBoton2 = new JRadioButton("Accesorios");
+		radioBoton2 = new JRadioButton("Cosmetico");
 		radioBoton2.setBounds(495, 205, 100, 30);
 		radioBoton2.setBackground(new Color(214, 166, 190));
 		radioBoton2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
