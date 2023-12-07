@@ -47,7 +47,7 @@ public class Login extends JFrame {
         getContentPane().add(pl);
         
         JButton btnLogo = new JButton("");
-        btnLogo.setIcon(new ImageIcon(Login.class.getResource("/imagenes/LogoGris(200x100).jpg")));
+        //btnLogo.setIcon(new ImageIcon(Login.class.getResource("/imagenes/LogoGris(200x100).jpg")));
         btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
         btnLogo.setBounds(42, 11, 200, 100);
         getContentPane().add(btnLogo);
