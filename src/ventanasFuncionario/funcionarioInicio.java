@@ -389,27 +389,15 @@ public class funcionarioInicio extends JFrame {
 	        panel_1.add(btnOferta_1);
 
 	      
-	        ImageIcon iconPerfil = new ImageIcon(
-	                "src/imagenesJhess/perfilpersona.png");
-	        Image imagePerfil = iconPerfil.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+	        ImageIcon iconPerfil = new ImageIcon("src/imagenesJhess/perfilpersona.png");
+			Image imagePerfil = iconPerfil.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
-	        btnOferta_2 = new JButton("");
-	        btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 0));
-	        btnOferta_2.setBackground(new Color(117, 14, 73));
-	        btnOferta_2.setIcon(new ImageIcon(imagePerfil));
-	        btnOferta_2.setBounds(990, 11, 130, 118);
-	        panel_1.add(btnOferta_2);
-	       
-	        
-
-	        
-	        JButton btnvolver = new JButton(">");
-	        btnvolver.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
-	        btnvolver.setBackground(new Color(220, 100, 150));
-	        btnvolver.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-	        btnvolver.setForeground(Color.WHITE);
-	        btnvolver.setBounds(1130, 50, 50, 40);
-	        panel_1.add(btnvolver);
+			btnOferta_2 = new JButton("");
+			btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+			btnOferta_2.setBackground(new Color(117, 14, 73));
+			btnOferta_2.setIcon(new ImageIcon(imagePerfil));
+			btnOferta_2.setBounds(1050, 15, 100, 100);
+			panel_1.add(btnOferta_2);
 //*INTERACCION DEL NARVAR
 
 	        
@@ -419,7 +407,6 @@ public class funcionarioInicio extends JFrame {
 
 	            	carruselPanel.setVisible(false);
 	            	radioBoton3_1.setVisible(false);
-	            	btnvolver.setVisible(false);
 	            	btnOferta_2.setVisible(false);
 	            	navegador.setVisible(true);
 	            	SuperiorNavegador.setVisible(true);
