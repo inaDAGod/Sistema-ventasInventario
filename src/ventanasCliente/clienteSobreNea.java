@@ -35,7 +35,7 @@ public class clienteSobreNea extends JFrame {
     /**
      * Launch the application.
      */
-	
+	/*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -255,13 +255,7 @@ public class clienteSobreNea extends JFrame {
       		JButton btnOferta_1 = new JButton("Quienes somos?");
       		btnOferta_1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
       		btnOferta_1.setBackground(new Color(220, 100, 150));
-      		btnOferta_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					clienteSobreNea frame = new clienteSobreNea(u);
-	                frame.setVisible(true);
-	                setVisible(false);
-				}
-			});
+      
       		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnOferta_1.setForeground(Color.WHITE);
       		btnOferta_1.setBounds(698, 44, 140, 36);
