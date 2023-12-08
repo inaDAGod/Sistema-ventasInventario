@@ -3,6 +3,9 @@ package ventanasCliente;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import general.generalOfertas;
+import general.generalProductos;
+import general.generalSobreNea;
 import ventanasFuncionario.funcionarioInicio.TarjetaPedido;
 import ventanasFuncionario.funcionarioInicio.TarjetaProducto;
 import ventasInventario.PanelLogin;
@@ -206,6 +209,7 @@ public class clienteInicio extends JFrame {
 		btnNewButton.setBackground(new Color(220, 100, 150));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setForeground(Color.WHITE);
+		
 		btnNewButton.setBounds(330, 44, 125, 36);
 		panel_1.add(btnNewButton);
 
@@ -214,6 +218,13 @@ public class clienteInicio extends JFrame {
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteCatalogo frame = new clienteCatalogo(usuario);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnOferta.setBounds(454, 44, 125, 36);
 		panel_1.add(btnOferta);
 
@@ -221,7 +232,15 @@ public class clienteInicio extends JFrame {
 		btnOferta_1_1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta_1_1.setBackground(new Color(220, 100, 150));
 		btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		
 		btnOferta_1_1.setForeground(Color.WHITE);
+		btnOferta_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteOfertas frame = new clienteOfertas(usuario);
+                frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnOferta_1_1.setBounds(578, 44, 120, 36);
 		panel_1.add(btnOferta_1_1);
 
@@ -230,6 +249,13 @@ public class clienteInicio extends JFrame {
 		btnOferta_1.setBackground(new Color(220, 100, 150));
 		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1.setForeground(Color.WHITE);
+		btnOferta_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteSobreNea frame = new clienteSobreNea(u);
+                frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnOferta_1.setBounds(698, 44, 140, 36);
 		panel_1.add(btnOferta_1);
 

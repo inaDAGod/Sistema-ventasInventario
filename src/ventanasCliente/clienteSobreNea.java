@@ -34,6 +34,7 @@ public class clienteSobreNea extends JFrame {
     /**
      * Launch the application.
      */
+	/*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -53,6 +54,7 @@ public class clienteSobreNea extends JFrame {
      */
     public clienteSobreNea(Usuario u) {
     	this.usuario = u;
+    	System.out.println(usuario);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800); 
@@ -294,7 +296,7 @@ public class clienteSobreNea extends JFrame {
         panel_3_1.add(lblNewLabel_3);
 
         JLabel lblNewLabel_4 = new JLabel("");
-        ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
+        ImageIcon icon4 = new ImageIcon("src\\imagenesJhess\\ubicacion.JPG");
         Image image4 = icon4.getImage().getScaledInstance(585, 150, Image.SCALE_SMOOTH);
         lblNewLabel_4.setIcon(new ImageIcon(image4));
         lblNewLabel_4.setBounds(20, 420, 555, 182);
@@ -316,7 +318,7 @@ public class clienteSobreNea extends JFrame {
         panel_3_1.add(lblNewLabel_3_1);
 
         JLabel lblNewLabel_5 = new JLabel("");
-        ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+        ImageIcon icon5 = new ImageIcon("src\\imagenesJhess\\icono-de-llamada-telefonica");
         Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
         lblNewLabel_5.setIcon(new ImageIcon(image5));
         lblNewLabel_5.setBounds(361, 324, 75, 52);
