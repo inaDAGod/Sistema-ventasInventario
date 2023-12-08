@@ -50,10 +50,7 @@ public class EditarProducto extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		setBackground(new Color(204, 102, 153));
-		setBounds(0,0,1200,800);
-		
-		
-		
+		setBounds(0,0,1200,800);	
 		
 		JButton btnAnadir = new JButton("Guardar");
 		btnAnadir.setBounds(909, 670, 110, 50);
@@ -61,24 +58,24 @@ public class EditarProducto extends JFrame {
 		
 		JLabel txNombre = new JLabel("Nombre:");
 		txNombre.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txNombre.setBounds(468, 256, 111, 40);
+		txNombre.setBounds(474, 268, 111, 40);
 		getContentPane().add(txNombre);
 		
 		nombre = new JTextField();
 		nombre.setBackground(SystemColor.menu);
-		nombre.setBounds(616, 266, 350, 32);
+		nombre.setBounds(616, 276, 350, 32);
 		getContentPane().add(nombre);
 		nombre.setText(producto.getNombre());
 		nombre.setColumns(10);
 		
 		JLabel txPrecio = new JLabel("Precio:");
 		txPrecio.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txPrecio.setBounds(468, 200, 111, 40);
+		txPrecio.setBounds(495, 225, 111, 40);
 		getContentPane().add(txPrecio);
 		
 		precio = new JTextField();
 		precio.setBackground(SystemColor.menu);
-		precio.setBounds(616, 200, 350, 32);
+		precio.setBounds(616, 233, 350, 32);
 		getContentPane().add(precio);
 		precio.setText(Double.toString(producto.getPrecio()));
 		precio.setColumns(10);
@@ -86,12 +83,12 @@ public class EditarProducto extends JFrame {
 		
 		JLabel txtId = new JLabel("ID:");
 		txtId.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txtId.setBounds(510, 307, 74, 40);
+		txtId.setBounds(532, 327, 74, 40);
 		getContentPane().add(txtId);
 		
 		id = new JTextField();
 		id.setBackground(SystemColor.menu);
-		id.setBounds(616, 312, 350, 32);
+		id.setBounds(616, 327, 350, 32);
 		getContentPane().add(id);
 		
 		id.setText(producto.getCproducto());
@@ -100,12 +97,12 @@ public class EditarProducto extends JFrame {
 		
 		JLabel txMarca = new JLabel("Marca:");
 		txMarca.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txMarca.setBounds(489, 358, 90, 40);
+		txMarca.setBounds(495, 371, 90, 40);
 		getContentPane().add(txMarca);
 		
 		marca = new JTextField();
 		marca.setBackground(SystemColor.menu);
-		marca.setBounds(616, 365, 350, 32);
+		marca.setBounds(616, 379, 350, 32);
 		marca.setText(producto.getMarca());
 		getContentPane().add(marca);
 		marca.setColumns(10);
@@ -113,12 +110,12 @@ public class EditarProducto extends JFrame {
 		
 		JLabel txDescripcion = new JLabel("Descripcion:");
 		txDescripcion.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txDescripcion.setBounds(430, 415, 149, 40);
+		txDescripcion.setBounds(430, 434, 149, 40);
 		getContentPane().add(txDescripcion);
 		
 		descripcion = new JTextArea();
 		descripcion.setBackground(SystemColor.menu);
-		descripcion.setBounds(616, 413, 350, 108);
+		descripcion.setBounds(616, 433, 350, 88);
 		descripcion.setText(producto.getDescripcion());
 		getContentPane().add(descripcion);
 		
@@ -217,12 +214,12 @@ public class EditarProducto extends JFrame {
 		
 		JLabel txCantidad = new JLabel("Cantidad:");
 		txCantidad.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		txCantidad.setBounds(464, 529, 120, 40);
+		txCantidad.setBounds(468, 549, 120, 40);
 		getContentPane().add(txCantidad);
 		
 		cant= new JTextField();
 		cant.setBackground(SystemColor.menu);
-		cant.setBounds(616, 532, 66, 32);
+		cant.setBounds(616, 548, 66, 32);
 		getContentPane().add(cant);
 		cant.setText(Integer.toString(producto.getCantidad()));
 		cant.setColumns(10);
@@ -240,7 +237,7 @@ public class EditarProducto extends JFrame {
 		
 		JLabel txNProducto = new JLabel("EDITAR");
 		txNProducto.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-		txNProducto.setBounds(311, 180, 546, 50);
+		txNProducto.setBounds(147, 164, 546, 50);
 		getContentPane().add(txNProducto);
 		
 		//barra Superior
