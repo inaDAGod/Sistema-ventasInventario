@@ -43,7 +43,7 @@ public class clienteOfertas extends JFrame {
     private ArrayList<Producto> ofertados;
     private ControladorProducto controladorProducto;
     private Usuario usuario;
-    ///*
+    /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -56,7 +56,7 @@ public class clienteOfertas extends JFrame {
                 }
             }
         });
-    }//*/
+    }*/
 
     public clienteOfertas(Usuario u) {
     	this.usuario = u;
