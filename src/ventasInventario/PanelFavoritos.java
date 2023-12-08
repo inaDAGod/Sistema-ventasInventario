@@ -182,7 +182,8 @@ public class PanelFavoritos extends JPanel {
 	}
 	
 	private void abrirProducto(Producto producto) {
-		ProductoCliente frame = new ProductoCliente(usuario,producto);
+		getTopLevelAncestor().setVisible(false);
+		ProductoCliente frame = new ProductoCliente(usuario,producto,null);
 		frame.setVisible(true);
 		
     }

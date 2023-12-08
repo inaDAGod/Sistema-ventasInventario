@@ -37,21 +37,6 @@ public class Favoritos extends JFrame {
 	private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private Usuario usuario;
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try { 
-					//ejemplo de usuario
-					Usuario u = new Usuario("danialee14", null, null, null);
-					Favoritos frame = new Favoritos(u);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 
 	public Favoritos(Usuario u) {

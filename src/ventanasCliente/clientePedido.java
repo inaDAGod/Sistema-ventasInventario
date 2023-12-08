@@ -106,20 +106,7 @@ public class clientePedido extends JFrame {
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
 	private Usuario usuario;
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	Usuario u = new Usuario("danialee14");
-                	clientePedido frame = new clientePedido(u);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+   
     public clientePedido(Usuario usuario) {
     	this.usuario = usuario;
         setResizable(false);

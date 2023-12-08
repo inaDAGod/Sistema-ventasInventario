@@ -58,7 +58,7 @@ public class clienteInicio extends JFrame {
 	// panelBusqueda.setBackground(Color.blue); define color
 	
 	// imagenes carusel
-	/*
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
@@ -70,7 +70,7 @@ public class clienteInicio extends JFrame {
 			}
 		});
 	}
-	*/
+	
 
 
 	public clienteInicio(Usuario u) {
@@ -766,8 +766,9 @@ public class clienteInicio extends JFrame {
 					buttonProducto.setLayout(new GridBagLayout());
 					buttonProducto.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							ProductoCliente frame = new ProductoCliente(usuario,producto11,clienteInicio.this);
 							frame.setVisible(true);
+							clienteInicio.this.setVisible(false);
 						}
 					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
@@ -875,8 +876,9 @@ public class clienteInicio extends JFrame {
 					buttonProducto.setLayout(new GridBagLayout());
 					buttonProducto.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							ProductoCliente frame = new ProductoCliente(usuario,producto11,clienteInicio.this);
 							frame.setVisible(true);
+							clienteInicio.this.setVisible(false);
 						}
 					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));

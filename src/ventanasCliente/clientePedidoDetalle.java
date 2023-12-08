@@ -39,20 +39,7 @@ public class clientePedidoDetalle extends JFrame {
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
 	
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	GestorPedidos p = new GestorPedidos();//para probar
-                	clientePedidoDetalle frame = new clientePedidoDetalle(p.getTodosPedidos().get(0));
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+ 
     public clientePedidoDetalle(Pedido p) {
         setResizable(false);
     	this.pedido = p;

@@ -32,27 +32,7 @@ public class clienteSobreNea extends JFrame {
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
 	private Usuario usuario;
-    /**
-     * Launch the application.
-     */
-	/*
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	Usuario u = new Usuario("danialee14");
-                    clienteSobreNea frame = new clienteSobreNea(u);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
+   
     public clienteSobreNea(Usuario u) {
     	this.usuario = u;
     	//System.out.println(usuario);
