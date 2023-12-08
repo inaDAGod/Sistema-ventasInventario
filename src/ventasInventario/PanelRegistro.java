@@ -121,6 +121,7 @@ public class PanelRegistro extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ControladorRegistro controladorRegistro =new ControladorRegistro(PanelRegistro.this);
 				controladorRegistro.registroVerificacion();
+				getTopLevelAncestor().setVisible(false);
 			}
 		});
 	}
