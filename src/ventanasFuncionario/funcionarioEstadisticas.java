@@ -100,7 +100,7 @@ public class funcionarioEstadisticas extends JFrame {
 	 */
 	public funcionarioEstadisticas() {
 	 
-        
+	    setResizable(false);
        //imagenes carusel
         listaImagenes.add("src/imagenesJhess/caru2.jfif");
         listaImagenes.add("src/imagenesJhess/caru.jpg");

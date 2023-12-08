@@ -106,6 +106,7 @@ public class clientePedido extends JFrame {
     }
 
     public clientePedido(Usuario usuario) {
+        setResizable(false);
     	ControladorPedidos controladorPedidos = new ControladorPedidos();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);

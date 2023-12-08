@@ -106,7 +106,7 @@ public class funcionarioPedidos extends JFrame {
         }
     }
     public funcionarioPedidos(ArrayList<Pedido> listaPedidos) {
-    	
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);

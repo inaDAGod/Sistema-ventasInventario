@@ -48,6 +48,7 @@ public class clientePedidoDetalle extends JFrame {
     }
 
     public clientePedidoDetalle(Pedido p) {
+        setResizable(false);
     	this.pedido = p;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);

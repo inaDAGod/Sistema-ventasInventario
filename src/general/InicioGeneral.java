@@ -75,7 +75,7 @@ public class InicioGeneral extends JFrame {
 	}
 
 	public InicioGeneral() {
-
+	    setResizable(false);
 		controladorProducto = new ControladorProducto();
 		productos = controladorProducto.todosProductos();
 		etiquetas = controladorProducto.todasEtiquetas();

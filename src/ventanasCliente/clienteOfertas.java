@@ -47,6 +47,7 @@ public class clienteOfertas extends JFrame {
     }
 
     public clienteOfertas() {
+        setResizable(false);
     	controladorProducto = new ControladorProducto();
     	ofertados = controladorProducto.ofertados();
     	float descuento=(float) 0.2;

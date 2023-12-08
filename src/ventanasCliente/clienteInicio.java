@@ -63,7 +63,7 @@ public class clienteInicio extends JFrame {
 	}
 
 	public clienteInicio() {
-		
+	    setResizable(false);
 		controladorProducto = new ControladorProducto();
 		productos = controladorProducto.todosProductos();
 		etiquetas = controladorProducto.todasEtiquetas();

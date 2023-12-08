@@ -86,6 +86,7 @@ public class funcionarioInicio extends JFrame {
 	    }
 
 	    public funcionarioInicio() {
+	        setResizable(false);
 	    	controladorProducto = new ControladorProducto();
 			productos = controladorProducto.todosProductos();
 			etiquetas = controladorProducto.todasEtiquetas();
