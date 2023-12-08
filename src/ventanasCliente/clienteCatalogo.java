@@ -30,7 +30,10 @@ public class clienteCatalogo extends JFrame {
 	private ArrayList<String> etiquetas;
 
 	private String textoBusqueda = "";
-
+	private JPanel navegador;
+	private JPanel SuperiorNavegador;
+	private JButton btnOferta_2;
+	private JButton btnvolver;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
@@ -59,44 +62,183 @@ public class clienteCatalogo extends JFrame {
 
 		grupoRadioBotones = new ButtonGroup();
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setForeground(Color.WHITE);
-		panel_1.setBounds(0, 0, 1200, 140);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		//*======================================INICIO DE PANNEL
+		
+				// NARVAR DE UN LADO AL APRETAR EL PERFIL
 
-		JLabel lblNewLabel = new JLabel("");
-		ImageIcon icon = new ImageIcon(
-				"C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personas.jfif");
-		Image image = icon.getImage().getScaledInstance(139, 118, Image.SCALE_SMOOTH);
-		lblNewLabel.setIcon(new ImageIcon(image));
-		lblNewLabel.setBounds(24, 11, 139, 118);
-		panel_1.add(lblNewLabel);
+				navegador = new JPanel();
+				navegador.setLayout(new BorderLayout());
+				navegador.setBackground(new Color(250, 232, 235));
+				navegador.setLayout(null);
+				navegador.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				navegador.setBounds(850, 0, 350, 800);
+				panel.add(navegador);
+				navegador.setVisible(false);
 
-		JButton btnNewButton = new JButton("Inicio");
-		btnNewButton.setBounds(226, 44, 139, 36);
-		panel_1.add(btnNewButton);
+				SuperiorNavegador = new JPanel();
+				SuperiorNavegador.setBackground(new Color(205, 159, 204));
+				SuperiorNavegador.setLayout(null);
+				SuperiorNavegador.setBounds(0, 0, 350, 100);
+				navegador.add(SuperiorNavegador);
+				SuperiorNavegador.setVisible(false);
+				SuperiorNavegador.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
-		JButton btnOferta = new JButton("Productos");
-		btnOferta.setBounds(394, 44, 139, 36);
-		panel_1.add(btnOferta);
+				// BOTON PERFIL
+				JButton btnUsuario = new JButton("   Mi perfil");
+				btnUsuario.setBounds(40, 20, 300, 70);
+				btnUsuario.setLayout(new BorderLayout());
+				btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+				btnUsuario.setVisible(true);
+				SuperiorNavegador.add(btnUsuario);
+				btnUsuario.setBackground(new Color(205, 159, 204));
+				btnUsuario.setForeground(Color.WHITE);
+				btnUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				ImageIcon iconProducto7 = new ImageIcon("src/imagenesJhess/voluntarioIcon.png");
+				ImageIcon iconRedimensionado7 = new ImageIcon(
+						iconProducto7.getImage().getScaledInstance(80, 60, Image.SCALE_SMOOTH));
+				JLabel labelImagen7 = new JLabel(iconRedimensionado7);
+				labelImagen7.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+				btnUsuario.add(labelImagen7, BorderLayout.WEST); // Colocar la imagen a la izquierda
 
-		JButton btnOferta_1 = new JButton("Quienes somos?");
-		btnOferta_1.setBounds(729, 44, 139, 36);
-		panel_1.add(btnOferta_1);
+				// BOTON mIS FAVORITOS
+				JButton buttonProducto5 = new JButton("  Mis Favoritos");
+				buttonProducto5.setBounds(25, 120, 300, 70);
+				buttonProducto5.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+				buttonProducto5.setLayout(new BorderLayout());
+				buttonProducto5.setBackground(new Color(250, 232, 235));
+				buttonProducto5.setVisible(true);
+				navegador.add(buttonProducto5);
+				buttonProducto5.setForeground(Color.BLACK);
+				buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				ImageIcon iconProducto2 = new ImageIcon("src/imagenesJhess/favo.png");
+				Image imagenOriginal2 = iconProducto2.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+				ImageIcon iconRedimensionado2 = new ImageIcon(imagenOriginal2);
+				JLabel labelImagen2 = new JLabel(iconRedimensionado2);
+				labelImagen2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+				buttonProducto5.add(labelImagen2, BorderLayout.WEST); // Colocar la imagen a la izquierda
 
-		JButton btnOferta_1_1 = new JButton("Oferta");
-		btnOferta_1_1.setBounds(564, 44, 139, 36);
-		panel_1.add(btnOferta_1_1);
+				// BOTON MIS PEDIDOS
+				JButton buttonMisPedidos = new JButton("Mis Pedidos");
+				buttonMisPedidos.setBounds(25, 220, 300, 70);
+				buttonMisPedidos.setLayout(new BorderLayout());
+				buttonMisPedidos.setVisible(true);
+				buttonMisPedidos.setBackground(new Color(250, 232, 235));
+				buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+				buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				buttonMisPedidos.setForeground(Color.BLACK);
+				navegador.add(buttonMisPedidos);
+				ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/pedido.png");
+				Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+				ImageIcon iconRedimensionado21 = new ImageIcon(imagenOriginal21);
+				JLabel labelImagen21 = new JLabel(iconRedimensionado21);
+				labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+				buttonMisPedidos.add(labelImagen21, BorderLayout.WEST); // Colocar la imagen a la izquierda
 
-		ImageIcon iconPerfil = new ImageIcon("src/imagenesJhess/perfilpersona.png");
-		Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
+				
 
-		JButton btnOferta_2 = new JButton("");
-		btnOferta_2.setIcon(new ImageIcon(imagePerfil));
-		btnOferta_2.setBounds(1048, 11, 130, 118);
+				// BOTON MIS CERRAR SESION
+				JButton buttonCerrar = new JButton("Cerrar sesion");
+				buttonCerrar.setBounds(25, 320, 300, 70);
+				buttonCerrar.setLayout(new BorderLayout());
+				buttonCerrar.setVisible(true);
+				buttonCerrar.setBackground(new Color(250, 232, 235));
+				buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+				buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				buttonCerrar.setForeground(Color.BLACK);
+				navegador.add(buttonCerrar);
+				ImageIcon iconProducto8 = new ImageIcon("src/imagenesJhess/salir.png");
+				Image imagenOrigina8 = iconProducto8.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+				ImageIcon iconRedimensionado8 = new ImageIcon(imagenOrigina8);
+				JLabel labelImagen8 = new JLabel(iconRedimensionado8);
+				labelImagen8.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+				buttonCerrar.add(labelImagen8, BorderLayout.WEST); // Colocar la imagen a la izquierda
 
-		panel_1.add(btnOferta_2);
+				// FIONNN
+				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(new Color(117, 14, 73));
+				panel_1.setBounds(2, 0, 1190, 136);
+				panel.add(panel_1);
+				panel_1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+
+				panel_1.setLayout(null);
+
+				JLabel lblNewLabel = new JLabel("");
+				ImageIcon icon = new ImageIcon(
+						"C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenes\\logo.jpg");
+				Image image = icon.getImage().getScaledInstance(190, 100, Image.SCALE_SMOOTH);
+				lblNewLabel.setIcon(new ImageIcon(image));
+				lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+				lblNewLabel.setBounds(24, 11, 190, 100);
+				panel_1.add(lblNewLabel);
+
+				JButton btnNewButton = new JButton("Inicio");
+				btnNewButton.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+				btnNewButton.setBackground(new Color(220, 100, 150));
+				btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				btnNewButton.setForeground(Color.WHITE);
+				btnNewButton.setBounds(330, 44, 125, 36);
+				panel_1.add(btnNewButton);
+
+				JButton btnOferta = new JButton("Productos");
+				btnOferta.setBackground(new Color(220, 100, 150));
+				btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+				btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				btnOferta.setForeground(Color.WHITE);
+				btnOferta.setBounds(454, 44, 125, 36);
+				panel_1.add(btnOferta);
+
+				JButton btnOferta_1_1 = new JButton("Oferta");
+				btnOferta_1_1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+				btnOferta_1_1.setBackground(new Color(220, 100, 150));
+				btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				btnOferta_1_1.setForeground(Color.WHITE);
+				btnOferta_1_1.setBounds(578, 44, 120, 36);
+				panel_1.add(btnOferta_1_1);
+
+				JButton btnOferta_1 = new JButton("Quienes somos?");
+				btnOferta_1.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+				btnOferta_1.setBackground(new Color(220, 100, 150));
+				btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+				btnOferta_1.setForeground(Color.WHITE);
+				btnOferta_1.setBounds(698, 44, 140, 36);
+				panel_1.add(btnOferta_1);
+
+				ImageIcon iconPerfil = new ImageIcon("src/imagenesJhess/perfilpersona.png");
+				Image imagePerfil = iconPerfil.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+				btnOferta_2 = new JButton("");
+				btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+				btnOferta_2.setBackground(new Color(117, 14, 73));
+				btnOferta_2.setIcon(new ImageIcon(imagePerfil));
+				btnOferta_2.setBounds(990, 15, 100, 100);
+				panel_1.add(btnOferta_2);
+				
+			  btnvolver = new JButton(">");
+	      		btnvolver.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+	      		btnvolver.setBackground(new Color(220, 100, 150));
+	      		btnvolver.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+	      		btnvolver.setForeground(Color.WHITE);
+	      		btnvolver.setBounds(1130, 50, 50, 40);
+	      		panel_1.add(btnvolver);
+				
+				btnOferta_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+
+						
+						radioBoton3_1.setVisible(false);
+						btnOferta_2.setVisible(false);
+						navegador.setVisible(true);
+						SuperiorNavegador.setVisible(true);
+						btnUsuario.setVisible(true);
+						buttonProducto5.setVisible(true);
+						buttonMisPedidos.setVisible(true);
+						buttonCerrar.setVisible(true);
+						botonBuscar.setVisible(false);
+
+					}
+				});
+				
+				//*======================================FIN DE PANNEL
 
 		JPanel panelBase = new JPanel();
 		panelBase.setBounds(0, 137, 1200, 625);
@@ -269,6 +411,12 @@ public class clienteCatalogo extends JFrame {
 				String nombreBusqueda = textFieldBuscar.getText();
 				textoBusqueda = nombreBusqueda;
 				buscarPorNombre(nombreBusqueda);
+				btnvolver.setVisible(true);
+				radioBoton3_1.setVisible(true);
+				navegador.setVisible(false);
+				SuperiorNavegador.setVisible(false);
+				btnOferta_2.setVisible(true);
+				botonBuscar.setVisible(true);
 
 			}
 		});
@@ -277,7 +425,14 @@ public class clienteCatalogo extends JFrame {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					filtrarTarjetas();
 					restaurarEstiloRadioButtons();
+					
 					cambiarEstiloRadioButton(radioBoton1);
+					btnvolver.setVisible(true);
+					radioBoton3_1.setVisible(true);
+					navegador.setVisible(false);
+					SuperiorNavegador.setVisible(false);
+					btnOferta_2.setVisible(true);
+					botonBuscar.setVisible(true);
 				}
 			}
 		});
@@ -288,6 +443,12 @@ public class clienteCatalogo extends JFrame {
 					filtrarTarjetas();
 					restaurarEstiloRadioButtons();
 					cambiarEstiloRadioButton(radioBoton2);
+					btnvolver.setVisible(true);
+					radioBoton3_1.setVisible(true);
+					navegador.setVisible(false);
+					SuperiorNavegador.setVisible(false);
+					btnOferta_2.setVisible(true);
+					botonBuscar.setVisible(true);
 				}
 			}
 		});
@@ -299,6 +460,12 @@ public class clienteCatalogo extends JFrame {
 					filtrarTarjetas();
 					restaurarEstiloRadioButtons();
 					cambiarEstiloRadioButton(radioBoton3);
+					btnvolver.setVisible(true);
+					radioBoton3_1.setVisible(true);
+					navegador.setVisible(false);
+					SuperiorNavegador.setVisible(false);
+					btnOferta_2.setVisible(true);
+					botonBuscar.setVisible(true);
 				}
 			}
 		});
