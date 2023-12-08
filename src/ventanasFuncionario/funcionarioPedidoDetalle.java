@@ -589,7 +589,7 @@ public class funcionarioPedidoDetalle extends JFrame {
 
             JScrollPane scrollPane = new JScrollPane(tablaProductos);
 
-            JLabel labelMonto = new JLabel("Monto Total: 100 Bs."); // Ejemplo de etiqueta para el monto
+            JLabel labelMonto = new JLabel("Monto Total:" +pedido.getTotal()); // Ejemplo de etiqueta para el monto
 
             JPanel panelMonto = new JPanel();
             panelMonto.add(labelMonto);
