@@ -98,7 +98,7 @@ public class PanelListadoClientes extends JPanel {
                     if (filaSeleccionada != -1) {
                       
                         String productoSeleccionado = (String) table.getValueAt(filaSeleccionada, 0);
-                        abrirUsuario(productoSeleccionado);
+                       
                     }
                 }
             }
@@ -130,9 +130,7 @@ public class PanelListadoClientes extends JPanel {
        
         }
     }
-	private void abrirUsuario(String usuario) {
-		 JOptionPane.showMessageDialog(this, "Aqui añadimos la venta de usuario hehe: ", usuario, JOptionPane.INFORMATION_MESSAGE);
-    }
+	
     private void actualizarTabla() {
         table.setModel(modelo);
     }

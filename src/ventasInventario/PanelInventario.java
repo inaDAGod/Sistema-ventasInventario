@@ -140,7 +140,7 @@ public class PanelInventario extends JPanel {
         }
     }
 	private void abrirProducto(Producto p) {
-		 ProductoFuncionario frame = new ProductoFuncionario(p,usuario);
+		 ProductoFuncionario frame = new ProductoFuncionario(p,usuario,null);
 			frame.setVisible(true);
 			setVisible(false);
 			getTopLevelAncestor().setVisible(false);

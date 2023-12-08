@@ -620,9 +620,9 @@ public class funcionarioPedidoDetalle extends JFrame {
     }
     private void abrirProducto(Producto producto) {
 
-		ProductoFuncionario d = new ProductoFuncionario (producto,pedido.getUsuario());
+		ProductoFuncionario d = new ProductoFuncionario (producto,pedido.getUsuario(), funcionarioPedidoDetalle.this);
 		d.setVisible(true);
-		
+		 funcionarioPedidoDetalle.this.setVisible(false);
     }
     private void personalizarTabla(JTable tabla) {
        DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();

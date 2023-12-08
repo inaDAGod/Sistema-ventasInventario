@@ -39,6 +39,7 @@ public class ProductoFuncionario extends JFrame {
 	private JPanel navegador;
     private  JPanel SuperiorNavegador;
     private Usuario usuario;
+    private JFrame framePasado;
 	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -58,7 +59,8 @@ public class ProductoFuncionario extends JFrame {
 		});
 	}
 	 */
-	public ProductoFuncionario(Producto producto,Usuario u) {
+	public ProductoFuncionario(Producto producto,Usuario u, JFrame framePasado) {
+		this.framePasado = framePasado;
 		this.usuario = u;
 		setResizable(false);
 		
@@ -265,10 +267,22 @@ public class ProductoFuncionario extends JFrame {
 		getContentPane().add(btnUsuario);
 		
         
-        JButton btnBack = new JButton("");
-        btnBack.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/backrosa2(50x50).jpg")));
-        btnBack.setBounds(1124, 35, 50, 50);
+		JButton btnBack = new JButton("");
+        btnBack.setIcon(new ImageIcon(ProductoCliente.class.getResource("/imagenes/backrosa1(50x50).jpg")));
         btnBack.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnBack.setBounds(1124, 35, 50, 50);
+        btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(framePasado == null) {
+					Inventario frame = new Inventario(usuario);
+					frame.setVisible(true);
+				}
+				else {
+					framePasado.setVisible(true);
+				}
+				setVisible(false);
+			}
+		});
         getContentPane().add(btnBack);
         
         JButton btnLogo = new JButton("");
