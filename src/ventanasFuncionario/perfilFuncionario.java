@@ -4,139 +4,62 @@ package ventanasFuncionario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import javax.swing.JTextField;
 
 import general.InicioGeneral;
+import ventanasCliente.perfilUsuario;
+import ventasInventario.Favoritos;
 import ventasInventario.Inventario;
 import ventasInventario.ListadoClientes;
 import ventasInventario.NuevoFuncionario;
 import ventasInventario.NuevoProducto;
-import ventasInventario.BD.Controladores.ControladorPedidos;
-import ventasInventario.BD.Modelo.GestorPedidos;
-import ventasInventario.BD.Modelo.Pedido;
 import ventasInventario.BD.Modelo.Usuario;
 
-import java.awt.Font;
+public class perfilFuncionario extends JFrame {
 
-class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
-   
-    public TarjetaPedido(Pedido pedido) {
-    	
-    	 setLayout(new BorderLayout()); 
-         setBorder(BorderFactory.createLineBorder(Color.BLACK, 0)); 
-         
-
-        ImageIcon iconPedido = new ImageIcon(
-                "src\\imagenesJhess\\carritos3.png");
-        Image imagenOriginal = iconPedido.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-        ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
-        JLabel labelImagen = new JLabel(iconRedimensionado); 
-
-        JPanel panelImagen = new JPanel();
-        panelImagen.setLayout(new BorderLayout());
-        panelImagen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panelImagen.add(labelImagen, BorderLayout.WEST); 
-        panelImagen.setBackground(Color.WHITE); 
-        JPanel panelDetalles = new JPanel();
-        panelDetalles.setLayout(new GridLayout(0, 1)); 
-       
-        JLabel labelNumeroCompra = new JLabel("PEDIDO " + pedido.getCpedido());
-        JLabel labelFecha = new JLabel("Fecha: " + pedido.getFecha_reserva());
-        JLabel labelEstado = new JLabel("Estado: " + pedido.getEstadoPedido());
-
-       
-
-        panelDetalles.add(labelNumeroCompra);
-        panelDetalles.add(labelFecha);
-        panelDetalles.add(labelEstado);
-        panelDetalles.setBackground(Color.WHITE); 
-      
-        JButton buttonInfo = new JButton("Más Información");
-        buttonInfo.setForeground(Color.WHITE);
-        buttonInfo.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
-        buttonInfo.setBounds(0, 0, 300, 1500);
-        buttonInfo.setBackground(new Color(167, 134, 252)); 
-        
-        
-       
-        Font font = new Font("Times New Roman", Font.PLAIN, 30);
-        labelNumeroCompra.setFont(font);
-        labelFecha.setFont(font);
-        labelEstado.setFont(font);
-        buttonInfo.setFont(font);
-
-        JPanel panelInfo = new JPanel();
-        panelInfo.setLayout(new BorderLayout());
-        panelInfo.setBorder(BorderFactory.createEmptyBorder(10, 20, 150, 10)); 
-        panelInfo.add(buttonInfo, BorderLayout.CENTER); 
-        panelInfo.setBackground(Color.WHITE);
-      
-        add(panelImagen, BorderLayout.WEST);
-        add(panelDetalles, BorderLayout.CENTER);
-
-      
-        add(panelInfo, BorderLayout.EAST);
-        setBackground(Color.WHITE);
-    }
-    }
-
-
-public class funcionarioPedidosActuales extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private JPanel navegador;
-    private  JPanel SuperiorNavegador;
-    private JButton btnOferta_2;
+    private JPanel contentPane;
+    private JTextField textField;
+    private JTextField textField_1;
+    private JTextField textField_2;
+    private JTextField textField_3;
+    private JButton btnEditar;
+    private JButton btnCancelar;
     private Usuario usuario;
-    private ControladorPedidos controladorPedidos;
-   	private  ArrayList<Pedido> listaPedidos;
-   	/*
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	Usuario u = new Usuario("funci");
-                	funcionarioPedidosActuales frame = new funcionarioPedidosActuales(u);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }*/
-
-    public funcionarioPedidosActuales(Usuario u) {
+	private JPanel navegador;
+	private JPanel SuperiorNavegador;
+	private JButton btnOferta_2;
+  
+	
+    public perfilFuncionario(Usuario u) {
     	this.usuario = u;
-    	this.controladorPedidos = new ControladorPedidos();
-       this.listaPedidos = controladorPedidos.pedidosPendientes();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
-        getContentPane().setLayout(null);
+        contentPane = new JPanel();
+        contentPane.setBorder(null);
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBounds(0, 0, 1200, 763);
-        getContentPane().add(panel);
+        panel.setBounds(0, 0, 1200, 800);
+        contentPane.add(panel);
         panel.setLayout(null);
 
-        //=============================================INICIOOOO DEL NARVAR TODOO
-    //NARVAR DE UN LADO AL APRETAR EL PERFIL
-        
+      //*======================================INICIO DE PANNEL
         navegador = new JPanel();
         navegador.setLayout(new BorderLayout());
         navegador.setBackground(new Color(250, 232, 235));
@@ -158,16 +81,8 @@ public class funcionarioPedidosActuales extends JFrame {
         JButton btnUsuario = new JButton("   Mi perfil");
         btnUsuario.setBounds(40, 20, 300, 70);
         btnUsuario.setLayout(new BorderLayout());
-        
         btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
         btnUsuario.setVisible(true);
-        btnUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				perfilFuncionario frame = new perfilFuncionario (usuario);
-                frame.setVisible(true);
-				setVisible(false);
-			}
-		});
         SuperiorNavegador.add(btnUsuario);
         btnUsuario.setBackground(new Color(205, 159, 204));
         btnUsuario.setForeground(Color.WHITE);
@@ -208,10 +123,6 @@ public class funcionarioPedidosActuales extends JFrame {
         buttonMisPedidos.setBounds(25, 220, 300, 70);
         buttonMisPedidos.setLayout(new BorderLayout());
         buttonMisPedidos.setVisible(true);
-        buttonMisPedidos.setBackground(new Color(250, 232, 235));
-        buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
-        buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        buttonMisPedidos.setForeground(Color.BLACK);
         buttonMisPedidos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NuevoFuncionario frame = new NuevoFuncionario(usuario);
@@ -219,6 +130,10 @@ public class funcionarioPedidosActuales extends JFrame {
 				setVisible(false);
 			}
 		});
+        buttonMisPedidos.setBackground(new Color(250, 232, 235));
+        buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
+        buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        buttonMisPedidos.setForeground(Color.BLACK);
         navegador.add(buttonMisPedidos);
         ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/aFuncionario.png");
         Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
@@ -350,6 +265,8 @@ public class funcionarioPedidosActuales extends JFrame {
         JButton btnNewButton = new JButton("Inicio");
         btnNewButton.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
         btnNewButton.setBackground(new Color(220, 100, 150));
+        btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        btnNewButton.setForeground(Color.WHITE);
         btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				funcionarioInicio frame = new funcionarioInicio(usuario);
@@ -357,8 +274,6 @@ public class funcionarioPedidosActuales extends JFrame {
 				setVisible(false);
 			}
 		});
-        btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        btnNewButton.setForeground(Color.WHITE);
         btnNewButton.setBounds(330, 44, 125, 36);
         panel_1.add(btnNewButton);
 
@@ -380,9 +295,15 @@ public class funcionarioPedidosActuales extends JFrame {
         JButton btnOferta_1_1 = new JButton("Pedidos actuales");
         btnOferta_1_1.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
         btnOferta_1_1.setBackground(new Color(220, 100, 150));
-     
         btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         btnOferta_1_1.setForeground(Color.WHITE);
+        btnOferta_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				funcionarioPedidosActuales frame = new funcionarioPedidosActuales(usuario);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
         btnOferta_1_1.setBounds(578, 44, 150, 36);
         panel_1.add(btnOferta_1_1);
 
@@ -423,60 +344,12 @@ public class funcionarioPedidosActuales extends JFrame {
         btnvolver.setForeground(Color.WHITE);
         btnvolver.setBounds(1130, 50, 50, 40);
         panel_1.add(btnvolver);
-//*INTERACCION DEL NARVAR
-	        
-	      
-	       
-//=============================================FIN DEL NARVAR TODOO
 
-        JPanel panel_2 = new JPanel();
-        panel_2.setBackground(new Color(214, 166, 190));
-        panel_2.setBounds(0, 137, 1200, 625);
-        panel_2.setLayout(null);  
-        panel.add(panel_2);
-        
-        JPanel panelTarjetas = new JPanel();
-        panelTarjetas.setLayout(new GridLayout(0, 1, 10, 10)); 
-        panelTarjetas.setBackground(Color.black); 
-        panelTarjetas.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panel_2.add(panelTarjetas);
-        
-        panelTarjetas.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
-        panelTarjetas.setBackground(new Color(255, 229, 154)); 
- 
-        
-        for (Pedido pedido : listaPedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
-          
-            panelTarjetas.add(tarjeta);
-        }
-        panel_2.setLayout(null);
-        
-
-        JScrollPane scrollPane = new JScrollPane(panelTarjetas);
-        scrollPane.setBounds(125, 147, 946, 425);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
-        panel_2.add(scrollPane);
-        
-        JPanel panel_3 = new JPanel();
-        panel_3.setBackground(new Color(0, 0, 0));
-        panel_3.setBounds(125, 49, 946, 98);
-        panel_2.add(panel_3);
-        panel_3.setLayout(null);
-        panel_3.setBackground(new Color(255, 229, 154)); 
-        panel_3.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
-        
-        JLabel lblNewLabel_1 = new JLabel("Pedidos Pendientes");
-        lblNewLabel_1.setForeground(new Color(0, 0, 0));
-        lblNewLabel_1.setBounds(28, 21, 500, 66);
-        lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 57));
-        panel_3.add(lblNewLabel_1);
         btnOferta_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                
 
-           
+            	
             	btnvolver.setVisible(false);
             	btnOferta_2.setVisible(false);
             	navegador.setVisible(true);
@@ -485,10 +358,198 @@ public class funcionarioPedidosActuales extends JFrame {
     	        buttonProducto5.setVisible(true);
     	        buttonMisPedidos.setVisible(true);
     	        buttonCerrar.setVisible(true);
-    	        //panelTarjetas.setVisible(false);
     	       
                
             }
         });
-    }}
+      		//*======================================FIN DE PANNEL
+      
 
+        JPanel panel_2 = new JPanel();
+        panel_2.setBounds(0, 137, 1200, 663);
+        panel.add(panel_2);
+        panel_2.setLayout(null);
+
+        JPanel panel_3 = new JPanel();
+        panel_3.setBackground(new Color(214, 166, 190));//color fondo 117
+        panel_3.setBounds(0, 5, 1190, 647);
+        panel_2.add(panel_3);
+        panel_3.setLayout(null);
+
+        ImageIcon icon2 = new ImageIcon("/imagenesJhess/personassi.jfif");
+        Image image2 = icon2.getImage().getScaledInstance(585, 573, Image.SCALE_SMOOTH);
+
+        JLabel lblNewLabel_5 = new JLabel("");
+        lblNewLabel_5.setBounds(107, 473, 75, 52);
+        panel_3.add(lblNewLabel_5);
+        lblNewLabel_5.setIcon(new ImageIcon(image2));
+
+        JPanel panel_4 = new JPanel();
+        panel_4.setBackground(SystemColor.text);
+        panel_4.setBackground(new Color(239, 222, 230));//contenedor 131
+        panel_4.setBounds(300, 59, 584, 523);
+        panel_3.add(panel_4);
+        panel_4.setLayout(null);
+
+        panel_4.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
+        JLabel lblNewLabel_1_1 = new JLabel("Mi Perfil");
+        lblNewLabel_1_1.setBounds(215, 0, 173, 55);
+        panel_4.add(lblNewLabel_1_1);
+        lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 47));
+
+        JLabel lblNewLabel_1_1_1 = new JLabel("Nombre :");
+        lblNewLabel_1_1_1.setBounds(46, 203, 127, 52);
+        panel_4.add(lblNewLabel_1_1_1);
+        lblNewLabel_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+
+        JLabel lblNewLabel_1_1_1_2 = new JLabel("Correo :");
+        lblNewLabel_1_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        lblNewLabel_1_1_1_2.setBounds(46, 253, 127, 52);
+        panel_4.add(lblNewLabel_1_1_1_2);
+
+        JLabel lblNewLabel_1_1_1_2_1 = new JLabel("Usuario :");
+        lblNewLabel_1_1_1_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        lblNewLabel_1_1_1_2_1.setBounds(46, 306, 127, 52);
+        panel_4.add(lblNewLabel_1_1_1_2_1);
+
+        JLabel lblNewLabel_1_1_1_2_1_1 = new JLabel("Contraseña :");
+        lblNewLabel_1_1_1_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        lblNewLabel_1_1_1_2_1_1.setBounds(46, 361, 127, 52);
+        panel_4.add(lblNewLabel_1_1_1_2_1_1);
+
+        ImageIcon iconVoluntario = new ImageIcon(perfilUsuario.class.getResource("/imagenesJhess/voluntarioIcon.png"));
+        Image imageVoluntario = iconVoluntario.getImage().getScaledInstance(173, 134, Image.SCALE_SMOOTH);
+
+        JLabel lblNewLabel_2 = new JLabel("");
+        lblNewLabel_2.setBounds(215, 57, 173, 134);
+        lblNewLabel_2.setIcon(new ImageIcon(imageVoluntario));
+        panel_4.add(lblNewLabel_2);
+
+        textField = new JTextField();
+        textField.setBounds(205, 217, 214, 28);
+        panel_4.add(textField);
+        textField.setColumns(10);
+
+        textField_1 = new JTextField();
+        textField_1.setColumns(10);
+        textField_1.setBounds(205, 267, 214, 28);
+        panel_4.add(textField_1);
+
+        textField_2 = new JTextField();
+        textField_2.setColumns(10);
+        textField_2.setBounds(205, 320, 214, 28);
+        panel_4.add(textField_2);
+
+        textField_3 = new JTextField();
+        textField_3.setColumns(10);
+        textField_3.setBounds(205, 375, 214, 28);
+        panel_4.add(textField_3);
+       
+        inicializarCamposTexto();
+        
+        JPanel panel_5 = new JPanel();
+        panel_5.setBackground(new Color(239, 222, 230));//pnael de boton 192
+      
+        panel_5.setBounds(3, 450, 575, 63);
+        panel_4.add(panel_5);
+        panel_5.setLayout(null);
+
+        ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
+        Image image4 = icon4.getImage().getScaledInstance(585, 182, Image.SCALE_SMOOTH);
+        ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+        Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
+
+        btnEditar = new JButton("Editar");
+        btnEditar.setBackground(new Color(162, 195, 200));//boton editar 204
+        btnEditar.setForeground(Color.WHITE);  // Color del texto del botón204
+        btnEditar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        btnEditar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (btnEditar.getText().equals("Editar")) {
+                    
+                    editarPerfil();
+                } else {
+                	guardarCambios();
+                }
+                btnvolver.setVisible(true);
+  				btnOferta_2.setVisible(true);
+  				navegador.setVisible(false);
+  				SuperiorNavegador.setVisible(false);
+  				btnUsuario.setVisible(false);
+  				buttonProducto5.setVisible(false);
+  				buttonMisPedidos.setVisible(false);
+  				buttonCerrar.setVisible(false);
+            }
+        });
+        btnEditar.setBounds(425, 19, 149, 33);
+        panel_5.add(btnEditar);
+        
+        
+        
+
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBackground(new Color(162, 195, 200));//boton editar 223
+        btnCancelar.setForeground(Color.WHITE);  // Color del texto del botón 223
+        btnCancelar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        btnCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cancelarEdicion();
+                
+                btnvolver.setVisible(true);
+  				btnOferta_2.setVisible(true);
+  				navegador.setVisible(false);
+  				SuperiorNavegador.setVisible(false);
+  				btnUsuario.setVisible(false);
+  				buttonProducto5.setVisible(false);
+  				buttonMisPedidos.setVisible(false);
+  				buttonCerrar.setVisible(false);
+  				
+            }
+        });
+        btnCancelar.setBounds(253, 19, 162, 33);
+        btnCancelar.setVisible(false); 
+        panel_5.add(btnCancelar);
+    }
+    private void inicializarCamposTexto() {
+        textField.setText(usuario.getNombre());
+        textField_1.setText(usuario.getCorreo());
+        textField_2.setText(usuario.getUsuario());
+        textField_3.setText(usuario.getContrasenia());
+
+        bloquearCamposTexto();
+    }
+    
+    private void bloquearCamposTexto() {
+        textField.setEditable(false);
+        textField_1.setEditable(false);
+        textField_2.setEditable(false);
+        textField_3.setEditable(false);
+    }
+
+    private void editarPerfil() {
+        textField.setEditable(true);
+        textField_1.setEditable(true);
+        textField_3.setEditable(true);
+
+        btnEditar.setText("Guardar");
+        btnCancelar.setVisible(true);
+    }
+
+    private void cancelarEdicion() {
+        bloquearCamposTexto();
+        inicializarCamposTexto();
+        btnEditar.setText("Editar");
+        btnCancelar.setVisible(false);
+    }
+    private void guardarCambios() {
+        String nombre = textField.getText();
+        String correo = textField_1.getText();
+        String usuario = textField_2.getText();
+        String contraseña = textField_3.getText();
+        Usuario editado = new Usuario(usuario, nombre, correo, contraseña);
+        this.usuario.editarUsuario(editado);
+        btnEditar.setText("Editar");
+        btnCancelar.setVisible(false);
+
+    }
+}
