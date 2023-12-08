@@ -26,18 +26,7 @@ public class Login extends JFrame {
 	
 	PanelLogin pl;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 	public Login() {
 		setResizable(false);
 		getContentPane().setBackground(new Color(193, 123, 160));
