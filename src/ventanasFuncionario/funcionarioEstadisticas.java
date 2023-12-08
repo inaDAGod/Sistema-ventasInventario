@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -52,29 +54,14 @@ import ventasInventario.BD.Modelo.GestorPedidos;
 
 
 public class funcionarioEstadisticas extends JFrame {
-	private JTextField textFieldBuscar;
-    private JRadioButton radioBoton1, radioBoton2, radioBoton3, radioBoton3_1;
-    private ButtonGroup grupoRadioBotones;
-    private JButton botonBuscar, botonBuscar1;
-    private JPanel panelTarjetas;
-    private JPanel panelBusqueda;
-    private JPanel panel_2;
-   
-    private String textoBusqueda = "";
-    private JScrollPane scrollPane;
-    
+	
     
     private JPanel navegador;
     private  JPanel SuperiorNavegador;
     private JButton btnOferta_2;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	 // para el carrucel 	
-    private JPanel carruselPanel;
-    private List<String>  listaImagenes = new ArrayList<>();
-    private int currentIndex = 0;
-    private Timer timer;
-    
+
     // panelBusqueda.setBackground(Color.blue); define color
  
     
@@ -101,13 +88,7 @@ public class funcionarioEstadisticas extends JFrame {
 	public funcionarioEstadisticas() {
 	 
 	    setResizable(false);
-       //imagenes carusel
-        listaImagenes.add("src/imagenesJhess/caru2.jfif");
-        listaImagenes.add("src/imagenesJhess/caru.jpg");
-        listaImagenes.add("src/imagenesJhess/caru1.jpg");
-        listaImagenes.add("src/imagenesJhess/caru5.jpg");
-        
-
+      
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
         getContentPane().setLayout(null);
@@ -117,7 +98,8 @@ public class funcionarioEstadisticas extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        grupoRadioBotones = new ButtonGroup();
+        
+        //=============================================INICIOOOO DEL NARVAR TODOO
     //NARVAR DE UN LADO AL APRETAR EL PERFIL
         
         navegador = new JPanel();
@@ -154,7 +136,7 @@ public class funcionarioEstadisticas extends JFrame {
         btnUsuario.add(labelImagen7, BorderLayout.WEST);  // Colocar la imagen a la izquierda
        
       //BOTON añadir productos
-        JButton buttonProducto5 = new JButton("  Añadir Producto");
+        JButton buttonProducto5 = new JButton("    Añadir Producto");
         buttonProducto5.setBounds(25, 120, 300, 70);
         buttonProducto5.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
         buttonProducto5.setLayout(new BorderLayout());
@@ -163,7 +145,7 @@ public class funcionarioEstadisticas extends JFrame {
         navegador.add(buttonProducto5);
         buttonProducto5.setForeground(Color.BLACK);
         buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        ImageIcon iconProducto2 = new ImageIcon("src/imagenesJhess/favo.png");
+        ImageIcon iconProducto2 = new ImageIcon("src/imagenesJhess/aProducto.png");
         Image imagenOriginal2 = iconProducto2.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
         ImageIcon iconRedimensionado2 = new ImageIcon(imagenOriginal2);
         JLabel labelImagen2 = new JLabel(iconRedimensionado2);
@@ -172,7 +154,7 @@ public class funcionarioEstadisticas extends JFrame {
         
         
       //BOTON añadir funcionario
-        JButton buttonMisPedidos = new JButton("Añadir funcionario");
+        JButton buttonMisPedidos = new JButton("    Añadir funcionario");
         buttonMisPedidos.setBounds(25, 220, 300, 70);
         buttonMisPedidos.setLayout(new BorderLayout());
         buttonMisPedidos.setVisible(true);
@@ -181,7 +163,7 @@ public class funcionarioEstadisticas extends JFrame {
         buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         buttonMisPedidos.setForeground(Color.BLACK);
         navegador.add(buttonMisPedidos);
-        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/pedido.png");
+        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/aFuncionario.png");
         Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
         ImageIcon iconRedimensionado21 = new ImageIcon(imagenOriginal21);
         JLabel labelImagen21 = new JLabel(iconRedimensionado21);
@@ -189,7 +171,7 @@ public class funcionarioEstadisticas extends JFrame {
         buttonMisPedidos.add(labelImagen21, BorderLayout.WEST);  // Colocar la imagen a la izquierda
         
       //BOTON MIS listado de clientes
-        JButton buttonListado = new JButton("Listado de clientes");
+        JButton buttonListado = new JButton("      Listado de clientes");
         buttonListado.setBounds(25, 320, 300, 70);
         buttonListado.setLayout(new BorderLayout());
         buttonListado.setVisible(true);
@@ -198,7 +180,7 @@ public class funcionarioEstadisticas extends JFrame {
         buttonListado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         buttonListado.setForeground(Color.BLACK);
         navegador.add(buttonListado);
-        ImageIcon iconProducto218 = new ImageIcon("src/imagenesJhess/pedido.png");
+        ImageIcon iconProducto218 = new ImageIcon("src/imagenesJhess/listaCliente.png");
         Image imagenOriginal218 = iconProducto218.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
         ImageIcon iconRedimensionado218 = new ImageIcon(imagenOriginal218);
         JLabel labelImagen218 = new JLabel(iconRedimensionado218);
@@ -207,7 +189,7 @@ public class funcionarioEstadisticas extends JFrame {
         
        
         //BOTON todos los pedidos
-        JButton buttonAjustes = new JButton("Todos los pedidos");
+        JButton buttonAjustes = new JButton("     Todos los pedidos");
         buttonAjustes.setBounds(25, 420, 300, 70);
         buttonAjustes.setLayout(new BorderLayout());
         buttonAjustes.setVisible(true);
@@ -216,16 +198,33 @@ public class funcionarioEstadisticas extends JFrame {
         buttonAjustes.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
         buttonAjustes.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         buttonAjustes.setForeground(Color.BLACK);
-        ImageIcon iconProducto0 = new ImageIcon("src/imagenesJhess/ajus.png");
+        ImageIcon iconProducto0 = new ImageIcon("src/imagenesJhess/todosPedidos.png");
         Image imagenOriginal0 = iconProducto0.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
         ImageIcon iconRedimensionado0 = new ImageIcon(imagenOriginal0);
         JLabel labelImagen0 = new JLabel(iconRedimensionado0);
         labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
         buttonAjustes.add(labelImagen0, BorderLayout.WEST);  // Colocar la imagen a la izquierda
         
+        //BOTON ESTADISTICAS
+        JButton buttonEstadisticas = new JButton("Estadisticas");
+        buttonEstadisticas.setBounds(25, 520, 300, 70);
+        buttonEstadisticas.setLayout(new BorderLayout());
+        buttonEstadisticas.setVisible(true);
+        buttonEstadisticas.setBackground(new Color(250, 232, 235));
+        buttonEstadisticas.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
+        buttonEstadisticas.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        buttonEstadisticas.setForeground(Color.BLACK);
+        navegador.add(buttonEstadisticas);
+        ImageIcon iconProducto25 = new ImageIcon("src/imagenesJhess/estaditicas.png");
+        Image imagenOriginal25 = iconProducto25.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+        ImageIcon iconRedimensionado25 = new ImageIcon(imagenOriginal25);
+        JLabel labelImagen25 = new JLabel(iconRedimensionado25);
+        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+        buttonEstadisticas.add(labelImagen25, BorderLayout.WEST);  // Colocar la imagen a la izquierda
+        
         //BOTON MIS CERRAR SESION
         JButton buttonCerrar = new JButton("Cerrar sesion");
-        buttonCerrar.setBounds(25, 520, 300, 70);
+        buttonCerrar.setBounds(25, 620, 300, 70);
         buttonCerrar.setLayout(new BorderLayout());
         buttonCerrar.setVisible(true);
         buttonCerrar.setBackground(new Color(250, 232, 235));
@@ -298,10 +297,11 @@ public class funcionarioEstadisticas extends JFrame {
       
         ImageIcon iconPerfil = new ImageIcon(
                 "src/imagenesJhess/perfilpersona.png");
-        Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
+        Image imagePerfil = iconPerfil.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
         btnOferta_2 = new JButton("");
-        btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
+        btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+        btnOferta_2.setBackground(new Color(117, 14, 73));
         btnOferta_2.setIcon(new ImageIcon(imagePerfil));
         btnOferta_2.setBounds(990, 11, 130, 118);
         panel_1.add(btnOferta_2);
@@ -316,6 +316,12 @@ public class funcionarioEstadisticas extends JFrame {
         btnvolver.setForeground(Color.WHITE);
         btnvolver.setBounds(1130, 50, 50, 40);
         panel_1.add(btnvolver);
+//*INTERACCION DEL NARVAR
+
+        
+       
+       
+//=============================================FIN DEL NARVAR TODOO
         
        
 
@@ -369,6 +375,26 @@ public class funcionarioEstadisticas extends JFrame {
         JFreeChart chart3 = createCustomBarChart(dataset3, "Productos más vendidos", "Productos", "Cantidad ");
         ChartPanel chartPanel3 = new ChartPanel(chart3);
         panel_2.add(chartPanel3);
+        
+        btnOferta_2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+
+            	chartPanel41.setVisible(false);
+            	chartPanel3.setVisible(false);
+            	btnvolver.setVisible(false);
+            	btnOferta_2.setVisible(false);
+            	navegador.setVisible(true);
+            	SuperiorNavegador.setVisible(true);
+    	        btnUsuario.setVisible(true);
+    	        buttonProducto5.setVisible(true);
+    	        buttonMisPedidos.setVisible(true);
+    	        buttonCerrar.setVisible(true);
+    	       
+    	       
+               
+            }
+        });
     }
 	
 	

@@ -101,7 +101,7 @@ public class funcionarioInicio extends JFrame {
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setBounds(100, 100, 1200, 800);
 	        getContentPane().setLayout(null);
-	      //=============================================INICIOOOO DEL NARVAR TODOO
+
 	        JPanel panel = new JPanel();
 	        panel.setBounds(0, 0, 1200, 763);
 	        getContentPane().add(panel);

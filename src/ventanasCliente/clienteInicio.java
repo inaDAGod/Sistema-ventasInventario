@@ -91,8 +91,9 @@ public class clienteInicio extends JFrame {
 		getContentPane().add(panel);
 
 		panel.setLayout(null);
-//*======================================INICIO DE PANNEL
 		grupoRadioBotones = new ButtonGroup();
+//*======================================INICIO DE PANNEL
+		
 		// NARVAR DE UN LADO AL APRETAR EL PERFIL
 
 		navegador = new JPanel();
