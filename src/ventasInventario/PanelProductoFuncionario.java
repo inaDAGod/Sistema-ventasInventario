@@ -39,7 +39,7 @@ public class PanelProductoFuncionario extends JPanel {
 		add(lbDescrpcion);
 		
 		foto = new JLabel("New label");
-		foto.setIcon(new ImageIcon(PanelProductoCliente.class.getResource("/imagenes/rosa1(1200x800).jpg")));
+		foto.setIcon(new ImageIcon(producto.getImagenes().get(0)));
 		foto.setBounds(103, 119, 300, 400);
 		add(foto);
 		
