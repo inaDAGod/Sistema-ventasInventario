@@ -43,13 +43,9 @@ public class PanelLogin extends JPanel {
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PanelRegistro pr=new PanelRegistro();
-				pr.setBounds(0,0,1200,680);
-				removeAll();
-			    add(pr,BorderLayout.CENTER);
-				revalidate();
-				repaint();
-				pr.setVisible(true);
+				getTopLevelAncestor().setVisible(false);
+				Registro pr=new Registro();
+				pr.setVisible(true);	
 			}
 		});
 		btnRegistrarse.setBounds(681, 450, 150, 50);
