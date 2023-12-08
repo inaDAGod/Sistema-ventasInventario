@@ -38,23 +38,6 @@ public class NuevoFuncionario extends JFrame {
     private  JPanel SuperiorNavegador;
     private Usuario usuarioo;
     
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Usuario u = new Usuario("funci");
-					NuevoFuncionario frame = new NuevoFuncionario(u);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public NuevoFuncionario(Usuario u) {
 		this.usuarioo = u;
 		setResizable(false);
