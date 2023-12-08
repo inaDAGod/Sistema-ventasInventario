@@ -41,7 +41,7 @@ CREATE TABLE favoritos (
 
 -- Table: imagenes
 CREATE TABLE imagenes (
-    ruta varchar(50)  NOT NULL,
+    ruta varchar(5000)  NOT NULL,
     cproducto varchar(50)  NOT NULL,
     CONSTRAINT imagenes_pk PRIMARY KEY (ruta,cproducto)
 );
