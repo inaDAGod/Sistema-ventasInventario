@@ -55,7 +55,7 @@ public class clienteCatalogo extends JFrame {
 
 	public clienteCatalogo(Usuario u) {
 		this.usuario = u;
-		System.out.println(usuario);
+		//System.out.println(usuario);
 	    setResizable(false);
 		controladorProducto = new ControladorProducto();
 		productos = controladorProducto.todosProductos();

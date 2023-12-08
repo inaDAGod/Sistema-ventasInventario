@@ -96,6 +96,7 @@ public class clientePedido extends JFrame {
     private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
+	/*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -108,7 +109,7 @@ public class clientePedido extends JFrame {
                 }
             }
         });
-    }
+    }*/
 
     public clientePedido(Usuario usuario) {
         setResizable(false);

@@ -3,11 +3,13 @@ package ventanasCliente;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import general.InicioGeneral;
 import general.generalOfertas;
 import general.generalProductos;
 import general.generalSobreNea;
 import ventanasFuncionario.funcionarioInicio.TarjetaPedido;
 import ventanasFuncionario.funcionarioInicio.TarjetaProducto;
+import ventasInventario.Favoritos;
 import ventasInventario.PanelLogin;
 import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
@@ -122,6 +124,13 @@ public class clienteInicio extends JFrame {
 		btnUsuario.setLayout(new BorderLayout());
 		btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0));
 		btnUsuario.setVisible(true);
+		btnUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				perfilUsuario frame = new perfilUsuario(usuario);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		SuperiorNavegador.add(btnUsuario);
 		btnUsuario.setBackground(new Color(205, 159, 204));
 		btnUsuario.setForeground(Color.WHITE);
@@ -140,6 +149,13 @@ public class clienteInicio extends JFrame {
 		buttonProducto5.setLayout(new BorderLayout());
 		buttonProducto5.setBackground(new Color(250, 232, 235));
 		buttonProducto5.setVisible(true);
+		buttonProducto5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Favoritos frame = new Favoritos(usuario);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		navegador.add(buttonProducto5);
 		buttonProducto5.setForeground(Color.BLACK);
 		buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -159,6 +175,13 @@ public class clienteInicio extends JFrame {
 		buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0));
 		buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		buttonMisPedidos.setForeground(Color.BLACK);
+		buttonMisPedidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clientePedido frame = new clientePedido(usuario);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		navegador.add(buttonMisPedidos);
 		ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/pedido.png");
 		Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
@@ -177,6 +200,13 @@ public class clienteInicio extends JFrame {
 		buttonCerrar.setBackground(new Color(250, 232, 235));
 		buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0));
 		buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		buttonCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InicioGeneral frame = new InicioGeneral();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		buttonCerrar.setForeground(Color.BLACK);
 		navegador.add(buttonCerrar);
 		ImageIcon iconProducto8 = new ImageIcon("src/imagenesJhess/salir.png");

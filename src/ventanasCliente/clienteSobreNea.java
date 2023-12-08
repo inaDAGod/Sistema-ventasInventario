@@ -54,7 +54,7 @@ public class clienteSobreNea extends JFrame {
      */
     public clienteSobreNea(Usuario u) {
     	this.usuario = u;
-    	System.out.println(usuario);
+    	//System.out.println(usuario);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800); 

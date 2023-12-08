@@ -58,7 +58,7 @@ public class clienteOfertas extends JFrame {
 
     public clienteOfertas(Usuario u) {
     	this.usuario = u;
-    	System.out.println(usuario);
+    	//System.out.println(usuario);
     	setResizable(false);
     	controladorProducto = new ControladorProducto();
     	ofertados = controladorProducto.ofertados();
