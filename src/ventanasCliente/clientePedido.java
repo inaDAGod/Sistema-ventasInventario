@@ -217,8 +217,8 @@ public class clientePedido extends JFrame {
       		buttonCarrito.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		buttonCarrito.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					clientePedido frame = new clientePedido(usuario);
-	                frame.setVisible(true);
+					ventasInventario.Carrito carrito = new ventasInventario.Carrito(usuario);
+	                carrito.setVisible(true);
 					setVisible(false);
 				}
 			});
