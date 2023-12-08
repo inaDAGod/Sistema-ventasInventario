@@ -32,7 +32,7 @@ import java.awt.Font;
 class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    public TarjetaPedido(Pedido pedido) {
+    public TarjetaPedido(Pedido pedido,clientePedido clipedido) {
     	
     	 setLayout(new BorderLayout()); 
          setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); 
@@ -70,7 +70,7 @@ class TarjetaPedido extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				clientePedidoDetalle frame = new clientePedidoDetalle(pedido);
                 frame.setVisible(true);
-				setVisible(false);
+				clipedido.setVisible(false);
 			}
 		});
         buttonInfo.setBackground(new Color(112, 76, 94)); 
@@ -352,7 +352,7 @@ public class clientePedido extends JFrame {
  
         ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosCliente(usuario);
         for (Pedido pedido : listaPedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+            TarjetaPedido tarjeta = new TarjetaPedido(pedido,clientePedido.this);
             tarjeta.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
             
             panelTarjetas.add(tarjeta);

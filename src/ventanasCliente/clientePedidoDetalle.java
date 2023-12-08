@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -24,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Modelo.GestorPedidos;
 import ventasInventario.BD.Modelo.Pedido;
 import ventasInventario.BD.Modelo.Producto;
@@ -302,63 +305,75 @@ public class clientePedidoDetalle extends JFrame {
         private static final long serialVersionUID = 1L;
 
         public TarjetaPedido() {
-            setLayout(new BorderLayout()); 
+            setLayout(new BorderLayout());
             setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-            DefaultTableModel modeloTabla = new DefaultTableModel();
-           
-       
+
+            DefaultTableModel modeloTabla = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Hacer que todas las celdas no sean editables
+                }
+            };
+
             modeloTabla.addColumn("Nombre");
             modeloTabla.addColumn("Descripción");
             modeloTabla.addColumn("Cantidad");
             modeloTabla.addColumn("Marca");
             modeloTabla.addColumn("Precio");
-         
-            for (ProductoCarrito produc  : pedido.getProductos()) {
-                modeloTabla.addRow(new Object[] {
-                    
-                        produc.getProducto().getNombre(),
-                        produc.getProducto().getDescripcion(),
-                        produc.getCantidad(),
-                        produc.getProducto().getMarca(),
-                        produc.getProducto().getPrecio(),
-                  
-                });
-              
-            }
-            
-            
+
+           
+            for (ProductoCarrito produc : pedido.getProductos()) {
+                 modeloTabla.addRow(new Object[]{
+                         produc.getProducto().getNombre(),
+                         produc.getProducto().getDescripcion(),
+                         produc.getCantidad(),
+                         produc.getProducto().getMarca(),
+                         produc.getProducto().getPrecio(),
+                 });
+             }
 
             JTable tablaProductos = new JTable(modeloTabla);
 
-         // Personalizar colores de celdas y encabezados
-         personalizarTabla(tablaProductos);
+            // Configuraciones adicionales de la tabla aquí...
 
-         JScrollPane scrollPane = new JScrollPane(tablaProductos);
+            JScrollPane scrollPane = new JScrollPane(tablaProductos);
 
-       
-            tablaProductos.setBackground(new Color(255,229,154));//boton editar 204
-            tablaProductos.setForeground(Color.BLACK); 
-            tablaProductos.setBounds(500, 10, 139, 36);
-           
-
-            JLabel labelMonto = new JLabel("Monto Total: " +pedido.getTotal() + " Bs.");
-            labelMonto.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-            labelMonto.setForeground(Color.white); 
+            JLabel labelMonto = new JLabel("Monto Total: 100 Bs."); // Ejemplo de etiqueta para el monto
 
             JPanel panelMonto = new JPanel();
             panelMonto.add(labelMonto);
-            panelMonto.setBackground(new Color(184, 140, 158));//boton editar 204
-            
-            panelMonto.setBounds(500, 10, 139, 36);
-           
-            add(scrollPane, BorderLayout.CENTER); 
-            add(panelMonto, BorderLayout.SOUTH); 
+            panelMonto.setBackground(new Color(184, 140, 158)); // Cambia el color si es necesario
+
+            add(scrollPane, BorderLayout.CENTER);
+            add(panelMonto, BorderLayout.SOUTH);
             setBackground(Color.WHITE);
-            Dimension preferredSize = new Dimension(500, 0); 
+            Dimension preferredSize = new Dimension(500, 0);
             setPreferredSize(preferredSize);
+
+            tablaProductos.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 2) { // Detectar doble clic
+                        int filaSeleccionada = tablaProductos.getSelectedRow();
+                        if (filaSeleccionada != -1) {
+                            abrirProducto(pedido.getProductos().get(filaSeleccionada).getProducto());
+                           
+                        }
+                    }
+                }
+            });
         }
-    }
+
+        
  
+    }
+    private void abrirProducto(Producto producto) {
+		
+		ProductoCliente d = new ProductoCliente(pedido.getUsuario(),producto,clientePedidoDetalle.this);
+		d.setVisible(true);
+		 clientePedidoDetalle.this.setVisible(false);
+		
+    }
     private void personalizarTabla(JTable tabla) {
        DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
         renderizador.setBackground(new Color(239, 222, 230)); // Cambia el color a tu elección
