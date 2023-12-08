@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
@@ -23,9 +24,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -41,6 +45,8 @@ public class EditarProducto extends JFrame {
 	private JComboBox cboxEtiquetas2;
 	private JComboBox cboxEtiquetas3;
 	private Integer cantEtiquetas;
+	String ruta;
+	JLabel imagen;
 
 	public EditarProducto(Producto producto) {
 		getContentPane().setLayout(null);
@@ -225,12 +231,24 @@ public class EditarProducto extends JFrame {
 		cant.setColumns(10);
 		
 		
-		JLabel imagen = new JLabel("New label");
+		imagen = new JLabel("New label");
 		imagen.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/blanco(1200x800).jpg")));
 		imagen.setBounds(159, 256, 250, 300);
 		getContentPane().add(imagen);
 		
 		JButton btnSubirFoto = new JButton("-");
+		btnSubirFoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+		        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "gif","jfif"));
+		        int seleccion = fileChooser.showOpenDialog(null);        
+		        if (seleccion == JFileChooser.APPROVE_OPTION) {
+		            ruta = fileChooser.getSelectedFile().getPath();
+		            ImageIcon imageIcon = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+		            imagen.setIcon(imageIcon);
+		        }	
+			}
+		});
 		btnSubirFoto.setBounds(159, 567, 50, 50);
 		getContentPane().add(btnSubirFoto);
 		
@@ -249,7 +267,7 @@ public class EditarProducto extends JFrame {
 		getContentPane().add(btnUsuario);
 		
 		JButton btnLogo = new JButton("");
-        btnLogo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\LogoGris(200x100).jpg"));
+        //btnLogo.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\LogoGris(200x100).jpg"));
         btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
         btnLogo.setBounds(42, 10, 200, 100);
         getContentPane().add(btnLogo);
