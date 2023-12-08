@@ -3,8 +3,7 @@ insert into usuarios values
  ('danialee14','dani','correo@gmail.com','admin123',false,false),
  ('jhess','jhess','correo@gmail.com','admin123',false,false),
  ('jhuli','jhuli','correo@gmail.com','admin123',false,false),
- ('funci','dani','correo@gmail.com','admin123',true,false),
- ('danialee14','dani','correo@gmail.com','admin123',false,false);
+ ('funci','dani','correo@gmail.com','admin123',true,false);
 
  INSERT INTO usuarios VALUES 
     ('user1', 'user1', 'user1@gmail.com', 'password1', false, false),
