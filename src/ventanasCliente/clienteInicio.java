@@ -91,7 +91,7 @@ public class clienteInicio extends JFrame {
 		getContentPane().add(panel);
 
 		panel.setLayout(null);
-
+//*======================================INICIO DE PANNEL
 		grupoRadioBotones = new ButtonGroup();
 		// NARVAR DE UN LADO AL APRETAR EL PERFIL
 
@@ -163,26 +163,11 @@ public class clienteInicio extends JFrame {
 		labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 		buttonMisPedidos.add(labelImagen21, BorderLayout.WEST); // Colocar la imagen a la izquierda
 
-		// BOTON AJUSTES
-		JButton buttonAjustes = new JButton("Ajustes");
-		buttonAjustes.setBounds(25, 320, 300, 70);
-		buttonAjustes.setLayout(new BorderLayout());
-		buttonAjustes.setVisible(true);
-		navegador.add(buttonAjustes);
-		buttonAjustes.setBackground(new Color(250, 232, 235));
-		buttonAjustes.setBorder(BorderFactory.createLineBorder(Color.black, 0));
-		buttonAjustes.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		buttonAjustes.setForeground(Color.BLACK);
-		ImageIcon iconProducto0 = new ImageIcon("src/imagenesJhess/ajus.png");
-		Image imagenOriginal0 = iconProducto0.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
-		ImageIcon iconRedimensionado0 = new ImageIcon(imagenOriginal0);
-		JLabel labelImagen0 = new JLabel(iconRedimensionado0);
-		labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-		buttonAjustes.add(labelImagen0, BorderLayout.WEST); // Colocar la imagen a la izquierda
+		
 
 		// BOTON MIS CERRAR SESION
 		JButton buttonCerrar = new JButton("Cerrar sesion");
-		buttonCerrar.setBounds(25, 420, 300, 70);
+		buttonCerrar.setBounds(25, 320, 300, 70);
 		buttonCerrar.setLayout(new BorderLayout());
 		buttonCerrar.setVisible(true);
 		buttonCerrar.setBackground(new Color(250, 232, 235));
@@ -190,12 +175,12 @@ public class clienteInicio extends JFrame {
 		buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		buttonCerrar.setForeground(Color.BLACK);
 		navegador.add(buttonCerrar);
-		ImageIcon iconProducto215 = new ImageIcon("src/imagenesJhess/salir.png");
-		Image imagenOriginal215 = iconProducto215.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
-		ImageIcon iconRedimensionado215 = new ImageIcon(imagenOriginal215);
-		JLabel labelImagen215 = new JLabel(iconRedimensionado21);
-		labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-		buttonCerrar.add(labelImagen215, BorderLayout.WEST); // Colocar la imagen a la izquierda
+		ImageIcon iconProducto8 = new ImageIcon("src/imagenesJhess/salir.png");
+		Image imagenOrigina8 = iconProducto8.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+		ImageIcon iconRedimensionado8 = new ImageIcon(imagenOrigina8);
+		JLabel labelImagen8 = new JLabel(iconRedimensionado8);
+		labelImagen8.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+		buttonCerrar.add(labelImagen8, BorderLayout.WEST); // Colocar la imagen a la izquierda
 
 		// FIONNN
 		JPanel panel_1 = new JPanel();
@@ -248,12 +233,13 @@ public class clienteInicio extends JFrame {
 		panel_1.add(btnOferta_1);
 
 		ImageIcon iconPerfil = new ImageIcon("src/imagenesJhess/perfilpersona.png");
-		Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
+		Image imagePerfil = iconPerfil.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
 		btnOferta_2 = new JButton("");
-		btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+		btnOferta_2.setBackground(new Color(117, 14, 73));
 		btnOferta_2.setIcon(new ImageIcon(imagePerfil));
-		btnOferta_2.setBounds(990, 11, 130, 118);
+		btnOferta_2.setBounds(990, 15, 100, 100);
 		panel_1.add(btnOferta_2);
 
 		JButton btnvolver = new JButton(">");
@@ -263,6 +249,26 @@ public class clienteInicio extends JFrame {
 		btnvolver.setForeground(Color.WHITE);
 		btnvolver.setBounds(1130, 50, 50, 40);
 		panel_1.add(btnvolver);
+		
+		btnOferta_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				carruselPanel.setVisible(false);
+				radioBoton3_1.setVisible(false);
+				btnvolver.setVisible(false);
+				btnOferta_2.setVisible(false);
+				navegador.setVisible(true);
+				SuperiorNavegador.setVisible(true);
+				btnUsuario.setVisible(true);
+				buttonProducto5.setVisible(true);
+				buttonMisPedidos.setVisible(true);
+				buttonCerrar.setVisible(true);
+				botonBuscar.setVisible(false);
+
+			}
+		});
+		
+		//*======================================FIN DE PANNEL
 
 		JPanel panelBase = new JPanel();
 		panelBase.setBounds(0, 137, 1200, 625);
@@ -336,23 +342,7 @@ public class clienteInicio extends JFrame {
 		agregarTarjetasPedidos();
 		restaurarEstadoOriginal();
 
-		btnOferta_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				carruselPanel.setVisible(false);
-				radioBoton3_1.setVisible(false);
-				btnvolver.setVisible(false);
-				btnOferta_2.setVisible(false);
-				navegador.setVisible(true);
-				SuperiorNavegador.setVisible(true);
-				btnUsuario.setVisible(true);
-				buttonProducto5.setVisible(true);
-				buttonMisPedidos.setVisible(true);
-				buttonCerrar.setVisible(true);
-				botonBuscar.setVisible(false);
-
-			}
-		});
+		
 
 	}
 
