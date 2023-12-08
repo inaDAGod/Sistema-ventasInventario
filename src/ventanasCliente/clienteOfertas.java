@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
@@ -39,11 +40,13 @@ public class clienteOfertas extends JFrame {
 	private JButton btnOferta_2;
     private ArrayList<Producto> ofertados;
     private ControladorProducto controladorProducto;
+    private Usuario usuario;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	clienteOfertas frame = new clienteOfertas();
+                	Usuario usu = new Usuario("danialee14");
+                	clienteOfertas frame = new clienteOfertas(usu);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -52,7 +55,8 @@ public class clienteOfertas extends JFrame {
         });
     }
 
-    public clienteOfertas() {
+    public clienteOfertas(Usuario u) {
+    	this.usuario = u;
     	setResizable(false);
     	controladorProducto = new ControladorProducto();
     	ofertados = controladorProducto.ofertados();
@@ -284,7 +288,7 @@ public class clienteOfertas extends JFrame {
                 JLabel labelNumeroCompra = new JLabel("Nombre: " + producto.getNombre());
                 labelNumeroCompra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelNumeroCompra.setForeground(Color.BLACK); 
-                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecio());
+                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecioOriginal());
                 labelFecha.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelFecha.setForeground(Color.RED); 
                 JLabel labelEstado = new JLabel("Ahora: " + producto.getOferta().getPrecioOferta());

@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ventasInventario.Login;
+import ventasInventario.Registro;
 
 public class generalSobreNea extends JFrame {
 
@@ -25,25 +26,7 @@ public class generalSobreNea extends JFrame {
     private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					generalSobreNea frame = new generalSobreNea();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public generalSobreNea() {
 		   setResizable(false);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +67,13 @@ public class generalSobreNea extends JFrame {
 			btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnNewButton.setForeground(Color.WHITE);
 			btnNewButton.setBounds(250, 44, 125, 36);
+			btnNewButton.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				InicioGeneral frame = new InicioGeneral();
+    				frame.setVisible(true);
+    				setVisible(false);
+    			}
+    		});
 			panel_1.add(btnNewButton);
 			
 
@@ -93,6 +83,13 @@ public class generalSobreNea extends JFrame {
 			btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta.setForeground(Color.WHITE);
 			btnOferta.setBounds(374, 44, 125, 36);
+			btnOferta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalProductos frame = new generalProductos();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta);
 
 			JButton btnOferta_1_1 = new JButton("Oferta");
@@ -101,6 +98,13 @@ public class generalSobreNea extends JFrame {
 			btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta_1_1.setForeground(Color.WHITE);
 			btnOferta_1_1.setBounds(498, 44, 120, 36);
+			btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalOfertas frame = new generalOfertas();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta_1_1);
 
 			JButton btnOferta_1 = new JButton("Quienes somos?");
@@ -109,6 +113,13 @@ public class generalSobreNea extends JFrame {
 			btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta_1.setForeground(Color.WHITE);
 			btnOferta_1.setBounds(618, 44, 140, 36);
+			btnOferta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalSobreNea frame = new generalSobreNea();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta_1);
 
 			JButton btnvolver = new JButton("Iniciar sesion");
@@ -136,8 +147,8 @@ public class generalSobreNea extends JFrame {
 			btnvolver2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Login login = new Login();
-					login.setVisible(true);
+					Registro frame = new Registro();
+					frame.setVisible(true);
 					setVisible(false);
 				}
 			});
@@ -158,7 +169,7 @@ public class generalSobreNea extends JFrame {
 	        panel_3.setLayout(null);
 
 	        JLabel lblNewLabel_2 = new JLabel("");
-	        ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
+	        ImageIcon icon2 = new ImageIcon("src\\imagenesJhess\\personassi.jfif");
 	        Image image2 = icon2.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 	        lblNewLabel_2.setIcon(new ImageIcon(image2));
 	        lblNewLabel_2.setBounds(74, 40, 585, 573);
@@ -182,7 +193,7 @@ public class generalSobreNea extends JFrame {
 	        panel_3_1.add(lblNewLabel_3);
 
 	        JLabel lblNewLabel_4 = new JLabel("");
-	        ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
+	        ImageIcon icon4 = new ImageIcon("src\\imagenesJhess\\ubicacion.JPG");
 	        Image image4 = icon4.getImage().getScaledInstance(585, 150, Image.SCALE_SMOOTH);
 	        lblNewLabel_4.setIcon(new ImageIcon(image4));
 	        lblNewLabel_4.setBounds(20, 420, 555, 182);
@@ -204,7 +215,7 @@ public class generalSobreNea extends JFrame {
 	        panel_3_1.add(lblNewLabel_3_1);
 
 	        JLabel lblNewLabel_5 = new JLabel("");
-	        ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+	        ImageIcon icon5 = new ImageIcon("src\\imagenesJhess\\icono-de-llamada-telefonica");
 	        Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
 	        lblNewLabel_5.setIcon(new ImageIcon(image5));
 	        lblNewLabel_5.setBounds(361, 324, 75, 52);

@@ -107,6 +107,9 @@ public class Producto {
 		}
 		return precio;
 	}
+	public Double getPrecioOriginal() {
+		return precio;
+	}
 
 	public void setPrecio(Double precio) {
 		this.precio = precio;

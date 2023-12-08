@@ -5,6 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import general.InicioGeneral;
+import general.generalOfertas;
+import ventasInventario.BD.Modelo.Usuario;
+
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -25,7 +30,7 @@ public class clienteSobreNea extends JFrame {
     private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
-
+	private Usuario usuario;
     /**
      * Launch the application.
      */
@@ -33,7 +38,8 @@ public class clienteSobreNea extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    clienteSobreNea frame = new clienteSobreNea();
+                	Usuario u = new Usuario("danialee14");
+                    clienteSobreNea frame = new clienteSobreNea(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -45,7 +51,8 @@ public class clienteSobreNea extends JFrame {
     /**
      * Create the frame.
      */
-    public clienteSobreNea() {
+    public clienteSobreNea(Usuario u) {
+    	this.usuario = u;
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800); 
@@ -160,7 +167,8 @@ public class clienteSobreNea extends JFrame {
 
       		JLabel lblNewLabel = new JLabel("");
       		ImageIcon icon = new ImageIcon(
-      				"src/imagenes/logo.jpg");
+      				"src\\imagenes\\logo.jpg");
+
       		Image image = icon.getImage().getScaledInstance(190, 100, Image.SCALE_SMOOTH);
       		lblNewLabel.setIcon(new ImageIcon(image));
       		lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -173,6 +181,12 @@ public class clienteSobreNea extends JFrame {
       		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnNewButton.setForeground(Color.WHITE);
       		btnNewButton.setBounds(330, 44, 125, 36);
+      		btnNewButton.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				
+    				setVisible(false);
+    			}
+    		});
       		panel_1.add(btnNewButton);
 
       		JButton btnOferta = new JButton("Productos");
@@ -189,6 +203,13 @@ public class clienteSobreNea extends JFrame {
       		btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnOferta_1_1.setForeground(Color.WHITE);
       		btnOferta_1_1.setBounds(578, 44, 120, 36);
+      		btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalOfertas frame = new generalOfertas();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
       		panel_1.add(btnOferta_1_1);
 
       		JButton btnOferta_1 = new JButton("Quienes somos?");
@@ -249,7 +270,7 @@ public class clienteSobreNea extends JFrame {
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_2 = new JLabel("");
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
+        ImageIcon icon2 = new ImageIcon("src\\imagenesJhess\\personassi.jfif");
         Image image2 = icon2.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
         lblNewLabel_2.setBounds(74, 40, 585, 573);
