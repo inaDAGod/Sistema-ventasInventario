@@ -237,8 +237,9 @@ public class generalOfertas extends JFrame {
                 buttonPedido.setBackground(Color.white);
 
                 buttonPedido.addActionListener(e -> {
-                	ProductoCliente frame = new ProductoCliente(null,producto);
+                	ProductoDetalleGeneral frame = new ProductoDetalleGeneral(producto,generalOfertas.this);
 					frame.setVisible(true);
+					generalOfertas.this.setVisible(false);
                 });
                 buttonPedido.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 

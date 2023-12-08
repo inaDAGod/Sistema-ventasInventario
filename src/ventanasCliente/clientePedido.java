@@ -32,7 +32,7 @@ import java.awt.Font;
 class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
 
-    public TarjetaPedido(Pedido pedido) {
+    public TarjetaPedido(Pedido pedido,clientePedido clipedido) {
     	
     	 setLayout(new BorderLayout()); 
          setBorder(BorderFactory.createLineBorder(Color.BLACK, 1)); 
@@ -70,7 +70,7 @@ class TarjetaPedido extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				clientePedidoDetalle frame = new clientePedidoDetalle(pedido);
                 frame.setVisible(true);
-				setVisible(false);
+				clipedido.setVisible(false);
 			}
 		});
         buttonInfo.setBackground(new Color(112, 76, 94)); 
@@ -106,20 +106,7 @@ public class clientePedido extends JFrame {
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
 	private Usuario usuario;
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	Usuario u = new Usuario("danialee14");
-                	clientePedido frame = new clientePedido(u);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
+   
     public clientePedido(Usuario usuario) {
     	this.usuario = usuario;
         setResizable(false);
@@ -209,13 +196,7 @@ public class clientePedido extends JFrame {
       		buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0));
       		buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		buttonMisPedidos.setForeground(Color.BLACK);
-      		buttonMisPedidos.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					clientePedido frame = new clientePedido(usuario);
-	                frame.setVisible(true);
-					setVisible(false);
-				}
-			});
+      		
       		navegador.add(buttonMisPedidos);
       		ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/pedido.png");
       		Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
@@ -365,7 +346,7 @@ public class clientePedido extends JFrame {
  
         ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosCliente(usuario);
         for (Pedido pedido : listaPedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+            TarjetaPedido tarjeta = new TarjetaPedido(pedido,clientePedido.this);
             tarjeta.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
             
             panelTarjetas.add(tarjeta);

@@ -604,8 +604,9 @@ public class InicioGeneral extends JFrame {
 				buttonProducto.setLayout(new GridBagLayout());
 				buttonProducto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ProductoCliente frame = new ProductoCliente(null,producto11);
-						frame.setVisible(true);
+						ProductoDetalleGeneral d = new ProductoDetalleGeneral(producto11,InicioGeneral.this);
+						d.setVisible(true);
+						InicioGeneral.this.setVisible(false);
 					}
 				});
 				ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
@@ -713,8 +714,9 @@ public class InicioGeneral extends JFrame {
 					buttonProducto.setLayout(new GridBagLayout());
 					buttonProducto.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ProductoCliente frame = new ProductoCliente(null,producto11);
+							ProductoDetalleGeneral frame = new ProductoDetalleGeneral(producto11,InicioGeneral.this);
 							frame.setVisible(true);
+							InicioGeneral.this.setVisible(false);
 						}
 					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));

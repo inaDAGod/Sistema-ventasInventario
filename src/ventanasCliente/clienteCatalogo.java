@@ -42,18 +42,6 @@ public class clienteCatalogo extends JFrame {
 	private JButton btnOferta_2;
 	private JButton btnvolver;
 	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				Usuario u = new Usuario("danialee14");
-				clienteCatalogo frame = new clienteCatalogo(u);
-				frame.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-	}*/
 
 	public clienteCatalogo(Usuario u) {
 		this.usuario = u;
@@ -625,8 +613,9 @@ public class clienteCatalogo extends JFrame {
 				buttonProducto.setLayout(new GridBagLayout());
 				buttonProducto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ProductoCliente frame = new ProductoCliente(usuario,producto11);
+						ProductoCliente frame = new ProductoCliente(usuario,producto11,clienteCatalogo.this);
 						frame.setVisible(true);
+						clienteCatalogo.this.setVisible(false);
 					}
 				});
 				ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
@@ -731,8 +720,9 @@ public class clienteCatalogo extends JFrame {
 					buttonProducto.setLayout(new GridBagLayout());
 					buttonProducto.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							ProductoCliente frame = new ProductoCliente(usuario,producto11,clienteCatalogo.this);
 							frame.setVisible(true);
+							clienteCatalogo.this.setVisible(false);
 						}
 					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));

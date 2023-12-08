@@ -373,12 +373,13 @@ public class generalProductos extends JFrame {
 					String nombreBusqueda = textFieldBuscar.getText();
 					textoBusqueda = nombreBusqueda;
 					buscarPorNombre(nombreBusqueda);
-					btnvolver.setVisible(true);
+					/*
+					//btnvolver.setVisible(true);
 					radioBoton3_1.setVisible(true);
-					navegador.setVisible(false);
-					SuperiorNavegador.setVisible(false);
+					//navegador.setVisible(false);
+					//SuperiorNavegador.setVisible(false);
 					btnOferta_2.setVisible(true);
-					botonBuscar.setVisible(true);
+					botonBuscar.setVisible(true);*/
 
 				}
 			});
@@ -561,8 +562,9 @@ public class generalProductos extends JFrame {
 					buttonProducto.setBackground(Color.WHITE);
 
 					buttonProducto.addActionListener(e -> {
-						ProductoCliente frame = new ProductoCliente(null,producto11);
+						ProductoDetalleGeneral frame = new ProductoDetalleGeneral(producto11,generalProductos.this);
 						frame.setVisible(true);
+						generalProductos.this.setVisible(false);
 
 					});
 
@@ -628,7 +630,13 @@ public class generalProductos extends JFrame {
 						buttonProducto.setLayout(new GridBagLayout());
 
 						ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
-
+						buttonProducto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ProductoDetalleGeneral frame = new ProductoDetalleGeneral(producto11,generalProductos.this);
+								frame.setVisible(true);
+								generalProductos.this.setVisible(false);
+							}
+						});
 						int alturaDeseada = 200;
 						int anchuraCalculada = (alturaDeseada * iconProducto.getIconWidth()) / iconProducto.getIconHeight();
 						Image imagenOriginal = iconProducto.getImage().getScaledInstance(anchuraCalculada, alturaDeseada,

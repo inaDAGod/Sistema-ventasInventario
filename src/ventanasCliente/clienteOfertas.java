@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 
 import general.InicioGeneral;
 import ventasInventario.Favoritos;
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 import ventasInventario.BD.Modelo.Usuario;
@@ -43,20 +44,7 @@ public class clienteOfertas extends JFrame {
     private ArrayList<Producto> ofertados;
     private ControladorProducto controladorProducto;
     private Usuario usuario;
-    /*
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	Usuario usu = new Usuario("danialee14");
-                	clienteOfertas frame = new clienteOfertas(usu);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }*/
+ 
 
     public clienteOfertas(Usuario u) {
     	this.usuario = u;
@@ -309,7 +297,7 @@ public class clienteOfertas extends JFrame {
 
                 JButton buttonPedido = new JButton();
                 buttonPedido.setLayout(new GridBagLayout());
-
+                
                 ImageIcon iconPedido = new ImageIcon(producto.getImagenes().get(0));
 
                 int alturaDeseada = 300;
@@ -359,8 +347,9 @@ public class clienteOfertas extends JFrame {
                 buttonPedido.setBackground(Color.white);
 
                 buttonPedido.addActionListener(e -> {
-                    JFrame frame = (JFrame) SwingUtilities.getRoot(buttonPedido);
-                    frame.dispose();
+                	ProductoCliente frame = new ProductoCliente(usuario,producto,clienteOfertas.this);
+					frame.setVisible(true);
+					clienteOfertas.this.setVisible(false);
                 });
                 buttonPedido.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 

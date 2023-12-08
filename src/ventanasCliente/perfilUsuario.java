@@ -35,27 +35,8 @@ public class perfilUsuario extends JFrame {
 	private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
-    /**
-     * Launch the application.
-     */
-	/*
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	Usuario u = new Usuario("danialee14");
-                    perfilUsuario frame = new perfilUsuario(u);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
+  
+	
     public perfilUsuario(Usuario u) {
     	this.usuario = u;
         setResizable(false);
