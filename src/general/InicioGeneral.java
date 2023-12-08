@@ -126,6 +126,7 @@ public class InicioGeneral extends JFrame {
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(250, 44, 125, 36);
+		
 		panel_1.add(btnNewButton);
 		
 
@@ -152,8 +153,8 @@ public class InicioGeneral extends JFrame {
 		btnOferta_1_1.setBounds(498, 44, 120, 36);
 		btnOferta_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 	clienteOfertas frame = new clienteOfertas(null);
-                frame.setVisible(true);
+				generalOfertas frame = new generalOfertas();
+				frame.setVisible(true);
                 setVisible(false);
 			}
 		});
@@ -167,8 +168,8 @@ public class InicioGeneral extends JFrame {
 		btnOferta_1.setBounds(618, 44, 140, 36);
 		btnOferta_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteSobreNea frame = new clienteSobreNea();
-                frame.setVisible(true);
+				generalSobreNea frame = new generalSobreNea();
+				frame.setVisible(true);
                 setVisible(false);
 			}
 		});

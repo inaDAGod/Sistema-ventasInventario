@@ -25,25 +25,7 @@ public class generalSobreNea extends JFrame {
     private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private JButton btnOferta_2;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					generalSobreNea frame = new generalSobreNea();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public generalSobreNea() {
 		   setResizable(false);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +66,13 @@ public class generalSobreNea extends JFrame {
 			btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnNewButton.setForeground(Color.WHITE);
 			btnNewButton.setBounds(250, 44, 125, 36);
+			btnNewButton.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				InicioGeneral frame = new InicioGeneral();
+    				frame.setVisible(true);
+    				setVisible(false);
+    			}
+    		});
 			panel_1.add(btnNewButton);
 			
 
@@ -101,6 +90,13 @@ public class generalSobreNea extends JFrame {
 			btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta_1_1.setForeground(Color.WHITE);
 			btnOferta_1_1.setBounds(498, 44, 120, 36);
+			btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalOfertas frame = new generalOfertas();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta_1_1);
 
 			JButton btnOferta_1 = new JButton("Quienes somos?");

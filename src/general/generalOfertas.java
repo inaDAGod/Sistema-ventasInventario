@@ -40,25 +40,7 @@ public class generalOfertas extends JFrame {
 		private JButton btnOferta_2;
 	    private ArrayList<Producto> ofertados;
 	    private ControladorProducto controladorProducto;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					generalOfertas frame = new generalOfertas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public generalOfertas() {
 		setResizable(false);
 		controladorProducto = new ControladorProducto();
@@ -99,6 +81,13 @@ public class generalOfertas extends JFrame {
 		btnNewButton.setBackground(new Color(220, 100, 150));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InicioGeneral frame = new InicioGeneral();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnNewButton.setBounds(250, 44, 125, 36);
 		panel_1.add(btnNewButton);
 		
@@ -125,6 +114,13 @@ public class generalOfertas extends JFrame {
 		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1.setForeground(Color.WHITE);
 		btnOferta_1.setBounds(618, 44, 140, 36);
+		btnOferta_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalSobreNea frame = new generalSobreNea();
+				frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		panel_1.add(btnOferta_1);
 
 		JButton btnvolver = new JButton("Iniciar sesion");
