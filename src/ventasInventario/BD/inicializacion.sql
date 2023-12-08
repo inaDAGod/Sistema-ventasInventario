@@ -3,7 +3,7 @@ insert into usuarios
 values ('danialee14','dani','correo@gmail.com','admin123',false,false);
 
 insert into productos values
-('P456','maquillaje de plaza sesamo', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
+('P456','Maquillaje de plaza sesamo', 'Coleccion de maquillaje inspirada en plaza sesamo',120,6,'Sesamo','Rosa','XL',false),
 ('P123','gorrito', 'gorrito para el frio', 10,10,'gucci','Rosa','XL',false);
 
 insert into etiquetas values
@@ -24,10 +24,10 @@ insert into estados_pedido values
 ('CANCELADO' , 'En espera');
 
 insert into productos values
-('P4','delineador', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
-('P5','gafas de sol', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
+('P4','Delineador ESSENCE', 'delineador negro liquido vegano',30,100,'essence','Negro','Ninguna',false),
+('P5','Gafas de sol', 'gafas a la moda',20,6,'versace','Cafe','M',false),
 ('P6','gafas rojas', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
-('P1','bloqueador solar', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
+('P1','Bloqueador solar', 'Proteccion UV 50',12.50,6,'Umbrella','Rosa','XL',false),
 ('P2','crema de cara', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
 ('P3','crema de manos', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false),
 ('P7','tinte rojo de cabello', 'caritsimo de paris',12.50,6,'versace','Rosa','XL',false);
@@ -42,13 +42,13 @@ insert into etiquetas_producto values
 ('ROPA','P6');
 
 insert into imagenes values
-('src/imagenesJhess/personas.jfif','P123'),
-('src/imagenesJhess/personas.jfif','P1'),
-('src/imagenesJhess/personassi.jfif','P2'),
-('src/imagenesJhess/personas.jfif','P3'),
-('src/imagenesJhess/personas.jfif','P4'),
-('src/imagenesJhess/personassi.jfif','P5'),
-('src/imagenesJhess/personas.jfif','P6'),
-('src/imagenesJhess/personas.jfif','P7'),
-('src/imagenesJhess/personassi.jfif','P456');
+('src/imagenes/productos/gorro.jpg','P123'),
+('src/imagenes/productos/bloqueador.jpg','P1'),
+('src/imagenes/productos/crema.jpg','P2'),
+('src/imagenes/productos/manos.jpg','P3'),
+('src/imagenes/productos/delineador.jpg','P4'),
+('src/imagenes/productos/gafassol.jpg','P5'),
+('src/imagenes/productos/gafas.jpg','P6'),
+('src/imagenes/productos/tinte.jpg','P7'),
+('src/imagenes/productos/plaza.jpg','P456');
 
