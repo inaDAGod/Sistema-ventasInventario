@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 
 import general.InicioGeneral;
 import general.InicioGeneral.TarjetaPedido;
+import ventasInventario.Carrito;
 import ventasInventario.Favoritos;
 import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
@@ -167,8 +168,8 @@ public class clienteCatalogo extends JFrame {
 	      		buttonCarrito.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	      		buttonCarrito.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						clientePedido frame = new clientePedido(usuario);
-		                frame.setVisible(true);
+						ventasInventario.Carrito carrito = new ventasInventario.Carrito(usuario);
+		                carrito.setVisible(true);
 						setVisible(false);
 					}
 				});
