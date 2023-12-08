@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ventanasCliente.clienteSobreNea;
+import ventasInventario.BD.Modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
@@ -34,12 +35,14 @@ public class funcionarioSobreNea extends JFrame {
     private  JPanel SuperiorNavegador;
     private JButton btnOferta_2;
     private JTextField textField;
-
+    private Usuario usuario;
+    /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	funcionarioSobreNea frame = new funcionarioSobreNea();
+                	Usuario u = new Usuario("funci");
+                	funcionarioSobreNea frame = new funcionarioSobreNea(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -50,7 +53,8 @@ public class funcionarioSobreNea extends JFrame {
     /**
      * Create the frame.
      */
-    public funcionarioSobreNea() {
+    public funcionarioSobreNea(Usuario u) {
+    	this.usuario = u;
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -300,7 +304,7 @@ public class funcionarioSobreNea extends JFrame {
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_2 = new JLabel("");
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
+        ImageIcon icon2 = new ImageIcon("src\\imagenesJhess\\personassi.jfif");
         Image image2 = icon2.getImage().getScaledInstance(465, 476, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
         lblNewLabel_2.setBounds(72, 97, 465, 476);
@@ -313,7 +317,7 @@ public class funcionarioSobreNea extends JFrame {
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 47));
 
         JButton btnNewButton_1 = new JButton("");
-        ImageIcon iconButton1 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\camara2.jpg");
+        ImageIcon iconButton1 = new ImageIcon("src\\imagenesJhess\\camara2.jpg");
         Image imageButton1 = iconButton1.getImage().getScaledInstance(70, 50, Image.SCALE_SMOOTH);
         btnNewButton_1.setIcon(new ImageIcon(imageButton1));
         btnNewButton_1.setBounds(512, 30, 70, 50);
@@ -353,7 +357,7 @@ public class funcionarioSobreNea extends JFrame {
         panel_3_1.add(lblNewLabel_1_1_1);
 
         JLabel lblNewLabel_5 = new JLabel("");
-        ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+        ImageIcon icon5 = new ImageIcon("src\\imagenesJhess\\icono-de-llamada-telefonica");
         Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
         lblNewLabel_5.setIcon(new ImageIcon(image5));
         lblNewLabel_5.setBounds(361, 324, 75, 52);
@@ -365,7 +369,7 @@ public class funcionarioSobreNea extends JFrame {
         panel_3_1.add(lblNewLabel_1_1_2);
 
         JButton btnNewButton_1_1 = new JButton("");
-        ImageIcon iconButton1_1 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\camara2.jpg");
+        ImageIcon iconButton1_1 = new ImageIcon("src\\imagenesJhess\\camara2.jpg");
         Image imageButton1_1 = iconButton1_1.getImage().getScaledInstance(70, 50, Image.SCALE_SMOOTH);
         btnNewButton_1_1.setIcon(new ImageIcon(imageButton1_1));
         btnNewButton_1_1.setBounds(502, 421, 70, 50);

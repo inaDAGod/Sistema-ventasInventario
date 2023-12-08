@@ -20,27 +20,32 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.Usuario;
+
 public class Inventario extends JFrame {
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
 	PanelInventario pinv= new PanelInventario();
-	
+	private Usuario usuario;
 	 private JPanel navegador;
 	 private  JPanel SuperiorNavegador;
+	 /*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inventario frame = new Inventario();
+					Usuario u = new Usuario("funci");
+					Inventario frame = new Inventario(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-	public Inventario() {
+	}*/
+	public Inventario(Usuario u) {
+		this.usuario = u;
 		setResizable(false);
 		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);

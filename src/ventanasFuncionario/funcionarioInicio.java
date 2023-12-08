@@ -38,8 +38,15 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import general.InicioGeneral;
+import ventanasCliente.perfilUsuario;
+import ventasInventario.Inventario;
+import ventasInventario.ListadoClientes;
+import ventasInventario.NuevoFuncionario;
+import ventasInventario.NuevoProducto;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
 
 
 
@@ -69,7 +76,7 @@ public class funcionarioInicio extends JFrame {
 	    private List<String>  listaImagenes = new ArrayList<>();
 	    private int currentIndex = 0;
 	    private Timer timer;
-	    
+	    private Usuario usuario;
 
 	    //imagenes carusel	
 	    
@@ -77,7 +84,8 @@ public class funcionarioInicio extends JFrame {
 	    public static void main(String[] args) {
 	        EventQueue.invokeLater(() -> {
 	            try {
-	            	funcionarioInicio frame = new funcionarioInicio();
+	            	Usuario u = new Usuario("funci");
+	            	funcionarioInicio frame = new funcionarioInicio(u);
 	                frame.setVisible(true);
 	            } catch (Exception e) {
 	                e.printStackTrace();
@@ -85,7 +93,8 @@ public class funcionarioInicio extends JFrame {
 	        });
 	    }
 
-	    public funcionarioInicio() {
+	    public funcionarioInicio(Usuario u) {
+	    	this.usuario = u;
 	        setResizable(false);
 	    	controladorProducto = new ControladorProducto();
 			productos = controladorProducto.todosProductos();
@@ -133,8 +142,16 @@ public class funcionarioInicio extends JFrame {
 	        JButton btnUsuario = new JButton("   Mi perfil");
 	        btnUsuario.setBounds(40, 20, 300, 70);
 	        btnUsuario.setLayout(new BorderLayout());
+	        
 	        btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        btnUsuario.setVisible(true);
+	        btnUsuario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					perfilFuncionario frame = new perfilFuncionario (usuario);
+	                frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        SuperiorNavegador.add(btnUsuario);
 	        btnUsuario.setBackground(new Color(205, 159, 204));
 	        btnUsuario.setForeground(Color.WHITE);
@@ -152,6 +169,13 @@ public class funcionarioInicio extends JFrame {
 	        buttonProducto5.setLayout(new BorderLayout());
 	        buttonProducto5.setBackground(new Color(250, 232, 235));
 	        buttonProducto5.setVisible(true);
+	        buttonProducto5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoProducto frame = new NuevoProducto(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        navegador.add(buttonProducto5);
 	        buttonProducto5.setForeground(Color.BLACK);
 	        buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -172,6 +196,13 @@ public class funcionarioInicio extends JFrame {
 	        buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        buttonMisPedidos.setForeground(Color.BLACK);
+	        buttonMisPedidos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoFuncionario frame = new NuevoFuncionario(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        navegador.add(buttonMisPedidos);
 	        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/aFuncionario.png");
 	        Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
@@ -185,6 +216,13 @@ public class funcionarioInicio extends JFrame {
 	        buttonListado.setBounds(25, 320, 300, 70);
 	        buttonListado.setLayout(new BorderLayout());
 	        buttonListado.setVisible(true);
+	        buttonListado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ListadoClientes frame = new ListadoClientes(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        buttonListado.setBackground(new Color(250, 232, 235));
 	        buttonListado.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonListado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -203,6 +241,13 @@ public class funcionarioInicio extends JFrame {
 	        buttonAjustes.setBounds(25, 420, 300, 70);
 	        buttonAjustes.setLayout(new BorderLayout());
 	        buttonAjustes.setVisible(true);
+	        buttonAjustes.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioPedidos frame = new funcionarioPedidos(usuario);
+                    frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        navegador.add(buttonAjustes);
 	        buttonAjustes.setBackground(new Color(250, 232, 235));
 	        buttonAjustes.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
@@ -220,6 +265,13 @@ public class funcionarioInicio extends JFrame {
 	        buttonEstadisticas.setBounds(25, 520, 300, 70);
 	        buttonEstadisticas.setLayout(new BorderLayout());
 	        buttonEstadisticas.setVisible(true);
+	        buttonEstadisticas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioEstadisticas frame = new funcionarioEstadisticas(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        buttonEstadisticas.setBackground(new Color(250, 232, 235));
 	        buttonEstadisticas.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonEstadisticas.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -237,6 +289,13 @@ public class funcionarioInicio extends JFrame {
 	        buttonCerrar.setBounds(25, 620, 300, 70);
 	        buttonCerrar.setLayout(new BorderLayout());
 	        buttonCerrar.setVisible(true);
+	        buttonCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					InicioGeneral frame = new InicioGeneral();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        buttonCerrar.setBackground(new Color(250, 232, 235));
 	        buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -285,12 +344,26 @@ public class funcionarioInicio extends JFrame {
 	        btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta.setForeground(Color.WHITE);
+	        btnOferta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Inventario frame = new Inventario(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        btnOferta.setBounds(454, 44, 125, 36);
 	        panel_1.add(btnOferta);
 	        
 	        JButton btnOferta_1_1 = new JButton("Pedidos actuales");
 	        btnOferta_1_1.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta_1_1.setBackground(new Color(220, 100, 150));
+	        btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioPedidosActuales frame = new funcionarioPedidosActuales(usuario);
+                    frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta_1_1.setForeground(Color.WHITE);
 	        btnOferta_1_1.setBounds(578, 44, 150, 36);
@@ -301,6 +374,13 @@ public class funcionarioInicio extends JFrame {
 	        btnOferta_1.setBackground(new Color(220, 100, 150));
 	        btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta_1.setForeground(Color.WHITE);
+	        btnOferta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioSobreNea frame = new funcionarioSobreNea(usuario);
+                    frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        btnOferta_1.setBounds(728, 44, 150, 36);
 	        panel_1.add(btnOferta_1);
 

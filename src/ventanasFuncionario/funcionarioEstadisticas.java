@@ -49,6 +49,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.DefaultXYZDataset;
 
 import ventasInventario.BD.Modelo.GestorPedidos;
+import ventasInventario.BD.Modelo.Usuario;
 
 
 
@@ -61,19 +62,20 @@ public class funcionarioEstadisticas extends JFrame {
     private JButton btnOferta_2;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private Usuario usuario;
     // panelBusqueda.setBackground(Color.blue); define color
  
     
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					funcionarioEstadisticas frame = new funcionarioEstadisticas();
+					Usuario u = new Usuario("funci");
+					funcionarioEstadisticas frame = new funcionarioEstadisticas(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -85,8 +87,8 @@ public class funcionarioEstadisticas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public funcionarioEstadisticas() {
-	 
+	public funcionarioEstadisticas(Usuario u) {
+		this.usuario = u;
 	    setResizable(false);
       
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

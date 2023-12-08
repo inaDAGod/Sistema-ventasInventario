@@ -32,7 +32,7 @@ class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
    
     public TarjetaPedido(Pedido pedido) {
-    	 
+    	
     	 setLayout(new BorderLayout()); 
          setBorder(BorderFactory.createLineBorder(Color.BLACK, 0)); 
          
@@ -97,22 +97,28 @@ public class funcionarioPedidosActuales extends JFrame {
     private JPanel navegador;
     private  JPanel SuperiorNavegador;
     private JButton btnOferta_2;
+    private Usuario usuario;
+    private ControladorPedidos controladorPedidos;
+   	private  ArrayList<Pedido> listaPedidos;
+   	/*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	ControladorPedidos controladorPedidos = new ControladorPedidos();
-                	 ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosPendientes();
-                	funcionarioPedidosActuales frame = new funcionarioPedidosActuales(listaPedidos);
+                	Usuario u = new Usuario("funci");
+                	funcionarioPedidosActuales frame = new funcionarioPedidosActuales(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-    }
+    }*/
 
-    public funcionarioPedidosActuales(ArrayList<Pedido> listaPedidos) {
+    public funcionarioPedidosActuales(Usuario u) {
+    	this.usuario = u;
+    	this.controladorPedidos = new ControladorPedidos();
+       this.listaPedidos = controladorPedidos.pedidosPendientes();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);

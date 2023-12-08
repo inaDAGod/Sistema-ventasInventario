@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import ventasInventario.BD.Controladores.ControladorRegistro;
+import ventasInventario.BD.Modelo.Usuario;
 
 public class NuevoFuncionario extends JFrame {
 
@@ -28,13 +29,14 @@ public class NuevoFuncionario extends JFrame {
 	
 	private JPanel navegador;
     private  JPanel SuperiorNavegador;
-    
-    
+    private Usuario usuarioo;
+    /*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NuevoFuncionario frame = new NuevoFuncionario();
+					Usuario u = new Usuario("funci");
+					NuevoFuncionario frame = new NuevoFuncionario(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +48,8 @@ public class NuevoFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NuevoFuncionario() {
+	public NuevoFuncionario(Usuario u) {
+		this.usuarioo = u;
 		setResizable(false);
 		setSize(1200,800);
 		getContentPane().setLayout(null);

@@ -24,7 +24,7 @@ public class ControladorLogin {
 		if(usu != null) {
 			if(usu.getFuncionario()) {
 				//System.out.println("Es funcionario" + usu);
-				funcionarioInicio frame = new funcionarioInicio();
+				funcionarioInicio frame = new funcionarioInicio(usu);
                 frame.setVisible(true);
 			}
 			else {

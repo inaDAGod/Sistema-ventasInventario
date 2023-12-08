@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ventasInventario.BD.Controladores.ControladorProducto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -45,15 +46,16 @@ public class NuevoProducto extends JFrame {
 	private JComboBox cboxEtiquetas3;
 	private Integer cantEtiquetas;
 	String ruta;
-	
+	private Usuario usuario;
 	private JPanel navegador;
     private  JPanel SuperiorNavegador;
-    
+    /*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NuevoProducto frame = new NuevoProducto();
+					Usuario u = new Usuario("funci");
+					NuevoProducto frame = new NuevoProducto(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +67,8 @@ public class NuevoProducto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NuevoProducto() {
+	public NuevoProducto(Usuario u) {
+		this.usuario =u ;
 		setResizable(false);
 		getContentPane().setLayout(null);
 		setSize(1200,800);

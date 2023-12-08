@@ -19,21 +19,24 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.Usuario;
+
 public class ListadoClientes extends JFrame {
 
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
 	PanelListadoClientes panelInferior= new PanelListadoClientes();
-	
+	private Usuario usuario;
 	 private JPanel navegador;
 	    private  JPanel SuperiorNavegador;
-	
+/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListadoClientes frame = new ListadoClientes();
+					Usuario u = new Usuario("funci");
+					ListadoClientes frame = new ListadoClientes(u);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +48,8 @@ public class ListadoClientes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListadoClientes() {
+	public ListadoClientes(Usuario u) {
+		this.usuario = u;
 		setResizable(false);
 		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);

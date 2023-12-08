@@ -34,20 +34,23 @@ public class funcionarioPedidos extends JFrame {
     private JPanel navegador;
     private  JPanel SuperiorNavegador;
     private JButton btnOferta_2;
+    private ControladorPedidos controladorPedidos;
+	 private ArrayList<Pedido> listaPedidos;
+	 private Usuario usuario;
+	 /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	ControladorPedidos controladorPedidos = new ControladorPedidos();
-                	 ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosTodos();
-                	funcionarioPedidos frame = new funcionarioPedidos(listaPedidos);
+                	Usuario u = new Usuario("funci");
+                	funcionarioPedidos frame = new funcionarioPedidos(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-    }
+    }*/
     public class TarjetaPedido extends JPanel {
         private static final long serialVersionUID = 1L;
 
@@ -110,7 +113,10 @@ public class funcionarioPedidos extends JFrame {
             setBackground(Color.WHITE);
         }
     }
-    public funcionarioPedidos(ArrayList<Pedido> listaPedidos) {
+    public funcionarioPedidos(Usuario u) {
+    	this.usuario = u;
+    	this.controladorPedidos = new ControladorPedidos();
+    	this.listaPedidos = controladorPedidos.pedidosTodos();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
