@@ -52,7 +52,7 @@ public class NuevoProducto extends JFrame {
 	private JComboBox cboxEtiquetas2;
 	private JComboBox cboxEtiquetas3;
 	private Integer cantEtiquetas;
-	String ruta;
+	private String ruta;
 	private Usuario usuario;
 	private JPanel navegador;
     private  JPanel SuperiorNavegador;
@@ -531,7 +531,6 @@ public class NuevoProducto extends JFrame {
 		        int seleccion = fileChooser.showOpenDialog(null);
 		        
 		        if (seleccion == JFileChooser.APPROVE_OPTION) {
-		            // Obtiene la ruta del archivo seleccionado
 		            ruta = fileChooser.getSelectedFile().getPath();
 		            
 		            // Actualiza la imagen en el JLabel 'foto'
@@ -698,6 +697,15 @@ public class NuevoProducto extends JFrame {
 	public void setCboxEtiquetas3(JComboBox cboxEtiquetas3) {
 		this.cboxEtiquetas3 = cboxEtiquetas3;
 	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
+	}
+	
 	
 	
 	

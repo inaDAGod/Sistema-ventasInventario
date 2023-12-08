@@ -132,6 +132,7 @@ public class ControladorProducto {
 				}
 			}
 			Producto producto = new Producto(cprodu, nombre, descrip, precio, cantidad, marca, color, talla, eti);
+			producto.getImagenes().add(nuevoProducto.getRuta());
 			try {
 				gestorProductos.addProducto(producto);
 			} catch (SQLException e) {

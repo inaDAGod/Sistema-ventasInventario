@@ -42,9 +42,10 @@ public class GestorProductos {
 	    Connection conexion = con.getConexionPostgres();
 	    CallableStatement s = null;
 	    CallableStatement sEtiqueta = null;
+	    CallableStatement sImagen = null;
 	    BigDecimal precio = BigDecimal.valueOf(producto.getPrecio());
 	    String query = "{call registrarProducto(?, ?, ?, ?, ?,?,?,?)}";
-	    
+
 	    try {
 	        s = conexion.prepareCall(query);
 	        s.setString(1, producto.getCproducto());
@@ -58,13 +59,19 @@ public class GestorProductos {
 	        s.executeUpdate();
 
 	        String queryEtiqueta = "{call agregarEtiquetaProducto(?, ?)}";
-	        sEtiqueta = conexion.prepareCall(queryEtiqueta); // Aquí se inicializa sEtiqueta
+	        sEtiqueta = conexion.prepareCall(queryEtiqueta);
 	        
 	        for (String etiqueta : producto.getEtiquetas()) {
 	            sEtiqueta.setString(1, etiqueta);
 	            sEtiqueta.setString(2, producto.getCproducto());
 	            sEtiqueta.executeUpdate();
 	        }
+
+	        String queryImagen = "{call agregarImagenProducto(?, ?)}";
+	        sImagen = conexion.prepareCall(queryImagen);
+	        sImagen.setString(1, producto.getImagenes().get(0));
+	        sImagen.setString(2, producto.getCproducto());
+	        sImagen.executeUpdate();
 
 	        this.productos.add(producto);
 	        JOptionPane.showMessageDialog(null, "Registrado Correctamente", "Producto nuevo", JOptionPane.INFORMATION_MESSAGE);
@@ -78,14 +85,18 @@ public class GestorProductos {
 	        if (s != null) {
 	            s.close();
 	        }
-	        if (sEtiqueta != null) { // Verifica que sEtiqueta no sea nulo antes de cerrarlo
+	        if (sEtiqueta != null) {
 	            sEtiqueta.close();
+	        }
+	        if (sImagen != null) { // Cerrar la sentencia de imagen también si se inicializó
+	            sImagen.close();
 	        }
 	        if (conexion != null) {
 	            conexion.close();
 	        }
 	    }
 	}
+
 
 	
 	public ArrayList<String> obtenerEtiquetas() {
