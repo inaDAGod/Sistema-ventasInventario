@@ -68,10 +68,10 @@ language plpgsql;
 --select *from ofertas 
 --select *from productos
 
-create or replace function agregarEtiquetaProducto(cetiqueta varchar(20),cproducto varchar(50))
+create or replace function agregarImagenProducto(cima varchar(200),cproducto varchar(50))
 returns void as $etiquetar$
 begin
-    insert into etiquetas_producto values(cetiqueta,cproducto);
+    insert into imagenes values(cima,cproducto);
 end;
 $etiquetar$
 language plpgsql;
