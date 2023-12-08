@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ventasInventario.Login;
+import ventasInventario.Registro;
 
 public class generalSobreNea extends JFrame {
 
@@ -82,6 +83,13 @@ public class generalSobreNea extends JFrame {
 			btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta.setForeground(Color.WHITE);
 			btnOferta.setBounds(374, 44, 125, 36);
+			btnOferta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalProductos frame = new generalProductos();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta);
 
 			JButton btnOferta_1_1 = new JButton("Oferta");
@@ -105,6 +113,13 @@ public class generalSobreNea extends JFrame {
 			btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta_1.setForeground(Color.WHITE);
 			btnOferta_1.setBounds(618, 44, 140, 36);
+			btnOferta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalSobreNea frame = new generalSobreNea();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta_1);
 
 			JButton btnvolver = new JButton("Iniciar sesion");
@@ -132,8 +147,8 @@ public class generalSobreNea extends JFrame {
 			btnvolver2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Login login = new Login();
-					login.setVisible(true);
+					Registro frame = new Registro();
+					frame.setVisible(true);
 					setVisible(false);
 				}
 			});
