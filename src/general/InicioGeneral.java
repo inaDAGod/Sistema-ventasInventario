@@ -39,6 +39,7 @@ import ventanasCliente.clienteOfertas;
 import ventanasCliente.clienteSobreNea;
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
+import ventasInventario.Registro;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -126,7 +127,7 @@ public class InicioGeneral extends JFrame {
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(250, 44, 125, 36);
-		
+
 		panel_1.add(btnNewButton);
 		
 
@@ -137,7 +138,7 @@ public class InicioGeneral extends JFrame {
 		btnOferta.setForeground(Color.WHITE);
 		btnOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteCatalogo frame = new clienteCatalogo(null);
+				generalProductos frame = new generalProductos();
 				frame.setVisible(true);
 				setVisible(false);
 			}
@@ -174,39 +175,6 @@ public class InicioGeneral extends JFrame {
 			}
 		});
 		panel_1.add(btnOferta_1);
-		
-		btnNewButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				generalOfertas oferta = new generalOfertas();
-				oferta.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnOferta.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				generalOfertas oferta = new generalOfertas();
-				oferta.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnOferta_1_1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnOferta_1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
-				setVisible(false);
-			}
-		});
 
 		JButton btnvolver = new JButton("Iniciar sesion");
 		btnvolver.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -233,8 +201,8 @@ public class InicioGeneral extends JFrame {
 		btnvolver2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();//deberia ser el de registrar
-				login.setVisible(true);
+				Registro frame = new Registro();
+				frame.setVisible(true);
 				setVisible(false);
 			}
 		});
