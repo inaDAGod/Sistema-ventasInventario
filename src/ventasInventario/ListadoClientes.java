@@ -38,23 +38,6 @@ public class ListadoClientes extends JFrame {
 	 private JPanel navegador;
 	    private  JPanel SuperiorNavegador;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Usuario u = new Usuario("funci");
-					ListadoClientes frame = new ListadoClientes(u);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ListadoClientes(Usuario u) {
 		this.usuario = u;
 		setResizable(false);
