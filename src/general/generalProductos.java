@@ -390,12 +390,7 @@ public class generalProductos extends JFrame {
 						restaurarEstiloRadioButtons();
 						
 						cambiarEstiloRadioButton(radioBoton1);
-						btnvolver.setVisible(true);
-						radioBoton3_1.setVisible(true);
-						navegador.setVisible(false);
-						SuperiorNavegador.setVisible(false);
-						btnOferta_2.setVisible(true);
-						botonBuscar.setVisible(true);
+						
 					}
 				}
 			});
@@ -406,12 +401,7 @@ public class generalProductos extends JFrame {
 						filtrarTarjetas();
 						restaurarEstiloRadioButtons();
 						cambiarEstiloRadioButton(radioBoton2);
-						btnvolver.setVisible(true);
-						radioBoton3_1.setVisible(true);
-						navegador.setVisible(false);
-						SuperiorNavegador.setVisible(false);
-						btnOferta_2.setVisible(true);
-						botonBuscar.setVisible(true);
+						
 					}
 				}
 			});
@@ -423,12 +413,7 @@ public class generalProductos extends JFrame {
 						filtrarTarjetas();
 						restaurarEstiloRadioButtons();
 						cambiarEstiloRadioButton(radioBoton3);
-						btnvolver.setVisible(true);
-						radioBoton3_1.setVisible(true);
-						navegador.setVisible(false);
-						SuperiorNavegador.setVisible(false);
-						btnOferta_2.setVisible(true);
-						botonBuscar.setVisible(true);
+						
 					}
 				}
 			});

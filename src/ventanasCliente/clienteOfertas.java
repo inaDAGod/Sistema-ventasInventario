@@ -31,6 +31,7 @@ import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 import ventasInventario.BD.Modelo.Usuario;
+import ventasInventario.BD.Modelo.Carrito;
 
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
@@ -157,9 +158,33 @@ public class clienteOfertas extends JFrame {
 
       		
 
-      		// BOTON MIS CERRAR SESION
+      		// BOTON MIS Carrito
+      		JButton buttonCarrito = new JButton("Carrito");
+      		buttonCarrito.setBounds(25, 320, 300, 70);
+      		buttonCarrito.setLayout(new BorderLayout());
+      		buttonCarrito.setVisible(true);
+      		buttonCarrito.setBackground(new Color(250, 232, 235));
+      		buttonCarrito.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+      		buttonCarrito.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+      		buttonCarrito.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clientePedido frame = new clientePedido(usuario);
+	                frame.setVisible(true);
+					setVisible(false);
+				}
+			});
+      		buttonCarrito.setForeground(Color.BLACK);
+      		navegador.add(buttonCarrito);
+      		ImageIcon iconP2 = new ImageIcon("src/imagenesJhess/CarritoBonito.png");
+      		Image imagenO2 = iconP2.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+      		ImageIcon iconR2 = new ImageIcon(imagenO2);
+      		JLabel labelI2 = new JLabel(iconR2);
+      		labelI2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+      		buttonCarrito.add(labelI2, BorderLayout.WEST); // Colocar la imagen a la izquierda
+      		
+      	// BOTON MIS CERRAR SESION
       		JButton buttonCerrar = new JButton("Cerrar sesion");
-      		buttonCerrar.setBounds(25, 320, 300, 70);
+      		buttonCerrar.setBounds(25, 420, 300, 70);
       		buttonCerrar.setLayout(new BorderLayout());
       		buttonCerrar.setVisible(true);
       		buttonCerrar.setBackground(new Color(250, 232, 235));
