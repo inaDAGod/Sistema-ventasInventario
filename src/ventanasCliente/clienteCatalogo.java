@@ -4,8 +4,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import general.InicioGeneral.TarjetaPedido;
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,11 +32,12 @@ public class clienteCatalogo extends JFrame {
 	private ArrayList<String> etiquetas;
 
 	private String textoBusqueda = "";
-
+	private Usuario usuario;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				clienteCatalogo frame = new clienteCatalogo();
+				Usuario u = new Usuario("danialee14");
+				clienteCatalogo frame = new clienteCatalogo(u);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -42,7 +45,7 @@ public class clienteCatalogo extends JFrame {
 		});
 	}
 
-	public clienteCatalogo() {
+	public clienteCatalogo(Usuario u) {
 	    setResizable(false);
 		controladorProducto = new ControladorProducto();
 		productos = controladorProducto.todosProductos();
@@ -394,7 +397,12 @@ public class clienteCatalogo extends JFrame {
 
 				JButton buttonProducto = new JButton();
 				buttonProducto.setLayout(new GridBagLayout());
-
+				buttonProducto.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ProductoCliente frame = new ProductoCliente(usuario,producto11);
+						frame.setVisible(true);
+					}
+				});
 				ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 				int alturaDeseada = 200;
@@ -495,7 +503,12 @@ public class clienteCatalogo extends JFrame {
 
 					JButton buttonProducto = new JButton();
 					buttonProducto.setLayout(new GridBagLayout());
-
+					buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							frame.setVisible(true);
+						}
+					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 					int alturaDeseada = 200;
