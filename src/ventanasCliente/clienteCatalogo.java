@@ -42,7 +42,7 @@ public class clienteCatalogo extends JFrame {
 	private JButton btnOferta_2;
 	private JButton btnvolver;
 	
-	///*
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
@@ -53,7 +53,7 @@ public class clienteCatalogo extends JFrame {
 				e.printStackTrace();
 			}
 		});
-	}//*/
+	}*/
 
 	public clienteCatalogo(Usuario u) {
 		this.usuario = u;

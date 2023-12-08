@@ -248,7 +248,13 @@ public class clienteInicio extends JFrame {
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
-		
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteCatalogo frame = new clienteCatalogo(usuario);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnOferta.setBounds(454, 44, 125, 36);
 		panel_1.add(btnOferta);
 
