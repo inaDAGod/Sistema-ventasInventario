@@ -821,7 +821,7 @@ public class funcionarioInicio extends JFrame {
 	                JButton buttonProducto = new JButton();
 	                buttonProducto.setLayout(new GridBagLayout());
 
-	                ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
+	                ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));///OJOOOOO
 
 	                int alturaDeseada = 200;
 	                int anchuraCalculada = 200;

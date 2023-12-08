@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.swing.JOptionPane;
 
@@ -89,8 +93,91 @@ public class GestorPedidos {
 		}
 		return pedidos;
 	}
+		
 	
+	/**Jugando*/
 	
+	//+ estado de pedido
+	public HashMap<String, Integer> obtenerEstadisticasEstados() {
+        HashMap<String, Integer> estadisticas = new HashMap<>();
 
+        for (Pedido pedido : todosPedidos) {
+            String estado = pedido.getEstadoPedido();
+
+            // Si el estado ya está en el mapa, incrementa la cuenta; de lo contrario, inicializa la cuenta en 1.
+            estadisticas.put(estado, estadisticas.getOrDefault(estado, 0) + 1);
+        }
+
+        return estadisticas;
+    }
 	
+	//* usuarios que llegaron a tener pedidos finalizados 
+	 public HashMap<String, Integer> obtenerEstadisticasUsuarios(String estado) {
+	        HashMap<String, Integer> estadisticasUsuarios = new HashMap<>();
+
+	        for (Pedido pedido : todosPedidos) {
+	            if (pedido.getEstadoPedido().equals(estado)) {
+	                String nombreUsuario = pedido.getUsuario().getUsuario();
+
+	                // Si el usuario ya está en el mapa, incrementa la cuenta; de lo contrario, inicializa la cuenta en 1.
+	                estadisticasUsuarios.put(nombreUsuario, estadisticasUsuarios.getOrDefault(nombreUsuario, 0) + 1);
+	            }
+	        }
+
+	        return estadisticasUsuarios;
+	    }
+	//*productos mas vendidos 	
+	
+	
+	 
+	 public HashMap<String, Integer> obtenerEstadisticasProductos(String estadoPedido) {
+	        HashMap<String, Integer> estadisticasProductos = new HashMap<>();
+	        Conexion con = new Conexion();
+
+	        try (Connection conexion = con.getConexionPostgres();
+	             PreparedStatement statement = conexion.prepareStatement(
+	                     "SELECT cproducto, COUNT(cproducto) AS cantidad " +
+	                             "FROM productos_pedido pp " +
+	                             "JOIN pedidos p ON pp.cpedido = p.cpedido " +
+	                             "WHERE p.cestado_pedido = ? " +
+	                             "GROUP BY cproducto " +
+	                             "ORDER BY cantidad DESC " +
+	                             "LIMIT 5"
+	             )) {
+	            statement.setString(1, estadoPedido);
+	            ResultSet resultSet = statement.executeQuery();
+
+	            while (resultSet.next()) {
+	                String cproducto = resultSet.getString("cproducto");
+	                int cantidad = resultSet.getInt("cantidad");
+	                estadisticasProductos.put(cproducto, cantidad);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace(); // Manejo adecuado de excepciones en un entorno de producción
+	        }
+
+	        return estadisticasProductos;
+	    }
+	 
+	 public HashMap<String, Integer> obtenerEstadisticasEtiquetas(String estadoPedido) {
+	        HashMap<String, Integer> estadisticasEtiquetas = new HashMap<>();
+
+	        // Filtrar los pedidos por el estado especificado
+	        List<Pedido> pedidosFiltrados = todosPedidos.stream()
+	                .filter(pedido -> pedido.getEstadoPedido().equals(estadoPedido))
+	                .collect(Collectors.toList());
+
+	        // Contar la cantidad de veces que aparece cada etiqueta en los productos de los pedidos filtrados
+	        for (Pedido pedido : pedidosFiltrados) {
+	            for (ProductoCarrito productoCarrito : pedido.getProductos()) {
+	                for (String etiqueta : productoCarrito.getProducto().getEtiquetas()) {
+	                    estadisticasEtiquetas.put(etiqueta, estadisticasEtiquetas.getOrDefault(etiqueta, 0) + 1);
+	                }
+	            }
+	        }
+
+	        return estadisticasEtiquetas;
+	    }
+
+	 
 }

@@ -8,8 +8,11 @@ import java.awt.Image;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -23,8 +26,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import ventanasCliente.etiquetas;
-import ventanasCliente.productos;
 
 
 import javax.swing.*;
@@ -37,10 +38,15 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.category.StackedBarRenderer;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.DefaultXYZDataset;
+
+import ventasInventario.BD.Modelo.GestorPedidos;
 
 
 
@@ -53,8 +59,7 @@ public class funcionarioEstadisticas extends JFrame {
     private JPanel panelTarjetas;
     private JPanel panelBusqueda;
     private JPanel panel_2;
-    private List<etiquetas> listaEtiquetas = new ArrayList<>();
-    private List<productos> listaProductos = new ArrayList<>();
+   
     private String textoBusqueda = "";
     private JScrollPane scrollPane;
     
@@ -71,23 +76,7 @@ public class funcionarioEstadisticas extends JFrame {
     private Timer timer;
     
     // panelBusqueda.setBackground(Color.blue); define color
-    etiquetas etiqueta1 = new etiquetas(1, "Detalle 1");
-    etiquetas etiqueta2 = new etiquetas(2, "Detalle 2");
-    etiquetas etiqueta3 = new etiquetas(2, "Detalle 3");
-  etiquetas etiqueta4 = new etiquetas(2, "Detalle 4");
-   etiquetas etiqueta5 = new etiquetas(2, "Detalle 5");
-     etiquetas etiqueta6 = new etiquetas(2, "Detalle 6");
-   
-
-
-    productos producto1 = new productos("P1", "Producto 1", "Detalle 1", 19.99f, 100, "Marca1", "Rojo", "M", true, "src/imagenesJhess/personas.jfif");
-    productos producto2 = new productos("P2", "Producto 2", "Detalle 2", 29.99f, 50, "Marca2", "Azul", "L", false, "src/imagenesJhess/personassi.jfif");
-    productos producto3 = new productos("P3", "Producto 3", "Detalle 3", 15.99f, 80, "Marca3", "Verde", "S", true, "src/imagenesJhess/personassi.jfif");
-    productos producto4 = new productos("P4", "Producto 4", "Detalle 2", 24.99f, 60, "Marca4", "Amarillo", "XL", false, "src/imagenesJhess/producto4.jfif");
-    productos producto5 = new productos("P5", "Producto 5", "Detalle 5", 34.99f, 30, "Marca5", "Negro", "XXL", true, "src/imagenesJhess/personassi.jfif");
-    productos producto6 = new productos("P6", "Producto 6", "Detalle 6", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    productos producto7 = new productos("P6", "Producto 6", "Detalle 1", 22.99f, 45, "Marca6", "Blanco", "L", true, "src/imagenesJhess/producto6.jfif");
-    //imagenes carusel	
+ 
     
 
 	/**
@@ -110,19 +99,7 @@ public class funcionarioEstadisticas extends JFrame {
 	 * Create the frame.
 	 */
 	public funcionarioEstadisticas() {
-	    listaEtiquetas.add(new etiquetas(1, "Detalle 1"));
-        listaEtiquetas.add(new etiquetas(2, "Detalle 2"));
-        listaEtiquetas.add(new etiquetas(2, "Detalle 3"));
-        listaEtiquetas.add(new etiquetas(2, "Detalle 4"));
-        listaEtiquetas.add(new etiquetas(2, "Detalle 5"));
-        listaEtiquetas.add(new etiquetas(2, "Detalle 6"));
-        listaProductos.add(producto7);
-        listaProductos.add(producto1);
-        listaProductos.add(producto2);
-        listaProductos.add(producto3);
-        listaProductos.add(producto4);
-        listaProductos.add(producto5);
-        listaProductos.add(producto6);
+	 
         
        //imagenes carusel
         listaImagenes.add("src/imagenesJhess/caru2.jfif");
@@ -354,8 +331,9 @@ public class funcionarioEstadisticas extends JFrame {
         panelBase.add(titlePanel);
 
         // Agregar etiqueta con el título
-        JLabel titleLabel = new JLabel("Estadísticas");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("ESTADISTICAS");
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 40));
         titlePanel.add(titleLabel);
 
         JPanel panel_2 = new JPanel();
@@ -366,94 +344,166 @@ public class funcionarioEstadisticas extends JFrame {
 
     
 
-        // Crear y agregar el segundo gráfico
-        DefaultCategoryDataset dataset2 = createDatasetBarrasApiladas();
-        JFreeChart chart2 = createCustomBarChart(dataset2, "Categorías", "Valores", "Gráfico 2");
+        // por cantidad de compras de usuarios
+        CategoryDataset dataset2 = createDatasetBarrasUsuarios();
+        JFreeChart chart2 = createCustomBarChartUsuarios(dataset2, "Clientes con más compras", "Clientes", "Cantidad de compras");
         ChartPanel chartPanel2 = new ChartPanel(chart2);
         panel_2.add(chartPanel2);
+        
+        
 
-        // Crear y agregar un nuevo diseño de gráfico de pastel
+        // PASTEL DE ESTADO DE PEDIDOS
         DefaultPieDataset dataset41 = createDatasetTorta();
-        JFreeChart chart41 = createCustomPieChart("Gráfico 1", dataset41);
+        JFreeChart chart41 = createCustomPieChart("Estado de los pedidos", dataset41);
         ChartPanel chartPanel41 = new ChartPanel(chart41);
         panel_2.add(chartPanel41);
 
-        // Crear y agregar el cuarto gráfico
-        DefaultPieDataset dataset4 = createDatasetTorta();
-        JFreeChart chart4 = createCustomPieChart("Gráfico 4", dataset4);
+        // pastel por categorias
+        DefaultPieDataset dataset4 = createDatasetTortaEtiquetas();
+        JFreeChart chart4 = createCustomPieChart("Categorias más vendidas", dataset4);
         ChartPanel chartPanel4 = new ChartPanel(chart4);
         panel_2.add(chartPanel4);
 
-        // Crear y agregar el tercer gráfico
-        CategoryDataset dataset3 = createDatasetLinea();
-        JFreeChart chart3 =createCustomLineChart(dataset3, "Categorías", "Valores", "Gráfico 3");
+        // productos mas vendidos
+        DefaultCategoryDataset dataset3 = (DefaultCategoryDataset) createDatasetBarrasProducto();
+        JFreeChart chart3 = createCustomBarChart(dataset3, "Productos más vendidos", "Productos", "Cantidad ");
         ChartPanel chartPanel3 = new ChartPanel(chart3);
         panel_2.add(chartPanel3);
     }
 	
-	private DefaultCategoryDataset createDatasetBarrasApiladas() {
-	    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-	    dataset.addValue(25, "Categoría 1", "Mes 1");
-	    dataset.addValue(40, "Categoría 2", "Mes 1");
-	    dataset.addValue(30, "Categoría 3", "Mes 1");
-	    dataset.addValue(55, "Categoría 4", "Mes 1");
-	    
-	    dataset.addValue(15, "Categoría 1", "Mes 2");
-	    dataset.addValue(20, "Categoría 2", "Mes 2");
-	    dataset.addValue(40, "Categoría 3", "Mes 2");
-	    dataset.addValue(30, "Categoría 4", "Mes 2");
-	    return dataset;
-	}
 	
-	private CategoryDataset createDatasetLinea() {
-	    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-	    dataset.addValue(25, "Categoría 1", "Mes 1");
-	    dataset.addValue(40, "Categoría 2", "Mes 2");
-	    dataset.addValue(30, "Categoría 3", "Mes 3");
-	    dataset.addValue(55, "Categoría 4", "Mes 4");
-	    return dataset;
-	}
-	
-	private DefaultPieDataset createDatasetTorta() {
+	//* CANTIDAD DE ESTADOS DE PEDIDO
+	private static DefaultPieDataset createDatasetTorta() {
+        GestorPedidos gestorPedidos = new GestorPedidos();
+        HashMap<String, Integer> estadisticas = gestorPedidos.obtenerEstadisticasEstados();
+
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (String estado : estadisticas.keySet()) {
+            dataset.setValue(estado, estadisticas.get(estado));
+            System.out.println("Estado: " + estado + ", Cantidad de pedidos: " + estadisticas.get(estado));
+            
+        }
+
+        return dataset;
+    }
+	//*CANTIDAD VENDIDA POR ETIQUETAS
+	private DefaultPieDataset createDatasetTortaEtiquetas() {
+		  System.out.println("entre ");
 	    DefaultPieDataset dataset = new DefaultPieDataset();
-	    dataset.setValue("Categoría 1", 25);
-	    dataset.setValue("Categoría 2", 40);
-	    dataset.setValue("Categoría 3", 30);
-	    dataset.setValue("Categoría 4", 55);
+	    GestorPedidos gestorPedidos = new GestorPedidos();
+		  System.out.println("paseo ");
+
+	    // Obtener estadísticas de etiquetas para pedidos finalizados
+	    HashMap<String, Integer> estadisticasEtiquetas = gestorPedidos.obtenerEstadisticasEtiquetas("FINALIZADO");
+	    System.out.println("Tamaño del HashMap: " + estadisticasEtiquetas.size());
+	    System.out.println("sigo ");
+	    // Agregar datos al dataset
+	    for (Map.Entry<String, Integer> entry : estadisticasEtiquetas.entrySet()) {
+	    	System.out.println("ya entreee AAAAAAA ");
+	        dataset.setValue(entry.getKey(), entry.getValue());
+	        System.out.println("Etiqueta: " + entry.getKey() + ", Cantidad de pedidos: " + entry.getValue());
+	    }
+
 	    return dataset;
 	}
+	
+	//* UsuaRIOOS CON MAS COMPRAS
+	private CategoryDataset createDatasetBarrasUsuarios() {
+	    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+	    GestorPedidos gestorPedidos = new GestorPedidos();
+	     HashMap<String, Integer> estadisticasUsuarios = gestorPedidos.obtenerEstadisticasUsuarios("FINALIZADO");
+	     List<Map.Entry<String, Integer>> usuariosOrdenados = estadisticasUsuarios.entrySet().stream()
+	            .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+	            .limit(5)
+	            .collect(Collectors.toList());
+	     for (Map.Entry<String, Integer> entry : usuariosOrdenados) {
+	        dataset.addValue(entry.getValue(), "FINALIZADO", entry.getKey());
+	    }
+
+	    return dataset;
+	}
+	//Categorias mas vendidas
+	private CategoryDataset createDatasetBarrasProducto() {
+	
+	    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+	    GestorPedidos gestorPedidos = new GestorPedidos();
+	   HashMap<String, Integer> estadisticasProductos = gestorPedidos.obtenerEstadisticasProductos("FINALIZADO");
+	    List<Map.Entry<String, Integer>> productosOrdenados = estadisticasProductos.entrySet().stream()
+	            .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+	            .limit(5)
+	            .collect(Collectors.toList());
+	   for (Map.Entry<String, Integer> entry : productosOrdenados) {
+	        dataset.addValue(entry.getValue(), "Productos", entry.getKey());
+	        System.out.println(entry.getValue()+"Productos "+ entry.getKey());
+	    }
+	    
+	    return dataset;
+	}
+	
 	
 	
 	
 	private JFreeChart createCustomPieChart(String title, DefaultPieDataset dataset) {
 	    JFreeChart chart = ChartFactory.createPieChart(title, dataset, true, true, false);
 
+	    // Obtener el Plot del gráfico
 	    PiePlot plot = (PiePlot) chart.getPlot();
-	    
+
+	   
 	    // Cambiar colores de sección
-	    plot.setSectionPaint("Categoría 1", new Color(255, 0, 0));  // Rojo
-	    plot.setSectionPaint("Categoría 2", new Color(0, 0, 255));  // Azul
-	    plot.setSectionPaint("Categoría 3", new Color(0, 255, 0));  // Verde
-	    plot.setSectionPaint("Categoría 4", new Color(255, 255, 0));  // Amarillo
+	    plot.setSectionPaint("MAQUILLAJE", new Color(255, 229, 154));  
+	    plot.setSectionPaint("ROPA", new Color(165, 195, 200));   
+	    plot.setSectionPaint("COSMETICO", new Color(240, 220, 230));  
+	    plot.setSectionPaint("CABELLO", new Color(140, 130, 185));  
+	    
+	    plot.setSectionPaint("ESPERA PAGO", new Color(165, 195, 200));  
+	    plot.setSectionPaint("FINALIZADO", new Color(240, 220, 230));  
+	    plot.setSectionPaint("PAGADO A ENTREGAR", new Color(140, 130, 185));  
+	    plot.setSectionPaint("CANCELADO", new Color(255, 229, 154)); 
 
 	    // Ajustar el grosor del borde entre las secciones
-	    plot.setSectionOutlineStroke("Categoría 1", new BasicStroke(2.0f));
-	    plot.setSectionOutlineStroke("Categoría 2", new BasicStroke(2.0f));
-	    plot.setSectionOutlineStroke("Categoría 3", new BasicStroke(2.0f));
-	    plot.setSectionOutlineStroke("Categoría 4", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("MAQUILLAJ", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("ROPA", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("CABELLO", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("COSMETICO", new BasicStroke(2.0f));
+	    
+	    plot.setSectionOutlineStroke("ESPERA PAGO", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("PAGADO A ENTREGAR", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("FINALIZADO", new BasicStroke(2.0f));
+	    plot.setSectionOutlineStroke("CANCELADO", new BasicStroke(2.0f));
 
-	    // Cambiar la profundidad del pastel (efecto de 3D)
-	   
 
 	    // Cambiar la separación entre las secciones
-	    plot.setExplodePercent("Categoría 1", 0.1);
-	    plot.setExplodePercent("Categoría 2", 0.0); // No se separa
-	    plot.setExplodePercent("Categoría 3", 0.1);
-	    plot.setExplodePercent("Categoría 4", 0.0); // No se separa
+	    plot.setExplodePercent("CABELLO", 0.1);
+	    plot.setExplodePercent("COSMETICO 2", 0.1); 
+	    plot.setExplodePercent("ROPA", 0.1);
+	    plot.setExplodePercent("MAQUILLAJE", 0.1);
+	    
+	    plot.setExplodePercent("FINALIZADO", 0.1); 
+	    plot.setExplodePercent("PAGADO A ENTREGAR", 0.1);
+	    plot.setExplodePercent("MAQUILLAJE", 0.1);
+	    plot.setExplodePercent("CANCELADO", 0.1); 
+
+
+	    // Personalizar el fondo del gráfico
+	    chart.setBackgroundPaint(new Color(214, 166, 190));  // Rosado
+
+	    // Personalizar la apariencia de la sección
+	    plot.setSectionOutlinesVisible(true);
+	    plot.setLabelBackgroundPaint(new Color(255, 229, 154)); // Color del fondo de las etiquetas
+	    plot.setLabelOutlinePaint(null); // Desactivar el borde de las etiquetas
+	    plot.setLabelShadowPaint(null); // Desactivar la sombra de las etiquetas
+
+	    // Personalizar la leyenda
+	    LegendTitle legend = chart.getLegend();
+	    legend.setBackgroundPaint(new Color(214, 166, 190)); // Color del fondo de la leyenda
+	    legend.setItemPaint(new Color(0, 0, 0)); // Color del texto de la leyenda
+
+	  
 
 	    return chart;
 	}
-	
+
 	private JFreeChart createCustomBarChart(DefaultCategoryDataset dataset, String title, String categoryAxisLabel, String valueAxisLabel) {
 	    JFreeChart chart = ChartFactory.createBarChart(
 	            title,
@@ -466,23 +516,33 @@ public class funcionarioEstadisticas extends JFrame {
 	            false
 	    );
 
+	    // Obtener el Plot del gráfico
 	    CategoryPlot plot = chart.getCategoryPlot();
-	    BarRenderer renderer = (BarRenderer) plot.getRenderer();
+
+	    // Usar un StackedBarRenderer
+	    StackedBarRenderer renderer = new StackedBarRenderer();
+	    plot.setRenderer(renderer);
 
 	    // Personalizar colores de las barras
-	    renderer.setSeriesPaint(0, Color.black);
-	    renderer.setSeriesPaint(1, Color.BLUE);
-	    renderer.setSeriesPaint(2, Color.GREEN);
-	    renderer.setSeriesPaint(3, Color.YELLOW);
-
+	    renderer.setSeriesPaint(0, new Color(255, 229, 154));  // Púrpura
+	    
 	    // Ajustar el espacio entre las categorías (opcional)
 	    renderer.setItemMargin(0.1);
 
+	    // Personalizar el fondo del gráfico
+	    chart.setBackgroundPaint(new Color(214, 166, 190));  // Rosado
+	    
+	    LegendTitle legend = chart.getLegend();
+	    legend.setBackgroundPaint(new Color(214, 166, 190)); // Color del fondo de la leyenda
+	    legend.setItemPaint(new Color(0, 0, 0)); // Color del texto de la leyenda
 	    return chart;
 	}
 
-	private JFreeChart createCustomLineChart(CategoryDataset dataset, String title, String categoryAxisLabel, String valueAxisLabel) {
-	    JFreeChart chart = ChartFactory.createLineChart(
+
+	//*clientes 
+	
+	private JFreeChart createCustomBarChartUsuarios(CategoryDataset dataset, String title, String categoryAxisLabel, String valueAxisLabel) {
+	    JFreeChart chart = ChartFactory.createBarChart(
 	            title,
 	            categoryAxisLabel,
 	            valueAxisLabel,
@@ -494,28 +554,31 @@ public class funcionarioEstadisticas extends JFrame {
 	    );
 
 	    CategoryPlot plot = chart.getCategoryPlot();
-	    LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
 
-	    // Personalizar colores y formas de las líneas y puntos
-	    renderer.setSeriesPaint(0, Color.RED);
-	    renderer.setSeriesShapesVisible(0, true);
-	    renderer.setSeriesShape(0, new Ellipse2D.Double(-2, -2, 4, 4));
+	    // Usar un StackedBarRenderer
+	    StackedBarRenderer renderer = new StackedBarRenderer();
+	    plot.setRenderer(renderer);
 
+	    // Personalizar colores de las barras
+	    renderer.setSeriesPaint(0, new Color(162, 195, 200));  // Púrpura
 	    renderer.setSeriesPaint(1, Color.BLUE);
-	    renderer.setSeriesShapesVisible(1, true);
-	    renderer.setSeriesShape(1, new Rectangle2D.Double(-2, -2, 4, 4));
-	    
-	    renderer.setSeriesPaint(2, Color.RED);
-	    renderer.setSeriesShapesVisible(2, true);
-	    renderer.setSeriesShape(2, new Ellipse2D.Double(-2, -2, 4, 4));
+	    renderer.setSeriesPaint(2, Color.GREEN);
+	    renderer.setSeriesPaint(3, Color.YELLOW);
 
-	    renderer.setSeriesPaint(3, Color.BLUE);
-	    renderer.setSeriesShapesVisible(3, true);
-	    renderer.setSeriesShape(3, new Rectangle2D.Double(-2, -2, 4, 4));
+	    // Ajustar el espacio entre las categorías (opcional)
+	    renderer.setItemMargin(0.1);
 
-	    // Puedes continuar de manera similar para las demás series
+	    // Ajustes adicionales
+	    plot.setInsets(new RectangleInsets(10, 0, 0, 0));  // Ajustar márgenes
 
+	    // Personalizar el fondo del gráfico
+	    chart.setBackgroundPaint(new Color(214, 166, 190));  // Rosado
+	    LegendTitle legend = chart.getLegend();
+	    legend.setBackgroundPaint(new Color(214, 166, 190)); // Color del fondo de la leyenda
+	    legend.setItemPaint(new Color(0, 0, 0)); // Color del texto de la leyenda
 	    return chart;
 	}
+	
+	
 
 }
