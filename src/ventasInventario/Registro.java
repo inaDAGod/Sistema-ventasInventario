@@ -1,25 +1,22 @@
 package ventasInventario;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
 
-public class Login extends JFrame {
-	
-	PanelLogin pl;
+public class Registro extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					Registro frame = new Registro();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +24,11 @@ public class Login extends JFrame {
 			}
 		});
 	}
-	public Login() {
+
+	/**
+	 * Create the frame.
+	 */
+	public Registro() {
 		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
@@ -37,8 +38,7 @@ public class Login extends JFrame {
 		setBackground(new Color(204, 102, 153));
 		setBounds(0,0,1200,800);
 	
-		
-		PanelLogin pl=new PanelLogin();
+		PanelRegistro pl=new PanelRegistro();
         pl.setBounds(0,120,1200,680);
         getContentPane().add(pl);
         
@@ -71,7 +71,6 @@ public class Login extends JFrame {
         btnSobreNea.setHorizontalTextPosition(SwingConstants.CENTER);
         btnSobreNea.setBounds(600, 36, 120, 50);
         getContentPane().add(btnSobreNea);
-    	
 	}
 
 }

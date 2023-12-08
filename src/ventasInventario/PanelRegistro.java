@@ -39,9 +39,7 @@ public class PanelRegistro extends JPanel {
 				repaint();
 				pr.setVisible(true);
 			}
-		});
-		
-		
+		});		
 		
 		JButton btnRegistrar = new JButton("Regístrate");
 		btnRegistrar.setBounds(466, 489, 300, 50);
