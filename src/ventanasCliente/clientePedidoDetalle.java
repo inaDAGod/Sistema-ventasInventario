@@ -26,6 +26,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import general.InicioGeneral;
+import ventasInventario.Favoritos;
 import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Modelo.GestorPedidos;
 import ventasInventario.BD.Modelo.Pedido;
@@ -82,6 +84,13 @@ public class clientePedidoDetalle extends JFrame {
       		btnUsuario.setLayout(new BorderLayout());
       		btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0));
       		btnUsuario.setVisible(true);
+      		btnUsuario.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				perfilUsuario frame = new perfilUsuario(pedido.getUsuario());
+                    frame.setVisible(true);
+    				setVisible(false);
+    			}
+    		});
       		SuperiorNavegador.add(btnUsuario);
       		btnUsuario.setBackground(new Color(205, 159, 204));
       		btnUsuario.setForeground(Color.WHITE);
@@ -100,6 +109,13 @@ public class clientePedidoDetalle extends JFrame {
       		buttonProducto5.setLayout(new BorderLayout());
       		buttonProducto5.setBackground(new Color(250, 232, 235));
       		buttonProducto5.setVisible(true);
+      		buttonProducto5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Favoritos frame = new Favoritos(pedido.getUsuario());
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
       		navegador.add(buttonProducto5);
       		buttonProducto5.setForeground(Color.BLACK);
       		buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -115,6 +131,13 @@ public class clientePedidoDetalle extends JFrame {
       		buttonMisPedidos.setBounds(25, 220, 300, 70);
       		buttonMisPedidos.setLayout(new BorderLayout());
       		buttonMisPedidos.setVisible(true);
+      		buttonMisPedidos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clientePedido frame = new clientePedido(pedido.getUsuario());
+	                frame.setVisible(true);
+					setVisible(false);
+				}
+			});
       		buttonMisPedidos.setBackground(new Color(250, 232, 235));
       		buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0));
       		buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -134,6 +157,13 @@ public class clientePedidoDetalle extends JFrame {
       		buttonCerrar.setBounds(25, 320, 300, 70);
       		buttonCerrar.setLayout(new BorderLayout());
       		buttonCerrar.setVisible(true);
+      		buttonCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					InicioGeneral frame = new InicioGeneral();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
       		buttonCerrar.setBackground(new Color(250, 232, 235));
       		buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0));
       		buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -169,6 +199,13 @@ public class clientePedidoDetalle extends JFrame {
       		btnNewButton.setBackground(new Color(220, 100, 150));
       		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnNewButton.setForeground(Color.WHITE);
+      		btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clienteInicio frame = new clienteInicio(pedido.getUsuario());
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
       		btnNewButton.setBounds(330, 44, 125, 36);
       		panel_1.add(btnNewButton);
 
@@ -178,6 +215,13 @@ public class clientePedidoDetalle extends JFrame {
       		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnOferta.setForeground(Color.WHITE);
       		btnOferta.setBounds(454, 44, 125, 36);
+      		btnOferta.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				clienteCatalogo frame = new clienteCatalogo(pedido.getUsuario());
+    				frame.setVisible(true);
+    				setVisible(false);
+    			}
+    		});
       		panel_1.add(btnOferta);
 
       		JButton btnOferta_1_1 = new JButton("Oferta");
@@ -185,6 +229,13 @@ public class clientePedidoDetalle extends JFrame {
       		btnOferta_1_1.setBackground(new Color(220, 100, 150));
       		btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnOferta_1_1.setForeground(Color.WHITE);
+      		btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clienteOfertas frame = new clienteOfertas(pedido.getUsuario());
+	                frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
       		btnOferta_1_1.setBounds(578, 44, 120, 36);
       		panel_1.add(btnOferta_1_1);
 
@@ -193,6 +244,13 @@ public class clientePedidoDetalle extends JFrame {
       		btnOferta_1.setBackground(new Color(220, 100, 150));
       		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnOferta_1.setForeground(Color.WHITE);
+      		btnOferta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clienteSobreNea frame = new clienteSobreNea(pedido.getUsuario());
+	                frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
       		btnOferta_1.setBounds(698, 44, 140, 36);
       		panel_1.add(btnOferta_1);
 

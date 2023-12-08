@@ -196,13 +196,7 @@ public class clientePedido extends JFrame {
       		buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0));
       		buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		buttonMisPedidos.setForeground(Color.BLACK);
-      		buttonMisPedidos.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					clientePedido frame = new clientePedido(usuario);
-	                frame.setVisible(true);
-					setVisible(false);
-				}
-			});
+      		
       		navegador.add(buttonMisPedidos);
       		ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/pedido.png");
       		Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
