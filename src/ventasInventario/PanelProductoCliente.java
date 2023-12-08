@@ -7,14 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 import ventasInventario.BD.Controladores.ControladorCarrito;
 import ventasInventario.BD.Controladores.ControladorFavorito;
 import ventasInventario.BD.Modelo.*;
-
-import javax.swing.JButton;
 
 public class PanelProductoCliente extends JPanel {
 	private JTextField txtEtiqueta;
@@ -33,7 +28,7 @@ public class PanelProductoCliente extends JPanel {
 		add(lbDescrpcion);
 		
 		JLabel foto = new JLabel("New label");
-		foto.setIcon(new ImageIcon(PanelProductoCliente.class.getResource("/imagenes/rosa1(1200x800).jpg")));
+		foto.setIcon(new ImageIcon(producto.getImagenes().get(0)));
 		foto.setBounds(103, 119, 300, 400);
 		add(foto);
 		
@@ -132,14 +127,25 @@ public class PanelProductoCliente extends JPanel {
 		add(btnFavorito);
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControladorFavorito controladorFavorito = new ControladorFavorito(usuario);
-				controladorFavorito.anadirFavorito(producto);
+				if(usuario == null) {
+					JOptionPane.showMessageDialog(null, "Inicia sesion o registrate !", "Uy", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					ControladorFavorito controladorFavorito = new ControladorFavorito(usuario);
+					controladorFavorito.anadirFavorito(producto);
+				}
+				
 			}
 		});
 		btnAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControladorCarrito controladorCarrito =  new ControladorCarrito(usuario);
-				controladorCarrito.anadirACarrito(producto,  Integer.parseInt(cbxCantidad.getSelectedItem().toString()));
+				if(usuario == null) {
+					JOptionPane.showMessageDialog(null, "Inicia sesion o registrate !", "Uy", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					ControladorCarrito controladorCarrito =  new ControladorCarrito(usuario);
+					controladorCarrito.anadirACarrito(producto,  Integer.parseInt(cbxCantidad.getSelectedItem().toString()));
+				}
 			}
 		});
 	}

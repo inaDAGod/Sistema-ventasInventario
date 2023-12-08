@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import ventasInventario.BD.Modelo.GestorProductos;
 import ventasInventario.BD.Modelo.Producto;
 import ventasInventario.BD.Modelo.Usuario;
 
@@ -32,9 +33,11 @@ public class ProductoCliente extends JFrame {
 					//ejemplo solo para ver si da
 					Usuario u = new Usuario("danialee14", null, null, null);
 					ArrayList<String> eti = new ArrayList<>();
+					ArrayList<String> im = new ArrayList<>();
+					im.add("src/imagenesJhess/personas.jfif");
 					eti.add("ROPA");
 					eti.add("NIÑO");
-					Producto p = new Producto("P123", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
+					Producto p = new Producto("P123", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" ,im,eti);
 					p.setOfertado(false);
 					ProductoCliente frame = new ProductoCliente(u,p);
 					frame.setVisible(true);

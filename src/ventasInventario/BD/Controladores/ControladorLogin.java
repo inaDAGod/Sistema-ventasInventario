@@ -3,6 +3,7 @@ package ventasInventario.BD.Controladores;
 import javax.swing.JOptionPane;
 
 import ventanasCliente.clienteInicio;
+import ventanasFuncionario.funcionarioInicio;
 import ventasInventario.Login;
 import ventasInventario.PanelLogin;
 import ventasInventario.BD.Modelo.GestorUsuarios;
@@ -22,12 +23,13 @@ public class ControladorLogin {
 		Usuario usu= gu.verificarCredenciales(usuario, contrasenia);
 		if(usu != null) {
 			if(usu.getFuncionario()) {
-				System.out.println("Es funcionario" + usu);
-				//mandar a inicio de funcionario
+				//System.out.println("Es funcionario" + usu);
+				funcionarioInicio frame = new funcionarioInicio();
+                frame.setVisible(true);
 			}
 			else {
-				System.out.println("No es funcionario" + usu);
-				clienteInicio frame = new clienteInicio(); // se deberia mandar el usuario, esto facilitaria todo
+				//System.out.println("No es funcionario" + usu);
+				clienteInicio frame = new clienteInicio(usu); // se deberia mandar el usuario, esto facilitaria todo
                 frame.setVisible(true);
                 
 			}
