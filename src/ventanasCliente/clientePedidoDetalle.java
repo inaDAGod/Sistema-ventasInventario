@@ -146,24 +146,20 @@ public class clientePedidoDetalle extends JFrame {
         panel_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
         JLabel lblNewLabel_2 = new JLabel("Pedido :"+pedido.getCpedido());
-        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         lblNewLabel_2.setBounds(24, 11, 296, 23);
         panel_4.add(lblNewLabel_2);
         
         JLabel lblNewLabel_2_1 = new JLabel("Fecha :"+pedido.getFecha_reserva());
-        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-        lblNewLabel_2_1.setBounds(24, 39, 296, 23);
+        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        lblNewLabel_2_1.setBounds(24, 45, 296, 23);
         panel_4.add(lblNewLabel_2_1);
         
         JLabel lblNewLabel_2_1_1 = new JLabel("Estado :"+pedido.getEstadoPedido());
-        lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-        lblNewLabel_2_1_1.setBounds(24, 65, 253, 23);
+        lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        lblNewLabel_2_1_1.setBounds(24, 80, 300, 23);
         panel_4.add(lblNewLabel_2_1_1);
         
-        JLabel lblNewLabel_2_1_2 = new JLabel("Pago :"+pedido.getEstadoPedido());
-        lblNewLabel_2_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-        lblNewLabel_2_1_2.setBounds(24, 90, 253, 29);
-        panel_4.add(lblNewLabel_2_1_2);
         panel_2.add(scrollPane, BorderLayout.CENTER); // Agrega el JScrollPane al centro
 
     }

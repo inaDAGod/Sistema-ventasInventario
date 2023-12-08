@@ -160,18 +160,18 @@ public class funcionarioPedidoDetalle extends JFrame {
         panel_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         
         JLabel lblNewLabel_2 = new JLabel("Pedido :"+pedido.getCpedido());
-        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+        lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 30));
         lblNewLabel_2.setBounds(24, 11, 296, 23);
         panel_4.add(lblNewLabel_2);
         
         JLabel lblNewLabel_2_1 = new JLabel("Fecha :"+pedido.getCpedido());
-        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-        lblNewLabel_2_1.setBounds(24, 39, 296, 23);
+        lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        lblNewLabel_2_1.setBounds(24, 45, 296, 23);
         panel_4.add(lblNewLabel_2_1);
         
         JLabel lblNewLabel_2_1_1 = new JLabel("Estado :");
-        lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-        lblNewLabel_2_1_1.setBounds(24, 65, 253, 23);
+        lblNewLabel_2_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        lblNewLabel_2_1_1.setBounds(24, 75, 253, 23);
         panel_4.add(lblNewLabel_2_1_1);
         
         JComboBox comboBox = new JComboBox();
@@ -180,25 +180,15 @@ public class funcionarioPedidoDetalle extends JFrame {
         comboBox.addItem("PAGADO A ENTREGAR");
         comboBox.addItem("FINALIZADO");
         comboBox.setSelectedItem(pedido.getEstadoPedido());
-        comboBox.setBounds(110, 65, 200, 23);
+        comboBox.setBounds(130, 75, 180, 25);
+        comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         panel_4.add(comboBox);
         comboBox.setEnabled(false);
+
         
-       JLabel lblNewLabel_2_1_2 = new JLabel("Pago :"); //los pagos no tienen estados
-        lblNewLabel_2_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 24));
-        lblNewLabel_2_1_2.setBounds(24, 90, 253, 29);
-        panel_4.add(lblNewLabel_2_1_2);
-        
-        JComboBox comboBox2 = new JComboBox();
-        comboBox2.addItem("ESPERA PAGO");
-        comboBox2.addItem("CANCELADO");
-        comboBox2.addItem("PAGADO A ENTREGAR");
-        comboBox2.addItem("FINALIZADO");
-        
-        comboBox2.setBounds(110, 95, 200, 23);
-        panel_4.add(comboBox2);
+     
         panel_2.add(scrollPane, BorderLayout.CENTER);
-        comboBox2.setEnabled(false);
+  
         
         
         
@@ -224,7 +214,6 @@ public class funcionarioPedidoDetalle extends JFrame {
 
         btnEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	comboBox2.setEnabled(true);
             	comboBox.setEnabled(true);
             	
                 btnEditar.setVisible(false);
@@ -235,7 +224,6 @@ public class funcionarioPedidoDetalle extends JFrame {
 
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	comboBox2.setEnabled(false);
             	comboBox.setEnabled(false);
 
                 btnEditar.setVisible(true);
@@ -246,7 +234,6 @@ public class funcionarioPedidoDetalle extends JFrame {
 
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	comboBox2.setEnabled(false);
             	comboBox.setEnabled(false);
             	pedido.actualizarEstado(comboBox.getSelectedItem().toString());
                 btnEditar.setVisible(true);

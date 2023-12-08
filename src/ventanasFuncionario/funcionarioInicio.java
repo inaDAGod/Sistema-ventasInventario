@@ -212,9 +212,26 @@ public class funcionarioInicio extends JFrame {
 	        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 	        buttonAjustes.add(labelImagen0, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	        
+	        //BOTON ESTADISTICAS
+	        JButton buttonEstadisticas = new JButton("Estadisticas");
+	        buttonEstadisticas.setBounds(25, 520, 300, 70);
+	        buttonEstadisticas.setLayout(new BorderLayout());
+	        buttonEstadisticas.setVisible(true);
+	        buttonEstadisticas.setBackground(new Color(250, 232, 235));
+	        buttonEstadisticas.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
+	        buttonEstadisticas.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+	        buttonEstadisticas.setForeground(Color.BLACK);
+	        navegador.add(buttonEstadisticas);
+	        ImageIcon iconProducto25 = new ImageIcon("src/imagenesJhess/salir.png");
+	        Image imagenOriginal25 = iconProducto25.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
+	        ImageIcon iconRedimensionado25 = new ImageIcon(imagenOriginal25);
+	        JLabel labelImagen25 = new JLabel(iconRedimensionado25);
+	        labelImagen21.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+	        buttonEstadisticas.add(labelImagen25, BorderLayout.WEST);  // Colocar la imagen a la izquierda
+	        
 	        //BOTON MIS CERRAR SESION
 	        JButton buttonCerrar = new JButton("Cerrar sesion");
-	        buttonCerrar.setBounds(25, 520, 300, 70);
+	        buttonCerrar.setBounds(25, 620, 300, 70);
 	        buttonCerrar.setLayout(new BorderLayout());
 	        buttonCerrar.setVisible(true);
 	        buttonCerrar.setBackground(new Color(250, 232, 235));
