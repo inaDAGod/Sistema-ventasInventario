@@ -28,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
+import ventasInventario.Registro;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -97,6 +98,13 @@ public class generalOfertas extends JFrame {
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalProductos frame = new generalProductos();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnOferta.setBounds(374, 44, 125, 36);
 		panel_1.add(btnOferta);
 
@@ -148,8 +156,8 @@ public class generalOfertas extends JFrame {
 		btnvolver2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
+				Registro frame = new Registro();
+				frame.setVisible(true);
 				setVisible(false);
 			}
 		});

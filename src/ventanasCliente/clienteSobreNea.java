@@ -270,7 +270,7 @@ public class clienteSobreNea extends JFrame {
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_2 = new JLabel("");
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
+        ImageIcon icon2 = new ImageIcon("src\\imagenesJhess\\personassi.jfif");
         Image image2 = icon2.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
         lblNewLabel_2.setBounds(74, 40, 585, 573);
