@@ -6,9 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import general.InicioGeneral;
+import general.generalOfertas;
+import general.generalProductos;
+import general.generalSobreNea;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
@@ -57,6 +65,13 @@ public class Login extends JFrame {
 		btnInicio.setBackground(new Color(220, 100, 150));
 		btnInicio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnInicio.setForeground(Color.WHITE);
+		btnInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InicioGeneral frame = new InicioGeneral();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnInicio.setBounds(330, 44, 125, 36);
 		getContentPane().add(btnInicio);
 
@@ -65,6 +80,13 @@ public class Login extends JFrame {
 		btnProductos.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnProductos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnProductos.setForeground(Color.WHITE);
+		btnProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalProductos frame = new generalProductos();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnProductos.setBounds(454, 44, 125, 36);
 		getContentPane().add(btnProductos);
 
@@ -73,6 +95,13 @@ public class Login extends JFrame {
 		btnOferta.setBackground(new Color(220, 100, 150));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalOfertas frame = new generalOfertas();
+				frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnOferta.setBounds(578, 44, 120, 36);
 		getContentPane().add(btnOferta);
 
@@ -81,6 +110,13 @@ public class Login extends JFrame {
 		btnSobreNea.setBackground(new Color(220, 100, 150));
 		btnSobreNea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnSobreNea.setForeground(Color.WHITE);
+		btnSobreNea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalSobreNea frame = new generalSobreNea();
+				frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnSobreNea.setBounds(698, 44, 140, 36);
 		getContentPane().add(btnSobreNea);
     	
