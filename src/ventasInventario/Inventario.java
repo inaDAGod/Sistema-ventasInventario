@@ -33,7 +33,7 @@ public class Inventario extends JFrame {
 	JPanel contentPane;
 	JScrollPane scrollPane;
 	JTable tabla;
-	PanelInventario pinv= new PanelInventario();
+	PanelInventario pinv;
 	private Usuario usuario;
 	 private JPanel navegador;
 	 private  JPanel SuperiorNavegador;
@@ -53,6 +53,7 @@ public class Inventario extends JFrame {
 	}*/
 	public Inventario(Usuario u) {
 		this.usuario = u;
+		pinv= new PanelInventario(u);
 		setResizable(false);
 		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);

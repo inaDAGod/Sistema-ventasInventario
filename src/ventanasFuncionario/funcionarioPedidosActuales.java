@@ -35,9 +35,9 @@ import java.awt.Font;
 
 class TarjetaPedido extends JPanel {
     private static final long serialVersionUID = 1L;
-   
-    public TarjetaPedido(Pedido pedido) {
-    	
+    private Usuario usuario;
+    public TarjetaPedido(Pedido pedido,funcionarioPedidosActuales funciped,Usuario u) {
+    	this.usuario = u;
     	 setLayout(new BorderLayout()); 
          setBorder(BorderFactory.createLineBorder(Color.BLACK, 0)); 
          
@@ -71,6 +71,13 @@ class TarjetaPedido extends JPanel {
         buttonInfo.setForeground(Color.WHITE);
         buttonInfo.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
         buttonInfo.setBounds(0, 0, 300, 1500);
+        buttonInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				funcionarioPedidoDetalle frame = new funcionarioPedidoDetalle(pedido,usuario);
+                frame.setVisible(true);
+				funciped.setVisible(false);
+			}
+		});
         buttonInfo.setBackground(new Color(167, 134, 252)); 
         
         
@@ -446,7 +453,7 @@ public class funcionarioPedidosActuales extends JFrame {
  
         
         for (Pedido pedido : listaPedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+            TarjetaPedido tarjeta = new TarjetaPedido(pedido,funcionarioPedidosActuales.this,usuario);
           
             panelTarjetas.add(tarjeta);
         }

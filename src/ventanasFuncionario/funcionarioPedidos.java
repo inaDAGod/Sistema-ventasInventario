@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import general.InicioGeneral;
+import ventanasCliente.clientePedidoDetalle;
 import ventasInventario.Inventario;
 import ventasInventario.ListadoClientes;
 import ventasInventario.NuevoFuncionario;
@@ -59,7 +60,7 @@ public class funcionarioPedidos extends JFrame {
     public class TarjetaPedido extends JPanel {
         private static final long serialVersionUID = 1L;
 
-        public TarjetaPedido(Pedido pedido) {
+        public TarjetaPedido(Pedido pedido,funcionarioPedidos funciped) {
         	 
         	 setLayout(new BorderLayout()); 
              setBorder(BorderFactory.createLineBorder(Color.BLACK, 0)); 
@@ -95,7 +96,13 @@ public class funcionarioPedidos extends JFrame {
             buttonInfo.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
             buttonInfo.setBounds(0, 0, 300, 1500);
             buttonInfo.setBackground(new Color(167, 134, 252)); 
-            
+            buttonInfo.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				funcionarioPedidoDetalle frame = new funcionarioPedidoDetalle(pedido,usuario);
+                    frame.setVisible(true);
+    				funciped.setVisible(false);
+    			}
+    		});
             
            
             Font font = new Font("Times New Roman", Font.PLAIN, 30);
@@ -442,7 +449,7 @@ public class funcionarioPedidos extends JFrame {
  
         
         for (Pedido pedido : listaPedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+            TarjetaPedido tarjeta = new TarjetaPedido(pedido,funcionarioPedidos.this);
           
             panelTarjetas.add(tarjeta);
         }

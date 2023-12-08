@@ -39,11 +39,14 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import general.InicioGeneral;
+import ventanasCliente.clienteInicio;
 import ventanasCliente.perfilUsuario;
 import ventasInventario.Inventario;
 import ventasInventario.ListadoClientes;
 import ventasInventario.NuevoFuncionario;
 import ventasInventario.NuevoProducto;
+import ventasInventario.ProductoCliente;
+import ventasInventario.ProductoFuncionario;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 import ventasInventario.BD.Modelo.Usuario;
@@ -922,7 +925,13 @@ public class funcionarioInicio extends JFrame {
 
 	                JButton buttonProducto = new JButton();
 	                buttonProducto.setLayout(new GridBagLayout());
-
+	                buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoFuncionario frame = new ProductoFuncionario(producto11,usuario,funcionarioInicio.this);
+							frame.setVisible(true);
+							funcionarioInicio.this.setVisible(false);
+						}
+					});
 	                ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));///OJOOOOO
 
 	                int alturaDeseada = 200;
@@ -1031,7 +1040,13 @@ public class funcionarioInicio extends JFrame {
 
 	                    JButton buttonProducto = new JButton();
 	                    buttonProducto.setLayout(new GridBagLayout());
-
+	                    buttonProducto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								ProductoFuncionario frame = new ProductoFuncionario(producto11,usuario,funcionarioInicio.this);
+								frame.setVisible(true);
+								funcionarioInicio.this.setVisible(false);
+							}
+						});
 	                    ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 	                    int alturaDeseada = 200;
