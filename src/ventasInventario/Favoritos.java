@@ -19,6 +19,13 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import general.InicioGeneral;
+import ventanasCliente.clienteCatalogo;
+import ventanasCliente.clienteInicio;
+import ventanasCliente.clienteOfertas;
+import ventanasCliente.clientePedido;
+import ventanasCliente.clienteSobreNea;
+import ventanasCliente.perfilUsuario;
 import ventasInventario.BD.Modelo.Usuario;
 
 public class Favoritos extends JFrame {
@@ -29,7 +36,7 @@ public class Favoritos extends JFrame {
 	
 	private JPanel navegador;
 	private JPanel SuperiorNavegador;
-	
+	private Usuario usuario;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,8 +53,8 @@ public class Favoritos extends JFrame {
 	}
 
 
-	public Favoritos(Usuario usuario) {
-		
+	public Favoritos(Usuario u) {
+		this.usuario = u;
 		navegador = new JPanel();
 		navegador.setLayout(new BorderLayout());
 		navegador.setBackground(new Color(250, 232, 235));
@@ -70,6 +77,13 @@ public class Favoritos extends JFrame {
  		btnPerfil.setLayout(new BorderLayout());
  		btnPerfil.setBorder(BorderFactory.createLineBorder(Color.black, 0));
  		btnPerfil.setVisible(true);
+ 		btnPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				perfilUsuario frame = new perfilUsuario(usuario);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
  		SuperiorNavegador.add(btnPerfil);
  		btnPerfil.setBackground(new Color(205, 159, 204));
  		btnPerfil.setForeground(Color.WHITE);
@@ -104,6 +118,13 @@ public class Favoritos extends JFrame {
  		buttonMisPedidos.setLayout(new BorderLayout());
  		buttonMisPedidos.setVisible(true);
  		buttonMisPedidos.setBackground(new Color(250, 232, 235));
+ 		buttonMisPedidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clientePedido frame = new clientePedido(usuario);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
  		buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0));
  		buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
  		buttonMisPedidos.setForeground(Color.BLACK);
@@ -122,6 +143,13 @@ public class Favoritos extends JFrame {
  		buttonCerrar.setBounds(25, 320, 300, 70);
  		buttonCerrar.setLayout(new BorderLayout());
  		buttonCerrar.setVisible(true);
+ 		buttonCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InicioGeneral frame = new InicioGeneral();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
  		buttonCerrar.setBackground(new Color(250, 232, 235));
  		buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0));
  		buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -167,6 +195,13 @@ public class Favoritos extends JFrame {
 		btnInicio.setBackground(new Color(220, 100, 150));
 		btnInicio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnInicio.setForeground(Color.WHITE);
+		btnInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteInicio frame = new clienteInicio(u);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnInicio.setBounds(330, 44, 125, 36);
 		getContentPane().add(btnInicio);
 
@@ -175,6 +210,13 @@ public class Favoritos extends JFrame {
 		btnProductos.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnProductos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnProductos.setForeground(Color.WHITE);
+		btnProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteCatalogo frame = new clienteCatalogo(usuario);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnProductos.setBounds(454, 44, 125, 36);
 		getContentPane().add(btnProductos);
 
@@ -183,6 +225,13 @@ public class Favoritos extends JFrame {
 		btnOferta.setBackground(new Color(220, 100, 150));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteOfertas frame = new clienteOfertas(usuario);
+                frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnOferta.setBounds(578, 44, 120, 36);
 		getContentPane().add(btnOferta);
 
@@ -191,6 +240,13 @@ public class Favoritos extends JFrame {
 		btnSobreNea.setBackground(new Color(220, 100, 150));
 		btnSobreNea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnSobreNea.setForeground(Color.WHITE);
+		btnSobreNea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteSobreNea frame = new clienteSobreNea(u);
+                frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnSobreNea.setBounds(698, 44, 140, 36);
 		getContentPane().add(btnSobreNea); 
         
