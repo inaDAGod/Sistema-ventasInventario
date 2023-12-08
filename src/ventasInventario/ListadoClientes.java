@@ -46,7 +46,7 @@ public class ListadoClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public ListadoClientes() {
-		
+		setResizable(false);
 		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
@@ -212,41 +212,49 @@ public class ListadoClientes extends JFrame {
 		btnUsuario.setBounds(1000, 10, 100, 100);
 		getContentPane().add(btnUsuario);
 		
-		JButton btnLogo = new JButton("");
-        //btnLogo.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/LogoGris(200x100).jpg")));
-        btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnLogo.setBounds(42, 10, 200, 100);
-        getContentPane().add(btnLogo);
-        
-        JButton btnBack = new JButton("");
+		JButton btnBack = new JButton("");
         btnBack.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/backrosa3(50x50).jpg")));
         btnBack.setHorizontalTextPosition(SwingConstants.CENTER);
         btnBack.setBounds(1124, 35, 50, 50);
         getContentPane().add(btnBack);
+		
+        JButton btnLogo = new JButton("");
+        btnLogo.setIcon(new ImageIcon(Carrito.class.getResource("/imagenes/logo.jpg")));
+        btnLogo.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnLogo.setBounds(42, 10, 200, 100);
+        getContentPane().add(btnLogo);
         
-        JButton btnInicio = new JButton("");
-        btnInicio.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnInicio(90x50).jpg")));
-        btnInicio.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnInicio.setBounds(330, 36, 90, 50);
-        getContentPane().add(btnInicio);
-        
-        JButton btnProductos = new JButton("");
-        btnProductos.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnProductos(90x50).jpg")));
-        btnProductos.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnProductos.setBounds(420, 36, 90, 50);
-        getContentPane().add(btnProductos);
-        
-        JButton btnOfertas = new JButton("");
-        btnOfertas.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnOfertas(90x50).jpg")));
-        btnOfertas.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnOfertas.setBounds(510, 36, 90, 50);
-        getContentPane().add(btnOfertas);
-        
-        JButton btnSobreNea = new JButton("");
-        btnSobreNea.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/btnSobreNea(120x50).jpg")));
-        btnSobreNea.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnSobreNea.setBounds(600, 36, 120, 50);
-        getContentPane().add(btnSobreNea);
+        JButton btnInicio = new JButton("Inicio");
+		btnInicio.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		btnInicio.setBackground(new Color(220, 100, 150));
+		btnInicio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnInicio.setForeground(Color.WHITE);
+		btnInicio.setBounds(330, 44, 125, 36);
+		getContentPane().add(btnInicio);
+
+		JButton btnProductos = new JButton("Productos");
+		btnProductos.setBackground(new Color(220, 100, 150));
+		btnProductos.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		btnProductos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnProductos.setForeground(Color.WHITE);
+		btnProductos.setBounds(454, 44, 125, 36);
+		getContentPane().add(btnProductos);
+
+		JButton btnOferta = new JButton("Oferta");
+		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		btnOferta.setBackground(new Color(220, 100, 150));
+		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnOferta.setForeground(Color.WHITE);
+		btnOferta.setBounds(578, 44, 120, 36);
+		getContentPane().add(btnOferta);
+
+		JButton btnSobreNea = new JButton("Quienes somos?");
+		btnSobreNea.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		btnSobreNea.setBackground(new Color(220, 100, 150));
+		btnSobreNea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnSobreNea.setForeground(Color.WHITE);
+		btnSobreNea.setBounds(698, 44, 140, 36);
+		getContentPane().add(btnSobreNea);
         
       //Listado Clientes
       	scrollPane= new JScrollPane();
