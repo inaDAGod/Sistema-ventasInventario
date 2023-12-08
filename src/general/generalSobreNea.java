@@ -158,7 +158,7 @@ public class generalSobreNea extends JFrame {
 	        panel_3.setLayout(null);
 
 	        JLabel lblNewLabel_2 = new JLabel("");
-	        ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
+	        ImageIcon icon2 = new ImageIcon("src\\imagenesJhess\\personassi.jfif");
 	        Image image2 = icon2.getImage().getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 	        lblNewLabel_2.setIcon(new ImageIcon(image2));
 	        lblNewLabel_2.setBounds(74, 40, 585, 573);
@@ -182,7 +182,7 @@ public class generalSobreNea extends JFrame {
 	        panel_3_1.add(lblNewLabel_3);
 
 	        JLabel lblNewLabel_4 = new JLabel("");
-	        ImageIcon icon4 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\ubicacion.JPG");
+	        ImageIcon icon4 = new ImageIcon("src\\imagenesJhess\\ubicacion.JPG");
 	        Image image4 = icon4.getImage().getScaledInstance(585, 150, Image.SCALE_SMOOTH);
 	        lblNewLabel_4.setIcon(new ImageIcon(image4));
 	        lblNewLabel_4.setBounds(20, 420, 555, 182);
@@ -204,7 +204,7 @@ public class generalSobreNea extends JFrame {
 	        panel_3_1.add(lblNewLabel_3_1);
 
 	        JLabel lblNewLabel_5 = new JLabel("");
-	        ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+	        ImageIcon icon5 = new ImageIcon("src\\imagenesJhess\\icono-de-llamada-telefonica");
 	        Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
 	        lblNewLabel_5.setIcon(new ImageIcon(image5));
 	        lblNewLabel_5.setBounds(361, 324, 75, 52);
