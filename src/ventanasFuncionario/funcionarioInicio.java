@@ -73,7 +73,7 @@ public class funcionarioInicio extends JFrame {
 
 	    //imagenes carusel	
 	    
-	    /*
+	
 	    public static void main(String[] args) {
 	        EventQueue.invokeLater(() -> {
 	            try {
@@ -83,7 +83,7 @@ public class funcionarioInicio extends JFrame {
 	                e.printStackTrace();
 	            }
 	        });
-	    }*/
+	    }
 
 	    public funcionarioInicio() {
 	        setResizable(false);
@@ -144,7 +144,7 @@ public class funcionarioInicio extends JFrame {
 	        btnUsuario.add(labelImagen7, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	       
 	      //BOTON añadir productos
-	        JButton buttonProducto5 = new JButton("  Añadir Producto");
+	        JButton buttonProducto5 = new JButton("    Añadir Producto");
 	        buttonProducto5.setBounds(25, 120, 300, 70);
 	        buttonProducto5.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonProducto5.setLayout(new BorderLayout());
@@ -153,7 +153,7 @@ public class funcionarioInicio extends JFrame {
 	        navegador.add(buttonProducto5);
 	        buttonProducto5.setForeground(Color.BLACK);
 	        buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-	        ImageIcon iconProducto2 = new ImageIcon("src/imagenesJhess/favo.png");
+	        ImageIcon iconProducto2 = new ImageIcon("src/imagenesJhess/aProducto.png");
 	        Image imagenOriginal2 = iconProducto2.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
 	        ImageIcon iconRedimensionado2 = new ImageIcon(imagenOriginal2);
 	        JLabel labelImagen2 = new JLabel(iconRedimensionado2);
@@ -162,7 +162,7 @@ public class funcionarioInicio extends JFrame {
 	        
 	        
 	      //BOTON añadir funcionario
-	        JButton buttonMisPedidos = new JButton("Añadir funcionario");
+	        JButton buttonMisPedidos = new JButton("    Añadir funcionario");
 	        buttonMisPedidos.setBounds(25, 220, 300, 70);
 	        buttonMisPedidos.setLayout(new BorderLayout());
 	        buttonMisPedidos.setVisible(true);
@@ -171,7 +171,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        buttonMisPedidos.setForeground(Color.BLACK);
 	        navegador.add(buttonMisPedidos);
-	        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/pedido.png");
+	        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/aFuncionario.png");
 	        Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
 	        ImageIcon iconRedimensionado21 = new ImageIcon(imagenOriginal21);
 	        JLabel labelImagen21 = new JLabel(iconRedimensionado21);
@@ -179,7 +179,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonMisPedidos.add(labelImagen21, BorderLayout.WEST);  // Colocar la imagen a la izquierda
 	        
 	      //BOTON MIS listado de clientes
-	        JButton buttonListado = new JButton("Listado de clientes");
+	        JButton buttonListado = new JButton("      Listado de clientes");
 	        buttonListado.setBounds(25, 320, 300, 70);
 	        buttonListado.setLayout(new BorderLayout());
 	        buttonListado.setVisible(true);
@@ -188,7 +188,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonListado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        buttonListado.setForeground(Color.BLACK);
 	        navegador.add(buttonListado);
-	        ImageIcon iconProducto218 = new ImageIcon("src/imagenesJhess/pedido.png");
+	        ImageIcon iconProducto218 = new ImageIcon("src/imagenesJhess/listaCliente.png");
 	        Image imagenOriginal218 = iconProducto218.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
 	        ImageIcon iconRedimensionado218 = new ImageIcon(imagenOriginal218);
 	        JLabel labelImagen218 = new JLabel(iconRedimensionado218);
@@ -197,7 +197,7 @@ public class funcionarioInicio extends JFrame {
 	        
 	       
 	        //BOTON todos los pedidos
-	        JButton buttonAjustes = new JButton("Todos los pedidos");
+	        JButton buttonAjustes = new JButton("     Todos los pedidos");
 	        buttonAjustes.setBounds(25, 420, 300, 70);
 	        buttonAjustes.setLayout(new BorderLayout());
 	        buttonAjustes.setVisible(true);
@@ -206,7 +206,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonAjustes.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonAjustes.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        buttonAjustes.setForeground(Color.BLACK);
-	        ImageIcon iconProducto0 = new ImageIcon("src/imagenesJhess/ajus.png");
+	        ImageIcon iconProducto0 = new ImageIcon("src/imagenesJhess/todosPedidos.png");
 	        Image imagenOriginal0 = iconProducto0.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
 	        ImageIcon iconRedimensionado0 = new ImageIcon(imagenOriginal0);
 	        JLabel labelImagen0 = new JLabel(iconRedimensionado0);
@@ -223,7 +223,7 @@ public class funcionarioInicio extends JFrame {
 	        buttonEstadisticas.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        buttonEstadisticas.setForeground(Color.BLACK);
 	        navegador.add(buttonEstadisticas);
-	        ImageIcon iconProducto25 = new ImageIcon("src/imagenesJhess/salir.png");
+	        ImageIcon iconProducto25 = new ImageIcon("src/imagenesJhess/estaditicas.png");
 	        Image imagenOriginal25 = iconProducto25.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
 	        ImageIcon iconRedimensionado25 = new ImageIcon(imagenOriginal25);
 	        JLabel labelImagen25 = new JLabel(iconRedimensionado25);
