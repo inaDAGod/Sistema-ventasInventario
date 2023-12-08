@@ -286,6 +286,13 @@ public class clientePedidoDetalle extends JFrame {
       		btnvolver.setFont(new Font("Times New Roman", Font.PLAIN, 20));
       		btnvolver.setForeground(Color.WHITE);
       		btnvolver.setBounds(1130, 50, 50, 40);
+      		btnvolver.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clienteInicio frame = new clienteInicio(pedido.getUsuario());
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
       		panel_1.add(btnvolver);
       		
       		btnOferta_2.addActionListener(new ActionListener() {

@@ -266,7 +266,7 @@ public class NuevoProducto extends JFrame {
         		btnUsuario.setVisible(false);
         	}
         });
-		btnUsuario.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/user(100x100).jpg")));
+		btnUsuario.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/perfil(100x100(.jpg")));
 		btnUsuario.setBounds(1000, 10, 100, 100);
 		btnUsuario.setHorizontalTextPosition(SwingConstants.CENTER);
 		getContentPane().add(btnUsuario);
@@ -314,12 +314,12 @@ public class NuevoProducto extends JFrame {
 		btnProductos.setBounds(454, 44, 125, 36);
 		getContentPane().add(btnProductos);
 
-		JButton btnOferta = new JButton("Pedidos Actuales");
+		JButton btnOferta = new JButton("Pedidos actuales");
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setBackground(new Color(220, 100, 150));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
-		btnOferta.setBounds(578, 44, 120, 36);
+		btnOferta.setBounds(578, 44, 160, 36);
 		btnOferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				funcionarioPedidosActuales frame = new funcionarioPedidosActuales(usuario);
@@ -329,7 +329,7 @@ public class NuevoProducto extends JFrame {
 		});
 		getContentPane().add(btnOferta);
 
-		JButton btnSobreNea = new JButton("Quienes somos?");
+		JButton btnSobreNea = new JButton("Sobre Nea");
 		btnSobreNea.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnSobreNea.setBackground(new Color(220, 100, 150));
 		btnSobreNea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -341,7 +341,7 @@ public class NuevoProducto extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnSobreNea.setBounds(698, 44, 140, 36);
+		btnSobreNea.setBounds(738, 44, 140, 36);
 		getContentPane().add(btnSobreNea);
         
         
@@ -553,7 +553,7 @@ public class NuevoProducto extends JFrame {
         getContentPane().add(crosa);
         
         JLabel fondobarra = new JLabel("New label");
-        fondobarra.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/rosa2(1200x800).jpg")));
+        fondobarra.setIcon(new ImageIcon(NuevoProducto.class.getResource("/imagenes/rosabarra(1200x800).jpg")));
         fondobarra.setBounds(0, 0, 1200, 120);
         getContentPane().add(fondobarra);
         

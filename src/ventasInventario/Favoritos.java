@@ -182,7 +182,7 @@ public class Favoritos extends JFrame {
         		btnUsuario.setVisible(false);
         	}
         });
-		btnUsuario.setIcon(new ImageIcon(Favoritos.class.getResource("/imagenes/user(100x100).jpg")));
+		btnUsuario.setIcon(new ImageIcon(Favoritos.class.getResource("/imagenes/perfil(100x100(.jpg")));
 		btnUsuario.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnUsuario.setBounds(1000, 10, 100, 100);
 		getContentPane().add(btnUsuario);
@@ -245,7 +245,7 @@ public class Favoritos extends JFrame {
 		btnOferta.setBounds(578, 44, 120, 36);
 		getContentPane().add(btnOferta);
 
-		JButton btnSobreNea = new JButton("Quienes somos?");
+		JButton btnSobreNea = new JButton("Sobre Nea");
 		btnSobreNea.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnSobreNea.setBackground(new Color(220, 100, 150));
 		btnSobreNea.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -261,7 +261,7 @@ public class Favoritos extends JFrame {
 		getContentPane().add(btnSobreNea); 
         
         pinv= new PanelFavoritos(usuario);
-		getContentPane().setBackground(new Color(255, 255, 255));
+		getContentPane().setBackground(new Color(118,14,73));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);

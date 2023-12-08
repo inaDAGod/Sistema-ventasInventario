@@ -294,7 +294,13 @@ public class clienteOfertas extends JFrame {
       		btnvolver.setForeground(Color.WHITE);
       		btnvolver.setBounds(1130, 50, 50, 40);
       		panel_1.add(btnvolver);
-      		
+      		btnvolver.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clienteInicio frame = new clienteInicio(u);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
       		
       		
       		//*======================================FIN DE PANNEL

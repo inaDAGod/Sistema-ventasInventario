@@ -44,10 +44,11 @@ public class NuevoFuncionario extends JFrame {
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(118,14,73));
 		setSize(1200,800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
-		setBackground(new Color(204, 102, 153));
+		
 		setBounds(0,0,1200,800);
 		
 		navegador = new JPanel();
@@ -242,7 +243,7 @@ public class NuevoFuncionario extends JFrame {
         		btnUsuario.setVisible(false);
         	}
         });
-		btnUsuario.setIcon(new ImageIcon(Inventario.class.getResource("/imagenes/user(100x100).jpg")));
+		btnUsuario.setIcon(new ImageIcon(NuevoFuncionario.class.getResource("/imagenes/perfil(100x100(.jpg")));
 		btnUsuario.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnUsuario.setBounds(1000, 10, 100, 100);
 		getContentPane().add(btnUsuario);
@@ -301,7 +302,7 @@ public class NuevoFuncionario extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnOferta.setBounds(578, 44, 120, 36);
+		btnOferta.setBounds(578, 44, 160, 36);
 		getContentPane().add(btnOferta);
 
 		JButton btnSobreNea = new JButton("Quienes somos?");
@@ -316,7 +317,7 @@ public class NuevoFuncionario extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnSobreNea.setBounds(698, 44, 140, 36);
+		btnSobreNea.setBounds(738, 44, 140, 36);
 		getContentPane().add(btnSobreNea);
 		
         
