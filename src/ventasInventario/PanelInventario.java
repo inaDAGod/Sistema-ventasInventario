@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
@@ -26,8 +27,10 @@ public class PanelInventario extends JPanel {
 	private ArrayList<Producto> productos;
 	private ControladorProducto controladorProducto;
     DefaultTableModel modelo;
+    private Usuario usuario;
     private JTextField tfProductoBuscado;
-	public PanelInventario() {
+	public PanelInventario(Usuario u) {
+		this.usuario = u;
 		controladorProducto = new ControladorProducto(PanelInventario.this);
         productos = controladorProducto.todosProductos();
 		setLayout(null);
@@ -137,9 +140,10 @@ public class PanelInventario extends JPanel {
         }
     }
 	private void abrirProducto(Producto p) {
-		 ProductoFuncionario frame = new ProductoFuncionario(p);
+		 ProductoFuncionario frame = new ProductoFuncionario(p,usuario);
 			frame.setVisible(true);
-			setVisible(true);
+			setVisible(false);
+			getTopLevelAncestor().setVisible(false);
     }
     private void actualizarTabla() {
         table.setModel(modelo);
