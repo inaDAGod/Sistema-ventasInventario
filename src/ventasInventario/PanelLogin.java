@@ -53,12 +53,12 @@ public class PanelLogin extends JPanel {
 		
 		JLabel txContrasenia = new JLabel("Contraseña:");
 		txContrasenia.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		txContrasenia.setBounds(359, 315, 125, 30);
+		txContrasenia.setBounds(359, 315, 248, 30);
 		add(txContrasenia);
 		
 		JLabel txUsuario = new JLabel("Usuario:");
 		txUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 25));
-		txUsuario.setBounds(356, 202, 84, 30);
+		txUsuario.setBounds(356, 202, 234, 30);
 		add(txUsuario);
 		
 		JLabel txBienvenida = new JLabel("¡Bienvenido a Néa!");
