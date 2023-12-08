@@ -34,6 +34,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import ventanasCliente.clienteCatalogo;
+import ventanasCliente.clienteOfertas;
+import ventanasCliente.clienteSobreNea;
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
@@ -131,6 +134,13 @@ public class InicioGeneral extends JFrame {
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteCatalogo frame = new clienteCatalogo(null);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnOferta.setBounds(374, 44, 125, 36);
 		panel_1.add(btnOferta);
 
@@ -140,6 +150,13 @@ public class InicioGeneral extends JFrame {
 		btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1_1.setForeground(Color.WHITE);
 		btnOferta_1_1.setBounds(498, 44, 120, 36);
+		btnOferta_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 	clienteOfertas frame = new clienteOfertas(null);
+                frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		panel_1.add(btnOferta_1_1);
 
 		JButton btnOferta_1 = new JButton("Quienes somos?");
@@ -148,6 +165,13 @@ public class InicioGeneral extends JFrame {
 		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1.setForeground(Color.WHITE);
 		btnOferta_1.setBounds(618, 44, 140, 36);
+		btnOferta_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteSobreNea frame = new clienteSobreNea();
+                frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		panel_1.add(btnOferta_1);
 
 		JButton btnvolver = new JButton("Iniciar sesion");
@@ -175,7 +199,7 @@ public class InicioGeneral extends JFrame {
 		btnvolver2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
+				Login login = new Login();//deberia ser el de registrar
 				login.setVisible(true);
 				setVisible(false);
 			}

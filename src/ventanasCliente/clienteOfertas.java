@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -22,8 +24,10 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
@@ -33,11 +37,13 @@ public class clienteOfertas extends JFrame {
     private static final long serialVersionUID = 1L;
     private ArrayList<Producto> ofertados;
     private ControladorProducto controladorProducto;
+    private Usuario usuario;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	clienteOfertas frame = new clienteOfertas();
+                	Usuario u = new Usuario("danialee14");
+                	clienteOfertas frame = new clienteOfertas(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -46,7 +52,8 @@ public class clienteOfertas extends JFrame {
         });
     }
 
-    public clienteOfertas() {
+    public clienteOfertas(Usuario u) {
+    	this.usuario = u;
         setResizable(false);
     	controladorProducto = new ControladorProducto();
     	ofertados = controladorProducto.ofertados();
@@ -121,7 +128,12 @@ public class clienteOfertas extends JFrame {
 
                 JButton buttonPedido = new JButton();
                 buttonPedido.setLayout(new GridBagLayout());
-
+                buttonPedido.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ProductoCliente frame = new ProductoCliente(usuario,producto);
+						frame.setVisible(true);
+					}
+				});
                 ImageIcon iconPedido = new ImageIcon(producto.getImagenes().get(0));
 
                 int alturaDeseada = 300;
