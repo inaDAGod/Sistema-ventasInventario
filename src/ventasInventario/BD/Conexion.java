@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
 	static final String DB_URL = "jdbc:postgresql://localhost/Nea"; 
 	static final String USER = "postgres";
-	static final String PASS = "admi";
+	static final String PASS = "pastelitos";
 	//siempre se debe crear el path descargando de https://jdbc.postgresql.org/download/
 	//para java version 8 y agregar el jar al proyecto :)
 	//Conexion c = new Conexion();
@@ -27,6 +27,5 @@ public class Conexion {
 		return conn;
 		
 	}
-	
-	
+
 }
