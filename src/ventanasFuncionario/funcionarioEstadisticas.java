@@ -395,6 +395,9 @@ public class funcionarioEstadisticas extends JFrame {
                
             }
         });
+        
+       
+        
     }
 	
 	
