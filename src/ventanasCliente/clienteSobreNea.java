@@ -213,7 +213,7 @@ public class clienteSobreNea extends JFrame {
       		btnNewButton.setForeground(Color.WHITE);
       		btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					clienteInicio frame = new clienteInicio(u);
+					clienteInicio frame = new clienteInicio(usuario);
 					frame.setVisible(true);
 					setVisible(false);
 				}

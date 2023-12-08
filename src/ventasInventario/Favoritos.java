@@ -37,6 +37,7 @@ public class Favoritos extends JFrame {
 	private JPanel navegador;
 	private JPanel SuperiorNavegador;
 	private Usuario usuario;
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,7 +51,7 @@ public class Favoritos extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 
 	public Favoritos(Usuario u) {
@@ -197,7 +198,7 @@ public class Favoritos extends JFrame {
 		btnInicio.setForeground(Color.WHITE);
 		btnInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clienteInicio frame = new clienteInicio(u);
+				clienteInicio frame = new clienteInicio(usuario);
 				frame.setVisible(true);
 				setVisible(false);
 			}

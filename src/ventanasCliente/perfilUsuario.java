@@ -209,7 +209,7 @@ public class perfilUsuario extends JFrame {
       		btnNewButton.setForeground(Color.WHITE);
       		btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					clienteInicio frame = new clienteInicio(u);
+					clienteInicio frame = new clienteInicio(usuario);
 					frame.setVisible(true);
 					setVisible(false);
 				}
@@ -254,7 +254,7 @@ public class perfilUsuario extends JFrame {
       		btnOferta_1.setForeground(Color.WHITE);
       		btnOferta_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					clienteSobreNea frame = new clienteSobreNea(u);
+					clienteSobreNea frame = new clienteSobreNea(usuario);
 	                frame.setVisible(true);
 	                setVisible(false);
 				}
