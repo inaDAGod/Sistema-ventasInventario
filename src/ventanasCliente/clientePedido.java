@@ -66,6 +66,13 @@ class TarjetaPedido extends JPanel {
         
         JButton buttonInfo = new JButton("Más Información");
         buttonInfo.setForeground(Color.WHITE);
+        buttonInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clientePedidoDetalle frame = new clientePedidoDetalle(pedido);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
         buttonInfo.setBackground(new Color(112, 76, 94)); 
         buttonInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); 
         
