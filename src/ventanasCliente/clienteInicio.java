@@ -5,8 +5,11 @@ import javax.swing.border.Border;
 
 import ventanasFuncionario.funcionarioInicio.TarjetaPedido;
 import ventanasFuncionario.funcionarioInicio.TarjetaProducto;
+import ventasInventario.PanelLogin;
+import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,24 +49,26 @@ public class clienteInicio extends JFrame {
 	private List<String> listaImagenes = new ArrayList<>();
 	private int currentIndex = 0;
 	private Timer timer;
-
+	private Usuario usuario;
 	// panelBusqueda.setBackground(Color.blue); define color
 	
 	// imagenes carusel
-
+	///*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
-				clienteInicio frame = new clienteInicio();
+				Usuario u = new Usuario("danialee14");//para probar
+				clienteInicio frame = new clienteInicio(u);
 				frame.setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
 	}
+	//*/
 
-	public clienteInicio() {
-		
+	public clienteInicio(Usuario u) {
+		this.usuario = u;
 		controladorProducto = new ControladorProducto();
 		productos = controladorProducto.todosProductos();
 		etiquetas = controladorProducto.todasEtiquetas();
@@ -717,7 +722,12 @@ public class clienteInicio extends JFrame {
 
 					JButton buttonProducto = new JButton();
 					buttonProducto.setLayout(new GridBagLayout());
-
+					buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							frame.setVisible(true);
+						}
+					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 					int alturaDeseada = 200;
@@ -821,7 +831,12 @@ public class clienteInicio extends JFrame {
 
 					JButton buttonProducto = new JButton();
 					buttonProducto.setLayout(new GridBagLayout());
-
+					buttonProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ProductoCliente frame = new ProductoCliente(usuario,producto11);
+							frame.setVisible(true);
+						}
+					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
 
 					int alturaDeseada = 200;

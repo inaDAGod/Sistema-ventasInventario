@@ -73,7 +73,7 @@ public class funcionarioInicio extends JFrame {
 
 	    //imagenes carusel	
 	    
-	 
+	    /*
 	    public static void main(String[] args) {
 	        EventQueue.invokeLater(() -> {
 	            try {
@@ -83,7 +83,7 @@ public class funcionarioInicio extends JFrame {
 	                e.printStackTrace();
 	            }
 	        });
-	    }
+	    }*/
 
 	    public funcionarioInicio() {
 	    	controladorProducto = new ControladorProducto();

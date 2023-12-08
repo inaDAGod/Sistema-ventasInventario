@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import ventanasCliente.clienteInicio;
 import ventasInventario.NuevoFuncionario;
 import ventasInventario.PanelRegistro;
 import ventasInventario.BD.Modelo.GestorUsuarios;
@@ -38,7 +39,9 @@ public class ControladorRegistro {
         		Usuario u = new Usuario(usuario, nombre, correo, contrasenia);
         		try {
 					usuarios.addUsuario(u);
-					//mandarlo a la pantalla de inicio de clientes con su usuario
+					clienteInicio frame = new clienteInicio(u);
+					frame.setVisible(true);
+					this.panelRegistro.setVisible(false);//solo saca le panel deberia cerrarse la ventan
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "Parece que hubo un error vuelve a intentarlo", "Uy", JOptionPane.ERROR_MESSAGE);
 				}	

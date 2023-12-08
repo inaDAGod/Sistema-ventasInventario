@@ -22,6 +22,7 @@ public class ProductoFuncionario extends JFrame {
 	JScrollPane scrollPane;
 	JTable tabla;
 	PanelProductoFuncionario pinv;
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,9 +40,6 @@ public class ProductoFuncionario extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
 	 */
 	public ProductoFuncionario(Producto producto) {
 		pinv= new PanelProductoFuncionario(producto);

@@ -95,7 +95,7 @@ public class PanelInventario extends JPanel {
                     if (filaSeleccionada != -1) {
                       
                         String productoSeleccionado = (String) table.getValueAt(filaSeleccionada, 0);
-                        abrirProducto(productoSeleccionado);
+                        abrirProducto(productos.get(filaSeleccionada));
                     }
                 }
             }
@@ -136,9 +136,10 @@ public class PanelInventario extends JPanel {
        
         }
     }
-	private void abrirProducto(String producto) {
-		 JOptionPane.showMessageDialog(this, "Aqui añadimos la ventan de producto hehe: ", producto, JOptionPane.INFORMATION_MESSAGE);
-		 //redirecciona al producto
+	private void abrirProducto(Producto p) {
+		 ProductoFuncionario frame = new ProductoFuncionario(p);
+			frame.setVisible(true);
+			setVisible(true);
     }
     private void actualizarTabla() {
         table.setModel(modelo);
