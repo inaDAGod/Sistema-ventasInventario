@@ -33,6 +33,7 @@ import javax.swing.border.EmptyBorder;
 
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
+import ventasInventario.Registro;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -119,6 +120,13 @@ public class generalProductos extends JFrame {
 			btnNewButton.setBackground(new Color(220, 100, 150));
 			btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnNewButton.setForeground(Color.WHITE);
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					InicioGeneral frame = new InicioGeneral();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 			btnNewButton.setBounds(250, 44, 125, 36);
 			panel_1.add(btnNewButton);
 			
@@ -137,6 +145,13 @@ public class generalProductos extends JFrame {
 			btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta_1_1.setForeground(Color.WHITE);
 			btnOferta_1_1.setBounds(498, 44, 120, 36);
+			btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalOfertas frame = new generalOfertas();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
 			panel_1.add(btnOferta_1_1);
 
 			JButton btnOferta_1 = new JButton("Quienes somos?");
@@ -144,6 +159,13 @@ public class generalProductos extends JFrame {
 			btnOferta_1.setBackground(new Color(220, 100, 150));
 			btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 			btnOferta_1.setForeground(Color.WHITE);
+			btnOferta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					generalSobreNea frame = new generalSobreNea();
+					frame.setVisible(true);
+	                setVisible(false);
+				}
+			});
 			btnOferta_1.setBounds(618, 44, 140, 36);
 			panel_1.add(btnOferta_1);
 
@@ -172,8 +194,8 @@ public class generalProductos extends JFrame {
 			btnvolver2.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Login login = new Login();
-					login.setVisible(true);
+					Registro frame = new Registro();
+					frame.setVisible(true);
 					setVisible(false);
 				}
 			});
