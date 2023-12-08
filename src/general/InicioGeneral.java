@@ -34,6 +34,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+
+
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
 import ventasInventario.BD.Controladores.ControladorProducto;

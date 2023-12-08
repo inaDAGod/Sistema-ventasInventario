@@ -265,7 +265,7 @@ public class funcionarioInicio extends JFrame {
 
 	        JLabel lblNewLabel = new JLabel("");
 	        ImageIcon icon = new ImageIcon(
-      				"src/imagenes/logo.jpg");
+	        		 "src/imagenesJhess/perfilpersona.png");
 	        Image image = icon.getImage().getScaledInstance(190, 100, Image.SCALE_SMOOTH);
 	        lblNewLabel.setIcon(new ImageIcon(image));
 	        lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
