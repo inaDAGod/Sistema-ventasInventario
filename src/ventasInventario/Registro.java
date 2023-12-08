@@ -101,6 +101,7 @@ public class Registro extends JFrame {
 				generalSobreNea frame = new generalSobreNea();
 				frame.setVisible(true);
                 setVisible(false);
+                
 			}
 		});
 		btnSobreNea.setBounds(698, 44, 140, 36);
