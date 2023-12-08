@@ -363,6 +363,13 @@ public class funcionarioPedidoDetalle extends JFrame {
         btnvolver.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         btnvolver.setForeground(Color.WHITE);
         btnvolver.setBounds(1130, 50, 50, 40);
+        btnvolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				funcionarioInicio frame = new funcionarioInicio(usuario);
+                frame.setVisible(true);
+				setVisible(false);
+			}
+		});
         panel_1.add(btnvolver);
 //*INTERACCION DEL NARVAR
 

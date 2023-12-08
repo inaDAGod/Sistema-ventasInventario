@@ -9,7 +9,7 @@ public class Conexion {
 	static final String DB_URL = "jdbc:postgresql://localhost/Nea"; 
 	static final String USER = "postgres";
 
-	static final String PASS = "admin";
+	static final String PASS = "admi";
 
 	//siempre se debe crear el path descargando de https://jdbc.postgresql.org/download/
 	//para java version 8 y agregar el jar al proyecto :)
