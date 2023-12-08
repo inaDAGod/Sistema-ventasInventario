@@ -2,6 +2,7 @@ package ventasInventario;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -151,7 +152,8 @@ public class PanelProductoFuncionario extends JPanel {
 		        int seleccion = fileChooser.showOpenDialog(null);        
 		        if (seleccion == JFileChooser.APPROVE_OPTION) {
 		            ruta = fileChooser.getSelectedFile().getPath();
-		            foto.setIcon(new ImageIcon(ruta));
+		            ImageIcon imageIcon = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_DEFAULT));
+		            foto.setIcon(imageIcon);
 		        }	
 			}
 		});

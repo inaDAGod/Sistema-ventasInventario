@@ -108,6 +108,8 @@ public class funcionarioInicio extends JFrame {
 	        panel.setLayout(null);
 
 	        grupoRadioBotones = new ButtonGroup();
+	        
+	        //=============================================INICIOOOO DEL NARVAR TODOO
 	    //NARVAR DE UN LADO AL APRETAR EL PERFIL
 	        
 	        navegador = new JPanel();
@@ -305,10 +307,11 @@ public class funcionarioInicio extends JFrame {
 	      
 	        ImageIcon iconPerfil = new ImageIcon(
 	                "src/imagenesJhess/perfilpersona.png");
-	        Image imagePerfil = iconPerfil.getImage().getScaledInstance(130, 118, Image.SCALE_SMOOTH);
+	        Image imagePerfil = iconPerfil.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 
 	        btnOferta_2 = new JButton("");
-	        btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
+	        btnOferta_2.setBorder(BorderFactory.createLineBorder(Color.black, 0));
+	        btnOferta_2.setBackground(new Color(117, 14, 73));
 	        btnOferta_2.setIcon(new ImageIcon(imagePerfil));
 	        btnOferta_2.setBounds(990, 11, 130, 118);
 	        panel_1.add(btnOferta_2);
@@ -323,9 +326,30 @@ public class funcionarioInicio extends JFrame {
 	        btnvolver.setForeground(Color.WHITE);
 	        btnvolver.setBounds(1130, 50, 50, 40);
 	        panel_1.add(btnvolver);
-	        
-	       
+//*INTERACCION DEL NARVAR
 
+	        
+	        btnOferta_2.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	               
+
+	            	carruselPanel.setVisible(false);
+	            	radioBoton3_1.setVisible(false);
+	            	btnvolver.setVisible(false);
+	            	btnOferta_2.setVisible(false);
+	            	navegador.setVisible(true);
+	            	SuperiorNavegador.setVisible(true);
+	    	        btnUsuario.setVisible(true);
+	    	        buttonProducto5.setVisible(true);
+	    	        buttonMisPedidos.setVisible(true);
+	    	        buttonCerrar.setVisible(true);
+	    	        botonBuscar.setVisible(false);
+	    	       
+	               
+	            }
+	        });
+	       
+//=============================================FIN DEL NARVAR TODOO
 
 	        JPanel panelBase = new JPanel();
 	        panelBase.setBounds(0, 137, 1200, 625);
@@ -409,26 +433,6 @@ public class funcionarioInicio extends JFrame {
 	        agregarTarjetasPedidos();     
 	        restaurarEstadoOriginal();
 
-	        
-	        btnOferta_2.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	               
-
-	            	carruselPanel.setVisible(false);
-	            	radioBoton3_1.setVisible(false);
-	            	btnvolver.setVisible(false);
-	            	btnOferta_2.setVisible(false);
-	            	navegador.setVisible(true);
-	            	SuperiorNavegador.setVisible(true);
-	    	        btnUsuario.setVisible(true);
-	    	        buttonProducto5.setVisible(true);
-	    	        buttonMisPedidos.setVisible(true);
-	    	        buttonCerrar.setVisible(true);
-	    	        botonBuscar.setVisible(false);
-	    	       
-	               
-	            }
-	        });
 
 	    }
 	    
