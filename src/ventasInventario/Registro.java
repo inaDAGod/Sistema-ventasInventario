@@ -25,9 +25,6 @@ public class Registro extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Registro() {
 		getContentPane().setBackground(new Color(193, 123, 160));
 		setSize(1200,800);
