@@ -26,7 +26,7 @@ public class Registro extends JFrame {
 	public Registro() {
 		setResizable(false);
 		
-		getContentPane().setBackground(new Color(193, 123, 160));
+		getContentPane().setBackground(new Color(118,14,73));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		setSize(1200,800);
@@ -91,7 +91,7 @@ public class Registro extends JFrame {
 		btnOferta.setBounds(578, 44, 120, 36);
 		getContentPane().add(btnOferta);
 
-		JButton btnSobreNea = new JButton("Quienes somos?");
+		JButton btnSobreNea = new JButton("Sobre Nea");
 		btnSobreNea.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnSobreNea.setBackground(new Color(220, 100, 150));
 		btnSobreNea.setFont(new Font("Times New Roman", Font.PLAIN, 20));

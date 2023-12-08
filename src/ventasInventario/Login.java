@@ -29,7 +29,7 @@ public class Login extends JFrame {
 	
 	public Login() {
 		setResizable(false);
-		getContentPane().setBackground(new Color(193, 123, 160));
+		getContentPane().setBackground(new Color(118,14,73));
 		setSize(1200,800);
 		getContentPane().setLayout(null);
 		setSize(1200,800);
