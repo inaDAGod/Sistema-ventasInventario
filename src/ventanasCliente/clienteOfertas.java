@@ -172,7 +172,7 @@ public class clienteOfertas extends JFrame {
 
       		JLabel lblNewLabel = new JLabel("");
       		ImageIcon icon = new ImageIcon(
-      				"C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenes\\logo.jpg");
+      				"src/imagenes/logo.jpg");
       		Image image = icon.getImage().getScaledInstance(190, 100, Image.SCALE_SMOOTH);
       		lblNewLabel.setIcon(new ImageIcon(image));
       		lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));

@@ -174,6 +174,39 @@ public class InicioGeneral extends JFrame {
 			}
 		});
 		panel_1.add(btnOferta_1);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				generalOfertas oferta = new generalOfertas();
+				oferta.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnOferta.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				generalOfertas oferta = new generalOfertas();
+				oferta.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnOferta_1_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnOferta_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
+				setVisible(false);
+			}
+		});
 
 		JButton btnvolver = new JButton("Iniciar sesion");
 		btnvolver.setBorder(BorderFactory.createLineBorder(Color.black, 1));

@@ -37,7 +37,7 @@ class TarjetaPedido extends JPanel {
          
 
         ImageIcon iconPedido = new ImageIcon(
-                "src\\imagenesJhess\\carritos3.png");
+                "src/imagenesJhess/carritos3.png");
         Image imagenOriginal = iconPedido.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         ImageIcon iconRedimensionado = new ImageIcon(imagenOriginal);
         JLabel labelImagen = new JLabel(iconRedimensionado); 
@@ -222,7 +222,7 @@ public class clientePedido extends JFrame {
 
       		JLabel lblNewLabel = new JLabel("");
       		ImageIcon icon = new ImageIcon(
-      				"C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenes\\logo.jpg");
+      				"src/imagenes/logo.jpg");
       		Image image = icon.getImage().getScaledInstance(190, 100, Image.SCALE_SMOOTH);
       		lblNewLabel.setIcon(new ImageIcon(image));
       		lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
