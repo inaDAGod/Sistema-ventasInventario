@@ -19,6 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import general.InicioGeneral;
+import ventanasCliente.clientePedidoDetalle;
+import ventasInventario.Inventario;
+import ventasInventario.ListadoClientes;
+import ventasInventario.NuevoFuncionario;
+import ventasInventario.NuevoProducto;
 import ventasInventario.BD.Controladores.ControladorPedidos;
 import ventasInventario.BD.Modelo.GestorPedidos;
 import ventasInventario.BD.Modelo.Pedido;
@@ -34,24 +40,27 @@ public class funcionarioPedidos extends JFrame {
     private JPanel navegador;
     private  JPanel SuperiorNavegador;
     private JButton btnOferta_2;
+    private ControladorPedidos controladorPedidos;
+	 private ArrayList<Pedido> listaPedidos;
+	 private Usuario usuario;
+	 /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	ControladorPedidos controladorPedidos = new ControladorPedidos();
-                	 ArrayList<Pedido> listaPedidos = controladorPedidos.pedidosTodos();
-                	funcionarioPedidos frame = new funcionarioPedidos(listaPedidos);
+                	Usuario u = new Usuario("funci");
+                	funcionarioPedidos frame = new funcionarioPedidos(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-    }
+    }*/
     public class TarjetaPedido extends JPanel {
         private static final long serialVersionUID = 1L;
 
-        public TarjetaPedido(Pedido pedido) {
+        public TarjetaPedido(Pedido pedido,funcionarioPedidos funciped) {
         	 
         	 setLayout(new BorderLayout()); 
              setBorder(BorderFactory.createLineBorder(Color.BLACK, 0)); 
@@ -87,7 +96,13 @@ public class funcionarioPedidos extends JFrame {
             buttonInfo.setBorder(BorderFactory.createLineBorder(Color.black, 2)); 
             buttonInfo.setBounds(0, 0, 300, 1500);
             buttonInfo.setBackground(new Color(167, 134, 252)); 
-            
+            buttonInfo.addActionListener(new ActionListener() {
+    			public void actionPerformed(ActionEvent e) {
+    				funcionarioPedidoDetalle frame = new funcionarioPedidoDetalle(pedido,usuario);
+                    frame.setVisible(true);
+    				funciped.setVisible(false);
+    			}
+    		});
             
            
             Font font = new Font("Times New Roman", Font.PLAIN, 30);
@@ -110,7 +125,10 @@ public class funcionarioPedidos extends JFrame {
             setBackground(Color.WHITE);
         }
     }
-    public funcionarioPedidos(ArrayList<Pedido> listaPedidos) {
+    public funcionarioPedidos(Usuario u) {
+    	this.usuario = u;
+    	this.controladorPedidos = new ControladorPedidos();
+    	this.listaPedidos = controladorPedidos.pedidosTodos();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -145,6 +163,13 @@ public class funcionarioPedidos extends JFrame {
   	        JButton btnUsuario = new JButton("   Mi perfil");
   	        btnUsuario.setBounds(40, 20, 300, 70);
   	        btnUsuario.setLayout(new BorderLayout());
+  	      btnUsuario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					perfilFuncionario frame = new perfilFuncionario (usuario);
+	                frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
   	        btnUsuario.setVisible(true);
   	        SuperiorNavegador.add(btnUsuario);
@@ -164,6 +189,13 @@ public class funcionarioPedidos extends JFrame {
   	        buttonProducto5.setLayout(new BorderLayout());
   	        buttonProducto5.setBackground(new Color(250, 232, 235));
   	        buttonProducto5.setVisible(true);
+  	      buttonProducto5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoProducto frame = new NuevoProducto(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        navegador.add(buttonProducto5);
   	        buttonProducto5.setForeground(Color.BLACK);
   	        buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -185,6 +217,13 @@ public class funcionarioPedidos extends JFrame {
   	        buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
   	        buttonMisPedidos.setForeground(Color.BLACK);
   	        navegador.add(buttonMisPedidos);
+  	      buttonMisPedidos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoFuncionario frame = new NuevoFuncionario(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/aFuncionario.png");
   	        Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
   	        ImageIcon iconRedimensionado21 = new ImageIcon(imagenOriginal21);
@@ -201,6 +240,13 @@ public class funcionarioPedidos extends JFrame {
   	        buttonListado.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
   	        buttonListado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
   	        buttonListado.setForeground(Color.BLACK);
+  	      buttonListado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ListadoClientes frame = new ListadoClientes(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        navegador.add(buttonListado);
   	        ImageIcon iconProducto218 = new ImageIcon("src/imagenesJhess/listaCliente.png");
   	        Image imagenOriginal218 = iconProducto218.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
@@ -232,6 +278,13 @@ public class funcionarioPedidos extends JFrame {
   	        buttonEstadisticas.setBounds(25, 520, 300, 70);
   	        buttonEstadisticas.setLayout(new BorderLayout());
   	        buttonEstadisticas.setVisible(true);
+  	      buttonEstadisticas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioEstadisticas frame = new funcionarioEstadisticas(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        buttonEstadisticas.setBackground(new Color(250, 232, 235));
   	        buttonEstadisticas.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
   	        buttonEstadisticas.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -249,6 +302,13 @@ public class funcionarioPedidos extends JFrame {
   	        buttonCerrar.setBounds(25, 620, 300, 70);
   	        buttonCerrar.setLayout(new BorderLayout());
   	        buttonCerrar.setVisible(true);
+  	      buttonCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					InicioGeneral frame = new InicioGeneral();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        buttonCerrar.setBackground(new Color(250, 232, 235));
   	        buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
   	        buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -287,6 +347,13 @@ public class funcionarioPedidos extends JFrame {
   	        JButton btnNewButton = new JButton("Inicio");
   	        btnNewButton.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
   	        btnNewButton.setBackground(new Color(220, 100, 150));
+  	      btnNewButton.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				funcionarioInicio frame = new funcionarioInicio(usuario);
+                  frame.setVisible(true);
+  				setVisible(false);
+  			}
+  		});
   	        btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
   	        btnNewButton.setForeground(Color.WHITE);
   	        btnNewButton.setBounds(330, 44, 125, 36);
@@ -297,6 +364,13 @@ public class funcionarioPedidos extends JFrame {
   	        btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
   	        btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
   	        btnOferta.setForeground(Color.WHITE);
+  	      btnOferta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Inventario frame = new Inventario(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        btnOferta.setBounds(454, 44, 125, 36);
   	        panel_1.add(btnOferta);
   	        
@@ -305,6 +379,13 @@ public class funcionarioPedidos extends JFrame {
   	        btnOferta_1_1.setBackground(new Color(220, 100, 150));
   	        btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
   	        btnOferta_1_1.setForeground(Color.WHITE);
+  	      btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioPedidosActuales frame = new funcionarioPedidosActuales(usuario);
+                  frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        btnOferta_1_1.setBounds(578, 44, 150, 36);
   	        panel_1.add(btnOferta_1_1);
 
@@ -313,6 +394,13 @@ public class funcionarioPedidos extends JFrame {
   	        btnOferta_1.setBackground(new Color(220, 100, 150));
   	        btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
   	        btnOferta_1.setForeground(Color.WHITE);
+  	      btnOferta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioSobreNea frame = new funcionarioSobreNea(usuario);
+                  frame.setVisible(true);
+					setVisible(false);
+				}
+			});
   	        btnOferta_1.setBounds(728, 44, 150, 36);
   	        panel_1.add(btnOferta_1);
 
@@ -361,7 +449,7 @@ public class funcionarioPedidos extends JFrame {
  
         
         for (Pedido pedido : listaPedidos) {
-            TarjetaPedido tarjeta = new TarjetaPedido(pedido);
+            TarjetaPedido tarjeta = new TarjetaPedido(pedido,funcionarioPedidos.this);
           
             panelTarjetas.add(tarjeta);
         }

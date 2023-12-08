@@ -28,6 +28,7 @@ import javax.swing.border.EmptyBorder;
 
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
+import ventasInventario.Registro;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -40,25 +41,7 @@ public class generalOfertas extends JFrame {
 		private JButton btnOferta_2;
 	    private ArrayList<Producto> ofertados;
 	    private ControladorProducto controladorProducto;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					generalOfertas frame = new generalOfertas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public generalOfertas() {
 		setResizable(false);
 		controladorProducto = new ControladorProducto();
@@ -99,6 +82,13 @@ public class generalOfertas extends JFrame {
 		btnNewButton.setBackground(new Color(220, 100, 150));
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InicioGeneral frame = new InicioGeneral();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnNewButton.setBounds(250, 44, 125, 36);
 		panel_1.add(btnNewButton);
 		
@@ -108,6 +98,13 @@ public class generalOfertas extends JFrame {
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalProductos frame = new generalProductos();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnOferta.setBounds(374, 44, 125, 36);
 		panel_1.add(btnOferta);
 
@@ -125,6 +122,13 @@ public class generalOfertas extends JFrame {
 		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1.setForeground(Color.WHITE);
 		btnOferta_1.setBounds(618, 44, 140, 36);
+		btnOferta_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalSobreNea frame = new generalSobreNea();
+				frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		panel_1.add(btnOferta_1);
 
 		JButton btnvolver = new JButton("Iniciar sesion");
@@ -152,8 +156,8 @@ public class generalOfertas extends JFrame {
 		btnvolver2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
+				Registro frame = new Registro();
+				frame.setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -215,7 +219,7 @@ public class generalOfertas extends JFrame {
                 JLabel labelNumeroCompra = new JLabel("Nombre: " + producto.getNombre());
                 labelNumeroCompra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelNumeroCompra.setForeground(Color.BLACK); 
-                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecio());
+                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecioOriginal());
                 labelFecha.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelFecha.setForeground(Color.RED); 
                 JLabel labelEstado = new JLabel("Ahora: " + producto.getOferta().getPrecioOferta());
@@ -233,8 +237,9 @@ public class generalOfertas extends JFrame {
                 buttonPedido.setBackground(Color.white);
 
                 buttonPedido.addActionListener(e -> {
-                	ProductoCliente frame = new ProductoCliente(null,producto);
+                	ProductoDetalleGeneral frame = new ProductoDetalleGeneral(producto,generalOfertas.this);
 					frame.setVisible(true);
+					generalOfertas.this.setVisible(false);
                 });
                 buttonPedido.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 

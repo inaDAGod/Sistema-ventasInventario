@@ -86,8 +86,10 @@ public class PanelLogin extends JPanel {
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ControladorLogin controlador = new ControladorLogin(PanelLogin.this);
-				controlador.verificacionLogin();
-					
+				if(controlador.verificacionLogin()) {
+					getTopLevelAncestor().setVisible(false);
+				}
+				
 				
 				
 			}

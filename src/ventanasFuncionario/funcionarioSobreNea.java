@@ -4,7 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import general.InicioGeneral;
 import ventanasCliente.clienteSobreNea;
+import ventasInventario.Inventario;
+import ventasInventario.ListadoClientes;
+import ventasInventario.NuevoFuncionario;
+import ventasInventario.NuevoProducto;
+import ventasInventario.BD.Modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
@@ -34,12 +40,14 @@ public class funcionarioSobreNea extends JFrame {
     private  JPanel SuperiorNavegador;
     private JButton btnOferta_2;
     private JTextField textField;
-
+    private Usuario usuario;
+    /*
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	funcionarioSobreNea frame = new funcionarioSobreNea();
+                	Usuario u = new Usuario("funci");
+                	funcionarioSobreNea frame = new funcionarioSobreNea(u);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -50,7 +58,8 @@ public class funcionarioSobreNea extends JFrame {
     /**
      * Create the frame.
      */
-    public funcionarioSobreNea() {
+    public funcionarioSobreNea(Usuario u) {
+    	this.usuario = u;
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1200, 800);
@@ -63,7 +72,6 @@ public class funcionarioSobreNea extends JFrame {
         panel.setBounds(0, 0, 1200, 800);
         contentPane.add(panel);
         panel.setLayout(null);
-
         //=============================================INICIOOOO DEL NARVAR TODOO
 	    //NARVAR DE UN LADO AL APRETAR EL PERFIL
 	        
@@ -88,8 +96,16 @@ public class funcionarioSobreNea extends JFrame {
 	        JButton btnUsuario = new JButton("   Mi perfil");
 	        btnUsuario.setBounds(40, 20, 300, 70);
 	        btnUsuario.setLayout(new BorderLayout());
+	        
 	        btnUsuario.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        btnUsuario.setVisible(true);
+	        btnUsuario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					perfilFuncionario frame = new perfilFuncionario (usuario);
+	                frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        SuperiorNavegador.add(btnUsuario);
 	        btnUsuario.setBackground(new Color(205, 159, 204));
 	        btnUsuario.setForeground(Color.WHITE);
@@ -107,6 +123,13 @@ public class funcionarioSobreNea extends JFrame {
 	        buttonProducto5.setLayout(new BorderLayout());
 	        buttonProducto5.setBackground(new Color(250, 232, 235));
 	        buttonProducto5.setVisible(true);
+	        buttonProducto5.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoProducto frame = new NuevoProducto(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        navegador.add(buttonProducto5);
 	        buttonProducto5.setForeground(Color.BLACK);
 	        buttonProducto5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -127,6 +150,13 @@ public class funcionarioSobreNea extends JFrame {
 	        buttonMisPedidos.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonMisPedidos.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        buttonMisPedidos.setForeground(Color.BLACK);
+	        buttonMisPedidos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					NuevoFuncionario frame = new NuevoFuncionario(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        navegador.add(buttonMisPedidos);
 	        ImageIcon iconProducto21 = new ImageIcon("src/imagenesJhess/aFuncionario.png");
 	        Image imagenOriginal21 = iconProducto21.getImage().getScaledInstance(80, 70, Image.SCALE_SMOOTH);
@@ -140,6 +170,13 @@ public class funcionarioSobreNea extends JFrame {
 	        buttonListado.setBounds(25, 320, 300, 70);
 	        buttonListado.setLayout(new BorderLayout());
 	        buttonListado.setVisible(true);
+	        buttonListado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ListadoClientes frame = new ListadoClientes(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        buttonListado.setBackground(new Color(250, 232, 235));
 	        buttonListado.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonListado.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -158,6 +195,13 @@ public class funcionarioSobreNea extends JFrame {
 	        buttonAjustes.setBounds(25, 420, 300, 70);
 	        buttonAjustes.setLayout(new BorderLayout());
 	        buttonAjustes.setVisible(true);
+	        buttonAjustes.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioPedidos frame = new funcionarioPedidos(usuario);
+                    frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        navegador.add(buttonAjustes);
 	        buttonAjustes.setBackground(new Color(250, 232, 235));
 	        buttonAjustes.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
@@ -175,6 +219,13 @@ public class funcionarioSobreNea extends JFrame {
 	        buttonEstadisticas.setBounds(25, 520, 300, 70);
 	        buttonEstadisticas.setLayout(new BorderLayout());
 	        buttonEstadisticas.setVisible(true);
+	        buttonEstadisticas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioEstadisticas frame = new funcionarioEstadisticas(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        buttonEstadisticas.setBackground(new Color(250, 232, 235));
 	        buttonEstadisticas.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonEstadisticas.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -192,6 +243,13 @@ public class funcionarioSobreNea extends JFrame {
 	        buttonCerrar.setBounds(25, 620, 300, 70);
 	        buttonCerrar.setLayout(new BorderLayout());
 	        buttonCerrar.setVisible(true);
+	        buttonCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					InicioGeneral frame = new InicioGeneral();
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        buttonCerrar.setBackground(new Color(250, 232, 235));
 	        buttonCerrar.setBorder(BorderFactory.createLineBorder(Color.black, 0)); 
 	        buttonCerrar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -230,6 +288,13 @@ public class funcionarioSobreNea extends JFrame {
 	        JButton btnNewButton = new JButton("Inicio");
 	        btnNewButton.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnNewButton.setBackground(new Color(220, 100, 150));
+	        btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioInicio frame = new funcionarioInicio(usuario);
+	                frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnNewButton.setForeground(Color.WHITE);
 	        btnNewButton.setBounds(330, 44, 125, 36);
@@ -240,12 +305,26 @@ public class funcionarioSobreNea extends JFrame {
 	        btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta.setForeground(Color.WHITE);
+	        btnOferta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Inventario frame = new Inventario(usuario);
+					frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        btnOferta.setBounds(454, 44, 125, 36);
 	        panel_1.add(btnOferta);
 	        
 	        JButton btnOferta_1_1 = new JButton("Pedidos actuales");
 	        btnOferta_1_1.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
 	        btnOferta_1_1.setBackground(new Color(220, 100, 150));
+	        btnOferta_1_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					funcionarioPedidosActuales frame = new funcionarioPedidosActuales(usuario);
+                    frame.setVisible(true);
+					setVisible(false);
+				}
+			});
 	        btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta_1_1.setForeground(Color.WHITE);
 	        btnOferta_1_1.setBounds(578, 44, 150, 36);
@@ -256,6 +335,7 @@ public class funcionarioSobreNea extends JFrame {
 	        btnOferta_1.setBackground(new Color(220, 100, 150));
 	        btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 	        btnOferta_1.setForeground(Color.WHITE);
+	 
 	        btnOferta_1.setBounds(728, 44, 150, 36);
 	        panel_1.add(btnOferta_1);
 
@@ -283,6 +363,7 @@ public class funcionarioSobreNea extends JFrame {
 	        panel_1.add(btnvolver);
 //*INTERACCION DEL NARVAR
 
+
 	       
 	       
 //=============================================FIN DEL NARVAR TODOO
@@ -300,7 +381,7 @@ public class funcionarioSobreNea extends JFrame {
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_2 = new JLabel("");
-        ImageIcon icon2 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\personassi.jfif");
+        ImageIcon icon2 = new ImageIcon("src\\imagenesJhess\\personassi.jfif");
         Image image2 = icon2.getImage().getScaledInstance(465, 476, Image.SCALE_SMOOTH);
         lblNewLabel_2.setIcon(new ImageIcon(image2));
         lblNewLabel_2.setBounds(72, 97, 465, 476);
@@ -313,7 +394,7 @@ public class funcionarioSobreNea extends JFrame {
         lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 47));
 
         JButton btnNewButton_1 = new JButton("");
-        ImageIcon iconButton1 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\camara2.jpg");
+        ImageIcon iconButton1 = new ImageIcon("src\\imagenesJhess\\camara2.jpg");
         Image imageButton1 = iconButton1.getImage().getScaledInstance(70, 50, Image.SCALE_SMOOTH);
         btnNewButton_1.setIcon(new ImageIcon(imageButton1));
         btnNewButton_1.setBounds(512, 30, 70, 50);
@@ -353,7 +434,7 @@ public class funcionarioSobreNea extends JFrame {
         panel_3_1.add(lblNewLabel_1_1_1);
 
         JLabel lblNewLabel_5 = new JLabel("");
-        ImageIcon icon5 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\icono-de-llamada-telefonica");
+        ImageIcon icon5 = new ImageIcon("src\\imagenesJhess\\icono-de-llamada-telefonica");
         Image image5 = icon5.getImage().getScaledInstance(75, 52, Image.SCALE_SMOOTH);
         lblNewLabel_5.setIcon(new ImageIcon(image5));
         lblNewLabel_5.setBounds(361, 324, 75, 52);
@@ -365,7 +446,7 @@ public class funcionarioSobreNea extends JFrame {
         panel_3_1.add(lblNewLabel_1_1_2);
 
         JButton btnNewButton_1_1 = new JButton("");
-        ImageIcon iconButton1_1 = new ImageIcon("C:\\Users\\Desktop\\Documents\\GitHub\\Sistema-ventasInventario\\src\\imagenesJhess\\camara2.jpg");
+        ImageIcon iconButton1_1 = new ImageIcon("src\\imagenesJhess\\camara2.jpg");
         Image imageButton1_1 = iconButton1_1.getImage().getScaledInstance(70, 50, Image.SCALE_SMOOTH);
         btnNewButton_1_1.setIcon(new ImageIcon(imageButton1_1));
         btnNewButton_1_1.setBounds(502, 421, 70, 50);

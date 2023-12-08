@@ -68,6 +68,13 @@ language plpgsql;
 --select *from ofertas 
 --select *from productos
 
+create or replace function agregarImagenProducto(cima varchar(200),cproducto varchar(50))
+returns void as $etiquetar$
+begin
+    insert into imagenes values(cima,cproducto);
+end;
+$etiquetar$
+language plpgsql;
 
 create or replace function agregaraCarrito(cusuario varchar(30),cpro varchar(30),cantidad integer)
 returns void as $carrito$

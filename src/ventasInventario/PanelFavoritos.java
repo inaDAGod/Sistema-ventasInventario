@@ -30,7 +30,9 @@ public class PanelFavoritos extends JPanel {
     DefaultTableModel modelo;
     private JTextField tfProductoBuscado;
     private ControladorFavorito controladorFavorito ;
-	public PanelFavoritos(Usuario usuario) {
+    private Usuario usuario;
+	public PanelFavoritos(Usuario u) {
+		this.usuario = u;
 		setBackground(new Color(193, 123, 160));
 		controladorFavorito = new ControladorFavorito(usuario);
 		productos = controladorFavorito.listaFavoritosUsuario();
@@ -105,8 +107,7 @@ public class PanelFavoritos extends JPanel {
                     int filaSeleccionada = table.getSelectedRow();
                     if (filaSeleccionada != -1) {
                       
-                        String productoSeleccionado = (String) table.getValueAt(filaSeleccionada, 0);
-                        abrirProducto(productoSeleccionado);
+                        abrirProducto(productos.get(filaSeleccionada));
                     }
                 }
             }
@@ -180,9 +181,11 @@ public class PanelFavoritos extends JPanel {
 	    }
 	}
 	
-	private void abrirProducto(String producto) {
+	private void abrirProducto(Producto producto) {
+		getTopLevelAncestor().setVisible(false);
+		ProductoCliente frame = new ProductoCliente(usuario,producto,null);
+		frame.setVisible(true);
 		
-		 JOptionPane.showMessageDialog(this, "Aqui añadimos la ventan de producto hehe: ", producto, JOptionPane.INFORMATION_MESSAGE);
     }
     private void actualizarTabla() {
         table.setModel(modelo);

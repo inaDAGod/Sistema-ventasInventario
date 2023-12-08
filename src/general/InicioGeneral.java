@@ -35,9 +35,12 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
-
+import ventanasCliente.clienteCatalogo;
+import ventanasCliente.clienteOfertas;
+import ventanasCliente.clienteSobreNea;
 import ventasInventario.Login;
 import ventasInventario.ProductoCliente;
+import ventasInventario.Registro;
 import ventasInventario.BD.Controladores.ControladorProducto;
 import ventasInventario.BD.Modelo.Producto;
 
@@ -125,6 +128,7 @@ public class InicioGeneral extends JFrame {
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(250, 44, 125, 36);
+
 		panel_1.add(btnNewButton);
 		
 
@@ -133,6 +137,13 @@ public class InicioGeneral extends JFrame {
 		btnOferta.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 		btnOferta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta.setForeground(Color.WHITE);
+		btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalProductos frame = new generalProductos();
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnOferta.setBounds(374, 44, 125, 36);
 		panel_1.add(btnOferta);
 
@@ -142,6 +153,13 @@ public class InicioGeneral extends JFrame {
 		btnOferta_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1_1.setForeground(Color.WHITE);
 		btnOferta_1_1.setBounds(498, 44, 120, 36);
+		btnOferta_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generalOfertas frame = new generalOfertas();
+				frame.setVisible(true);
+                setVisible(false);
+			}
+		});
 		panel_1.add(btnOferta_1_1);
 
 		JButton btnOferta_1 = new JButton("Quienes somos?");
@@ -150,40 +168,14 @@ public class InicioGeneral extends JFrame {
 		btnOferta_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnOferta_1.setForeground(Color.WHITE);
 		btnOferta_1.setBounds(618, 44, 140, 36);
-		panel_1.add(btnOferta_1);
-		
-		btnNewButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				generalOfertas oferta = new generalOfertas();
-				oferta.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnOferta.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				generalOfertas oferta = new generalOfertas();
-				oferta.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnOferta_1_1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
-				setVisible(false);
-			}
-		});
 		btnOferta_1.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
-				setVisible(false);
+				generalSobreNea frame = new generalSobreNea();
+				frame.setVisible(true);
+                setVisible(false);
 			}
 		});
+		panel_1.add(btnOferta_1);
 
 		JButton btnvolver = new JButton("Iniciar sesion");
 		btnvolver.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -210,8 +202,8 @@ public class InicioGeneral extends JFrame {
 		btnvolver2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
-				login.setVisible(true);
+				Registro frame = new Registro();
+				frame.setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -613,8 +605,9 @@ public class InicioGeneral extends JFrame {
 				buttonProducto.setLayout(new GridBagLayout());
 				buttonProducto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ProductoCliente frame = new ProductoCliente(null,producto11);
-						frame.setVisible(true);
+						ProductoDetalleGeneral d = new ProductoDetalleGeneral(producto11,InicioGeneral.this);
+						d.setVisible(true);
+						InicioGeneral.this.setVisible(false);
 					}
 				});
 				ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
@@ -722,8 +715,9 @@ public class InicioGeneral extends JFrame {
 					buttonProducto.setLayout(new GridBagLayout());
 					buttonProducto.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ProductoCliente frame = new ProductoCliente(null,producto11);
+							ProductoDetalleGeneral frame = new ProductoDetalleGeneral(producto11,InicioGeneral.this);
 							frame.setVisible(true);
+							InicioGeneral.this.setVisible(false);
 						}
 					});
 					ImageIcon iconProducto = new ImageIcon(producto11.getImagenes().get(0));
