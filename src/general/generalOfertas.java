@@ -219,7 +219,7 @@ public class generalOfertas extends JFrame {
                 JLabel labelNumeroCompra = new JLabel("Nombre: " + producto.getNombre());
                 labelNumeroCompra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelNumeroCompra.setForeground(Color.BLACK); 
-                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecio());
+                JLabel labelFecha = new JLabel("Antes: " + producto.getPrecioOriginal());
                 labelFecha.setFont(new Font("Times New Roman", Font.PLAIN, 20));
                 labelFecha.setForeground(Color.RED); 
                 JLabel labelEstado = new JLabel("Ahora: " + producto.getOferta().getPrecioOferta());
