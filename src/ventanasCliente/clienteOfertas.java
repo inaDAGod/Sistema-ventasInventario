@@ -83,9 +83,17 @@ public class clienteOfertas extends JFrame {
         JButton btnNewButton = new JButton("Inicio");
         btnNewButton.setBounds(226, 44, 139, 36);
         panel_1.add(btnNewButton);
+        
 
         JButton btnOferta = new JButton("Productos");
         btnOferta.setBounds(394, 44, 139, 36);
+        btnOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clienteCatalogo frame = new clienteCatalogo(usuario);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
         panel_1.add(btnOferta);
 
         JButton btnOferta_1 = new JButton("Quienes somos?");
