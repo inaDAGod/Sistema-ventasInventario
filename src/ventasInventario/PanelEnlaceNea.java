@@ -1,6 +1,9 @@
 package ventasInventario;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -13,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import java.awt.Desktop;
 
 public class PanelEnlaceNea extends JPanel {    
 	public PanelEnlaceNea(String numeroPedido) {
@@ -45,7 +49,17 @@ public class PanelEnlaceNea extends JPanel {
         
         JButton btnEnlace = new JButton("¡Enlazate ahora!");
         btnEnlace.setBounds(463, 489, 300, 50);
+        btnEnlace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+			            Desktop.getDesktop().browse(new URI("https://wa.link/c625hp"));
+			        } catch (Exception ex) {
+			            ex.printStackTrace();
+			        }
+			}
+		});
         add(btnEnlace);
+        
         
         JLabel fondo = new JLabel("New label");
         fondo.setIcon(new ImageIcon(PanelEnlaceNea.class.getResource("/imagenes/blanco(1200x800).jpg")));

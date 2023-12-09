@@ -30,35 +30,11 @@ public class Ofertar extends JFrame {
 	private JLabel lbPrecioOferta;
 	private Producto producto;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					//ejemplo producto
-					ArrayList<String> eti = new ArrayList<>();
-					eti.add("ROPA");
-					eti.add("NIÑO");
-					Producto p = new Producto("P456", "gorrito", "gorritos para el frio", 10.5, 10, "gucci", "ROSA", "S" , null,eti);
-					Ofertar frame = new Ofertar(p);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					System.out.println(e);
-					
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public Ofertar(Producto p) {
 		this.producto = p;
 		getContentPane().setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(162, 195, 200));
